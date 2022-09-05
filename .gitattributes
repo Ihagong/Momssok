@@ -1,0 +1,1 @@
+*.{h5,[[:space:]]pth} filter=lfs diff=lfs merge=lfs -text
