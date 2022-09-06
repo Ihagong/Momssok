@@ -1,10 +1,12 @@
 import React from 'react'
-import HandTrackingPage from './Pages/HandTrackingPage'
+import PaintingPage from './Pages/PaintingPage'
 
 function App() {
   return (
-    <HandTrackingPage/>
+    <>
+      <PaintingPage/>
+    </>
   );
 }
 
-export default App;
+export default App
