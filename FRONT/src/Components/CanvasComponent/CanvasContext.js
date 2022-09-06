@@ -41,7 +41,7 @@ export const CanvasProvider = ({ children }) => {
     const { offsetX, offsetY } = nativeEvent
     contextRef.current.lineTo(offsetX, offsetY)
     contextRef.current.stroke()
-  };
+  }
 
   const clearCanvas = () => {
     const canvas = canvasRef.current
@@ -62,6 +62,15 @@ export const CanvasProvider = ({ children }) => {
     context.lineWidth = lineWidth
   }
 
+  const saveCanvas = () => {
+    const canvas = canvasRef.current
+    const image = canvas.toDataURL()
+    const link = document.createElement('a')
+    link.href = image
+    link.download = 'MyPainting'
+    link.click()
+  }
+
   return (
     <CanvasContext.Provider
       value={{
@@ -70,8 +79,9 @@ export const CanvasProvider = ({ children }) => {
         prepareCanvas,
         startDrawing,
         finishDrawing,
-        clearCanvas,
         changeStrokeStyle,
+        clearCanvas,
+        saveCanvas,
         changeLineWidth,
         draw,
       }}
