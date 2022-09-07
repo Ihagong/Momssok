@@ -1,6 +1,6 @@
 # ✔ 에러 및 해결방법
 
-### MySQL 사용
+### MySQL
 
 - MySQL 실행 안되는 현상
 
@@ -18,7 +18,7 @@
 
 ![image-20220906155420522](C:\Users\multicampus\AppData\Roaming\Typora\typora-user-images\image-20220906155420522.png)
 
-→ 포트번호 8090으로 변경
+→ 포트문제였다. '서비스'에 들어가서 MariaDB '중지'
 
 
 

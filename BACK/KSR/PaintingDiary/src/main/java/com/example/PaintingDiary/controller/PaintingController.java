@@ -1,10 +1,9 @@
 package com.example.PaintingDiary.controller;
 
+import com.example.PaintingDiary.model.dto.DiaryDto;
+import com.example.PaintingDiary.service.DiaryService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
@@ -25,10 +24,12 @@ public class PaintingController {
     private final String fail = "FAIL";
     private final String error = "ERROR";
 
+    private final DiaryService diaryService;
+
     @PostMapping("/upload")
     public Map<String, Object> savePainting(
-            HttpServletRequest request,
-            @RequestBody MultipartFile file) throws Exception {
+            @RequestPart(value = "data", required = false) DiaryDto diary, HttpServletRequest request,
+            @RequestPart(value = "file", required = true) MultipartFile file) throws Exception {
 
         Map<String, Object> result = new HashMap<>();
 
@@ -42,10 +43,17 @@ public class PaintingController {
             String painting = save(file, uploadDate);   //파일 저장
 
             try {
-                result.put("status", success);
-                result.put("data", painting);
+                diary.setPainting(painting);
+                int res = diaryService.saveDiary(diary);
+                if (res == 1) {
+                    result.put("status", success);
+                    result.put("data", diaryService.getDiary(diary));
+                } else {
+                    result.put("status", fail);
+                }
             } catch (Exception e) {
-                result.put("status", fail);
+                result.put("status", error);
+                result.put("message", e.toString());
             }
             return result;
         } catch (IllegalStateException e){
