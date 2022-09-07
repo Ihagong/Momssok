@@ -7,3 +7,12 @@
 
 - fastAPI 사용
 - 이미지 전송 테스트
+
+
+
+#### 9/6
+
+- 테스트 라벨링
+
+- Detectron2 구동 및 segmentation
+- 데이터셋 찾기
