@@ -17,7 +17,7 @@ public class DiaryServiceImpl implements DiaryService{
     }
 
     @Override
-    public DiaryDto getDiary(DiaryDto diaryDto) throws Exception {
-        return diaryMapper.getDiary(diaryDto);
+    public String getDiary(int id) throws Exception {
+        return diaryMapper.getDiary(id);
     }
 }
