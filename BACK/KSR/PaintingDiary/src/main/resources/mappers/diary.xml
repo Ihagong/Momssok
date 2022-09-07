@@ -5,9 +5,9 @@
 <mapper namespace="com.example.PaintingDiary.mapper.DiaryMapper">
     <insert id="saveDiary" parameterType="DiaryDto">
         INSERT INTO painting_diary.diary
-        (diary_id, painting, content)
+        (painting)
         VALUES
-        (#{diary_id}, #{painting}, #{content})
+        (#{painting})
     </insert>
 
     <select id="getDiary" parameterType="DiaryDto" resultType="DiaryDto">

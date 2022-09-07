@@ -1,5 +1,6 @@
 package com.example.PaintingDiary.model.dto;
 
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -10,4 +11,5 @@ public class DiaryDto {
     private int diary_id;
     private String painting;
     private String content;
+
 }
