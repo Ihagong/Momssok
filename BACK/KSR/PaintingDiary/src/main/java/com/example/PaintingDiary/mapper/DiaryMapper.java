@@ -7,6 +7,6 @@ import java.sql.SQLException;
 
 @Mapper
 public interface DiaryMapper {
-    int saveDiary(DiaryDto diary) throws SQLException;
+    int saveDiary(String painting) throws SQLException;
     DiaryDto getDiary(DiaryDto diaryDto) throws SQLException;
 }

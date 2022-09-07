@@ -1,9 +1,11 @@
 package com.example.PaintingDiary.controller;
 
-import com.example.PaintingDiary.model.dto.DiaryDto;
 import com.example.PaintingDiary.service.DiaryService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestPart;
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
@@ -28,26 +30,26 @@ public class PaintingController {
 
     @PostMapping("/upload")
     public Map<String, Object> savePainting(
-            @RequestPart(value = "data", required = false) DiaryDto diary, HttpServletRequest request,
+            HttpServletRequest request,
             @RequestPart(value = "file", required = true) MultipartFile file) throws Exception {
 
         Map<String, Object> result = new HashMap<>();
 
         String fileName = file.getOriginalFilename();
-        System.out.println(fileName);   //업로드 파일명(확장자 포함)
-        System.out.println(request.getServletContext().getRealPath("/"));   //경로 확인
+        String fileUrl = request.getServletContext().getRealPath("/");
+        System.out.println(fileName);   //업로드 파일명(확장자 포함) 확인
+        System.out.println(fileUrl);   //경로 확인
 
         try {
             SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyyMMddHHmm");
             String uploadDate = simpleDateFormat.format(new Date());
-            String painting = save(file, uploadDate);   //파일 저장
+            String painting = save(file, fileUrl, uploadDate);   //저장 경로 return
 
             try {
-                diary.setPainting(painting);
-                int res = diaryService.saveDiary(diary);
+                int res = diaryService.saveDiary(painting);   //이미지 저장
                 if (res == 1) {
                     result.put("status", success);
-                    result.put("data", diaryService.getDiary(diary));
+                    result.put("data", painting);
                 } else {
                     result.put("status", fail);
                 }
@@ -63,11 +65,11 @@ public class PaintingController {
         }
     }
 
-    private String save(MultipartFile file, String uploadDate) {
+    private String save(MultipartFile file, String fileUrl, String uploadDate) {
 
         try {
             String newFileName = uploadDate + file.getOriginalFilename();   //새로운 파일명 생성
-            Path path = Paths.get(newFileName);
+            Path path = Paths.get(fileUrl + newFileName);
             System.out.println(path);   //새로운 파일명 확인
 
             byte[] bytes = file.getBytes();   //파일의 바이트 배열 반환
@@ -79,5 +81,6 @@ public class PaintingController {
             return null;
         }
     }
+
 
 }
