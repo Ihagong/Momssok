@@ -10,10 +10,9 @@
         (#{painting})
     </insert>
 
-    <select id="getDiary" parameterType="DiaryDto" resultType="DiaryDto">
-        SELECT *
-        FROM painting_diary.diary
-        WHERE diary_id = #{diary_id}
+    <select id="getDiary" parameterType="int" resultType="string">
+        SELECT painting FROM painting_diary.diary
+        WHERE id = #{id}
     </select>
 
 </mapper>

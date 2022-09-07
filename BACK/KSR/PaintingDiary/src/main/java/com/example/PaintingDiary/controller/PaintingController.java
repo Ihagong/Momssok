@@ -1,11 +1,9 @@
 package com.example.PaintingDiary.controller;
 
+import com.example.PaintingDiary.model.dto.DiaryDto;
 import com.example.PaintingDiary.service.DiaryService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestPart;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
@@ -28,7 +26,7 @@ public class PaintingController {
 
     private final DiaryService diaryService;
 
-    @PostMapping("/upload")
+    @PostMapping("/upload")   //이미지 저장
     public Map<String, Object> savePainting(
             HttpServletRequest request,
             @RequestPart(value = "file", required = true) MultipartFile file) throws Exception {
@@ -82,5 +80,24 @@ public class PaintingController {
         }
     }
 
+    @PostMapping("/download")   //이미지 전송(경로)
+    public Map<String, Object> getPainting(int id)  throws Exception {
+
+        Map<String, Object> result = new HashMap<>();
+
+        try {
+            String painting = diaryService.getDiary(id);
+            if(painting != null) {
+                result.put("status", success);
+                result.put("data", painting);
+            }else{
+                result.put("status", fail);
+            }
+        } catch (Exception e) {
+            result.put("status", error);
+            result.put("message", e.toString());
+        }
+        return result;
+    }
 
 }

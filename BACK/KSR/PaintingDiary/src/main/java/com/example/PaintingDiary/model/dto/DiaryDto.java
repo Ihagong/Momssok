@@ -8,8 +8,6 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class DiaryDto {
 
-    private int diary_id;
+    private int id;
     private String painting;
-    private String content;
-
 }
