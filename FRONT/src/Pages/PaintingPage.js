@@ -4,10 +4,12 @@ import { ClearCanvasButton } from '../Components/CanvasComponent/ClearCanvasButt
 import { ChangeStrokeStyleButton } from '../Components/CanvasComponent/ChangeStrokeStyleButton'
 import { SaveCanvasButton } from '../Components/CanvasComponent/SaveCanvasButton'
 import { ChangeLineWidthBar } from '../Components/CanvasComponent/ChangeLineWidthBar'
+import { KeepDiaryComponent } from '../Components/KeepDiaryComponent'
 
 function PaintingPage() {
   return (
     <>
+      <KeepDiaryComponent/>
       <ChangeStrokeStyleButton/>
       <ClearCanvasButton/>
       <SaveCanvasButton/>
