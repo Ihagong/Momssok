@@ -16,3 +16,11 @@
 
 - Detectron2 구동 및 segmentation
 - 데이터셋 찾기
+
+
+
+#### 9/7
+
+- gpu 서버 환경설정
+
+- yolo 구동 및 라벨링 해보기
