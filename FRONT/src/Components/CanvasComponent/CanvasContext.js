@@ -175,6 +175,14 @@ export const CanvasProvider = ({ children }) => {
   useEffect(() => {
     motionDraw()
   }, [offset])
+  const saveCanvas = () => {
+    const canvas = canvasRef.current
+    const image = canvas.toDataURL()
+    const link = document.createElement('a')
+    link.href = image
+    link.download = 'MyPainting'
+    link.click()
+  }
 
   return (
     <CanvasContext.Provider
@@ -184,8 +192,9 @@ export const CanvasProvider = ({ children }) => {
         prepareCanvas,
         startDrawing,
         finishDrawing,
-        clearCanvas,
         changeStrokeStyle,
+        clearCanvas,
+        saveCanvas,
         changeLineWidth,
         draw,
       }}
