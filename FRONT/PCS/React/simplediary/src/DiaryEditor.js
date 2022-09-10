@@ -1,6 +1,9 @@
-import { useRef, useState } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
+import { DiaryDispatchContext } from "./App";
 
-const DiaryEditor = ({ onCreate }) => {
+const DiaryEditor = () => {
+  const { onCreate } = useContext(DiaryDispatchContext);
+
   const authorInput = useRef();
   const contentInput = useRef();
 
@@ -11,9 +14,6 @@ const DiaryEditor = ({ onCreate }) => {
   });
 
   const handleChangeState = (e) => {
-    // console.log(e.target.name);
-    // console.log(e.target.value);
-
     setState({
       ...state,
       [e.target.name]: e.target.value,
@@ -79,4 +79,4 @@ const DiaryEditor = ({ onCreate }) => {
   );
 };
 
-export default DiaryEditor;
+export default React.memo(DiaryEditor);
