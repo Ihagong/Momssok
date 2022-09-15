@@ -1,9 +1,11 @@
 package com.example.PaintingDiary.controller;
 
-import com.example.PaintingDiary.model.dto.DiaryDto;
 import com.example.PaintingDiary.service.DiaryService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestPart;
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
@@ -81,7 +83,7 @@ public class PaintingController {
     }
 
     @PostMapping("/download")   //이미지 전송(경로)
-    public Map<String, Object> getPainting(int id)  throws Exception {
+    public Map<String, Object> getPainting(int id)  throws Exception {  //파싱할 필요없기 때문에 RequestBody 사용X
 
         Map<String, Object> result = new HashMap<>();
 
