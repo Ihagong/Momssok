@@ -11,6 +11,7 @@ export const CanvasProvider = ({ children }) => {
   const [isDrawing, setIsDrawing] = useState(false)
   const [gesture, setGesture] = useState('defaultGesture')
   const [offset, setOffset] = useState({offsetX: 0, offsetY: 0})
+  const [imgSrcs, setImgSrcs] = useState([])
   const canvasRef = useRef(null)
   const contextRef = useRef(null)
 
@@ -105,7 +106,7 @@ export const CanvasProvider = ({ children }) => {
     camCanvasRef.current.height = videoHeight
 
     const canvasElement = camCanvasRef.current
-    const canvasCtx = canvasElement.getContext("2d")
+    const canvasCtx = canvasElement.getContext('2d')
     
     canvasCtx.save()
     canvasCtx.clearRect(0, 0, canvasElement.width, canvasElement.height)
@@ -149,7 +150,7 @@ export const CanvasProvider = ({ children }) => {
     hands.onResults(onResults)
 
     if (
-      typeof webcamRef.current !== "undefined" &&
+      typeof webcamRef.current !== 'undefined' &&
       webcamRef.current !== null
     ) {
       camera = new cam.Camera(webcamRef.current.video, {
@@ -175,6 +176,7 @@ export const CanvasProvider = ({ children }) => {
   useEffect(() => {
     motionDraw()
   }, [offset])
+  
   const saveCanvas = () => {
     const canvas = canvasRef.current
     const image = canvas.toDataURL()
@@ -182,6 +184,21 @@ export const CanvasProvider = ({ children }) => {
     link.href = image
     link.download = 'MyPainting'
     link.click()
+  }
+
+  const addObject = () => {
+    const canvas = canvasRef.current
+    const image = new Image()
+    image.src = canvas.toDataURL()
+    
+    const saveCanvas = document.getElementById('save_canvas')
+    const saveCanvasCtx = saveCanvas.getContext('2d')
+    saveCanvas.width = 100
+    saveCanvas.height = 100
+    saveCanvasCtx.drawImage(image, 0, 0, 100, 100, 0, 0, 100, 100)  // x시작 좌표, y 시작 좌표, 가로 크기, 세로 크기, 그림 x 위치, 그림 y 위치, 그림 가로 크기, 그림 세로 크기
+    
+    const imgSrc = saveCanvas.toDataURL()
+    setImgSrcs(prev => [...prev, imgSrc])
   }
 
   return (
@@ -195,41 +212,49 @@ export const CanvasProvider = ({ children }) => {
         changeStrokeStyle,
         clearCanvas,
         saveCanvas,
+        addObject,
         changeLineWidth,
         draw,
+        imgSrcs,
       }}
     >
     <Webcam
       ref={webcamRef}
       style={{
-        position: "absolute",
-        marginLeft: "auto",
-        marginRight: "auto",
+        position: 'absolute',
+        marginLeft: 'auto',
+        marginRight: 'auto',
         left: 0,
         right: 0,
-        textAlign: "center",
+        textAlign: 'center',
         zindex: 9,
         width: 128,
         height: 96,
       }}
-    />{" "}
+    />{' '}
     <canvas
       ref={camCanvasRef}
-      className="output_canvas"
+      className='output_canvas'
+      id='output_canvas'
       style={{
-        position: "absolute",
-        marginLeft: "auto",
-        marginRight: "auto",
+        position: 'absolute',
+        marginLeft: 'auto',
+        marginRight: 'auto',
         left: 0,
         right: 0,
-        textAlign: "center",
+        textAlign: 'center',
         zindex: 9,
         width: 128,
         height: 96,
       }}
     ></canvas>
       {children}
-      <p>fasdf{children.gesture}</p>
+    <canvas
+      id='save_canvas'
+      style={{
+        visibility: 'hidden',
+      }}
+    ></canvas>
     </CanvasContext.Provider>
   )
 }
