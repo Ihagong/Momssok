@@ -12,12 +12,12 @@ public class DiaryServiceImpl implements DiaryService{
     private final DiaryMapper diaryMapper;
 
     @Override
-    public int saveDiary(DiaryDto diary) throws Exception {
-        return diaryMapper.saveDiary(diary);
+    public int saveDiary(String painting) throws Exception {
+        return diaryMapper.saveDiary(painting);
     }
 
     @Override
-    public DiaryDto getDiary(DiaryDto diaryDto) throws Exception {
-        return diaryMapper.getDiary(diaryDto);
+    public String getDiary(int id) throws Exception {
+        return diaryMapper.getDiary(id);
     }
 }

@@ -4,6 +4,6 @@ import com.example.PaintingDiary.model.dto.DiaryDto;
 
 public interface DiaryService {
 
-    int saveDiary(DiaryDto diary) throws Exception;
-    DiaryDto getDiary(DiaryDto diaryDto) throws Exception;
+    int saveDiary(String painting) throws Exception;
+    String getDiary(int id) throws Exception;
 }
