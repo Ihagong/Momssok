@@ -7,8 +7,11 @@ function SignUpPage() {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [passwordCheck, setPasswordCheck] = useState('')
+  const [authNumber, setAuthNumber] = useState('')
 
   const handleClickSignUp = () => {
+    if (password === passwordCheck) {
+    }
   }
 
   const handleClickAuth = () => {
@@ -29,9 +32,10 @@ function SignUpPage() {
           <ButtonTag2 onClick={handleClickAuth}>인증</ButtonTag2>
         </span>
         <span>
-          <InputTag1 type='password' placeholder='비밀번호' value={password} onChange={(e) => {setPassword(e.target.value)}}/>
+          <InputTag1 type='text' placeholder='인증번호' value={authNumber} onChange={(e) => {setAuthNumber(e.target.value)}}/>
           <ButtonTag2 onClick={handleClickAuthCheck}>확인</ButtonTag2>
         </span>
+        <InputTag1 type='password' placeholder='비밀번호' value={password} onChange={(e) => {setPassword(e.target.value)}}/>
         <p>8-16자의 영문 대소문자, 숫자 또는 특수문자 조합</p>
         <InputTag1 type='password' placeholder='비밀번호 확인' value={passwordCheck} onChange={(e) => {setPasswordCheck(e.target.value)}}/>
         { password !== passwordCheck ?
