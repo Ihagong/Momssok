@@ -1,10 +1,10 @@
 import React from 'react'
-import PaintingPage from './Pages/PaintingPage'
+import CreatePaintingPage from './Pages/CreatePaintingPage'
 
 function App() {
   return (
     <>
-      <PaintingPage/>
+      <CreatePaintingPage/>
     </>
   );
 }
