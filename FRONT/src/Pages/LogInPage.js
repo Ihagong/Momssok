@@ -8,7 +8,7 @@ function LogInPage() {
   const [password, setPassword] = useState('')
   const navigate = useNavigate()
 
-  const handleClickLogin = () => {
+  const handleClickLogIn = () => {
     navigate('/')
   }
 
@@ -20,10 +20,10 @@ function LogInPage() {
       <h4>우리 아이 마음 일기장</h4>
       <h3>맘쏙</h3>
       <div style={{ display: 'flex', flexDirection: 'column' }}>
-        <InputTag1 type="email" id="email" placeholder="이메일" value={email} onChange={(e) => {setEmail(e.target.value)}}/>
-        <InputTag1 type="password" id="password" placeholder="비밀번호" value={password} onChange={(e) => {setPassword(e.target.value)}}/>
+        <InputTag1 type='email' placeholder='이메일' value={email} onChange={(e) => {setEmail(e.target.value)}}/>
+        <InputTag1 type='password' placeholder='비밀번호' value={password} onChange={(e) => {setPassword(e.target.value)}}/>
         <FindPasswordTag href='#'>비밀번호 찾기</FindPasswordTag>
-        <ButtonTag1 onClick={handleClickLogin}>로그인</ButtonTag1>
+        <ButtonTag1 onClick={handleClickLogIn}>로그인</ButtonTag1>
         <TextTag>아직 계정이 없으신가요? <SignUpTag href='#'>회원가입</SignUpTag></TextTag>
       </div>
     </>
