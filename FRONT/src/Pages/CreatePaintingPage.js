@@ -6,17 +6,21 @@ import { SaveCanvasButton } from '../Components/CanvasComponent/SaveCanvasButton
 import { AddObjectButton } from '../Components/CanvasComponent/addObjectButton'
 import { ChangeLineWidthBar } from '../Components/CanvasComponent/ChangeLineWidthBar'
 import { KeepDiaryComponent } from '../Components/KeepDiaryComponent'
+import { CanvasProvider } from "../Components/CanvasComponent/CanvasContext"
+
 
 function CreatePaintingPage() {
   return (
     <>
-      <KeepDiaryComponent />
-      <ChangeStrokeStyleButton />
-      <ClearCanvasButton />
-      <SaveCanvasButton />
-      <AddObjectButton />
-      <ChangeLineWidthBar />
-      <CanvasComponent />
+      <CanvasProvider>
+        <KeepDiaryComponent />
+        <ChangeStrokeStyleButton />
+        <ClearCanvasButton />
+        <SaveCanvasButton />
+        <AddObjectButton />
+        <ChangeLineWidthBar />
+        <CanvasComponent />
+      </CanvasProvider>
     </>
   );
 }
