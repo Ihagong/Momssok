@@ -22,7 +22,7 @@ export const TextTag = styled.p`
 
 export const ButtonTag1 = styled.button`
   width: 450px;
-  height: 80px;
+  height: 70px;
   color: white;
   background-color: var(--Brown-LightText);
   border-radius: 20px;
@@ -32,10 +32,22 @@ export const ButtonTag1 = styled.button`
   cursor: pointer;
 `
 
+export const ButtonTag2 = styled.button`
+  width: 100px;
+  height: 70px;
+  color: white;
+  background-color: var(--Brown-Text);
+  border-radius: 20px;
+  border: 0;
+  font-family: 'Jua', sans-serif;
+  font-size: 28px;
+  cursor: pointer;
+`
+
 export const InputTag1 = styled.input`
   color: var(--Brown-Text);
   width: 390px;
-  height: 80px;
+  height: 70px;
   padding: 0 30px;
   background-color: var(--Beige-Block);
   border-radius: 20px;
