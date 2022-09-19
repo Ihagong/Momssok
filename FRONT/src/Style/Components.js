@@ -53,7 +53,20 @@ export const ButtonTag3 = styled.button`
   width: 230px;
   height: 70px;
   color: var(--Brown-Text);
-  background-color: white;
+  background-color: var(--Beige-Light);
+  border-radius: 20px;
+  border: 0;
+  font-family: 'Jua', sans-serif;
+  font-size: 40px;
+  cursor: pointer;
+  user-select: none;
+`
+
+export const ButtonTag4 = styled.button`
+  width: 230px;
+  height: 70px;
+  color: white;
+  background-color: #FF6029CC;
   border-radius: 20px;
   border: 0;
   font-family: 'Jua', sans-serif;
@@ -111,5 +124,25 @@ export const ChildProfileComponentTag = styled.div`
   align-items: center;
   background-color: var(--Brown-GrayText);
   cursor: pointer;
+  user-select: none;
+`
+
+export const ProfileInfoInputTag = styled.input`
+  color: var(--Brown-Text);
+  height: 70px;
+  padding: 0 30px;
+  background-color: var(--Beige-Light);
+  border-radius: 20px;
+  border: 2px solid var(--Beige-Stroke);
+  font-family: 'Jua', sans-serif;
+  font-size: 28px;
+  user-select: none;
+`
+
+export const ProfileInfoLabelTag = styled.label`
+  color: var(--Brown-Text);
+  font-family: 'Jua', sans-serif;
+  font-size: 36px;
+  margin: 0;
   user-select: none;
 `
