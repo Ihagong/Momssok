@@ -1,0 +1,23 @@
+@import url('https://fonts.googleapis.com/css2?family=Jua&display=swap');
+
+:root {
+  --Beige-BG: #FEF4DB;
+  --Beige-Block: #FFF8EE;
+  --Beige-Bottom: #FBDEBC;
+  --Beige-Content: #FFEAB1;
+  --Beige-HintText: #EACCB2;
+  --Beige-Light: #FDFDF5;
+  --Beige-Stroke: #C5BEB6;
+
+  --Brown-GrayText: #CCC0A8;
+  --Brown-LightText: #855C48;
+  --Brown-Stroke: #BBB09C;
+  --Brown-Text: #4B2920;
+
+  --Gray-Block: #E9E9E8;
+  
+  --Orange-Button: #FF6029;
+  --Orange-Text: #C1562C;
+
+  --White-Block: #FDFDF5;
+} 
