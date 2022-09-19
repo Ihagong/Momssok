@@ -7,7 +7,7 @@ import { AddObjectButton } from '../Components/CanvasComponent/addObjectButton'
 import { ChangeLineWidthBar } from '../Components/CanvasComponent/ChangeLineWidthBar'
 import { KeepDiaryComponent } from '../Components/KeepDiaryComponent'
 
-function PaintingPage() {
+function CreatePaintingPage() {
   return (
     <>
       <KeepDiaryComponent />
@@ -21,4 +21,4 @@ function PaintingPage() {
   );
 }
 
-export default PaintingPage
+export default CreatePaintingPage
