@@ -2,9 +2,12 @@ import React, { useState } from 'react'
 import { DiaryComponentTag, DiaryInputTag, DiaryContentInputTag, DiaryWeatherBoxTag, DiaryPaintingTag } from '../Style/Components'
 
 
-export function DiaryComponent() {
-  const [selectOpen, setSelectOpen] = useState(false)
+export function DiaryComponent(props) {
+  const [title, setTitle] = useState(props.diaryId)
+  const [content, setContent] = useState(props.diaryId)
   const [weather, setWeather] = useState('맑음')
+  const [date, setDate] = useState('')
+  const [selectOpen, setSelectOpen] = useState(false)
 
   return (
     <>
@@ -12,7 +15,7 @@ export function DiaryComponent() {
         <div style={{ display: 'flex', alignItems: 'center' }}>
           <div>
             <label for='date'>날짜 :</label>
-            <DiaryInputTag id='date' />
+            <DiaryInputTag id='date' value={date} onInput={((e) => setDate(e.target.value))} />
           </div>
           <div style={{ display: 'flex', alignItems: 'center' }}>
             <label for='weather'>날씨 :</label>
@@ -31,10 +34,10 @@ export function DiaryComponent() {
         </div>
         <div>
           <label for='title'>제목 :</label>
-          <DiaryInputTag id='title' style={{ width: '490px' }} />
+          <DiaryInputTag id='title' style={{ width: '490px' }} value={title} onInput={((e) => setTitle(e.target.value))} />
         </div>
         <DiaryPaintingTag></DiaryPaintingTag>
-        <DiaryContentInputTag style={{ width: '600px', height: '200px' }} />
+        <DiaryContentInputTag style={{ width: '600px', height: '200px' }} value={content} onInput={((e) => setContent(e.target.value))} />
       </DiaryComponentTag>
     </>
   )
