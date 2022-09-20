@@ -146,3 +146,86 @@ export const ProfileInfoLabelTag = styled.label`
   margin: 0;
   user-select: none;
 `
+
+export const ChildMenuTag = styled.div`
+  display: flex;
+`
+
+export const ChildMenuTabTag = styled.div`
+  color: var(--Brown-Text);
+  display: flex;
+  flex-direction: column;
+  font-family: 'Dongle', sans-serif;
+  width: 170px;
+  height: 200px;
+  font-size: 60px;
+  border-radius: 30px;
+  background-color: var(--Beige-Light);
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  user-select: none;
+  img {
+    width: 110px;
+    height: 110px;
+  }
+`
+
+export const ChildMenuSelectedTabTag = styled.div`
+  color: white;
+  display: flex;
+  flex-direction: column;
+  font-family: 'Dongle', sans-serif;
+  width: 180px;
+  height: 210px;
+  font-size: 60px;
+  border-radius: 30px;
+  background-color: #FF6029CC;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  user-select: none;
+  img {
+    width: 110px;
+    height: 110px;
+  }
+`
+
+export const ChildSubMenuTag = styled.div`
+  display: flex;
+`
+
+export const ChildSubMenuButtonTag = styled.div`
+  color: var(--Brown-Text);
+  display: flex;
+  flex-direction: column;
+  font-family: 'Dongle', sans-serif;
+  width: 350px;
+  height: 350px;
+  font-size: 96px;
+  border-radius: 50px;
+  background-color: var(--Beige-Light);
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  user-select: none;
+  img {
+    height: 180px;
+  }
+`
+
+export const LogoTag = styled.img`
+  width: 160px;
+`
+
+export const ChildProfileTag = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-family: 'Dongle', sans-serif;
+  font-size: 60px;
+  cursor: pointer;
+  img {
+    height: 130px;
+  }
+`
