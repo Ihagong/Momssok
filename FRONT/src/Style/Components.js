@@ -376,3 +376,47 @@ export const DiaryWeatherBoxTag = styled.div`
     height: 50px;
   }
 `
+
+export const EditProfileButtonTag = styled.button`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 300px;
+  height: 90px;
+  color: white;
+  background-color: #FF6029CC;
+  border-radius: 24px;
+  border: 0;
+  font-family: 'Jua', sans-serif;
+  font-size: 36px;
+  cursor: pointer;
+  user-select: none;
+`
+
+export const ParentMenuButtonTag = styled.div`
+  color: var(--Brown-LightText);
+  display: flex;
+  flex-direction: column;
+  font-family: 'Jua', sans-serif;
+  width: 220px;
+  height: 330px;
+  font-size: 20px;
+  border-radius: 40px;
+  padding: 10px;
+  background-color: var(--Beige-Light);
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  user-select: none;
+  h4 {
+    margin: 0;
+    color: var(--Brown-Text);
+    font-size: 36px;
+  }
+  p {
+    margin: 0;
+  }
+  img {
+    height: 150px;
+  }
+`
