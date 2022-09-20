@@ -17,10 +17,13 @@ export const CanvasProvider = ({ children }) => {
 
   const prepareCanvas = () => {
     const canvas = canvasRef.current
-    canvas.width = window.innerWidth * 2
-    canvas.height = window.innerHeight * 2
-    canvas.style.width = `${window.innerWidth}px`
-    canvas.style.height = `${window.innerHeight}px`
+    // canvas.width = window.innerWidth * 2
+    // canvas.height = window.innerHeight * 2
+    canvas.width = 1100 * 2
+    canvas.height = 550 * 2
+    console.log('width', canvas.width, canvas.height)
+    canvas.style.width = '1100px'
+    canvas.style.height = '550px'
 
     const context = canvas.getContext('2d')
     context.scale(2, 2)
@@ -75,8 +78,7 @@ export const CanvasProvider = ({ children }) => {
   const clearCanvas = () => {
     const canvas = canvasRef.current
     const context = canvas.getContext('2d')
-    context.fillStyle = 'white'
-    context.fillRect(0, 0, canvas.width, canvas.height)
+    context.clearRect(0, 0, canvas.width, canvas.height)
   }
 
   const changeStrokeStyle = (color) => {
@@ -131,9 +133,7 @@ export const CanvasProvider = ({ children }) => {
     }
     canvasCtx.restore()
   }
-  // }
 
-  // setInterval(())
   useEffect(() => {
 
     const hands = new Hands({locateFile: (file) => {
@@ -218,7 +218,7 @@ export const CanvasProvider = ({ children }) => {
         imgSrcs,
       }}
     >
-    <Webcam
+    {/* <Webcam
       ref={webcamRef}
       style={{
         position: 'absolute',
@@ -231,8 +231,8 @@ export const CanvasProvider = ({ children }) => {
         width: 128,
         height: 96,
       }}
-    />{' '}
-    <canvas
+    />{' '} */}
+    {/* <canvas
       ref={camCanvasRef}
       className='output_canvas'
       id='output_canvas'
@@ -247,7 +247,7 @@ export const CanvasProvider = ({ children }) => {
         width: 128,
         height: 96,
       }}
-    ></canvas>
+    ></canvas> */}
       {children}
     <canvas
       id='save_canvas'
