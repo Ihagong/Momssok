@@ -75,6 +75,54 @@ export const ButtonTag4 = styled.button`
   user-select: none;
 `
 
+export const ChildButtonTag1 = styled.button`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 230px;
+  height: 70px;
+  color: var(--Brown-Text);
+  background-color: var(--Beige-Light);
+  border-radius: 20px;
+  border: 0;
+  font-family: 'Dongle', sans-serif;
+  font-size: 64px;
+  cursor: pointer;
+  user-select: none;
+`
+
+export const ChildButtonTag2 = styled.button`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 230px;
+  height: 70px;
+  color: white;
+  background-color: var(--Brown-LightText);
+  border-radius: 20px;
+  border: 0;
+  font-family: 'Dongle', sans-serif;
+  font-size: 64px;
+  cursor: pointer;
+  user-select: none;
+`
+
+export const ChildButtonTag3 = styled.button`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 230px;
+  height: 70px;
+  color: white;
+  background-color: #FF6029CC;
+  border-radius: 20px;
+  border: 0;
+  font-family: 'Dongle', sans-serif;
+  font-size: 64px;
+  cursor: pointer;
+  user-select: none;
+`
+
 export const AddProfileButtonTag = styled.button`
   width: 140px;
   height: 140px;
@@ -227,5 +275,104 @@ export const ChildProfileTag = styled.div`
   cursor: pointer;
   img {
     height: 130px;
+  }
+`
+
+export const DiaryComponentTag = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: var(--White-Block);
+  border: 1px solid var(--Beige-Stroke);
+  border-radius: 30px;
+  width: 700px;
+  padding: 20px;
+  font-family: 'Dongle', sans-serif;
+  font-size: 60px;
+  img {
+    height: 130px;
+  }
+`
+
+export const DiaryInputTag = styled.input`
+  color: var(--Brown-LightText);
+  border-radius: 10px;
+  padding: 0 20px;
+  height: 70px;
+  border: 1px solid var(--Beige-Stroke);
+  font-family: 'Dongle', sans-serif;
+  font-size: 40px;
+`
+
+export const DiaryContentInputTag = styled.textarea`
+  color: var(--Brown-LightText);
+  border-radius: 10px;
+  padding: 0 20px;
+  height: 70px;
+  border: 1px solid var(--Beige-Stroke);
+  font-family: 'Dongle', sans-serif;
+  font-size: 40px;
+`
+
+export const DiaryPaintingTag = styled.div`
+  color: var(--Brown-LightText);
+  background-color: white;
+  border: 1px solid var(--Beige-Stroke);
+  border-radius: 10px;
+  width: 600px;
+  height: 300px;
+`
+
+export const DiaryWeatherBoxTag = styled.div`
+  background-color: white;
+  position: relative;
+  display: flex;
+  width: 96px;
+  height: 70px;
+  border-radius: 10px;
+  border: 1px solid var(--Beige-Stroke);
+  cursor: pointer;
+  user-select: none;
+
+  button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: none;
+    width: 100%;
+    background: transparent;
+    cursor: pointer;
+  }
+
+  ul {
+    border: 1px solid var(--Beige-Stroke);
+    background-color: white;
+    position: absolute; 
+    top: 20px;
+    width: 100%;
+    padding: 0;
+    border-radius: 10px;
+    overflow: hidden;
+  }
+
+  li {
+    border-bottom: 2px dashed var(--Brown-LightText);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 70px;
+  }
+
+  li:hover {
+    background-color: var(--Brown-GrayText);
+  }
+
+  li:last-child {
+    border-bottom: 0 none;
+  }
+
+  img {
+    height: 50px;
   }
 `
