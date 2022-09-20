@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react'
 import { useCanvas } from './CanvasContext'
 import '../../CSS/drawing.css'
+import { PaintingCanvasTag } from '../../Style/Components'
 
 
 export function CanvasComponent() {
@@ -38,10 +39,7 @@ export function CanvasComponent() {
           position: 'absolute',
         }}>
       </div>
-      <canvas
-        style={{
-          position: 'absolute',
-        }}
+      <PaintingCanvasTag
         onMouseDown={startDrawing}
         onMouseUp={finishDrawing}
         onMouseMove={draw}

@@ -420,3 +420,14 @@ export const ParentMenuButtonTag = styled.div`
     height: 150px;
   }
 `
+
+export const PaintingCanvasTag = styled.canvas`
+  background-color: var(--White-Block);
+  border-radius: 20px;
+`
+
+export const PaintingToolTag = styled.div`
+  width: 160px;
+  cursor: pointer;
+  user-select: none;
+`
