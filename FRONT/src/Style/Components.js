@@ -218,3 +218,14 @@ export const LogoTag = styled.img`
   width: 160px;
 `
 
+export const ChildProfileTag = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-family: 'Dongle', sans-serif;
+  font-size: 60px;
+  cursor: pointer;
+  img {
+    height: 130px;
+  }
+`
