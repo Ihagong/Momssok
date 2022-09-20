@@ -2,12 +2,15 @@ import React from 'react'
 import { CanvasComponent } from '../Components/CanvasComponent/CanvasComponent'
 // import { ClearCanvasButton } from '../Components/CanvasComponent/ClearCanvasButton'
 // import { ChangeStrokeStyleButton } from '../Components/CanvasComponent/ChangeStrokeStyleButton'
-// import { SaveCanvasButton } from '../Components/CanvasComponent/SaveCanvasButton'
+import { SaveCanvasButton } from '../Components/CanvasComponent/SaveCanvasButton'
 // import { AddObjectButton } from '../Components/CanvasComponent/addObjectButton'
 // import { ChangeLineWidthBar } from '../Components/CanvasComponent/ChangeLineWidthBar'
 import { CanvasProvider } from "../Components/CanvasComponent/CanvasContext"
 import { PaintingToolTag, ChildButtonTag1, ChildButtonTag2 } from '../Style/Components'
 
+
+const loadedPainting = new Image()
+loadedPainting.src = '/images/MyPainting.png'
 
 function CreatePaintingPage() {
   const handleClickCloseButton = () => {
@@ -18,7 +21,7 @@ function CreatePaintingPage() {
 
   return (
     <div style={{ display: 'flex', flexDirection: 'column' }}>
-      <CanvasProvider>
+      <CanvasProvider loadedPainting={loadedPainting}>
         <CanvasComponent />
         <div style={{ display: 'flex' }}>
           {/* <ChangeStrokeStyleButton />
