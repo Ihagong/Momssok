@@ -123,6 +123,22 @@ export const ChildButtonTag3 = styled.button`
   user-select: none;
 `
 
+export const ChildButtonTag4 = styled.button`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 230px;
+  height: 70px;
+  color: var(--Brown-LightText);
+  background-color: var(--Beige-BG);
+  border-radius: 20px;
+  border: 0;
+  font-family: 'Dongle', sans-serif;
+  font-size: 64px;
+  cursor: pointer;
+  user-select: none;
+`
+
 export const AddProfileButtonTag = styled.button`
   width: 140px;
   height: 140px;
@@ -430,4 +446,33 @@ export const PaintingToolTag = styled.div`
   width: 160px;
   cursor: pointer;
   user-select: none;
+`
+
+export const PaintingCardTag = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: var(--Brown-Text);
+  background-color: var(--White-Block);
+  border-radius: 30px;
+  width: 200px;
+  height: 200px;
+  font-family: 'Jua', sans-serif;
+  font-size: 28px;
+  cursor: pointer;
+  img {
+    height: 100px;
+  }
+`
+
+export const PaintingCardDateStyleTag = styled.p`
+  font-size: 28px;
+  margin: 0;
+`
+
+export const PaintingCardTagStyleTag = styled.p`
+  font-family: 'Dongle', sans-serif;
+  font-size: 24px;
+  margin: 0 3px;
 `
