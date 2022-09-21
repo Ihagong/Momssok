@@ -1,13 +1,13 @@
 import React, { useContext, useRef, useState, useEffect } from 'react'
-import { Hands } from '@mediapipe/hands'
+// import { Hands } from '@mediapipe/hands'
 import * as HANDS from '@mediapipe/hands'
-import * as cam from '@mediapipe/camera_utils'
-import Webcam from 'react-webcam'
+// import * as cam from '@mediapipe/camera_utils'
+// import Webcam from 'react-webcam'
 
 
 const CanvasContext = React.createContext()
 
-export const CanvasProvider = ({ children }) => {
+export const CanvasProvider = ({ children, loadedPainting }) => {
   const [isDrawing, setIsDrawing] = useState(false)
   const [gesture, setGesture] = useState('defaultGesture')
   const [offset, setOffset] = useState({offsetX: 0, offsetY: 0})
@@ -17,10 +17,10 @@ export const CanvasProvider = ({ children }) => {
 
   const prepareCanvas = () => {
     const canvas = canvasRef.current
-    canvas.width = window.innerWidth * 2
-    canvas.height = window.innerHeight * 2
-    canvas.style.width = `${window.innerWidth}px`
-    canvas.style.height = `${window.innerHeight}px`
+    canvas.width = 1100 * 2
+    canvas.height = 550 * 2
+    canvas.style.width = '1100px'
+    canvas.style.height = '550px'
 
     const context = canvas.getContext('2d')
     context.scale(2, 2)
@@ -28,6 +28,8 @@ export const CanvasProvider = ({ children }) => {
     context.strokeStyle = '#000000'
     context.lineWidth = 3
     contextRef.current = context
+    
+    context.drawImage(loadedPainting, 0, 0, 2200, 1100, 0, 0, 1100, 550)
   }
 
   const startDrawing = ({ nativeEvent }) => {
@@ -75,8 +77,7 @@ export const CanvasProvider = ({ children }) => {
   const clearCanvas = () => {
     const canvas = canvasRef.current
     const context = canvas.getContext('2d')
-    context.fillStyle = 'white'
-    context.fillRect(0, 0, canvas.width, canvas.height)
+    context.clearRect(0, 0, canvas.width, canvas.height)
   }
 
   const changeStrokeStyle = (color) => {
@@ -131,38 +132,43 @@ export const CanvasProvider = ({ children }) => {
     }
     canvasCtx.restore()
   }
+
+  // useEffect(() => {
+
+  //   const hands = new Hands({locateFile: (file) => {
+  //     return `https://cdn.jsdelivr.net/npm/@mediapipe/hands/${file}`
+  //   }})
+
+  //   hands.setOptions({
+  //     maxNumHands: 2,
+  //     modelComplexity: 1,
+  //     minDetectionConfidence: 0.5,
+  //     minTrackingConfidence: 0.5
+  //   })
+
+  //   hands.onResults(onResults)
+
+  //   if (
+  //     typeof webcamRef.current !== 'undefined' &&
+  //     webcamRef.current !== null
+  //   ) {
+  //     camera = new cam.Camera(webcamRef.current.video, {
+  //       onFrame: async () => {
+  //         await hands.send({ image: webcamRef.current.video })
+  //       },
+  //       width: 640,
+  //       height: 480,
+  //     })
+  //     camera.start()
+  //   }
+  // }, [])
+
+  // const handleClickPainting = () => {
+
+  //   const canvas = canvasRef.current
+  //   const context = canvas.getContext('2d')
+  //   context.drawImage(drawCanvasImage, 0, 0, 2200, 1100, 0, 0, 1100, 550)
   // }
-
-  // setInterval(())
-  useEffect(() => {
-
-    const hands = new Hands({locateFile: (file) => {
-      return `https://cdn.jsdelivr.net/npm/@mediapipe/hands/${file}`
-    }})
-
-    hands.setOptions({
-      maxNumHands: 2,
-      modelComplexity: 1,
-      minDetectionConfidence: 0.5,
-      minTrackingConfidence: 0.5
-    })
-
-    hands.onResults(onResults)
-
-    if (
-      typeof webcamRef.current !== 'undefined' &&
-      webcamRef.current !== null
-    ) {
-      camera = new cam.Camera(webcamRef.current.video, {
-        onFrame: async () => {
-          await hands.send({ image: webcamRef.current.video })
-        },
-        width: 640,
-        height: 480,
-      })
-      camera.start()
-    }
-  }, [])
 
   useEffect(() => {
     if (gesture === 'upGesture') {
@@ -218,7 +224,8 @@ export const CanvasProvider = ({ children }) => {
         imgSrcs,
       }}
     >
-    <Webcam
+    {/* <button onClick={handleClickPainting}>불러오기</button> */}
+    {/* <Webcam
       ref={webcamRef}
       style={{
         position: 'absolute',
@@ -231,8 +238,8 @@ export const CanvasProvider = ({ children }) => {
         width: 128,
         height: 96,
       }}
-    />{' '}
-    <canvas
+    />{' '} */}
+    {/* <canvas
       ref={camCanvasRef}
       className='output_canvas'
       id='output_canvas'
@@ -247,7 +254,7 @@ export const CanvasProvider = ({ children }) => {
         width: 128,
         height: 96,
       }}
-    ></canvas>
+    ></canvas> */}
       {children}
     <canvas
       id='save_canvas'
