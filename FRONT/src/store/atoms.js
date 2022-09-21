@@ -9,3 +9,9 @@ export const diaryContentState = atom({
   default: '',
   effects_UNSTABLE: [persistAtom]
 })
+
+export const loadedPaintingState = atom({
+  key: 'loadedPaintingState',
+  default: '',
+  effects_UNSTABLE: [persistAtom]
+})

@@ -40,7 +40,7 @@ function ChildMainPage() {
           : <ChildMenuTabTag onClick={() => setSelctedTab(2)}><img src='icons/Dinosaur.svg' alt='편지' />편지</ChildMenuTabTag>}
         {selectedTab === 3 ? <ChildMenuSelectedTabTag><img src='icons/Dinosaur.svg' alt='놀이' />놀이</ChildMenuSelectedTabTag>
           : <ChildMenuTabTag onClick={() => setSelctedTab(3)}><img src='icons/Dinosaur.svg' alt='놀이' />놀이</ChildMenuTabTag>}
-        <ChildProfileTag onClick={handleClickChildProfile}><img src='icons/profile_image.svg' />아이 이름</ChildProfileTag>
+        <ChildProfileTag onClick={handleClickChildProfile}><img src='icons/boy.svg' />아이 이름</ChildProfileTag>
         
       </ChildMenuTag>
       <ChildSubMenuTag>

@@ -29,7 +29,7 @@ function ProfilePage() {
           <h3>자녀 프로필 등록</h3>
           <h4>우리 아이만을 위한 맘쏙 홈을 만나 보세요!</h4>
           <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }} onClick={handleClickCreateProfileButton}>
-            <AddProfileButtonTag rofileButtonTag><img src='icons/plus.svg' /></AddProfileButtonTag>
+            <AddProfileButtonTag><img src='icons/plus.svg' /></AddProfileButtonTag>
             <AddProfileTextTag>프로필 등록</AddProfileTextTag>
           </div>
         </>

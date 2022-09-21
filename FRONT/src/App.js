@@ -21,8 +21,15 @@ import LetterPage from './Pages/LetterPage'
 import CreateLetterPage from './Pages/CreateLetterPage'
 import LetterDetailPage from './Pages/LetterDetailPage'
 
+import { useRecoilState } from 'recoil'
+import { loadedPaintingState } from './store/atoms'
+
+const loadedPainting = new Image()
 
 function App() {
+  const [loadedPaintingSrc, setLoadedPaintingSrc] = useRecoilState(loadedPaintingState)
+  loadedPainting.src = loadedPaintingSrc
+
   return (
     <>
       <Router>
@@ -34,7 +41,7 @@ function App() {
           <Route exact path='/profile/create' element={<CreateProfilePage />} />
           <Route exact path='/profile/:profileId/edit' element={<EditProfilePage />} />
           <Route exact path='/child' element={<ChildMainPage />} />
-          <Route exact path='/painting/create' element={<CreatePaintingPage />} />
+          <Route exact path='/painting/create' element={<CreatePaintingPage loadedPainting={loadedPainting} />} />
           <Route exact path='/painting/load' element={<LoadPaintingPage />} />
           <Route exact path='/painting/:paintingId/edit' element={<EditPaintingPage />} />
           <Route exact path='/diary/create' element={<CreateDiaryPage />} />
