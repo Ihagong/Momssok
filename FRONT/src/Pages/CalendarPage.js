@@ -1,4 +1,6 @@
 import React, { useState } from 'react'
+import { CalendarTag, ChildButtonTag1, ChildButtonTag3, ChildProfileTag, CalendarDateTag, CalendarOtherDateTag } from '../Style/Components'
+
 
 function CalendarPage() {
   const date = new Date()
@@ -28,7 +30,7 @@ function CalendarPage() {
     const result = []
     if (prevDay !== 6) {
       for (let i = prevDate - prevDay; i <= prevDate; i++) {
-        result.push(<div key={i} style={{ margin: '2px' }}>{i}</div>)
+        result.push(<CalendarOtherDateTag key={i} style={{ margin: '2px' }}>{i}</CalendarOtherDateTag>)
       }
     }
     return result
@@ -37,7 +39,7 @@ function CalendarPage() {
   const currentMonthDates = () => {
     const result = []
     for (let i = 1; i <= nextDate; i++) {
-      result.push(<div key={i} style={{ margin: '2px' }}>{i}</div>)
+      result.push(<CalendarDateTag key={i} style={{ margin: '2px' }}>{i}</CalendarDateTag>)
     }
     return result
   }
@@ -45,7 +47,7 @@ function CalendarPage() {
   const nextMonthDates = () => {
     const result = []
     for (let i = 1; i < 7-nextDay; i++) {
-      result.push(<div key={i} style={{ margin: '2px' }}>{i}</div>)
+      result.push(<CalendarOtherDateTag key={i} style={{ margin: '2px' }}>{i}</CalendarOtherDateTag>)
     }
     return result
   }
@@ -84,24 +86,32 @@ function CalendarPage() {
 
   return (
     <>
-      <div style={{ display: 'flex', justifyContent: 'center' }}>
-        <button onClick={handleClickPrevMonth}>이전달</button>
-        <div>
-          <div style={{ display: 'flex', justifyContent: 'center' }}>
-            <p>{currentYear}년 {currentMonth}월</p>
-          </div>
-          <div style={{ display: 'flex', justifyContent: 'center' }}>
-          </div>
-          <div style={{ display: 'grid',
-            gridTemplateColumns: '1fr 1fr 1fr 1fr 1fr 1fr 1fr',
-            gridTemplateRows: {templateRowsCount} }}>
-            {Days.map((day, index) => (
-              <div key={index}>{day}</div>
-            ))}
-            {prevMonthDates()} {currentMonthDates()} {nextMonthDates()}
-          </div>
+      <div style={{ display: 'flex', flexDirection: 'column' }}>
+        <div style={{ display: 'flex' }}>
+          <ChildButtonTag1 style={{ width: '120px' }}>닫기</ChildButtonTag1>
+          <h3>그림 그리기</h3>
+          <ChildProfileTag ChildProfileTag><img src='/icons/boy.svg' />아이 이름</ChildProfileTag>
         </div>
-        <button onClick={handleClickNextMonth}>다음달</button>
+        <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+          <ChildButtonTag1 style={{ width: '150px', fontSize: '50px' }} onClick={handleClickPrevMonth}>이전달</ChildButtonTag1>
+          <div>
+            <div style={{ display: 'flex', justifyContent: 'center' }}>
+              <p>{currentYear}년 {currentMonth}월</p>
+            </div>
+            <CalendarTag style={{
+              gridTemplateColumns: '1fr 1fr 1fr 1fr 1fr 1fr 1fr',
+              gridTemplateRows: {templateRowsCount} }}>
+              {Days.map((day, index) => (
+                <div key={index}>{day}</div>
+              ))}
+              {prevMonthDates()} {currentMonthDates()} {nextMonthDates()}
+            </CalendarTag>
+          </div>
+          <ChildButtonTag1 style={{ width: '150px', fontSize: '50px' }} onClick={handleClickNextMonth}>다음달</ChildButtonTag1>
+        </div>
+        <ChildButtonTag3 style={{ width: '130px', height: '130px', padding: '10px 0 0 0'}}>
+          {'일기'}{<br />}{'쓰기'}
+        </ChildButtonTag3>
       </div>
     </>
   );
