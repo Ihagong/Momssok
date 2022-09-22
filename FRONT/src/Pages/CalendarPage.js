@@ -30,7 +30,11 @@ function CalendarPage() {
     const result = []
     if (prevDay !== 6) {
       for (let i = prevDate - prevDay; i <= prevDate; i++) {
-        result.push(<CalendarOtherDateTag key={i} style={{ margin: '2px' }}>{i}</CalendarOtherDateTag>)
+        if (i === prevDate - prevDay) {
+          result.push(<CalendarOtherDateTag key={i} style={{ margin: '2px', color: '#E99C9C' }}>{i}</CalendarOtherDateTag>)
+        } else {
+          result.push(<CalendarOtherDateTag key={i} style={{ margin: '2px' }}>{i}</CalendarOtherDateTag>)
+        }
       }
     }
     return result
@@ -39,7 +43,12 @@ function CalendarPage() {
   const currentMonthDates = () => {
     const result = []
     for (let i = 1; i <= nextDate; i++) {
-      result.push(<CalendarDateTag key={i} style={{ margin: '2px' }}>{i}</CalendarDateTag>)
+      if ((prevDate+i)%7 === 0) {
+        result.push(<CalendarDateTag key={i} style={{ margin: '2px', color: '#EB2B2B' }}>{i}</CalendarDateTag>)
+      } else {
+        result.push(<CalendarDateTag key={i} style={{ margin: '2px' }}>{i}</CalendarDateTag>)
+      }
+
     }
     return result
   }
@@ -47,7 +56,11 @@ function CalendarPage() {
   const nextMonthDates = () => {
     const result = []
     for (let i = 1; i < 7-nextDay; i++) {
-      result.push(<CalendarOtherDateTag key={i} style={{ margin: '2px' }}>{i}</CalendarOtherDateTag>)
+      if ((nextDate+i)%7 === 0) {
+        result.push(<CalendarOtherDateTag key={i} style={{ margin: '2px', color: '#E99C9C' }}>{i}</CalendarOtherDateTag>)
+      } else {
+        result.push(<CalendarOtherDateTag key={i} style={{ margin: '2px' }}>{i}</CalendarOtherDateTag>)
+      }
     }
     return result
   }
@@ -56,13 +69,13 @@ function CalendarPage() {
     return prevMonthDates() + currentMonthDates() + nextMonthDates()
   }
 
-  const templateRowsCount = () => {
-    let result = '1fr'
-    for (let i = 0; i < Dates().length; i++) {
-      result += ' 1fr'
-    }
-    return result
-  }
+  // const templateRowsCount = () => {
+  //   let result = '1fr'
+  //   for (let i = 0; i < Dates().length; i++) {
+  //     result += ' 1fr'
+  //   }
+  //   return result
+  // }
 
   const handleClickPrevMonth = () => {
     if (currentMonth > 1) {
@@ -98,11 +111,9 @@ function CalendarPage() {
             <div style={{ display: 'flex', justifyContent: 'center' }}>
               <p>{currentYear}년 {currentMonth}월</p>
             </div>
-            <CalendarTag style={{
-              gridTemplateColumns: '1fr 1fr 1fr 1fr 1fr 1fr 1fr',
-              gridTemplateRows: {templateRowsCount} }}>
+            <CalendarTag style={{ gridTemplateColumns: 'repeat(7, 1fr)' }}>
               {Days.map((day, index) => (
-                <div key={index}>{day}</div>
+                <div key={index} style={{ color: index === 0 ? '#EB2B2B' : null }}>{day}</div>
               ))}
               {prevMonthDates()} {currentMonthDates()} {nextMonthDates()}
             </CalendarTag>

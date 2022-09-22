@@ -483,6 +483,7 @@ export const CalendarTag = styled.div`
   place-items: center;
   justify-content: center;
   align-items: center;
+  grid-gap: 6px;
   color: var(--Brown-Text);
   background-color: #FFE4E3;
   border-radius: 40px;
@@ -516,7 +517,7 @@ export const CalendarOtherDateTag = styled.div`
   display: flex;
   width: 80px;
   height: 90px;
-  color: var(--Brown-LightText);
+  color: var(--Brown-Stroke);
   background-color: #FFFFFFCC;
   border-radius: 20px;
   border: 0;
