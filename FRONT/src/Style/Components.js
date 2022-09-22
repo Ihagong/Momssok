@@ -140,6 +140,19 @@ export const ChildButtonTag4 = styled.button`
   user-select: none;
 `
 
+export const ChildButtonTag5 = styled.button`
+  width: 100px;
+  height: 70px;
+  color: white;
+  background-color: var(--Brown-Text);
+  border-radius: 20px;
+  border: 0;
+  font-family: 'Dongle', sans-serif;
+  font-size: 28px;
+  cursor: pointer;
+  user-select: none;
+`
+
 export const AddProfileButtonTag = styled.button`
   width: 140px;
   height: 140px;
@@ -525,6 +538,77 @@ export const CalendarOtherDateTag = styled.div`
   font-family: 'Dongle', sans-serif;
   font-size: 40px;
   line-height: 40px;
+  cursor: pointer;
+  user-select: none;
+`
+
+export const PromiseItemTag1 = styled.div`
+  width: 160px;
+  height: 120px;
+  background-color: var(--Beige-Light);
+  border-radius: 30px;
+  border: 0;
+  transform: rotate(8deg);
+  cursor: pointer;
+  user-select: none;
+`
+
+export const PromiseItemTag2 = styled.div`
+  width: 160px;
+  height: 120px;
+  background-color: var(--Beige-Light);
+  border-radius: 30px;
+  border: 0;
+  transform: rotate(-6deg);
+  cursor: pointer;
+  user-select: none;
+`
+
+export const PromiseBoardTag = styled.div`
+  display: grid;
+  place-items: center;
+  justify-content: center;
+  align-items: center;
+  grid-template-columns: repeat(5, 1fr);
+  grid-gap: 50px;
+`
+
+export const PromiseModalComponentTag = styled.div`
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 500px;
+  height: 550px;
+  background-color: var(--Beige-Light);
+  border-radius: 30px;
+  z-index: 1;
+`
+
+export const PromiseTodoItemTag = styled.p`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-family: 'Dongle', sans-serif;
+  font-size: 60px;
+  margin: 0;
+  color: var(--Brown-Text);
+  cursor: pointer;
+  user-select: none;
+`
+
+export const PromiseTodoItemDoneTag = styled.p`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-family: 'Dongle', sans-serif;
+  font-size: 60px;
+  margin: 0;
+  text-decoration: line-through;
+  color: var(--Brown-Stroke);
   cursor: pointer;
   user-select: none;
 `
