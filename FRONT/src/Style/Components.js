@@ -119,6 +119,7 @@ export const ChildButtonTag3 = styled.button`
   border: 0;
   font-family: 'Dongle', sans-serif;
   font-size: 64px;
+  line-height: 60px;
   cursor: pointer;
   user-select: none;
 `
@@ -475,4 +476,54 @@ export const PaintingCardTagStyleTag = styled.p`
   font-family: 'Dongle', sans-serif;
   font-size: 24px;
   margin: 0 3px;
+`
+
+export const CalendarTag = styled.div`
+  display: grid;
+  place-items: center;
+  justify-content: center;
+  align-items: center;
+  color: var(--Brown-Text);
+  background-color: #FFE4E3;
+  border-radius: 40px;
+  border: 0;
+  padding: 20px;
+  font-family: 'Dongle', sans-serif;
+  font-size: 40px;
+  font-weight: bold;
+  text-align: center;
+  cursor: pointer;
+  user-select: none;
+`
+
+export const CalendarDateTag = styled.div`
+  display: flex;
+  width: 80px;
+  height: 90px;
+  color: var(--Brown-Text);
+  background-color: #FFFFFF;
+  border-radius: 20px;
+  border: 0;
+  padding: 0 0 0 10px;
+  line-height: 40px;
+  font-family: 'Dongle', sans-serif;
+  font-size: 40px;
+  cursor: pointer;
+  user-select: none;
+`
+
+export const CalendarOtherDateTag = styled.div`
+  display: flex;
+  width: 80px;
+  height: 90px;
+  color: var(--Brown-LightText);
+  background-color: #FFFFFFCC;
+  border-radius: 20px;
+  border: 0;
+  padding: 0 0 0 10px;
+  font-family: 'Dongle', sans-serif;
+  font-size: 40px;
+  line-height: 40px;
+  cursor: pointer;
+  user-select: none;
 `
