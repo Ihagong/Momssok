@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { CalendarTag, ChildButtonTag1, ChildButtonTag3, ChildProfileTag, CalendarDateTag, CalendarOtherDateTag } from '../Style/Components'
+import { CalendarDateComponent } from '../Components/CalendarDateComponent'
 
 
 function CalendarPage() {
@@ -31,9 +32,9 @@ function CalendarPage() {
     if (prevDay !== 6) {
       for (let i = prevDate - prevDay; i <= prevDate; i++) {
         if (i === prevDate - prevDay) {
-          result.push(<CalendarOtherDateTag key={i} style={{ margin: '2px', color: '#E99C9C' }}>{i}</CalendarOtherDateTag>)
+          result.push(<CalendarDateComponent key={i} date={i} other={true} isSunday={true} emotion={'surprised'} />)
         } else {
-          result.push(<CalendarOtherDateTag key={i} style={{ margin: '2px' }}>{i}</CalendarOtherDateTag>)
+          result.push(<CalendarDateComponent key={i} date={i} other={true} emotion={'angry'} />)
         }
       }
     }
@@ -44,9 +45,9 @@ function CalendarPage() {
     const result = []
     for (let i = 1; i <= nextDate; i++) {
       if ((prevDate+i)%7 === 0) {
-        result.push(<CalendarDateTag key={i} style={{ margin: '2px', color: '#EB2B2B' }}>{i}</CalendarDateTag>)
+        result.push(<CalendarDateComponent key={i} date={i} isSunday={true} emotion={'sad'} />)
       } else {
-        result.push(<CalendarDateTag key={i} style={{ margin: '2px' }}>{i}</CalendarDateTag>)
+        result.push(<CalendarDateComponent key={i} date={i} emotion={'happy'} />)
       }
 
     }
@@ -57,25 +58,13 @@ function CalendarPage() {
     const result = []
     for (let i = 1; i < 7-nextDay; i++) {
       if ((nextDate+i)%7 === 0) {
-        result.push(<CalendarOtherDateTag key={i} style={{ margin: '2px', color: '#E99C9C' }}>{i}</CalendarOtherDateTag>)
+        result.push(<CalendarDateComponent key={i} date={i} other={true} isSunday={true} emotion={'happy'} />)
       } else {
-        result.push(<CalendarOtherDateTag key={i} style={{ margin: '2px' }}>{i}</CalendarOtherDateTag>)
+        result.push(<CalendarDateComponent key={i} date={i} other={true} emotion={'worry'} />)
       }
     }
     return result
   }
-  
-  const Dates = () => {
-    return prevMonthDates() + currentMonthDates() + nextMonthDates()
-  }
-
-  // const templateRowsCount = () => {
-  //   let result = '1fr'
-  //   for (let i = 0; i < Dates().length; i++) {
-  //     result += ' 1fr'
-  //   }
-  //   return result
-  // }
 
   const handleClickPrevMonth = () => {
     if (currentMonth > 1) {
