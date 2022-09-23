@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { ButtonTag1, ButtonTag2, InputTag1 } from '../Style/Components'
+import axios from 'axios'
 
 
 function SignUpPage() {
@@ -15,6 +16,29 @@ function SignUpPage() {
   }
 
   const handleClickAuth = () => {
+    if (email === '') {
+      console.log('이메일을 입력해주세요.')
+    } else {
+      axios({
+        method: 'post',
+        url: '/api/user/emailInput',
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded',
+        },
+        params: {
+          email,
+        }
+      })
+      .then(response => {
+        if (response.data) {
+          console.log(response.data)
+        } else {
+        }
+      })
+      .catch(error => {
+        console.log(error)
+      })
+    }
   }
 
   const handleClickAuthCheck = () => {
