@@ -119,6 +119,7 @@ export const ChildButtonTag3 = styled.button`
   border: 0;
   font-family: 'Dongle', sans-serif;
   font-size: 64px;
+  line-height: 60px;
   cursor: pointer;
   user-select: none;
 `
@@ -135,6 +136,19 @@ export const ChildButtonTag4 = styled.button`
   border: 0;
   font-family: 'Dongle', sans-serif;
   font-size: 64px;
+  cursor: pointer;
+  user-select: none;
+`
+
+export const ChildButtonTag5 = styled.button`
+  width: 100px;
+  height: 70px;
+  color: white;
+  background-color: var(--Brown-Text);
+  border-radius: 20px;
+  border: 0;
+  font-family: 'Dongle', sans-serif;
+  font-size: 28px;
   cursor: pointer;
   user-select: none;
 `
@@ -475,4 +489,126 @@ export const PaintingCardTagStyleTag = styled.p`
   font-family: 'Dongle', sans-serif;
   font-size: 24px;
   margin: 0 3px;
+`
+
+export const CalendarTag = styled.div`
+  display: grid;
+  place-items: center;
+  justify-content: center;
+  align-items: center;
+  grid-gap: 6px;
+  color: var(--Brown-Text);
+  background-color: #FFE4E3;
+  border-radius: 40px;
+  border: 0;
+  padding: 20px;
+  font-family: 'Dongle', sans-serif;
+  font-size: 40px;
+  font-weight: bold;
+  text-align: center;
+  cursor: pointer;
+  user-select: none;
+`
+
+export const CalendarDateTag = styled.div`
+  display: flex;
+  width: 80px;
+  height: 90px;
+  color: var(--Brown-Text);
+  background-color: #FFFFFF;
+  border-radius: 20px;
+  border: 0;
+  padding: 0 0 0 10px;
+  line-height: 40px;
+  font-family: 'Dongle', sans-serif;
+  font-size: 40px;
+  cursor: pointer;
+  user-select: none;
+`
+
+export const CalendarOtherDateTag = styled.div`
+  display: flex;
+  width: 80px;
+  height: 90px;
+  color: var(--Brown-Stroke);
+  background-color: #FFFFFFCC;
+  border-radius: 20px;
+  border: 0;
+  padding: 0 0 0 10px;
+  font-family: 'Dongle', sans-serif;
+  font-size: 40px;
+  line-height: 40px;
+  cursor: pointer;
+  user-select: none;
+`
+
+export const PromiseItemTag1 = styled.div`
+  width: 160px;
+  height: 120px;
+  background-color: var(--Beige-Light);
+  border-radius: 30px;
+  border: 0;
+  transform: rotate(8deg);
+  cursor: pointer;
+  user-select: none;
+`
+
+export const PromiseItemTag2 = styled.div`
+  width: 160px;
+  height: 120px;
+  background-color: var(--Beige-Light);
+  border-radius: 30px;
+  border: 0;
+  transform: rotate(-6deg);
+  cursor: pointer;
+  user-select: none;
+`
+
+export const PromiseBoardTag = styled.div`
+  display: grid;
+  place-items: center;
+  justify-content: center;
+  align-items: center;
+  grid-template-columns: repeat(5, 1fr);
+  grid-gap: 50px;
+`
+
+export const PromiseModalComponentTag = styled.div`
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 500px;
+  height: 550px;
+  background-color: var(--Beige-Light);
+  border-radius: 30px;
+  z-index: 1;
+`
+
+export const PromiseTodoItemTag = styled.p`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-family: 'Dongle', sans-serif;
+  font-size: 60px;
+  margin: 0;
+  color: var(--Brown-Text);
+  cursor: pointer;
+  user-select: none;
+`
+
+export const PromiseTodoItemDoneTag = styled.p`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-family: 'Dongle', sans-serif;
+  font-size: 60px;
+  margin: 0;
+  text-decoration: line-through;
+  color: var(--Brown-Stroke);
+  cursor: pointer;
+  user-select: none;
 `
