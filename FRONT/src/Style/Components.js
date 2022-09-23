@@ -512,34 +512,58 @@ export const CalendarTag = styled.div`
 
 export const CalendarDateTag = styled.div`
   display: flex;
-  width: 80px;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  width: 90px;
   height: 90px;
   color: var(--Brown-Text);
   background-color: #FFFFFF;
   border-radius: 20px;
   border: 0;
-  padding: 0 0 0 10px;
   line-height: 40px;
   font-family: 'Dongle', sans-serif;
   font-size: 40px;
   cursor: pointer;
   user-select: none;
+  p {
+    margin: 0 0 0 10px;
+    line-height: 40px;
+    align-items: start;
+    justify-content: start;
+    height: 30px;
+  }
+  img {
+    margin: 0 0 10px 0;
+  }
 `
 
 export const CalendarOtherDateTag = styled.div`
   display: flex;
-  width: 80px;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  width: 90px;
   height: 90px;
   color: var(--Brown-Stroke);
   background-color: #FFFFFFCC;
   border-radius: 20px;
   border: 0;
-  padding: 0 0 0 10px;
+  line-height: 40px;
   font-family: 'Dongle', sans-serif;
   font-size: 40px;
-  line-height: 40px;
   cursor: pointer;
   user-select: none;
+  p {
+    margin: 0 0 0 10px;
+    line-height: 40px;
+    align-items: start;
+    justify-content: start;
+    height: 30px;
+  }
+  img {
+    margin: 0 0 10px 0;
+  }
 `
 
 export const PromiseItemTag1 = styled.div`
