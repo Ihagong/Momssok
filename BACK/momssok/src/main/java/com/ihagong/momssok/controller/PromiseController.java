@@ -14,6 +14,7 @@ import java.util.Map;
 
 @RestController
 @RequiredArgsConstructor
+@CrossOrigin("*")
 public class PromiseController {
     private final PromiseService promiseService;
     @RequestMapping(value = "/promise/savePromise", method = RequestMethod.POST)
