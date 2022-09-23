@@ -1,7 +1,7 @@
 # frontend/Dockerfile
 
 FROM node:16-alpine as build-stage
-WORKDIR /var/jenkins_home/workspace/momssok_test/front
+WORKDIR /var/jenkins_home/workspace/momssok/FRONT
 COPY package*.json ./
 RUN npm install --force
 COPY . .
