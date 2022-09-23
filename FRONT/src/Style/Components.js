@@ -538,34 +538,6 @@ export const CalendarDateTag = styled.div`
   }
 `
 
-export const CalendarOtherDateTag = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: center;
-  width: 90px;
-  height: 90px;
-  color: var(--Brown-Stroke);
-  background-color: #FFFFFFCC;
-  border-radius: 20px;
-  border: 0;
-  line-height: 40px;
-  font-family: 'Dongle', sans-serif;
-  font-size: 40px;
-  cursor: pointer;
-  user-select: none;
-  p {
-    margin: 0 0 0 10px;
-    line-height: 40px;
-    align-items: start;
-    justify-content: start;
-    height: 30px;
-  }
-  img {
-    margin: 0 0 10px 0;
-  }
-`
-
 export const PromiseItemTag1 = styled.div`
   width: 160px;
   height: 120px;
