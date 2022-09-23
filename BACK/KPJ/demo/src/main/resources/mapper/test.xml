@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.mapper.testmapper">
+    <insert id="imageInsert" parameterType="com.example.demo.dto.ImageDto" >
+        INSERT INTO images(path,imageName)
+        values (#{path},#{imageName});
+    </insert>
+
+    <select id="imageSelect" parameterType="String" resultType="com.example.demo.dto.ImageDto">
+        SELECT * FROM images WHERE imageName = #{imageName} limit 1;
+    </select>
+</mapper>
