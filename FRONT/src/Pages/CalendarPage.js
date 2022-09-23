@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { CalendarTag, ChildButtonTag1, ChildButtonTag3, ChildProfileTag, CalendarDateTag, CalendarOtherDateTag } from '../Style/Components'
+import { CalendarTag, ChildButtonTag1, ChildButtonTag3, ChildProfileTag } from '../Style/Components'
 import { CalendarDateComponent } from '../Components/CalendarDateComponent'
 
 
@@ -11,9 +11,6 @@ function CalendarPage() {
 
   const [currentYear, setCurrentYear] = useState(today.getFullYear())
   const [currentMonth, setCurrentMonth] = useState(today.getMonth()+1)
-
-  // const currentYear = today.getFullYear()
-  // const currentMonth = today.getMonth()+1
 
   // 이전 달 마지막 날 날짜와 요일
   const startDay = new Date(currentYear, currentMonth-1, 0)
@@ -29,6 +26,7 @@ function CalendarPage() {
 
   const prevMonthDates = () => {
     const result = []
+    console.log(prevDay, prevDate, nextDate)
     if (prevDay !== 6) {
       for (let i = prevDate - prevDay; i <= prevDate; i++) {
         if (i === prevDate - prevDay) {
@@ -44,7 +42,7 @@ function CalendarPage() {
   const currentMonthDates = () => {
     const result = []
     for (let i = 1; i <= nextDate; i++) {
-      if ((prevDate+i)%7 === 0) {
+      if ((prevDay+i)%7 === 0) {
         result.push(<CalendarDateComponent key={i} date={i} isSunday={true} emotion={'sad'} />)
       } else {
         result.push(<CalendarDateComponent key={i} date={i} emotion={'happy'} />)
@@ -57,11 +55,7 @@ function CalendarPage() {
   const nextMonthDates = () => {
     const result = []
     for (let i = 1; i < 7-nextDay; i++) {
-      if ((nextDate+i)%7 === 0) {
-        result.push(<CalendarDateComponent key={i} date={i} other={true} isSunday={true} emotion={'happy'} />)
-      } else {
-        result.push(<CalendarDateComponent key={i} date={i} other={true} emotion={'worry'} />)
-      }
+      result.push(<CalendarDateComponent key={i} date={i} other={true} emotion={'worry'} />)
     }
     return result
   }
