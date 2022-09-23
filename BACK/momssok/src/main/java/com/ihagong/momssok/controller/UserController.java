@@ -25,6 +25,7 @@ import java.util.Map;
 
 @RestController
 @RequiredArgsConstructor
+@CrossOrigin("*")
 public class UserController {
     private final UserService userService;
     @RequestMapping(value = "/user/signUp", method = RequestMethod.POST)

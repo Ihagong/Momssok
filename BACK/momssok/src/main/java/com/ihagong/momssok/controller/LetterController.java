@@ -19,6 +19,7 @@ import java.util.Map;
 
 @RestController
 @RequiredArgsConstructor
+@CrossOrigin("*")
 public class LetterController {
     private final LetterService letterService;
     @RequestMapping(value = "/letter/sendLetter", method = RequestMethod.POST)

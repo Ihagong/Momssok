@@ -6,8 +6,8 @@
         SELECT count(*) FROM promise WHERE email_name=#{email_name} and promise_completed=false;
     </select>
     <insert id="savePromise" parameterType="com.ihagong.momssok.model.dto.PromiseDBDto" >
-        INSERT INTO promise(email_name,promise_list,gift,promise_completed,gift_completed)
-        values (#{email_name},#{promise_list},#{gift},#{promise_completed},#{gift_completed});
+        INSERT INTO promise(email_name,promise_list,promise_completed)
+        values (#{email_name},#{promise_list},#{promise_completed});
     </insert>
     <select id="selectPromise" parameterType="String" resultType="com.ihagong.momssok.model.dto.PromiseDBDto">
         SELECT * FROM promise WHERE email_name=#{email_name} and promise_completed=false;
