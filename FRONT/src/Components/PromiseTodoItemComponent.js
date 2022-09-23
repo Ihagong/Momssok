@@ -2,20 +2,20 @@ import React from 'react'
 import { PromiseModalComponentTag } from '../Style/Components'
 import { PromiseTodoItemTag, PromiseTodoItemDoneTag } from '../Style/Components'
 import { useRecoilState } from 'recoil'
-import { todoListState } from '../store/atoms'
+import { totalTodoListState } from '../store/atoms'
 
 
-export function PromiseTodoItemComponent({ todoItem }) {
-  const [todoList, setTodoList] = useRecoilState(todoListState)
+export function PromiseTodoItemComponent({ todoItem, promiseId }) {
+  const [totalTodoList, setTotalTodoList] = useRecoilState(totalTodoListState)
 
   const handleClickTodoItem = () => {
-    const newList = todoList.map((listItem) => 
-      listItem.id === todoItem.id
-      ? { ...listItem, done: !listItem.done }
-      : listItem
-    )
-    setTodoList(newList)
-    console.log(todoItem.id, newList)
+    const newList = { ...totalTodoList }
+    newList[promiseId] = totalTodoList[promiseId].map((listItem) => 
+        listItem.id === todoItem.id
+        ? { ...listItem, done: !listItem.done }
+        : listItem
+      )
+    setTotalTodoList(newList)
   }
 
   return (
