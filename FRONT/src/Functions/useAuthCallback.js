@@ -104,6 +104,31 @@ export function useAuthCallback() {
     })
   }
 
+  const editAccountCallback = async (username, password) => {
+    axios({
+      method: 'put',
+      url: '/api/user/updateUser',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': logInToken,
+      },
+      data: {
+        username,
+        password,
+      }
+    })
+    .then (response => {
+      if (response.data) {
+        console.log(response.data)
+        console.log('회원 정보가 수정되었습니다.')
+        userInfoCallback(logInToken)
+      }
+    })
+    .catch(error => {
+      console.log(error.response.data)
+    })
+  }
+
   const logInCallback = async (email, password) => {
     axios({
       method: 'post',
@@ -173,5 +198,6 @@ export function useAuthCallback() {
     })
   }
 
-  return { authCheckCallback, authEmailCallback, signUpCallback, userInfoCallback, logInCallback, logOutCallback, deleteUserCallback }
+  return { authCheckCallback, authEmailCallback, signUpCallback, userInfoCallback,
+    editAccountCallback, logInCallback, logOutCallback, deleteUserCallback }
 }

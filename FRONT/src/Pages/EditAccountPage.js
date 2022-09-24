@@ -1,34 +1,40 @@
 import React, { useEffect, useState } from 'react'
 import { ButtonTag1, ButtonTag2, InputTag1 } from '../Style/Components'
-import axios from 'axios'
 import { useRecoilState } from 'recoil'
-import { logInTokenState, userInfoState } from '../store/atoms'
+import { userInfoState } from '../store/atoms'
 import { useAuthCallback } from '../Functions/useAuthCallback'
 
 
 function EditAccountPage() {
-  const [logInToken, setLogInToken] = useRecoilState(logInTokenState)
   const [userInfo, setUserInfo] = useRecoilState(userInfoState)
   
-  const { userInfoCallback } = useAuthCallback()
+  const { userInfoCallback, editAccountCallback } = useAuthCallback()
 
   useEffect(() => {
     if (!userInfo) {
       console.log(userInfo)
-      userInfoCallback()
+      userInfoCallback(email, newPassword)
     }
   }, [])
   
-  const [nickname, setNickname] = useState(userInfo?.username)
+  const [username, setUsername] = useState(userInfo?.username)
   const [email, setEmail] = useState(userInfo?.email)
   const [currentPassword, setCurrentPassword] = useState('')
   const [newPassword, setNewPassword] = useState('')
   const [newPasswordCheck, setNewPasswordCheck] = useState('')
  
   const handleClickAuthPassword = () => {
+    // 비밀번호 인증
   }
 
   const handleClickEditAccount = () => {
+    if (newPassword !== newPasswordCheck) {
+      console.log('비밀번호를 확인해주세요.')
+    } else {
+      editAccountCallback(username, newPassword)
+      setNewPassword('')
+      setNewPasswordCheck('')
+    }
   }
 
   return (
@@ -37,7 +43,7 @@ function EditAccountPage() {
       <p>닉네임과 비밀번호를</p>
       <p>자유롭게 변경하실 수 있습니다.</p>
       <div style={{ display: 'flex', flexDirection: 'column' }}>
-        <InputTag1 type='text' placeholder='이름' value={nickname} onChange={(e) => {setNickname(e.target.value)}}/>
+        <InputTag1 type='text' placeholder='이름' value={username} onChange={(e) => {setUsername(e.target.value)}}/>
         <InputTag1 type='email' placeholder='이메일' value={email} onChange={(e) => {setEmail(e.target.value)}}/>
         <span>
           <InputTag1 type='password' placeholder='현재 비밀번호' value={currentPassword} onChange={(e) => {setCurrentPassword(e.target.value)}}/>
