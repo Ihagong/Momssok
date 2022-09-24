@@ -1,19 +1,53 @@
 import React, { useState } from 'react'
 import { FindPasswordTag, SignUpTag, TextTag, ButtonTag1, InputTag1 } from '../Style/Components'
 import { useNavigate } from  'react-router-dom'
+import { useRecoilState } from 'recoil'
+import { logInTokenState } from '../store/atoms'
+import axios from 'axios'
 
 
 function LogInPage() {
+  const [logInToken, setLogInToken] = useRecoilState(logInTokenState)
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const navigate = useNavigate()
 
   const handleClickLogIn = () => {
-    navigate('/')
+    if (email === '') {
+      console.log('이메일을 입력해주세요.')
+    } else if (password === '') {
+      console.log('비밀번호를 입력해주세요.')
+    } else {
+      axios({
+        method: 'post',
+        url: '/api/user/login',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        data: {
+          email,
+          password,
+        }
+      })
+      .then(response => {
+        if (response.data) {
+          console.log(response.data)
+          console.log('로그인되었습니다.')
+          setLogInToken(response.data.token)
+        }
+      })
+      .catch(error => {
+        console.log(error.response.data)
+      })
+    }
   }
 
   const handleClickSignUp = () => {
     navigate('/signup')
+  }
+
+  const handleClickFindPassword = () => {
+    navigate('/findpassword')
   }
 
   return (
@@ -26,7 +60,7 @@ function LogInPage() {
       <div style={{ display: 'flex', flexDirection: 'column' }}>
         <InputTag1 type='email' placeholder='이메일' value={email} onChange={(e) => {setEmail(e.target.value)}}/>
         <InputTag1 type='password' placeholder='비밀번호' value={password} onChange={(e) => {setPassword(e.target.value)}}/>
-        <FindPasswordTag href='#'>비밀번호 찾기</FindPasswordTag>
+        <FindPasswordTag onClick={handleClickFindPassword}>비밀번호 찾기</FindPasswordTag>
         <ButtonTag1 onClick={handleClickLogIn}>로그인</ButtonTag1>
         <TextTag>아직 계정이 없으신가요? <SignUpTag onClick={handleClickSignUp}>회원가입</SignUpTag></TextTag>
       </div>
