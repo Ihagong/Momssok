@@ -202,21 +202,30 @@ public class UserService {
         Map<String, String> resultBody = new HashMap<>();
         String email=SecurityContextHolder.getContext().getAuthentication().getName();
         if(email!=null) {
-            UserDto user = new UserDto();
-            user.setEmail(email);
-            user.setUsername(requestDto.getUsername());
-            user.setModified_date(new Date());
-            userMapper.updateUser(user);
-            PasswordDto password = new PasswordDto();
-            password.setPassword(new BCryptPasswordEncoder().encode(requestDto.getPassword()));
-            password.setEmail(email);
-            userMapper.updatePassword(password);
-            ProfileDto profile = new ProfileDto();
-            profile.setEmail(email);
-            profile.setName(requestDto.getUsername());
-            profile.setEmail_name(email + "_" + requestDto.getUsername());
-            userMapper.updateParentName(profile);
-            resultBody.put("Messege", "수정 완료");
+            String str="";
+            if(requestDto.getUsername()!=null) {
+                UserDto user = new UserDto();
+                user.setEmail(email);
+                user.setUsername(requestDto.getUsername());
+                user.setModified_date(new Date());
+                userMapper.updateUser(user);
+                ProfileDto profile = new ProfileDto();
+                profile.setEmail(email);
+                profile.setName(requestDto.getUsername());
+                profile.setEmail_name(email + "_" + requestDto.getUsername());
+                userMapper.updateParentName(profile);
+                str+="이름 ";
+            }
+            if(requestDto.getPassword()!=null) {
+                PasswordDto password = new PasswordDto();
+                password.setPassword(new BCryptPasswordEncoder().encode(requestDto.getPassword()));
+                password.setEmail(email);
+                userMapper.updatePassword(password);
+                str+="비밀번호 ";
+
+
+            }
+            resultBody.put("Messege", str+"수정 완료");
             result.put(true, resultBody);
             return result;
         }
