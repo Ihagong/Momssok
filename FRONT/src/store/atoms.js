@@ -22,6 +22,12 @@ export const userInfoState = atom({
   effects_UNSTABLE: [persistAtom]
 })
 
+export const profileInfoState = atom({
+  key: 'profileInfoState',
+  default: {},
+  effects_UNSTABLE: [persistAtom]
+})
+
 export const diaryContentState = atom({
   key: 'diaryContentState',
   default: '',
