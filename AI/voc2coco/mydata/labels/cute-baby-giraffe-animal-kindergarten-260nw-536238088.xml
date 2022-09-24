@@ -1,0 +1,26 @@
+<annotation>
+	<folder>animals</folder>
+	<filename>cute-baby-giraffe-animal-kindergarten-260nw-536238088.jpg</filename>
+	<path>C:\Users\82106\Downloads\animals\animals\cute-baby-giraffe-animal-kindergarten-260nw-536238088.jpg</path>
+	<source>
+		<database>Unknown</database>
+	</source>
+	<size>
+		<width>260</width>
+		<height>280</height>
+		<depth>3</depth>
+	</size>
+	<segmented>0</segmented>
+	<object>
+		<name>animal</name>
+		<pose>Unspecified</pose>
+		<truncated>0</truncated>
+		<difficult>0</difficult>
+		<bndbox>
+			<xmin>83</xmin>
+			<ymin>56</ymin>
+			<xmax>165</xmax>
+			<ymax>194</ymax>
+		</bndbox>
+	</object>
+</annotation>

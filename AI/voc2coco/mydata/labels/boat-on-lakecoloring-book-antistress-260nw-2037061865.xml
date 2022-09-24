@@ -1,0 +1,26 @@
+<annotation>
+	<folder>sky</folder>
+	<filename>boat-on-lakecoloring-book-antistress-260nw-2037061865.jpg</filename>
+	<path>C:\Users\ssafy\shutterscrape\sky\boat-on-lakecoloring-book-antistress-260nw-2037061865.jpg</path>
+	<source>
+		<database>Unknown</database>
+	</source>
+	<size>
+		<width>260</width>
+		<height>280</height>
+		<depth>1</depth>
+	</size>
+	<segmented>0</segmented>
+	<object>
+		<name>boat</name>
+		<pose>Unspecified</pose>
+		<truncated>0</truncated>
+		<difficult>0</difficult>
+		<bndbox>
+			<xmin>21</xmin>
+			<ymin>127</ymin>
+			<xmax>214</xmax>
+			<ymax>234</ymax>
+		</bndbox>
+	</object>
+</annotation>
