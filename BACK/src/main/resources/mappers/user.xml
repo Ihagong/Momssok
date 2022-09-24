@@ -49,7 +49,6 @@
     <update id="updateUser" parameterType="com.ihagong.momssok.model.dto.UserDto" >
         UPDATE user set username=#{username},modified_date=#{modified_date} where email=#{email};
     </update>
-
     <update id="updateProfile" parameterType="com.ihagong.momssok.model.dto.ProfileDto" >
         UPDATE profile set email_name=#{email_name},name=#{name},birthday=#{birthday},image_path=#{image_path},modified_date=#{modified_date},
                            profile_password=#{profile_password} where email=#{email} and name=#{beforeName};
