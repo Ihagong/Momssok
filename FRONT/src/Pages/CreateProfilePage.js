@@ -1,13 +1,16 @@
 import React, { useState } from 'react'
 import { ProfileInfoLabelTag, ProfileInfoInputTag, ButtonTag3, ButtonTag4 } from '../Style/Components'
 import { useNavigate } from  'react-router-dom'
+import { useAuthCallback } from '../Functions/useAuthCallback'
 
 
 function CreateProfilePage() {
   const [name, setName] = useState('')
-  const [year, setYear] = useState(null)
-  const [month, setMonth] = useState(null)
-  const [day, setDay] = useState(null)
+  const [year, setYear] = useState('')
+  const [month, setMonth] = useState('')
+  const [day, setDay] = useState('')
+
+  const { createProfileCallback } = useAuthCallback()
 
   const navigate = useNavigate()
 
@@ -16,6 +19,14 @@ function CreateProfilePage() {
   }
 
   const handleClickCreateProfile = () => {
+    if (name === '') {
+      console.log('이름을 입력해주세요.')
+    } else if (!year || !month || !day) {
+      console.log('생일을 확인해주세요.')
+    } else {
+      const birthday = `${ year ? year : 2000 }/${ month ? month : 1 }/${ day ? day : 1 }`
+      createProfileCallback(name, birthday, null)
+    }
   }
 
   return (
@@ -24,11 +35,11 @@ function CreateProfilePage() {
       <h4>아이의 이름과 생년월일, 캐릭터를 선택해 주세요.</h4>
       <div style={{ display: 'flex' }}>
         <div style={{ display: 'flex', flexDirection: 'column' }}>
-          <ProfileInfoLabelTag for='name'>이름</ProfileInfoLabelTag>
+          <ProfileInfoLabelTag htmlFor='name'>이름</ProfileInfoLabelTag>
           <ProfileInfoInputTag style={{ width: '300px' }} type='text' id='name' value={name} onChange={(e) => {setName(e.target.value)}} />
         </div>
         <div style={{ display: 'flex', flexDirection: 'column' }}>
-          <ProfileInfoLabelTag for='year'>생년월일</ProfileInfoLabelTag>
+          <ProfileInfoLabelTag htmlFor='year'>생년월일</ProfileInfoLabelTag>
           <span>
             <ProfileInfoInputTag style={{ width: '200px' }} type='number' id='year' value={year} onChange={(e) => {setYear(e.target.value)}}  min="1900" max="2022" />년
             <ProfileInfoInputTag style={{ width: '110px' }} type='number' id='month' value={month} onChange={(e) => {setMonth(e.target.value)}} min="1" max="12" />월
