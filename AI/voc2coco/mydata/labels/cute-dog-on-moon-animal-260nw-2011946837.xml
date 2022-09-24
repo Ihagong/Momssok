@@ -1,0 +1,26 @@
+<annotation>
+	<folder>animals</folder>
+	<filename>cute-dog-on-moon-animal-260nw-2011946837.jpg</filename>
+	<path>C:\Users\82106\Downloads\animals\animals\cute-dog-on-moon-animal-260nw-2011946837.jpg</path>
+	<source>
+		<database>Unknown</database>
+	</source>
+	<size>
+		<width>260</width>
+		<height>280</height>
+		<depth>3</depth>
+	</size>
+	<segmented>0</segmented>
+	<object>
+		<name>dog</name>
+		<pose>Unspecified</pose>
+		<truncated>0</truncated>
+		<difficult>0</difficult>
+		<bndbox>
+			<xmin>69</xmin>
+			<ymin>31</ymin>
+			<xmax>196</xmax>
+			<ymax>124</ymax>
+		</bndbox>
+	</object>
+</annotation>

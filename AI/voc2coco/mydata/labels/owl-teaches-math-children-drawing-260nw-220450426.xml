@@ -1,0 +1,26 @@
+<annotation>
+	<folder>person1</folder>
+	<filename>owl-teaches-math-children-drawing-260nw-220450426.jpg</filename>
+	<path>C:\Users\multicampus\Downloads\특화프로젝트\person1\person1\owl-teaches-math-children-drawing-260nw-220450426.jpg</path>
+	<source>
+		<database>Unknown</database>
+	</source>
+	<size>
+		<width>186</width>
+		<height>280</height>
+		<depth>3</depth>
+	</size>
+	<segmented>0</segmented>
+	<object>
+		<name>bird</name>
+		<pose>Unspecified</pose>
+		<truncated>0</truncated>
+		<difficult>0</difficult>
+		<bndbox>
+			<xmin>2</xmin>
+			<ymin>53</ymin>
+			<xmax>155</xmax>
+			<ymax>225</ymax>
+		</bndbox>
+	</object>
+</annotation>

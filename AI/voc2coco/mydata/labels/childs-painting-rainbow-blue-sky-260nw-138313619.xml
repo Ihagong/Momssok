@@ -1,0 +1,26 @@
+<annotation>
+	<folder>sky</folder>
+	<filename>childs-painting-rainbow-blue-sky-260nw-138313619.jpg</filename>
+	<path>C:\Users\ssafy\shutterscrape\sky\childs-painting-rainbow-blue-sky-260nw-138313619.jpg</path>
+	<source>
+		<database>Unknown</database>
+	</source>
+	<size>
+		<width>394</width>
+		<height>280</height>
+		<depth>3</depth>
+	</size>
+	<segmented>0</segmented>
+	<object>
+		<name>rainbow</name>
+		<pose>Unspecified</pose>
+		<truncated>1</truncated>
+		<difficult>0</difficult>
+		<bndbox>
+			<xmin>1</xmin>
+			<ymin>1</ymin>
+			<xmax>394</xmax>
+			<ymax>163</ymax>
+		</bndbox>
+	</object>
+</annotation>

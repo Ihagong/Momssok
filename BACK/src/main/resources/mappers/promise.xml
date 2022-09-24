@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ihagong.momssok.mapper.PromiseMapper">
+    <select id="checkPromise" parameterType="String" resultType="int">
+        SELECT count(*) FROM promise WHERE email_name=#{email_name} and promise_completed=false;
+    </select>
+    <insert id="savePromise" parameterType="com.ihagong.momssok.model.dto.PromiseDBDto" >
+        INSERT INTO promise(email_name,promise_list,promise_completed)
+        values (#{email_name},#{promise_list},#{promise_completed});
+    </insert>
+    <select id="selectPromise" parameterType="String" resultType="com.ihagong.momssok.model.dto.PromiseDBDto">
+        SELECT * FROM promise WHERE email_name=#{email_name} and promise_completed=false;
+    </select>
+    <update id="updatePromise" parameterType="com.ihagong.momssok.model.dto.PromiseDBDto" >
+        UPDATE promise set email_name=#{email_name},promise_list=#{promise_list},promise_completed=#{promise_completed}
+                       where promise_id=#{promise_id};
+    </update>
+</mapper>

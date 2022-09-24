@@ -1,0 +1,26 @@
+<annotation>
+	<folder>sky</folder>
+	<filename>fighter-jet-drawing-line-art-260nw-2204023981.jpg</filename>
+	<path>C:\Users\ssafy\shutterscrape\sky\fighter-jet-drawing-line-art-260nw-2204023981.jpg</path>
+	<source>
+		<database>Unknown</database>
+	</source>
+	<size>
+		<width>260</width>
+		<height>280</height>
+		<depth>3</depth>
+	</size>
+	<segmented>0</segmented>
+	<object>
+		<name>airplane</name>
+		<pose>Unspecified</pose>
+		<truncated>0</truncated>
+		<difficult>0</difficult>
+		<bndbox>
+			<xmin>11</xmin>
+			<ymin>14</ymin>
+			<xmax>248</xmax>
+			<ymax>244</ymax>
+		</bndbox>
+	</object>
+</annotation>

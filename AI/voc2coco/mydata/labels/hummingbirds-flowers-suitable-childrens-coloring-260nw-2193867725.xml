@@ -1,0 +1,26 @@
+<annotation>
+	<folder>sky</folder>
+	<filename>hummingbirds-flowers-suitable-childrens-coloring-260nw-2193867725.jpg</filename>
+	<path>C:\Users\ssafy\shutterscrape\sky\hummingbirds-flowers-suitable-childrens-coloring-260nw-2193867725.jpg</path>
+	<source>
+		<database>Unknown</database>
+	</source>
+	<size>
+		<width>260</width>
+		<height>280</height>
+		<depth>3</depth>
+	</size>
+	<segmented>0</segmented>
+	<object>
+		<name>bird</name>
+		<pose>Unspecified</pose>
+		<truncated>0</truncated>
+		<difficult>0</difficult>
+		<bndbox>
+			<xmin>70</xmin>
+			<ymin>63</ymin>
+			<xmax>257</xmax>
+			<ymax>253</ymax>
+		</bndbox>
+	</object>
+</annotation>

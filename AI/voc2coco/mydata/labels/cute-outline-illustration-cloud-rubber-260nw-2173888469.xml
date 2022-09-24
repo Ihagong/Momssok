@@ -1,0 +1,26 @@
+<annotation>
+	<folder>sky</folder>
+	<filename>cute-outline-illustration-cloud-rubber-260nw-2173888469.jpg</filename>
+	<path>C:\Users\ssafy\shutterscrape\sky\cute-outline-illustration-cloud-rubber-260nw-2173888469.jpg</path>
+	<source>
+		<database>Unknown</database>
+	</source>
+	<size>
+		<width>260</width>
+		<height>280</height>
+		<depth>1</depth>
+	</size>
+	<segmented>0</segmented>
+	<object>
+		<name>cloud</name>
+		<pose>Unspecified</pose>
+		<truncated>0</truncated>
+		<difficult>0</difficult>
+		<bndbox>
+			<xmin>38</xmin>
+			<ymin>10</ymin>
+			<xmax>150</xmax>
+			<ymax>81</ymax>
+		</bndbox>
+	</object>
+</annotation>
