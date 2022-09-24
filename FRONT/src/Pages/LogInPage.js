@@ -1,19 +1,15 @@
 import React, { useState } from 'react'
 import { FindPasswordTag, SignUpTag, TextTag, ButtonTag1, InputTag1 } from '../Style/Components'
 import { useNavigate } from  'react-router-dom'
-import { useRecoilState } from 'recoil'
-import { logInTokenState } from '../store/atoms'
 import { useAuthCallback } from '../Functions/useAuthCallback'
-import axios from 'axios'
 
 
 function LogInPage() {
-  const [logInToken, setLogInToken] = useRecoilState(logInTokenState)
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const navigate = useNavigate()
 
-  const { logInCallback } = useAuthCallback();
+  const { logInCallback } = useAuthCallback()
 
   const handleClickLogIn = () => {
     if (email === '') {
