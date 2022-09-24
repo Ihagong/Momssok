@@ -1,0 +1,26 @@
+<annotation>
+	<folder>person1</folder>
+	<filename>simple-quickly-spring-flower-childish-260nw-620838206.jpg</filename>
+	<path>C:\Users\multicampus\Downloads\특화프로젝트\person1\person1\simple-quickly-spring-flower-childish-260nw-620838206.jpg</path>
+	<source>
+		<database>Unknown</database>
+	</source>
+	<size>
+		<width>173</width>
+		<height>280</height>
+		<depth>3</depth>
+	</size>
+	<segmented>0</segmented>
+	<object>
+		<name>flower</name>
+		<pose>Unspecified</pose>
+		<truncated>0</truncated>
+		<difficult>0</difficult>
+		<bndbox>
+			<xmin>39</xmin>
+			<ymin>31</ymin>
+			<xmax>124</xmax>
+			<ymax>245</ymax>
+		</bndbox>
+	</object>
+</annotation>

@@ -1,0 +1,26 @@
+<annotation>
+	<folder>animals</folder>
+	<filename>illustration-sitting-cat-animal-panda-260nw-1811120737.jpg</filename>
+	<path>C:\Users\82106\Downloads\animals\animals\illustration-sitting-cat-animal-panda-260nw-1811120737.jpg</path>
+	<source>
+		<database>Unknown</database>
+	</source>
+	<size>
+		<width>260</width>
+		<height>280</height>
+		<depth>3</depth>
+	</size>
+	<segmented>0</segmented>
+	<object>
+		<name>dog</name>
+		<pose>Unspecified</pose>
+		<truncated>0</truncated>
+		<difficult>0</difficult>
+		<bndbox>
+			<xmin>110</xmin>
+			<ymin>70</ymin>
+			<xmax>167</xmax>
+			<ymax>148</ymax>
+		</bndbox>
+	</object>
+</annotation>

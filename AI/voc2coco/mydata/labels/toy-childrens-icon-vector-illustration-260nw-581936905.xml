@@ -1,0 +1,26 @@
+<annotation>
+	<folder>person1</folder>
+	<filename>toy-childrens-icon-vector-illustration-260nw-581936905.jpg</filename>
+	<path>C:\Users\multicampus\Downloads\특화프로젝트\person1\person1\toy-childrens-icon-vector-illustration-260nw-581936905.jpg</path>
+	<source>
+		<database>Unknown</database>
+	</source>
+	<size>
+		<width>260</width>
+		<height>280</height>
+		<depth>3</depth>
+	</size>
+	<segmented>0</segmented>
+	<object>
+		<name>bird</name>
+		<pose>Unspecified</pose>
+		<truncated>0</truncated>
+		<difficult>0</difficult>
+		<bndbox>
+			<xmin>49</xmin>
+			<ymin>51</ymin>
+			<xmax>210</xmax>
+			<ymax>208</ymax>
+		</bndbox>
+	</object>
+</annotation>

@@ -1,0 +1,26 @@
+<annotation>
+	<folder>animals</folder>
+	<filename>cartoon-animals-cute-beautiful-ibex-260nw-445837129.jpg</filename>
+	<path>C:\Users\82106\Downloads\animals\animals\cartoon-animals-cute-beautiful-ibex-260nw-445837129.jpg</path>
+	<source>
+		<database>Unknown</database>
+	</source>
+	<size>
+		<width>184</width>
+		<height>280</height>
+		<depth>3</depth>
+	</size>
+	<segmented>0</segmented>
+	<object>
+		<name>animal</name>
+		<pose>Unspecified</pose>
+		<truncated>0</truncated>
+		<difficult>0</difficult>
+		<bndbox>
+			<xmin>16</xmin>
+			<ymin>3</ymin>
+			<xmax>174</xmax>
+			<ymax>259</ymax>
+		</bndbox>
+	</object>
+</annotation>

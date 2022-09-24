@@ -1,0 +1,26 @@
+<annotation>
+	<folder>car</folder>
+	<filename>childs-drawing-car-watercolor-vector-260nw-244726366.jpg</filename>
+	<path>C:\Users\ssafy\shutterscrape\car\childs-drawing-car-watercolor-vector-260nw-244726366.jpg</path>
+	<source>
+		<database>Unknown</database>
+	</source>
+	<size>
+		<width>349</width>
+		<height>280</height>
+		<depth>3</depth>
+	</size>
+	<segmented>0</segmented>
+	<object>
+		<name>car</name>
+		<pose>Unspecified</pose>
+		<truncated>0</truncated>
+		<difficult>0</difficult>
+		<bndbox>
+			<xmin>34</xmin>
+			<ymin>55</ymin>
+			<xmax>319</xmax>
+			<ymax>211</ymax>
+		</bndbox>
+	</object>
+</annotation>
