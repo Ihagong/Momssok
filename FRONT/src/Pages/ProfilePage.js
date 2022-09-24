@@ -19,7 +19,7 @@ function ProfilePage() {
   }
 
   const handleClickManageProfileButton = () => {
-    // navigate('/')
+    navigate('/profile/manage')
   }
 
   useEffect(() => {
