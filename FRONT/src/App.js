@@ -39,7 +39,7 @@ function App() {
           <Route exact path='/signup' element={<SignUpPage />} />
           <Route exact path='/login' element={ logInToken ? <Navigate to='/profile' replace /> : <LogInPage />} />
           <Route exact path='/account' element={<EditAccountPage />} />
-          <Route exact path='/profile' element={<ProfilePage />} />
+          <Route exact path='/profile' element={ logInToken ? <ProfilePage /> : <Navigate to='/login' replace />} />
           <Route exact path='/profile/create' element={<CreateProfilePage />} />
           <Route exact path='/profile/:profileId/edit' element={<EditProfilePage />} />
           <Route exact path='/child' element={<ChildMainPage />} />

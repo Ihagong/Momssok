@@ -2,12 +2,15 @@ import React from 'react'
 import { AddProfileButtonTag, AddProfileTextTag, ButtonTag3 } from '../Style/Components'
 import { useNavigate } from  'react-router-dom'
 import { ChildProfileComponent } from '../Components/ChildProfileComponent'
+import { useAuthCallback } from '../Functions/authCallback'
 
 
 function ProfilePage() {
   const navigate = useNavigate()
   const childrenList = [{ id: 0, name: '찬석이', birth: '2017.12', age: 6 }] // 아이 정보
   
+  const { logoutCallback } = useAuthCallback();
+
   const handleClickCreateProfileButton = () => {
     navigate('create')
   }
@@ -22,7 +25,7 @@ function ProfilePage() {
             <ChildProfileComponent key={info.id} info={info} />
           ))}
           <ButtonTag3>아이 관리</ButtonTag3>
-          <ButtonTag3>로그아웃</ButtonTag3>
+          <ButtonTag3 onClick={logoutCallback}>로그아웃</ButtonTag3>
         </>
       :
         <>
