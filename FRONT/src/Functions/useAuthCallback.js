@@ -1,5 +1,5 @@
 import { useRecoilState } from 'recoil'
-import { signUpTokenState, logInTokenState, userInfoState } from '../store/atoms'
+import { signUpTokenState, logInTokenState, userInfoState, profileInfoState } from '../store/atoms'
 import { useNavigate } from  'react-router-dom'
 import axios from 'axios'
 
@@ -8,6 +8,7 @@ export function useAuthCallback() {
   const [signUpToken, setSignUpToken] = useRecoilState(signUpTokenState)
   const [logInToken, setLogInToken] = useRecoilState(logInTokenState)
   const [userInfo, setUserInfo] = useRecoilState(userInfoState)
+  const [profileInfo, setProfileInfo] = useRecoilState(profileInfoState)
   const navigate = useNavigate()
 
   const authCheckCallback = async (email, authNumber) => {
@@ -147,6 +148,7 @@ export function useAuthCallback() {
         console.log('로그인되었습니다.')
         setLogInToken(response.data.token)
         userInfoCallback(response.data.token)
+        profileInfoCallback(response.data.token)
       }
     })
     .catch(error => {
@@ -198,6 +200,29 @@ export function useAuthCallback() {
     })
   }
 
+  const profileInfoCallback = async (token) => {
+    axios({
+      method: 'get',
+      url: '/api/user/lookupAllprofile',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': token ? token : logInToken,
+      },
+    })
+    .then(response => {
+      if (response.data) {
+        console.log(response.data)
+        console.log('프로필이 조회되었습니다.')
+        setProfileInfo(response.data['profiles'])
+      }
+    })
+    .catch(error => {
+      console.log(error.response.data)
+    })
+  }
+
+
+
   return { authCheckCallback, authEmailCallback, signUpCallback, userInfoCallback,
-    editAccountCallback, logInCallback, logOutCallback, deleteUserCallback }
+    editAccountCallback, logInCallback, logOutCallback, deleteUserCallback, profileInfoCallback }
 }
