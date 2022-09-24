@@ -4,6 +4,7 @@ import SignUpPage from './Pages/SignUpPage'
 import LogInPage from './Pages/LogInPage'
 import EditAccountPage from './Pages/EditAccountPage'
 import ProfilePage from './Pages/ProfilePage'
+import ManageProfilePage from './Pages/ManageProfilePage'
 import CreateProfilePage from './Pages/CreateProfilePage'
 import EditProfilePage from './Pages/EditProfilePage'
 import ChildMainPage from './Pages/ChildMainPage'
@@ -36,10 +37,12 @@ function App() {
     <>
       <Router>
         <Routes>
+          <Route exact path='/' element={ <Navigate to='/login' replace /> } />
           <Route exact path='/signup' element={ <SignUpPage /> } />
           <Route exact path='/login' element={ logInToken ? <Navigate to='/profile' replace /> : <LogInPage /> } />
           <Route exact path='/account' element={ logInToken ? <EditAccountPage /> : <Navigate to='/login' replace /> } />
           <Route exact path='/profile' element={ logInToken ? <ProfilePage /> : <Navigate to='/login' replace /> } />
+          <Route exact path='/profile/manage' element={ logInToken ? <ManageProfilePage /> : <Navigate to='/login' replace /> } />
           <Route exact path='/profile/create' element={ <CreateProfilePage /> } />
           <Route exact path='/profile/:profileId/edit' element={ <EditProfilePage /> } />
           <Route exact path='/child' element={ <ChildMainPage /> } />
