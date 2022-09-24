@@ -10,6 +10,12 @@ export const logInTokenState = atom({
   effects_UNSTABLE: [persistAtom]
 })
 
+export const userInfoState = atom({
+  key: 'userInfoState',
+  default: null,
+  effects_UNSTABLE: [persistAtom]
+})
+
 export const diaryContentState = atom({
   key: 'diaryContentState',
   default: '',
