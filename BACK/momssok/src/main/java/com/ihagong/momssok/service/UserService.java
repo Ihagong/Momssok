@@ -222,6 +222,8 @@ public class UserService {
                 password.setEmail(email);
                 userMapper.updatePassword(password);
                 str+="비밀번호 ";
+
+
             }
             resultBody.put("Messege", str+"수정 완료");
             result.put(true, resultBody);
