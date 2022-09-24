@@ -12,6 +12,10 @@ function LogInPage() {
     navigate('/')
   }
 
+  const handleClickSignUp = () => {
+    navigate('/signup')
+  }
+
   return (
     <>
       <h2>환영합니다!</h2>
@@ -24,7 +28,7 @@ function LogInPage() {
         <InputTag1 type='password' placeholder='비밀번호' value={password} onChange={(e) => {setPassword(e.target.value)}}/>
         <FindPasswordTag href='#'>비밀번호 찾기</FindPasswordTag>
         <ButtonTag1 onClick={handleClickLogIn}>로그인</ButtonTag1>
-        <TextTag>아직 계정이 없으신가요? <SignUpTag href='#'>회원가입</SignUpTag></TextTag>
+        <TextTag>아직 계정이 없으신가요? <SignUpTag onClick={handleClickSignUp}>회원가입</SignUpTag></TextTag>
       </div>
     </>
   );
