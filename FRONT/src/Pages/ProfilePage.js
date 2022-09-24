@@ -9,7 +9,7 @@ function ProfilePage() {
   const navigate = useNavigate()
   const childrenList = [{ id: 0, name: '찬석이', birth: '2017.12', age: 6 }] // 아이 정보
   
-  const { logOutCallback } = useAuthCallback();
+  const { logOutCallback } = useAuthCallback()
 
   const handleClickCreateProfileButton = () => {
     navigate('create')
