@@ -2,15 +2,21 @@ import React, { useState } from 'react'
 import { ButtonTag1, ButtonTag2, InputTag1 } from '../Style/Components'
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
+import { useAuthCallback } from '../Functions/useAuthCallback'
+import { useRecoilState } from 'recoil'
+import { signUpTokenState } from '../store/atoms'
 
 
 function SignUpPage() {
+  const [signUpToken, setSignUpToken] = useRecoilState(signUpTokenState)
+
   const [username, setUsername] = useState('')
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [passwordCheck, setPasswordCheck] = useState('')
   const [authNumber, setAuthNumber] = useState('')
-  const [token, setToken] = useState('')
+
+  const { authCheckCallback, authEmailCallback, signUpCallback } = useAuthCallback()
 
   const navigate = useNavigate()
 
@@ -18,54 +24,15 @@ function SignUpPage() {
     if (email === '') {
       console.log('이메일을 입력해주세요.')
     } else {
-      axios({
-        method: 'post',
-        url: '/api/user/emailInput',
-        headers: {
-          'Content-Type': 'application/x-www-form-urlencoded',
-        },
-        params: {
-          email,
-        }
-      })
-      .then(response => {
-        if (response.data) {
-          console.log(response.data)
-          console.log('인증 메일을 보냈습니다.')
-        }
-      })
-      .catch(error => {
-        console.log(error.response.data)
-      })
+      authEmailCallback(email)
     }
   }
 
   const handleClickAuthCheck = () => {
     if (authNumber === '') {
-      console.log('이메일을 입력해주세요.')
-    } else if (token !== '') {
-      axios({
-        method: 'post',
-        url: '/api/user/emailCertification',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        data: {
-          email,
-          code: authNumber,
-        }
-      })
-      .then(response => {
-        if (response.data) {
-          console.log(response.data)
-          console.log('인증되었습니다.')
-          setToken(response.data.token)
-        }
-      })
-      .catch(error => {
-        console.log(error.response.data)
-        setToken('')
-      })
+      console.log('인증 번호를 입력해주세요.')
+    } else {
+      authCheckCallback(email, authNumber)
     }
   }
 
@@ -74,32 +41,10 @@ function SignUpPage() {
       console.log('이름을 입력해주세요.')
     } else if (password === '' || password !== passwordCheck) {
       console.log('비밀번호를 확인해주세요.')
-    } else if (token === '') {
+    } else if (signUpToken === '') {
       console.log('이메일 인증을 진행해주세요.')
     } else {
-      axios({
-        method: 'post',
-        url: '/api/user/signUp',
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': token
-        },
-        data: {
-          email,
-          password,
-          username,
-        }
-      })
-      .then(response => {
-        if (response.data) {
-          console.log(response.data)
-          console.log('회원가입에 성공했습니다.')
-          navigate('/login')
-        }
-      })
-      .catch(error => {
-        console.log(error.response.data)
-      })
+      signUpCallback(email, password, username)
     }
   }
 
