@@ -1,5 +1,5 @@
 import React from 'react'
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom'
 import SignUpPage from './Pages/SignUpPage'
 import LogInPage from './Pages/LogInPage'
 import EditAccountPage from './Pages/EditAccountPage'
@@ -20,13 +20,15 @@ import PromisePage from './Pages/PromisePage'
 import LetterPage from './Pages/LetterPage'
 import CreateLetterPage from './Pages/CreateLetterPage'
 import LetterDetailPage from './Pages/LetterDetailPage'
+import FindPasswordPage from './Pages/FindPasswordPage'
 
 import { useRecoilState } from 'recoil'
-import { loadedPaintingState } from './store/atoms'
+import { loadedPaintingState, logInTokenState } from './store/atoms'
 
 const loadedPainting = new Image()
 
 function App() {
+  const [logInToken, setLogInToken] = useRecoilState(logInTokenState)
   const [loadedPaintingSrc, setLoadedPaintingSrc] = useRecoilState(loadedPaintingState)
   loadedPainting.src = loadedPaintingSrc
 
@@ -35,7 +37,7 @@ function App() {
       <Router>
         <Routes>
           <Route exact path='/signup' element={<SignUpPage />} />
-          <Route exact path='/login' element={<LogInPage />} />
+          <Route exact path='/login' element={ logInToken ? <Navigate to='/profile' replace /> : <LogInPage />} />
           <Route exact path='/account/:accountId/edit' element={<EditAccountPage />} />
           <Route exact path='/profile' element={<ProfilePage />} />
           <Route exact path='/profile/create' element={<CreateProfilePage />} />
@@ -54,6 +56,7 @@ function App() {
           <Route exact path='/letter' element={<LetterPage />} />
           <Route exact path='/letter/create' element={<CreateLetterPage />} />
           <Route exact path='/letter/:letterId' element={<LetterDetailPage />} />
+          <Route exact path='/findpassword' element={<FindPasswordPage />} />
         </Routes>
       </Router>
     </>
