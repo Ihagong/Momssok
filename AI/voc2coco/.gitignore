@@ -59,11 +59,20 @@ parts/
 sdist/
 var/
 wheels/
+<<<<<<< HEAD
 mydata/
+=======
+>>>>>>> 4e104372d1e290df05ee475f908550df18738092
 *.egg-info/
 .installed.cfg
 *.egg
 MANIFEST
+<<<<<<< HEAD
+=======
+sample/
+mydata/
+
+>>>>>>> 4e104372d1e290df05ee475f908550df18738092
 
 # PyInstaller
 #  Usually these files are written by a python script from a template

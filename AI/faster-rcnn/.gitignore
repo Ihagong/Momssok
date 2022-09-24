@@ -24,7 +24,10 @@ wheels/
 .idea/
 pip-wheel-metadata/
 share/python-wheels/
+<<<<<<< HEAD
 check/
+=======
+>>>>>>> 4e104372d1e290df05ee475f908550df18738092
 *.egg-info/
 .installed.cfg
 *.egg
@@ -122,6 +125,11 @@ venv.bak/
 
 # mkdocs documentation
 /site
+<<<<<<< HEAD
+=======
+/dataset
+/check
+>>>>>>> 4e104372d1e290df05ee475f908550df18738092
 
 # mypy
 .mypy_cache/
