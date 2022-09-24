@@ -1,13 +1,37 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { ButtonTag1, ButtonTag2, InputTag1 } from '../Style/Components'
-import { useParams } from  'react-router-dom'
+import axios from 'axios'
+import { useRecoilState } from 'recoil'
+import { logInTokenState, userInfoState } from '../store/atoms'
 
 
 function EditAccountPage() {
-  const { accountId } = useParams()
+  const [logInToken, setLogInToken] = useRecoilState(logInTokenState)
+  const [userInfo, setUserInfo] = useRecoilState(userInfoState)
+
+  useEffect(() => {
+    axios({
+      method: 'get',
+      url: '/api/user/detailUser',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': logInToken,
+      },
+    })
+    .then(response => {
+      if (response.data) {
+        console.log(response.data)
+        setUserInfo(response.data['user'])
+        console.log('회원 정보가 조회되었습니다.')
+      }
+    })
+    .catch(error => {
+      console.log(error.response.data)
+    })
+  }, [])
   
-  const [nickname, setNickname] = useState(accountId)
-  const [email, setEmail] = useState('')
+  const [nickname, setNickname] = useState(userInfo?.username)
+  const [email, setEmail] = useState(userInfo?.email)
   const [currentPassword, setCurrentPassword] = useState('')
   const [newPassword, setNewPassword] = useState('')
   const [newPasswordCheck, setNewPasswordCheck] = useState('')
