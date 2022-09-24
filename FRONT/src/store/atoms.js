@@ -4,6 +4,12 @@ import { recoilPersist } from 'recoil-persist'
 
 const { persistAtom } = recoilPersist()
 
+export const signUpTokenState = atom({
+  key: 'signUpTokenState',
+  default: '',
+  effects_UNSTABLE: [persistAtom]
+})
+
 export const logInTokenState = atom({
   key: 'logInTokenState',
   default: '',
