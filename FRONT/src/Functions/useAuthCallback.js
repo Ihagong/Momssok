@@ -221,8 +221,35 @@ export function useAuthCallback() {
     })
   }
 
-
+  const createProfileCallback = async (name, birthday, profilePassword) => {
+    console.log(name, birthday, profilePassword)
+    axios({
+      method: 'post',
+      url: '/api/user/saveProfile',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': logInToken,
+      },
+      data: {
+        profileImage: null,
+        name,
+        birthday,
+        profile_password: profilePassword,
+      }
+    })
+    .then(response => {
+      if (response.data) {
+        console.log(response.data)
+        console.log('프로필이 조회되었습니다.')
+        setProfileInfo(response.data['profiles'])
+      }
+    })
+    .catch(error => {
+      console.log(error.response.data)
+    })
+  }
 
   return { authCheckCallback, authEmailCallback, signUpCallback, userInfoCallback,
-    editAccountCallback, logInCallback, logOutCallback, deleteUserCallback, profileInfoCallback }
+    editAccountCallback, logInCallback, logOutCallback, deleteUserCallback, profileInfoCallback,
+    createProfileCallback }
 }
