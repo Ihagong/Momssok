@@ -14,7 +14,7 @@ export function useAuthCallback() {
   const authCheckCallback = async (email, authNumber) => {
     axios({
       method: 'post',
-      url: '/api/user/emailCertification',
+      url: 'http://j7d203.p.ssafy.io:8080/user/emailCertification',
       headers: {
         'Content-Type': 'application/json',
       },
@@ -39,7 +39,7 @@ export function useAuthCallback() {
   const authEmailCallback = async (email) => {
     axios({
       method: 'post',
-      url: '/api/user/emailInput',
+      url: 'http://j7d203.p.ssafy.io:8080/user/emailInput',
       headers: {
         'Content-Type': 'application/x-www-form-urlencoded',
       },
@@ -61,7 +61,7 @@ export function useAuthCallback() {
   const signUpCallback = async (email, password, username) => {
     axios({
       method: 'post',
-      url: '/api/user/signUp',
+      url: 'http://j7d203.p.ssafy.io:8080/user/signUp',
       headers: {
         'Content-Type': 'application/json',
         'Authorization': signUpToken
@@ -87,7 +87,7 @@ export function useAuthCallback() {
   const userInfoCallback = async (token) => {
     axios({
       method: 'get',
-      url: '/api/user/detailUser',
+      url: 'http://j7d203.p.ssafy.io:8080/user/detailUser',
       headers: {
         'Content-Type': 'application/json',
         'Authorization': token ? token : logInToken,
@@ -108,7 +108,7 @@ export function useAuthCallback() {
   const editAccountCallback = async (username, password) => {
     axios({
       method: 'put',
-      url: '/api/user/updateUser',
+      url: 'http://j7d203.p.ssafy.io:8080/user/updateUser',
       headers: {
         'Content-Type': 'application/json',
         'Authorization': logInToken,
@@ -133,7 +133,7 @@ export function useAuthCallback() {
   const logInCallback = async (email, password) => {
     axios({
       method: 'post',
-      url: '/api/user/login',
+      url: 'http://j7d203.p.ssafy.io:8080/user/login',
       headers: {
         'Content-Type': 'application/json',
       },
@@ -159,7 +159,7 @@ export function useAuthCallback() {
   const logOutCallback = async () => {
     // axios({
     //   method: 'post',
-    //   url: '/api/user/logout',
+    //   url: 'http://j7d203.p.ssafy.io:8080/user/logout',
     // })
     // .then(response => {
     //   if (response.data) {
@@ -181,7 +181,7 @@ export function useAuthCallback() {
   const deleteUserCallback = async (logInToken) => {
     axios({
       method: 'delete',
-      url: '/api/user/deleteUser',
+      url: 'http://j7d203.p.ssafy.io:8080/user/deleteUser',
       headers: {
         'Content-Type': 'application/json',
         'Authorization': logInToken,
@@ -203,7 +203,7 @@ export function useAuthCallback() {
   const profileInfoCallback = async (token) => {
     axios({
       method: 'get',
-      url: '/api/user/lookupAllprofile',
+      url: 'http://j7d203.p.ssafy.io:8080/user/lookupAllprofile',
       headers: {
         'Content-Type': 'application/json',
         'Authorization': token ? token : logInToken,
@@ -225,7 +225,7 @@ export function useAuthCallback() {
     console.log(name, birthday, profilePassword)
     axios({
       method: 'post',
-      url: '/api/user/saveProfile',
+      url: 'http://j7d203.p.ssafy.io:8080/user/saveProfile',
       headers: {
         'Content-Type': 'application/json',
         'Authorization': logInToken,
