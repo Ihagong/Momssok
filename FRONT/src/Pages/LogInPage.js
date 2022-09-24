@@ -3,6 +3,7 @@ import { FindPasswordTag, SignUpTag, TextTag, ButtonTag1, InputTag1 } from '../S
 import { useNavigate } from  'react-router-dom'
 import { useRecoilState } from 'recoil'
 import { logInTokenState } from '../store/atoms'
+import { useAuthCallback } from '../Functions/useAuthCallback'
 import axios from 'axios'
 
 
@@ -12,33 +13,15 @@ function LogInPage() {
   const [password, setPassword] = useState('')
   const navigate = useNavigate()
 
+  const { logInCallback } = useAuthCallback();
+
   const handleClickLogIn = () => {
     if (email === '') {
       console.log('이메일을 입력해주세요.')
     } else if (password === '') {
       console.log('비밀번호를 입력해주세요.')
     } else {
-      axios({
-        method: 'post',
-        url: '/api/user/login',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        data: {
-          email,
-          password,
-        }
-      })
-      .then(response => {
-        if (response.data) {
-          console.log(response.data)
-          console.log('로그인되었습니다.')
-          setLogInToken(response.data.token)
-        }
-      })
-      .catch(error => {
-        console.log(error.response.data)
-      })
+      logInCallback(email, password)
     }
   }
 
