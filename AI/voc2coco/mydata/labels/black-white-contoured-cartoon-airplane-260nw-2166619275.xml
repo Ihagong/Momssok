@@ -1,0 +1,26 @@
+<annotation>
+	<folder>car</folder>
+	<filename>black-white-contoured-cartoon-airplane-260nw-2166619275.jpg</filename>
+	<path>C:\Users\ssafy\shutterscrape\car\black-white-contoured-cartoon-airplane-260nw-2166619275.jpg</path>
+	<source>
+		<database>Unknown</database>
+	</source>
+	<size>
+		<width>743</width>
+		<height>280</height>
+		<depth>1</depth>
+	</size>
+	<segmented>0</segmented>
+	<object>
+		<name>airplane</name>
+		<pose>Unspecified</pose>
+		<truncated>0</truncated>
+		<difficult>0</difficult>
+		<bndbox>
+			<xmin>78</xmin>
+			<ymin>70</ymin>
+			<xmax>321</xmax>
+			<ymax>214</ymax>
+		</bndbox>
+	</object>
+</annotation>

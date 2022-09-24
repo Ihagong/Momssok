@@ -1,0 +1,26 @@
+<annotation>
+	<folder>person1</folder>
+	<filename>web-line-icon-smiling-child-260nw-408489940.jpg</filename>
+	<path>C:\Users\multicampus\Downloads\특화프로젝트\person1\person1\web-line-icon-smiling-child-260nw-408489940.jpg</path>
+	<source>
+		<database>Unknown</database>
+	</source>
+	<size>
+		<width>260</width>
+		<height>280</height>
+		<depth>3</depth>
+	</size>
+	<segmented>0</segmented>
+	<object>
+		<name>person</name>
+		<pose>Unspecified</pose>
+		<truncated>0</truncated>
+		<difficult>0</difficult>
+		<bndbox>
+			<xmin>45</xmin>
+			<ymin>48</ymin>
+			<xmax>214</xmax>
+			<ymax>213</ymax>
+		</bndbox>
+	</object>
+</annotation>

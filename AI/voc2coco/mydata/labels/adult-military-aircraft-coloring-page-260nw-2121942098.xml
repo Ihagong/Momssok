@@ -1,0 +1,26 @@
+<annotation>
+	<folder>sky</folder>
+	<filename>adult-military-aircraft-coloring-page-260nw-2121942098.jpg</filename>
+	<path>C:\Users\ssafy\shutterscrape\sky\adult-military-aircraft-coloring-page-260nw-2121942098.jpg</path>
+	<source>
+		<database>Unknown</database>
+	</source>
+	<size>
+		<width>520</width>
+		<height>280</height>
+		<depth>1</depth>
+	</size>
+	<segmented>0</segmented>
+	<object>
+		<name>airplane</name>
+		<pose>Unspecified</pose>
+		<truncated>0</truncated>
+		<difficult>0</difficult>
+		<bndbox>
+			<xmin>48</xmin>
+			<ymin>17</ymin>
+			<xmax>450</xmax>
+			<ymax>231</ymax>
+		</bndbox>
+	</object>
+</annotation>

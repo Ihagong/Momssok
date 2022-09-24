@@ -1,0 +1,26 @@
+<annotation>
+	<folder>sky</folder>
+	<filename>cloud-over-whitechilds-paint-260nw-56701444.jpg</filename>
+	<path>C:\Users\ssafy\shutterscrape\sky\cloud-over-whitechilds-paint-260nw-56701444.jpg</path>
+	<source>
+		<database>Unknown</database>
+	</source>
+	<size>
+		<width>321</width>
+		<height>280</height>
+		<depth>3</depth>
+	</size>
+	<segmented>0</segmented>
+	<object>
+		<name>cloud</name>
+		<pose>Unspecified</pose>
+		<truncated>0</truncated>
+		<difficult>0</difficult>
+		<bndbox>
+			<xmin>5</xmin>
+			<ymin>37</ymin>
+			<xmax>316</xmax>
+			<ymax>220</ymax>
+		</bndbox>
+	</object>
+</annotation>

@@ -1,0 +1,26 @@
+<annotation>
+	<folder>total_data</folder>
+	<filename>cartoon-ship-toy-colored-icon-260nw-1335702956.jpg</filename>
+	<path>C:\Users\ssafy\shutterscrape\total_data\cartoon-ship-toy-colored-icon-260nw-1335702956.jpg</path>
+	<source>
+		<database>Unknown</database>
+	</source>
+	<size>
+		<width>260</width>
+		<height>280</height>
+		<depth>3</depth>
+	</size>
+	<segmented>0</segmented>
+	<object>
+		<name>boat</name>
+		<pose>Unspecified</pose>
+		<truncated>0</truncated>
+		<difficult>0</difficult>
+		<bndbox>
+			<xmin>63</xmin>
+			<ymin>72</ymin>
+			<xmax>196</xmax>
+			<ymax>188</ymax>
+		</bndbox>
+	</object>
+</annotation>

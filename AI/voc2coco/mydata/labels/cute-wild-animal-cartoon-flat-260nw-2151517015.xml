@@ -1,0 +1,26 @@
+<annotation>
+	<folder>animals</folder>
+	<filename>cute-wild-animal-cartoon-flat-260nw-2151517015.jpg</filename>
+	<path>C:\Users\82106\Downloads\animals\animals\cute-wild-animal-cartoon-flat-260nw-2151517015.jpg</path>
+	<source>
+		<database>Unknown</database>
+	</source>
+	<size>
+		<width>313</width>
+		<height>280</height>
+		<depth>3</depth>
+	</size>
+	<segmented>0</segmented>
+	<object>
+		<name>animal</name>
+		<pose>Unspecified</pose>
+		<truncated>0</truncated>
+		<difficult>0</difficult>
+		<bndbox>
+			<xmin>5</xmin>
+			<ymin>6</ymin>
+			<xmax>306</xmax>
+			<ymax>256</ymax>
+		</bndbox>
+	</object>
+</annotation>

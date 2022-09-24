@@ -1,0 +1,26 @@
+<annotation>
+	<folder>car</folder>
+	<filename>cartoon-camping-car-kid-drawing-260nw-2180071893.jpg</filename>
+	<path>C:\Users\ssafy\shutterscrape\car\cartoon-camping-car-kid-drawing-260nw-2180071893.jpg</path>
+	<source>
+		<database>Unknown</database>
+	</source>
+	<size>
+		<width>260</width>
+		<height>280</height>
+		<depth>3</depth>
+	</size>
+	<segmented>0</segmented>
+	<object>
+		<name>car</name>
+		<pose>Unspecified</pose>
+		<truncated>0</truncated>
+		<difficult>0</difficult>
+		<bndbox>
+			<xmin>74</xmin>
+			<ymin>86</ymin>
+			<xmax>194</xmax>
+			<ymax>159</ymax>
+		</bndbox>
+	</object>
+</annotation>

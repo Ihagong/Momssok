@@ -1,0 +1,26 @@
+<annotation>
+	<folder>animals</folder>
+	<filename>cute-animal-vector-illustration-art-260nw-2043787853.jpg</filename>
+	<path>C:\Users\82106\Downloads\animals\animals\cute-animal-vector-illustration-art-260nw-2043787853.jpg</path>
+	<source>
+		<database>Unknown</database>
+	</source>
+	<size>
+		<width>260</width>
+		<height>280</height>
+		<depth>3</depth>
+	</size>
+	<segmented>0</segmented>
+	<object>
+		<name>cat</name>
+		<pose>Unspecified</pose>
+		<truncated>0</truncated>
+		<difficult>0</difficult>
+		<bndbox>
+			<xmin>41</xmin>
+			<ymin>12</ymin>
+			<xmax>218</xmax>
+			<ymax>239</ymax>
+		</bndbox>
+	</object>
+</annotation>
