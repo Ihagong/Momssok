@@ -256,12 +256,12 @@ export const CanvasProvider = ({ children, loadedPainting }) => {
       }}
     ></canvas> */}
       {children}
-    <canvas
+    {/* <canvas
       id='save_canvas'
       style={{
         visibility: 'hidden',
       }}
-    ></canvas>
+    ></canvas> */}
     </CanvasContext.Provider>
   )
 }

@@ -6,12 +6,15 @@ import { CanvasComponent } from '../Components/CanvasComponent/CanvasComponent'
 // import { AddObjectButton } from '../Components/CanvasComponent/addObjectButton'
 // import { ChangeLineWidthBar } from '../Components/CanvasComponent/ChangeLineWidthBar'
 import { CanvasProvider } from '../Components/CanvasComponent/CanvasContext'
-import { PaintingToolComponent } from '../Components/CanvasComponent/PaintingToolComponent'
+import { PaintingToolModalComponent } from '../Components/CanvasComponent/PaintingToolModalComponent'
+import { ColorPickerModalComponent } from '../Components/CanvasComponent/ColorPickerModalComponent'
 import { PaintingToolTag, ChildButtonTag1, ChildButtonTag2 } from '../Style/Components'
 
 
 function CreatePaintingPage(props) {
   // console.log(loadedPaintingSrc)
+  const [colorPickerModalOpen, setColorPickerModalOpen] = useState(false)
+  const [paintingToolModalOpen, setPaintingToolModalOpen] = useState(false)
   const [modalOpen, setModalOpen] = useState(false)
 
   const handleClickCloseButton = () => {
@@ -21,13 +24,23 @@ function CreatePaintingPage(props) {
   }
 
   const handleClickPaintingToolButton = () => {
-    setModalOpen(true)
+    setPaintingToolModalOpen(true)
+  }
+
+  const handleClickColorPickerButton = () => {
+    setColorPickerModalOpen(true)
+  }
+
+  const handleClickModalClose = () => {
+    setPaintingToolModalOpen(false)
+    setColorPickerModalOpen(false)
   }
 
   return (
     <div style={{ display: 'flex', flexDirection: 'column' }}>
-      { modalOpen ? <PaintingToolComponent onClick={() => setModalOpen(false)} /> : null }
       <CanvasProvider loadedPainting={props.loadedPainting}>
+        <ColorPickerModalComponent modalOpen={colorPickerModalOpen} modalClose={handleClickModalClose} onClick={() => setModalOpen(false)} />
+        <PaintingToolModalComponent modalOpen={paintingToolModalOpen} modalClose={handleClickModalClose} onClick={() => setModalOpen(false)} />
         <CanvasComponent />
         <div style={{ display: 'flex' }}>
           {/* <ChangeStrokeStyleButton />
@@ -37,7 +50,7 @@ function CreatePaintingPage(props) {
           <ChangeLineWidthBar /> */}
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', width: '1060px', padding: '20px' }}>
             <PaintingToolTag onClick={handleClickPaintingToolButton}><img src='/icons/tools.svg'></img></PaintingToolTag>
-            <PaintingToolTag><img src='/icons/color.svg'></img></PaintingToolTag>
+            <PaintingToolTag onClick={handleClickColorPickerButton}><img src='/icons/color.svg'></img></PaintingToolTag>
             <PaintingToolTag><img src='/icons/camera.svg'></img></PaintingToolTag>
             <ChildButtonTag1 style={{ width: '200px' }} onClick={handleClickCloseButton}>닫기</ChildButtonTag1>
             <ChildButtonTag2 style={{ width: '200px' }} onClick={handleClickSaveButton}>저장</ChildButtonTag2>

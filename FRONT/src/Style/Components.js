@@ -609,6 +609,63 @@ export const PromiseTodoItemDoneTag = styled.p`
   user-select: none;
 `
 
+export const PaintingToolModalComponentTag = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 500px;
+  height: 550px;
+  background-color: var(--Beige-Light);
+  border-radius: 30px;
+  z-index: 1;
+`
+
+export const ModalBackgroundTag = styled.div`
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  background-color: #05050560;
+  /* z-index: 1; */
+`
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 // LetterPage
 
 export const LetterPageHeader = styled.div`
