@@ -36,3 +36,24 @@
     transform: rotate(360deg);
   }
 }
+
+/* LetterPage */
+
+body {
+  display: flex;
+  justify-content: center;
+  min-height: 100vh;
+  margin: 0px;
+}
+
+@media (min-width: 1200px) {
+  .LetterPageHome {
+    width: 1194px;
+  }
+}
+
+@media (max-width: 1200px) {
+  .LetterPageHome {
+    width: 1194px;
+  }
+}
