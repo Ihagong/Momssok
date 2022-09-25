@@ -610,8 +610,8 @@ export const PromiseTodoItemDoneTag = styled.p`
 `
 
 export const PaintingToolModalComponentTag = styled.div`
-  /* display: flex;
-  flex-direction: column; */
+  display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   /* width: 1100px; */
@@ -631,21 +631,19 @@ export const ModalBackgroundTag = styled.div`
   width: 100%;
   height: 100%;
   background-color: #05050560;
-  /* z-index: 1; */
 `
 
 export const ColorPickerTag = styled.div`
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 1120px;
-  height: 108px;
+  padding: 4px;
   background-color: #FFE400;
   border-radius: 12px;
 `
 
 export const ColorTag = styled.div`
-  display: inline-block;
   width: 100px;
   height: 100px;
   cursor: pointer;
