@@ -623,6 +623,7 @@ export const BrownText100 = styled.div`
   font-weight:bold;
   font-size: 100px;
   color: var(--Brown-Text);
+  margin-left: 20px;
 `
 
 export const LightButton120 = styled.button`
@@ -631,17 +632,38 @@ export const LightButton120 = styled.button`
   align-items: center;
 
   background-color: var(--Beige-Light);
+  box-shadow: 0px 5px 5px #E6E6E6;
   cursor: pointer;
   border: none;
   width: 120px;
   height: 70px;
-  margin-right: 20px;
+  margin-left: 20px;
   border-radius: 20px;
 
   font-family: 'Dongle', sans-serif;
-  font-size: 60px;
+  font-size: 50px;
   font-weight: bold;
   color: var(--Brown-Text);
+  white-space: nowrap;
+`
+export const BrownLightButton150 = styled.button`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  background-color: var(--Brown-LightText);
+  box-shadow: 0px 5px 5px #E6E6E6;
+  cursor: pointer;
+  border: none;
+  width: 150px;
+  height: 70px;
+  margin-left: 10px;
+  border-radius: 20px;
+
+  font-family: 'Dongle', sans-serif;
+  font-size: 50px;
+  font-weight: bold;
+  color: var(--White-Block);
   white-space: nowrap;
 `
 
@@ -652,11 +674,12 @@ export const OrangeButton250 = styled.button`
 
   background-color: var(--Orange-Button);
   opacity:0.9;
+  box-shadow: 0px 5px 5px #E6E6E6;
   cursor: pointer;
   border: none;
   width: 250px;
   height: 70px;
-  margin-right: 20px;
+  margin-left: 50px;
   border-radius: 20px;
 
   font-family: 'Dongle', sans-serif;
@@ -668,10 +691,12 @@ export const OrangeButton250 = styled.button`
 
 export const LetterItem = styled.div`
   background-color: #FDFDF5;
+  box-shadow: 0px 5px 5px #E6E6E6;
   width: 1090px;
   height: 100px;
   border-radius: 20px;
-  margin-top: 20px;
+  margin-top: 30px;
+  margin-left: 50px;
 `
 
 export const LetterItemContent = styled.div`
