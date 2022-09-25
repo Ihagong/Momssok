@@ -608,3 +608,88 @@ export const PromiseTodoItemDoneTag = styled.p`
   cursor: pointer;
   user-select: none;
 `
+
+// LetterPage
+
+export const LetterPageHeader = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+
+  font-family: 'Dongle', sans-serif;
+`
+
+export const BrownText100 = styled.div`
+  font-weight:bold;
+  font-size: 100px;
+  color: var(--Brown-Text);
+`
+
+export const LightButton120 = styled.button`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  background-color: var(--Beige-Light);
+  cursor: pointer;
+  border: none;
+  width: 120px;
+  height: 70px;
+  margin-right: 20px;
+  border-radius: 20px;
+
+  font-family: 'Dongle', sans-serif;
+  font-size: 60px;
+  font-weight: bold;
+  color: var(--Brown-Text);
+  white-space: nowrap;
+`
+
+export const OrangeButton250 = styled.button`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  background-color: var(--Orange-Button);
+  opacity:0.9;
+  cursor: pointer;
+  border: none;
+  width: 250px;
+  height: 70px;
+  margin-right: 20px;
+  border-radius: 20px;
+
+  font-family: 'Dongle', sans-serif;
+  font-size: 55px;
+  font-weight: bold;
+  color: var(--White-Block);
+  white-space: nowrap;
+`
+
+export const LetterItem = styled.div`
+  background-color: #FDFDF5;
+  width: 1090px;
+  height: 100px;
+  border-radius: 20px;
+  margin-top: 20px;
+`
+
+export const LetterItemContent = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  font-family: 'Dongle', sans-serif;
+  font-size: 64px;
+  font-weight: bold;
+  color: var(--Brown-LightText);
+
+  padding-left: 30px;
+  padding-right: 30px;
+`
+
+export const LetterItemAuthor = styled.div`
+  font-size: 48px;
+  text-align: center;
+  margin-bottom: -20px;
+`
