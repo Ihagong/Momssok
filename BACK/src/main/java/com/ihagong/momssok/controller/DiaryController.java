@@ -4,12 +4,18 @@ import com.ihagong.momssok.model.dto.DrawingDto;
 import com.ihagong.momssok.service.DiaryService;
 import com.ihagong.momssok.service.DrawingService;
 import lombok.RequiredArgsConstructor;
+import org.apache.commons.io.FileUtils;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import javax.servlet.http.HttpServletRequest;
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.text.SimpleDateFormat;
+import java.util.*;
 
 @RestController
 @RequestMapping("/user")
@@ -24,7 +30,7 @@ public class DiaryController {
     private final DrawingService drawingService;
 
     @GetMapping("/searchDrawing")
-    public Map<String, Object> lookupAllDrawing(@RequestParam String email_name){   //Param에 email과 name을 다 보내주는게 맞나?
+    public Map<String, Object> lookupAllDrawing(@RequestParam String email_name){   //Param에 email과 name을 다 보내주는게 맞나?name만 받을까?
         Map<String, Object> result = new HashMap<>();
         List<DrawingDto> drawingList = new ArrayList<>();
 
@@ -44,8 +50,8 @@ public class DiaryController {
         return result;
     }
 
-    @GetMapping("/detailDrawing/{drawing_id}")
-    public Map<String, Object> lookupDrawing(@PathVariable int drawing_id){
+    @GetMapping("/detailDrawing")
+    public Map<String, Object> lookupDrawing(@RequestParam int drawing_id){
         Map<String, Object> result = new HashMap<>();
 
         DrawingDto drawing;
@@ -64,4 +70,48 @@ public class DiaryController {
 
         return result;
     }
+
+    @PostMapping("/saveDrawing")
+    public Map<String, Object> saveDrawing(@RequestBody DrawingDto drawing){
+
+        Map<String, Object> result = new HashMap<>();
+
+        String base64 = drawing.getDrawing_base64();
+
+        try {
+            SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyyMMddHHmm");
+            String uploadDate = simpleDateFormat.format(new Date());
+            
+
+            try {
+                DrawingDto drawing =
+                int res = drawingService.saveDrawing(painting)  //이미지 저장
+                if (res == 1) {
+                    result.put("status", success);
+                    result.put("data", )
+                }
+            }
+
+        }
+    }
+
+    public static String decoder(String base64){
+
+        String data = base64.split(",")[1];  //base64 문자열
+        byte[] imageBytes = Base64.getDecoder().decode(data);  //base64 문자열을 디코딩
+        System.out.println(new String(imageBytes));  //디코딩 g
+        FileUtils.writeByteArrayToFile(new File(target), imageBytes);
+    }
+
+    @GetMapping("/getDrawing")  //이미지를 base64 형태로 인코딩하여 프론트에 보내기
+    public String getBase64(@RequestParam int drawing_id){
+
+        String painting = drawingService.getDrawing(drawing_id);  //이미지를 가져온다
+
+        byte[] file = FileUtils.readFileToByteArray(new File(painting.getPath()));  //bytearray로 변환
+        String base64 = Base64.getEncoder().encodeToString(file);  //base64로 인코딩
+
+        return base64;
+    }
+
 }
