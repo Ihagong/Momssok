@@ -11,6 +11,82 @@ import { ColorPickerModalComponent } from '../Components/CanvasComponent/ColorPi
 import { PaintingToolTag, ChildButtonTag1, ChildButtonTag2 } from '../Style/Components'
 
 
+// 크레파스
+
+const crayonBlack = new Image()
+crayonBlack.src = '/textures/crayon_black.png'
+
+const crayonWhite = new Image()
+crayonWhite.src = '/textures/crayon_white.png'
+
+const crayonPink = new Image()
+crayonPink.src = '/textures/crayon_pink.png'
+
+const crayonRed = new Image()
+crayonRed.src = '/textures/crayon_red.png'
+
+const crayonOrange = new Image()
+crayonOrange.src = '/textures/crayon_orange.png'
+
+const crayonYellow = new Image()
+crayonYellow.src = '/textures/crayon_yellow.png'
+
+const crayonLightGreen = new Image()
+crayonLightGreen.src = '/textures/crayon_lightgreen.png'
+
+const crayonGreen = new Image()
+crayonGreen.src = '/textures/crayon_green.png'
+
+const crayonSkyBlue = new Image()
+crayonSkyBlue.src = '/textures/crayon_skyblue.png'
+
+const crayonBlue = new Image()
+crayonBlue.src = '/textures/crayon_blue.png'
+
+const crayonPurple = new Image()
+crayonPurple.src = '/textures/crayon_purple.png'
+
+// 물감
+
+// const paintBlack = new Image()
+// paintBlack.src = '/textures/paint_black.png'
+
+// const paintWhite = new Image()
+// paintWhite.src = '/textures/paint_white.png'
+
+// const paintPink = new Image()
+// paintPink.src = '/textures/paint_pink.png'
+
+// const paintRed = new Image()
+// paintRed.src = '/textures/paint_red.png'
+
+// const paintOrange = new Image()
+// paintOrange.src = '/textures/paint_orange.png'
+
+// const paintYellow = new Image()
+// paintYellow.src = '/textures/paint_yellow.png'
+
+// const paintLightGreen = new Image()
+// paintLightGreen.src = '/textures/paint_lightgreen.png'
+
+// const paintGreen = new Image()
+// paintGreen.src = '/textures/paint_green.png'
+
+// const paintSkyBlue = new Image()
+// paintSkyBlue.src = '/textures/paint_skyblue.png'
+
+// const paintBlue = new Image()
+// paintBlue.src = '/textures/paint_blue.png'
+
+// const paintPurple = new Image()
+// paintPurple.src = '/textures/paint_purple.png'
+
+
+const textures = [
+  [crayonBlack, crayonWhite, crayonPink, crayonRed, crayonOrange, crayonYellow, crayonLightGreen, crayonGreen, crayonSkyBlue, crayonBlue, crayonPurple],
+  // [paintBlack, paintWhite, paintPink, paintRed, paintOrange, paintYellow, paintLightGreen, paintGreen, paintSkyBlue, paintBlue, paintPurple],
+]
+
 function CreatePaintingPage(props) {
   // console.log(loadedPaintingSrc)
   const [colorPickerModalOpen, setColorPickerModalOpen] = useState(false)
@@ -38,7 +114,7 @@ function CreatePaintingPage(props) {
 
   return (
     <div style={{ display: 'flex', flexDirection: 'column' }}>
-      <CanvasProvider loadedPainting={props.loadedPainting}>
+      <CanvasProvider loadedPainting={props.loadedPainting} textures={textures}>
         <ColorPickerModalComponent modalOpen={colorPickerModalOpen} modalClose={handleClickModalClose} onClick={() => setModalOpen(false)} />
         <PaintingToolModalComponent modalOpen={paintingToolModalOpen} modalClose={handleClickModalClose} onClick={() => setModalOpen(false)} />
         <CanvasComponent />

@@ -5,7 +5,7 @@ import { ChangeStrokeStyleButton } from './ChangeStrokeStyleButton'
 
 
 export function PaintingToolModalComponent({ modalOpen, modalClose }) {
-  const { changeLineWidth } = useCanvas()
+  const { changeStrokeTexture, changeLineWidth } = useCanvas()
   const [value, setValue] = useState(3)
 
   return (
@@ -14,6 +14,9 @@ export function PaintingToolModalComponent({ modalOpen, modalClose }) {
         <ModalBackgroundTag>
           <PaintingToolModalComponentTag>
             {/* <ChangeStrokeStyleButton /> */}
+            <button onClick={() => {changeStrokeTexture(0)}}>연필</button>
+            <button onClick={() => {changeStrokeTexture(1)}}>크레파스</button>
+            <button onClick={() => {changeStrokeTexture(2)}}>물감</button>
             <input type='range' min='1' max='100' value={value}
               onChange={(e) => {
                 setValue(e.target.value)
