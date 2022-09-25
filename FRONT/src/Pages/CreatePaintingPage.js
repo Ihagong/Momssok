@@ -11,6 +11,41 @@ import { ColorPickerModalComponent } from '../Components/CanvasComponent/ColorPi
 import { PaintingToolTag, ChildButtonTag1, ChildButtonTag2 } from '../Style/Components'
 
 
+// 색연필
+
+const pencilBlack = new Image()
+pencilBlack.src = '/textures/pencil_black.png'
+
+const pencilWhite = new Image()
+pencilWhite.src = '/textures/pencil_white.png'
+
+const pencilPink = new Image()
+pencilPink.src = '/textures/pencil_pink.png'
+
+const pencilRed = new Image()
+pencilRed.src = '/textures/pencil_red.png'
+
+const pencilOrange = new Image()
+pencilOrange.src = '/textures/pencil_orange.png'
+
+const pencilYellow = new Image()
+pencilYellow.src = '/textures/pencil_yellow.png'
+
+const pencilLightGreen = new Image()
+pencilLightGreen.src = '/textures/pencil_lightgreen.png'
+
+const pencilGreen = new Image()
+pencilGreen.src = '/textures/pencil_green.png'
+
+const pencilSkyBlue = new Image()
+pencilSkyBlue.src = '/textures/pencil_skyblue.png'
+
+const pencilBlue = new Image()
+pencilBlue.src = '/textures/pencil_blue.png'
+
+const pencilPurple = new Image()
+pencilPurple.src = '/textures/pencil_purple.png'
+
 // 크레파스
 
 const crayonBlack = new Image()
@@ -81,8 +116,8 @@ crayonPurple.src = '/textures/crayon_purple.png'
 // const paintPurple = new Image()
 // paintPurple.src = '/textures/paint_purple.png'
 
-
 const textures = [
+  [pencilBlack, pencilWhite, pencilPink, pencilRed, pencilOrange, pencilYellow, pencilLightGreen, pencilGreen, pencilSkyBlue, pencilBlue, pencilPurple],
   [crayonBlack, crayonWhite, crayonPink, crayonRed, crayonOrange, crayonYellow, crayonLightGreen, crayonGreen, crayonSkyBlue, crayonBlue, crayonPurple],
   // [paintBlack, paintWhite, paintPink, paintRed, paintOrange, paintYellow, paintLightGreen, paintGreen, paintSkyBlue, paintBlue, paintPurple],
 ]
@@ -92,6 +127,8 @@ function CreatePaintingPage(props) {
   const [colorPickerModalOpen, setColorPickerModalOpen] = useState(false)
   const [paintingToolModalOpen, setPaintingToolModalOpen] = useState(false)
   const [modalOpen, setModalOpen] = useState(false)
+  const [strokeColorIndex, setStrokeColorIndex] = useState(0)
+  const [strokeTextureIndex, setStrokeTextureIndex] = useState(0)
 
   const handleClickCloseButton = () => {
   }
@@ -112,11 +149,22 @@ function CreatePaintingPage(props) {
     setColorPickerModalOpen(false)
   }
 
+  const changeStrokeTexture = (textureIndex) => {
+    setStrokeTextureIndex(textureIndex)
+    console.log(textureIndex)
+  }
+
+  const changeStrokeColor = (colorIndex) => {
+    setStrokeColorIndex(colorIndex)
+    console.log(colorIndex)
+  }
+
   return (
     <div style={{ display: 'flex', flexDirection: 'column' }}>
-      <CanvasProvider loadedPainting={props.loadedPainting} textures={textures}>
-        <ColorPickerModalComponent modalOpen={colorPickerModalOpen} modalClose={handleClickModalClose} onClick={() => setModalOpen(false)} />
-        <PaintingToolModalComponent modalOpen={paintingToolModalOpen} modalClose={handleClickModalClose} onClick={() => setModalOpen(false)} />
+      <CanvasProvider loadedPainting={props.loadedPainting} textures={textures} strokeColorIndex={strokeColorIndex} strokeTextureIndex={strokeTextureIndex}>
+        <ColorPickerModalComponent modalOpen={colorPickerModalOpen} modalClose={handleClickModalClose}
+          strokeColorIndex={strokeColorIndex} changeStrokeColor={changeStrokeColor} onClick={() => setModalOpen(false)} />
+        <PaintingToolModalComponent modalOpen={paintingToolModalOpen} modalClose={handleClickModalClose} changeStrokeTexture={changeStrokeTexture} onClick={() => setModalOpen(false)} />
         <CanvasComponent />
         <div style={{ display: 'flex' }}>
           {/* <ChangeStrokeStyleButton />
