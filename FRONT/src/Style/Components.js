@@ -6,6 +6,8 @@ export const FindPasswordTag = styled.a`
   color: var(--Brown-LightText);
   font-family: 'Jua', sans-serif;
   font-size: 28px;
+  text-decoration: underline;
+  cursor: pointer;
   user-select: none;
 `
 
@@ -13,6 +15,8 @@ export const SignUpTag = styled.a`
   color: var(--Brown-Text);
   font-family: 'Jua', sans-serif;
   font-size: 28px;
+  text-decoration: underline;
+  cursor: pointer;
   user-select: none;
 `
 
@@ -199,10 +203,19 @@ export const ChildProfileComponentTag = styled.div`
   border-radius: 20px;
   display: flex;
   flex-direction: column;
+  justify-content: center;
   align-items: center;
+  font-family: 'Jua', sans-serif;
+  color: var(--Brown-LightText);
+  font-size: 20px;
   background-color: var(--Brown-GrayText);
   cursor: pointer;
   user-select: none;
+  p {
+    color: var(--Brown-Text);
+    font-size: 28px;
+    margin: 8px 0 0 0;
+  }
 `
 
 export const ProfileInfoInputTag = styled.input`
@@ -646,6 +659,24 @@ export const ColorPickerTag = styled.div`
 export const ColorTag = styled.div`
   width: 100px;
   height: 100px;
+  cursor: pointer;
+`
+
+export const ProfileImageTag = styled.div`
+  display: inline-block;
+  width: 150px;
+  height: 150px;
+  border: 6px solid #00000000;
+  border-radius: 50%;
+  cursor: pointer;
+`
+
+export const ProfileSelectedImageTag = styled.div`
+  display: inline-block;
+  width: 150px;
+  height: 150px;
+  border: 6px solid #FF005C;
+  border-radius: 50%;
   cursor: pointer;
 `
 
