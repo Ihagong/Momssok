@@ -1,11 +1,12 @@
 import React, { useState } from "react"
 
-import { OrangeButton250 } from "../Style/Components"
+import { OrangeButton250, LightButton250 } from "../Style/Components"
 import LetterItemComponent from "./LetterItemComponent"
 
 const LetterListComponent = ({ letterList }) => {
   
   const [sortType, setSortType] = useState("latest")
+
 
   const latestType = () => {
     setSortType("latest")
@@ -31,10 +32,16 @@ const LetterListComponent = ({ letterList }) => {
 
   return (
     <div className="LetterListComponent">
-      <div style={{display: "flex" }}>
-        <OrangeButton250 onClick={latestType}>최신순</OrangeButton250>
+      {sortType === "latest" ? 
+        <div style={{display: "flex" }}>
+        <OrangeButton250 style={{marginLeft: "40px"}} onClick={latestType}>최신순</OrangeButton250>
+        <LightButton250 onClick={oldestType}>오래된 순</LightButton250>
+        </div> : 
+        <div style={{display: "flex" }}>
+        <LightButton250 style={{marginLeft: "40px"}} onClick={latestType}>최신순</LightButton250>
         <OrangeButton250 onClick={oldestType}>오래된 순</OrangeButton250>
-      </div>
+        </div>
+      } 
       <div>
         {getProcessedLetterList().map((it) => (
           <LetterItemComponent key={it.letterId} {...it} />

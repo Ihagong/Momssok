@@ -752,13 +752,35 @@ export const OrangeButton250 = styled.button`
   border: none;
   width: 250px;
   height: 70px;
-  margin-left: 50px;
+  margin-left: 10px;
   border-radius: 20px;
 
   font-family: 'Dongle', sans-serif;
   font-size: 55px;
   font-weight: bold;
   color: var(--White-Block);
+  white-space: nowrap;
+`
+
+export const LightButton250 = styled.button`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  background-color: var(--Beige-Light);
+  opacity:0.9;
+  box-shadow: 0px 5px 5px #E6E6E6;
+  cursor: pointer;
+  border: none;
+  width: 250px;
+  height: 70px;
+  margin-left: 10px;
+  border-radius: 20px;
+
+  font-family: 'Dongle', sans-serif;
+  font-size: 55px;
+  font-weight: bold;
+  color: var(--Brown-Text);
   white-space: nowrap;
 `
 
@@ -790,4 +812,184 @@ export const LetterItemAuthor = styled.div`
   font-size: 48px;
   text-align: center;
   margin-bottom: -20px;
+`
+
+export const EditorBody = styled.div`
+  background-color: var(--White-Block);
+  border-radius: 30px;
+  border: 1px solid #C5BEB6;
+  box-shadow: 0px 5px 5px #E6E6E6;
+
+  width: 700px;
+  height: 740px;
+  margin-top: 20px;
+
+  font-family: 'Dongle', sans-serif;
+  font-size: 50px;
+  font-weight: bold;
+  color: var(--Brown-Text);
+  white-space: nowrap;
+`
+
+export const LetterTitleBody = styled.section`
+  display: flex;
+  justify-content: space-around;
+  margin-left: 20px;
+  margin-right: 20px;
+  margin-top: 20px;
+`
+
+export const LetterTitleDiv = styled.div`
+  background-color: #FFFFFF;
+  border-radius: 10px;
+  border: 1px solid #C5BEB6;
+
+  width: 530px;
+  height: 65px;
+  margin-left: 5px;
+  padding-left: 20px;
+
+  font-family: 'Dongle', sans-serif;
+  font-size: 44px;
+  font-weight: bold;
+  color: var(--Brown-LightText);
+  white-space: nowrap;
+`
+
+export const LetterTitleInput = styled.input`
+  background-color: #FFFFFF;
+  border-radius: 10px;
+  border: 1px solid #C5BEB6;
+
+  width: 530px;
+  height: 65px;
+  margin-left: 5px;
+  padding-left: 20px;
+
+  font-family: 'Dongle', sans-serif;
+  font-size: 44px;
+  font-weight: bold;
+  color: var(--Brown-LightText);
+  white-space: nowrap;
+`
+
+export const LetterContentBody = styled.section`
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+`
+
+export const LetterContentDiv = styled.div`
+  background-color: #FFFFFF;
+  border-radius: 10px;
+  border: 1px solid #C5BEB6;
+
+  width: 600px;
+  height: 400px;
+  padding-left: 20px;
+  padding-right: 20px;
+
+  font-family: 'Dongle', sans-serif;
+  font-size: 44px;
+  font-weight: bold;
+  color: var(--Brown-LightText);
+  white-space: normal;
+  overflow:auto; 
+`
+
+export const LetterContentTextArea = styled.textarea`
+  background-color: #FFFFFF;
+  border-radius: 10px;
+  border: 1px solid #C5BEB6;
+
+  width: 600px;
+  height: 400px;
+  padding-left: 20px;
+  padding-right: 20px;
+
+  font-family: 'Dongle', sans-serif;
+  font-size: 44px;
+  font-weight: bold;
+  color: var(--Brown-LightText);
+  white-space: normal;
+`
+
+export const LetterEditorComponentBody = styled.div`
+  display: flex;
+  justify-content: center;
+`
+
+export const LetterButton = styled.div`
+  display: flex;
+  flex-direction: column;
+`
+
+export const LetterButtonBack = styled.button`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  background-color: var(--Beige-Light);
+  box-shadow: 0px 5px 5px #E6E6E6;
+  cursor: pointer;
+  border: none;
+  width: 200px;
+  height: 75px;
+  margin-right: 20px;
+  border-radius: 20px;
+  margin-top: 20px;
+  margin-left: 30px;
+
+  font-family: 'Dongle', sans-serif;
+  font-size: 60px;
+  font-weight: bold;
+  color: var(--Brown-Text);
+  white-space: nowrap;
+`
+
+export const LetterButtonGo = styled.button`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  background-color: var(--Brown-LightText);
+  box-shadow: 0px 5px 5px #E6E6E6;
+  cursor: pointer;
+  border: none;
+  width: 200px;
+  height: 75px;
+  margin-right: 20px;
+  border-radius: 20px;
+  margin-top: 15px;
+  margin-left: 30px;
+
+  font-family: 'Dongle', sans-serif;
+  font-size: 60px;
+  font-weight: bold;
+  color: var(--White-Block);
+  white-space: nowrap;
+`
+
+export const LetterButtonDel = styled.button`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  background-color: var(--Orange-Button);
+  opacity: 0.8;
+  box-shadow: 0px 5px 5px #E6E6E6;
+  cursor: pointer;
+  border: none;
+  width: 200px;
+  height: 75px;
+  margin-right: 20px;
+  border-radius: 20px;
+  margin-top: 10px;
+  margin-left: 30px;
+
+  font-family: 'Dongle', sans-serif;
+  font-size: 60px;
+  font-weight: bold;
+  color: var(--White-Block);
+  white-space: nowrap;
 `
