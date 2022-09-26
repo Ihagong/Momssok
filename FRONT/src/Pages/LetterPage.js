@@ -10,7 +10,7 @@ const LetterPage = () => {
   const navigate = useNavigate()
   const letterList = useContext(LetterStateContext)
 
-  const filterList = letterList.filter((it) => it.receiver === "다은이")
+  const filterList = letterList.filter((it) => it.receiver === "찬석이")
 
 
   return (
