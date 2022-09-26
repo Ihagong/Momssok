@@ -7,13 +7,26 @@ import * as HANDS from '@mediapipe/hands'
 
 const CanvasContext = React.createContext()
 
-export const CanvasProvider = ({ children, loadedPainting }) => {
+export const CanvasProvider = ({ children, loadedPainting, textures, strokeColorIndex, strokeTextureIndex }) => {
   const [isDrawing, setIsDrawing] = useState(false)
+  // const [strokeColorIdx, setStrokeColorIndex] = useState(strokeColorIndex)
+  const [strokeTexture, setStrokeTexture] = useState(0)
   const [gesture, setGesture] = useState('defaultGesture')
   const [offset, setOffset] = useState({offsetX: 0, offsetY: 0})
   const [imgSrcs, setImgSrcs] = useState([])
   const canvasRef = useRef(null)
   const contextRef = useRef(null)
+
+  useEffect(() => {
+    const canvas = canvasRef.current
+    const context = canvas.getContext('2d')
+    context.strokeStyle = strokeTextureIndex === 2 ? strokeColor[strokeColorIndex]+'06' : strokeColor[strokeColorIndex]
+  }, [strokeColorIndex, strokeTextureIndex])
+
+  const strokeColor = [
+    '#F6F6F6', '#F88484', '#EB2C37', '#EB8C35', '#FEED01', '#94C120', '#0C8E36',
+    '#121212', '#74BBEE', '#7E4319', '#F6C4A8', '#882BA8', '#0665C4', '#74BBEE'
+  ]
 
   const prepareCanvas = () => {
     const canvas = canvasRef.current
@@ -25,8 +38,8 @@ export const CanvasProvider = ({ children, loadedPainting }) => {
     const context = canvas.getContext('2d')
     context.scale(2, 2)
     context.lineCap = 'round'
-    context.strokeStyle = '#000000'
-    context.lineWidth = 3
+    context.strokeStyle = strokeColor[strokeColorIndex]
+    context.lineWidth = 20
     contextRef.current = context
     
     context.drawImage(loadedPainting, 0, 0, 2200, 1100, 0, 0, 1100, 550)
@@ -62,7 +75,13 @@ export const CanvasProvider = ({ children, loadedPainting }) => {
     }
     const { offsetX, offsetY } = nativeEvent
     contextRef.current.lineTo(offsetX, offsetY)
-    contextRef.current.stroke()
+    if (strokeTextureIndex !== 2) {
+      const lineWidth = contextRef.current.lineWidth
+      // x시작 좌표, y 시작 좌표, 가로 크기, 세로 크기, 그림 x 위치, 그림 y 위치, 그림 가로 크기, 그림 세로 크기
+      contextRef.current.drawImage(textures[strokeTextureIndex][strokeColorIndex], 0, 0, 1100, 550, offsetX-(lineWidth/4), offsetY-(lineWidth/4), lineWidth*2, lineWidth)
+    } else {
+      contextRef.current.stroke()
+    }
   }
 
   const motionDraw = () => {
@@ -80,10 +99,32 @@ export const CanvasProvider = ({ children, loadedPainting }) => {
     context.clearRect(0, 0, canvas.width, canvas.height)
   }
 
-  const changeStrokeStyle = (color) => {
+  // const changeStrokeStyle = (color) => {
+  //   const canvas = canvasRef.current
+  //   const context = canvas.getContext('2d')
+  //   context.strokeStyle = color
+  // }
+
+  const changeStrokeTexture = (texture) => {
+    setStrokeTexture(texture)
     const canvas = canvasRef.current
     const context = canvas.getContext('2d')
-    context.strokeStyle = color
+    if (strokeTexture === 2) {
+      context.strokeStyle = strokeColor[strokeColorIndex]+'06'
+    } else {
+      context.strokeStyle = strokeColor[strokeColorIndex]
+    }
+  }
+  
+  const changeStrokeColor = (colorIndex) => {
+    // setStrokeColorIndex(colorIndex)
+    // const canvas = canvasRef.current
+    // const context = canvas.getContext('2d')
+    // if (strokeTexture === 2) {
+    //   context.strokeStyle = strokeColor[colorIndex]+'06'
+    // } else {
+    //   context.strokeStyle = strokeColor[colorIndex]
+    // }
   }
 
   const changeLineWidth = (lineWidth) => {
@@ -215,7 +256,9 @@ export const CanvasProvider = ({ children, loadedPainting }) => {
         prepareCanvas,
         startDrawing,
         finishDrawing,
-        changeStrokeStyle,
+        changeStrokeColor,
+        // changeStrokeStyle,
+        changeStrokeTexture,
         clearCanvas,
         saveCanvas,
         addObject,
@@ -256,12 +299,12 @@ export const CanvasProvider = ({ children, loadedPainting }) => {
       }}
     ></canvas> */}
       {children}
-    <canvas
+    {/* <canvas
       id='save_canvas'
       style={{
         visibility: 'hidden',
       }}
-    ></canvas>
+    ></canvas> */}
     </CanvasContext.Provider>
   )
 }
