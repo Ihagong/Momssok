@@ -5,15 +5,10 @@ import com.ihagong.momssok.service.DiaryService;
 import com.ihagong.momssok.service.DrawingService;
 import lombok.RequiredArgsConstructor;
 import org.apache.commons.io.FileUtils;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.multipart.MultipartFile;
 
-import javax.servlet.http.HttpServletRequest;
 import java.io.File;
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
@@ -30,11 +25,13 @@ public class DiaryController {
     private final DrawingService drawingService;
 
     @GetMapping("/searchDrawing")
-    public Map<String, Object> lookupAllDrawing(@RequestParam String email_name){   //Param에 email과 name을 다 보내주는게 맞나?name만 받을까?
+    public Map<String, Object> lookupAllDrawing(@RequestParam String name){  //name만 받고 서버에서 회원의 email을 꺼내서 email_name으로 쓰자
         Map<String, Object> result = new HashMap<>();
         List<DrawingDto> drawingList = new ArrayList<>();
 
         try {
+            String email= SecurityContextHolder.getContext().getAuthentication().getName();
+            String email_name = email + "_" + name;
             drawingList = drawingService.lookupAllDrawing(email_name);
 
             if(drawingList != null){
@@ -81,7 +78,7 @@ public class DiaryController {
         try {
             SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyyMMddHHmm");
             String uploadDate = simpleDateFormat.format(new Date());
-            
+
 
             try {
                 DrawingDto drawing =
