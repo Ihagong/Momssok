@@ -11,50 +11,6 @@ import { ColorPickerModalComponent } from '../Components/CanvasComponent/ColorPi
 import { PaintingToolTag, ChildButtonTag1, ChildButtonTag2 } from '../Style/Components'
 
 
-// 색연필
-
-const pencilBlack = new Image()
-pencilBlack.src = '/textures/pencil_black.png'
-
-const pencilWhite = new Image()
-pencilWhite.src = '/textures/pencil_white.png'
-
-const pencilPink = new Image()
-pencilPink.src = '/textures/pencil_pink.png'
-
-const pencilRed = new Image()
-pencilRed.src = '/textures/pencil_red.png'
-
-const pencilOrange = new Image()
-pencilOrange.src = '/textures/pencil_orange.png'
-
-const pencilYellow = new Image()
-pencilYellow.src = '/textures/pencil_yellow.png'
-
-const pencilLightGreen = new Image()
-pencilLightGreen.src = '/textures/pencil_lightgreen.png'
-
-const pencilGreen = new Image()
-pencilGreen.src = '/textures/pencil_green.png'
-
-const pencilSkyBlue = new Image()
-pencilSkyBlue.src = '/textures/pencil_skyblue.png'
-
-const pencilBlue = new Image()
-pencilBlue.src = '/textures/pencil_blue.png'
-
-const pencilPurple = new Image()
-pencilPurple.src = '/textures/pencil_purple.png'
-
-const pencilApricot = new Image()
-pencilApricot.src = '/textures/pencil_apricot.png'
-
-const pencilBrown = new Image()
-pencilBrown.src = '/textures/pencil_brown.png'
-
-const pencilGray = new Image()
-pencilGray.src = '/textures/pencil_gray.png'
-
 // 크레파스
 
 const crayonBlack = new Image()
@@ -99,47 +55,57 @@ crayonBrown.src = '/textures/crayon_brown.png'
 const crayonGray = new Image()
 crayonGray.src = '/textures/crayon_gray.png'
 
-// 물감
 
-// const paintBlack = new Image()
-// paintBlack.src = '/textures/paint_black.png'
+// 색연필
 
-// const paintWhite = new Image()
-// paintWhite.src = '/textures/paint_white.png'
+const pencilBlack = new Image()
+pencilBlack.src = '/textures/pencil_black.png'
 
-// const paintPink = new Image()
-// paintPink.src = '/textures/paint_pink.png'
+const pencilWhite = new Image()
+pencilWhite.src = '/textures/pencil_white.png'
 
-// const paintRed = new Image()
-// paintRed.src = '/textures/paint_red.png'
+const pencilPink = new Image()
+pencilPink.src = '/textures/pencil_pink.png'
 
-// const paintOrange = new Image()
-// paintOrange.src = '/textures/paint_orange.png'
+const pencilRed = new Image()
+pencilRed.src = '/textures/pencil_red.png'
 
-// const paintYellow = new Image()
-// paintYellow.src = '/textures/paint_yellow.png'
+const pencilOrange = new Image()
+pencilOrange.src = '/textures/pencil_orange.png'
 
-// const paintLightGreen = new Image()
-// paintLightGreen.src = '/textures/paint_lightgreen.png'
+const pencilYellow = new Image()
+pencilYellow.src = '/textures/pencil_yellow.png'
 
-// const paintGreen = new Image()
-// paintGreen.src = '/textures/paint_green.png'
+const pencilLightGreen = new Image()
+pencilLightGreen.src = '/textures/pencil_lightgreen.png'
 
-// const paintSkyBlue = new Image()
-// paintSkyBlue.src = '/textures/paint_skyblue.png'
+const pencilGreen = new Image()
+pencilGreen.src = '/textures/pencil_green.png'
 
-// const paintBlue = new Image()
-// paintBlue.src = '/textures/paint_blue.png'
+const pencilSkyBlue = new Image()
+pencilSkyBlue.src = '/textures/pencil_skyblue.png'
 
-// const paintPurple = new Image()
-// paintPurple.src = '/textures/paint_purple.png'
+const pencilBlue = new Image()
+pencilBlue.src = '/textures/pencil_blue.png'
+
+const pencilPurple = new Image()
+pencilPurple.src = '/textures/pencil_purple.png'
+
+const pencilApricot = new Image()
+pencilApricot.src = '/textures/pencil_apricot.png'
+
+const pencilBrown = new Image()
+pencilBrown.src = '/textures/pencil_brown.png'
+
+const pencilGray = new Image()
+pencilGray.src = '/textures/pencil_gray.png'
+
 
 const textures = [
-  [pencilWhite, pencilPink, pencilRed, pencilOrange, pencilYellow, pencilLightGreen, pencilGreen,
-    pencilBlack, pencilGray, pencilBrown, pencilApricot, pencilPurple, pencilBlue, pencilSkyBlue],
-  [crayonWhite, crayonPink, crayonRed, crayonOrange, crayonYellow, crayonLightGreen, crayonGreen,
-    crayonBlack, crayonGray, crayonBrown, crayonApricot, crayonPurple, crayonBlue, crayonSkyBlue],
-  // [paintBlack, paintWhite, paintPink, paintRed, paintOrange, paintYellow, paintLightGreen, paintGreen, paintSkyBlue, paintBlue, paintPurple],
+  [crayonBlack, crayonPink, crayonRed, crayonOrange, crayonYellow, crayonLightGreen, crayonGreen,
+    crayonWhite, crayonGray, crayonBrown, crayonApricot, crayonPurple, crayonBlue, crayonSkyBlue],
+  [pencilBlack, pencilPink, pencilRed, pencilOrange, pencilYellow, pencilLightGreen, pencilGreen,
+    pencilWhite, pencilGray, pencilBrown, pencilApricot, pencilPurple, pencilBlue, pencilSkyBlue],
 ]
 
 function CreatePaintingPage(props) {
@@ -149,6 +115,7 @@ function CreatePaintingPage(props) {
   const [modalOpen, setModalOpen] = useState(false)
   const [strokeColorIndex, setStrokeColorIndex] = useState(0)
   const [strokeTextureIndex, setStrokeTextureIndex] = useState(0)
+  const [strokeLineWidthIndex, setStrokeLineWidthIndex] = useState(0)
 
   const handleClickCloseButton = () => {
   }
@@ -179,12 +146,19 @@ function CreatePaintingPage(props) {
     console.log(colorIndex)
   }
 
+  const changeStrokeLineWidthIndex = (lineWidthIndex) => {
+    setStrokeLineWidthIndex(lineWidthIndex)
+    console.log(lineWidthIndex)
+  }
+
   return (
-    <div style={{ display: 'flex', flexDirection: 'column' }}>
-      <CanvasProvider loadedPainting={props.loadedPainting} textures={textures} strokeColorIndex={strokeColorIndex} strokeTextureIndex={strokeTextureIndex}>
+    <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
+      <CanvasProvider loadedPainting={props.loadedPainting} textures={textures}
+        strokeColorIndex={strokeColorIndex} strokeTextureIndex={strokeTextureIndex} strokeLineWidthIndex={strokeLineWidthIndex}>
+        <PaintingToolModalComponent modalOpen={paintingToolModalOpen} modalClose={handleClickModalClose}
+          changeStrokeTexture={changeStrokeTexture} changeStrokeLineWidthIndex={changeStrokeLineWidthIndex} onClick={() => setModalOpen(false)} />
         <ColorPickerModalComponent modalOpen={colorPickerModalOpen} modalClose={handleClickModalClose}
           strokeColorIndex={strokeColorIndex} changeStrokeColor={changeStrokeColor} onClick={() => setModalOpen(false)} />
-        <PaintingToolModalComponent modalOpen={paintingToolModalOpen} modalClose={handleClickModalClose} changeStrokeTexture={changeStrokeTexture} onClick={() => setModalOpen(false)} />
         <CanvasComponent />
         <div style={{ display: 'flex' }}>
         <SaveCanvasButton />
