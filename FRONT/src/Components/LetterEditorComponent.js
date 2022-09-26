@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom"
 
 
 import { LetterDispatchContext } from "../App"
-import { LogoTag } from "../Style/Components"
+import { LogoTag, EditorBody, LetterTitleBody, LetterTitleDiv, LetterTitleInput, LetterContentBody, LetterContentDiv, LetterContentTextArea, LetterEditorComponentBody, LetterButton, LetterButtonBack, LetterButtonGo, LetterButtonDel } from "../Style/Components"
 import { getStringDate } from "../util/date"
 
 const LetterEditorComponent = ({ isDetail, originData }) => {
@@ -61,47 +61,47 @@ const LetterEditorComponent = ({ isDetail, originData }) => {
   }, [isDetail, originData]);
   
   return (
-    <div className="LetterEditorComponent">
+    <LetterEditorComponentBody>
       <div style={{marginRight: "20px", marginTop: "20px"}}>
         <LogoTag src='/icons/logo.svg' />
       </div>
 
-      <div className="EditorBody">
-        <section className="LetterTitleBody">
+      <EditorBody>
+        <LetterTitleBody>
           <div>{isDetail ? "시간 : " : "누가 : "}</div>
-          <div className="LetterTitle">{isDetail ? date : "다은이"}</div>
-        </section>
+          <LetterTitleDiv>{isDetail ? date : "다은이"}</LetterTitleDiv>
+        </LetterTitleBody>
 
-        <section className="LetterTitleBody">
+        <LetterTitleBody>
           <div>누구 : </div>
-          {isDetail ? <div className="LetterTitle">{receiver}</div> : <input className="LetterTitle" ref={receiverRef} value={receiver} onChange={(e) => setReceiver(e.target.value)} />}
-        </section>
+          {isDetail ? <LetterTitleDiv>{receiver}</LetterTitleDiv> : <LetterTitleInput ref={receiverRef} value={receiver} onChange={(e) => setReceiver(e.target.value)} />}
+        </LetterTitleBody>
 
-        <section className="LetterTitleBody">
+        <LetterTitleBody>
           <div>제목 : </div>
-          {isDetail ? <div className="LetterTitle">{title}</div> : <input className="LetterTitle" ref={titleRef} value={title} onChange={(e) => setTitle(e.target.value)} />}
-        </section>
+          {isDetail ? <LetterTitleDiv>{title}</LetterTitleDiv> : <LetterTitleInput ref={titleRef} value={title} onChange={(e) => setTitle(e.target.value)} />}
+        </LetterTitleBody>
 
-        <section className="LetterContentBody">
-          {isDetail ? <div className="LetterContent">{content}</div> :
-            <textarea className="LetterContent"
+        <LetterContentBody>
+          {isDetail ? <LetterContentDiv>{content}</LetterContentDiv> :
+            <LetterContentTextArea
               ref={contentRef}
               value={content}
               onChange={(e) => setContent(e.target.value)}
             />
           }
-        </section>
-      </div>
+        </LetterContentBody>
+      </EditorBody>
       
       <section>
-        <div className="LetterButton">
-          <button className="LetterButtonBack" onClick={() => navigate(-1)}>닫기</button>
-          <button className="LetterButtonGo" onClick={handleSubmit}>{isDetail ? "답장하기" : "보내기"}</button>
-          {isDetail && <button className="LetterButtonDel" onClick={handleRemove}>삭제하기</button>}
-        </div>
+        <LetterButton>
+          <LetterButtonBack onClick={() => navigate(-1)}>닫기</LetterButtonBack>
+          <LetterButtonGo onClick={handleSubmit}>{isDetail ? "답장하기" : "보내기"}</LetterButtonGo>
+          {isDetail && <LetterButtonDel onClick={handleRemove}>삭제하기</LetterButtonDel>}
+        </LetterButton>
       </section>
 
-    </div>
+    </LetterEditorComponentBody>
 
   )
 }
