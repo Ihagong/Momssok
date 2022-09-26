@@ -30,7 +30,7 @@ public class DiaryController {
         List<DrawingDto> drawingList = new ArrayList<>();
 
         try {
-            String email= SecurityContextHolder.getContext().getAuthentication().getName();
+            String email= SecurityContextHolder.getContext().getAuthentication().getName();  //user의 eamil을 꺼낸다
             String email_name = email + "_" + name;
             drawingList = drawingService.lookupAllDrawing(email_name);
 
