@@ -6,6 +6,8 @@ export const FindPasswordTag = styled.a`
   color: var(--Brown-LightText);
   font-family: 'Jua', sans-serif;
   font-size: 28px;
+  text-decoration: underline;
+  cursor: pointer;
   user-select: none;
 `
 
@@ -13,6 +15,8 @@ export const SignUpTag = styled.a`
   color: var(--Brown-Text);
   font-family: 'Jua', sans-serif;
   font-size: 28px;
+  text-decoration: underline;
+  cursor: pointer;
   user-select: none;
 `
 
@@ -199,10 +203,19 @@ export const ChildProfileComponentTag = styled.div`
   border-radius: 20px;
   display: flex;
   flex-direction: column;
+  justify-content: center;
   align-items: center;
+  font-family: 'Jua', sans-serif;
+  color: var(--Brown-LightText);
+  font-size: 20px;
   background-color: var(--Brown-GrayText);
   cursor: pointer;
   user-select: none;
+  p {
+    color: var(--Brown-Text);
+    font-size: 28px;
+    margin: 8px 0 0 0;
+  }
 `
 
 export const ProfileInfoInputTag = styled.input`
@@ -612,14 +625,48 @@ export const PromiseTodoItemDoneTag = styled.p`
 export const PaintingToolModalComponentTag = styled.div`
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  width: 400px;
+  height: 280px;
+  background-color: #FBDEBC;
+  border-radius: 20px;
+`
+
+export const PaintingToolButtonTag = styled.button`
+  display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
-  /* width: 1100px; */
-  /* width: 100%; */
-  /* height: 200px; */
-  background-color: var(--Beige-Light);
-  border-radius: 30px;
+  width: 100px;
+  height: 168px;
+  border: 0;
+  background-color: transparent;
+  cursor: pointer;
+  border-radius: 20px;
   z-index: 1;
+`
+
+export const StrokeWidthButtonTag = styled.button`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100px;
+  height: 100px;
+  border: 0;
+  background-color: transparent;
+  cursor: pointer;
+  border-radius: 20px;
+`
+
+export const StrokeWidthTag = styled.div`
+  height: 100px;
+  border: 0;
+  background-color: white;
+  cursor: pointer;
+  border-radius: 100px;
+  transform: rotate(-45deg);
 `
 
 export const ModalBackgroundTag = styled.div`
@@ -633,7 +680,7 @@ export const ModalBackgroundTag = styled.div`
   background-color: #05050560;
 `
 
-export const ColorPickerTag = styled.div`
+export const ColorPickerModalComponentTag = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -646,6 +693,24 @@ export const ColorPickerTag = styled.div`
 export const ColorTag = styled.div`
   width: 100px;
   height: 100px;
+  cursor: pointer;
+`
+
+export const ProfileImageTag = styled.div`
+  display: inline-block;
+  width: 150px;
+  height: 150px;
+  border: 6px solid #00000000;
+  border-radius: 50%;
+  cursor: pointer;
+`
+
+export const ProfileSelectedImageTag = styled.div`
+  display: inline-block;
+  width: 150px;
+  height: 150px;
+  border: 6px solid #FF005C;
+  border-radius: 50%;
   cursor: pointer;
 `
 
@@ -752,13 +817,35 @@ export const OrangeButton250 = styled.button`
   border: none;
   width: 250px;
   height: 70px;
-  margin-left: 50px;
+  margin-left: 10px;
   border-radius: 20px;
 
   font-family: 'Dongle', sans-serif;
   font-size: 55px;
   font-weight: bold;
   color: var(--White-Block);
+  white-space: nowrap;
+`
+
+export const LightButton250 = styled.button`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  background-color: var(--Beige-Light);
+  opacity:0.9;
+  box-shadow: 0px 5px 5px #E6E6E6;
+  cursor: pointer;
+  border: none;
+  width: 250px;
+  height: 70px;
+  margin-left: 10px;
+  border-radius: 20px;
+
+  font-family: 'Dongle', sans-serif;
+  font-size: 55px;
+  font-weight: bold;
+  color: var(--Brown-Text);
   white-space: nowrap;
 `
 
@@ -790,4 +877,184 @@ export const LetterItemAuthor = styled.div`
   font-size: 48px;
   text-align: center;
   margin-bottom: -20px;
+`
+
+export const EditorBody = styled.div`
+  background-color: var(--White-Block);
+  border-radius: 30px;
+  border: 1px solid #C5BEB6;
+  box-shadow: 0px 5px 5px #E6E6E6;
+
+  width: 700px;
+  height: 740px;
+  margin-top: 20px;
+
+  font-family: 'Dongle', sans-serif;
+  font-size: 50px;
+  font-weight: bold;
+  color: var(--Brown-Text);
+  white-space: nowrap;
+`
+
+export const LetterTitleBody = styled.section`
+  display: flex;
+  justify-content: space-around;
+  margin-left: 20px;
+  margin-right: 20px;
+  margin-top: 20px;
+`
+
+export const LetterTitleDiv = styled.div`
+  background-color: #FFFFFF;
+  border-radius: 10px;
+  border: 1px solid #C5BEB6;
+
+  width: 530px;
+  height: 65px;
+  margin-left: 5px;
+  padding-left: 20px;
+
+  font-family: 'Dongle', sans-serif;
+  font-size: 44px;
+  font-weight: bold;
+  color: var(--Brown-LightText);
+  white-space: nowrap;
+`
+
+export const LetterTitleInput = styled.input`
+  background-color: #FFFFFF;
+  border-radius: 10px;
+  border: 1px solid #C5BEB6;
+
+  width: 530px;
+  height: 65px;
+  margin-left: 5px;
+  padding-left: 20px;
+
+  font-family: 'Dongle', sans-serif;
+  font-size: 44px;
+  font-weight: bold;
+  color: var(--Brown-LightText);
+  white-space: nowrap;
+`
+
+export const LetterContentBody = styled.section`
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+`
+
+export const LetterContentDiv = styled.div`
+  background-color: #FFFFFF;
+  border-radius: 10px;
+  border: 1px solid #C5BEB6;
+
+  width: 600px;
+  height: 400px;
+  padding-left: 20px;
+  padding-right: 20px;
+
+  font-family: 'Dongle', sans-serif;
+  font-size: 44px;
+  font-weight: bold;
+  color: var(--Brown-LightText);
+  white-space: normal;
+  overflow:auto; 
+`
+
+export const LetterContentTextArea = styled.textarea`
+  background-color: #FFFFFF;
+  border-radius: 10px;
+  border: 1px solid #C5BEB6;
+
+  width: 600px;
+  height: 400px;
+  padding-left: 20px;
+  padding-right: 20px;
+
+  font-family: 'Dongle', sans-serif;
+  font-size: 44px;
+  font-weight: bold;
+  color: var(--Brown-LightText);
+  white-space: normal;
+`
+
+export const LetterEditorComponentBody = styled.div`
+  display: flex;
+  justify-content: center;
+`
+
+export const LetterButton = styled.div`
+  display: flex;
+  flex-direction: column;
+`
+
+export const LetterButtonBack = styled.button`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  background-color: var(--Beige-Light);
+  box-shadow: 0px 5px 5px #E6E6E6;
+  cursor: pointer;
+  border: none;
+  width: 200px;
+  height: 75px;
+  margin-right: 20px;
+  border-radius: 20px;
+  margin-top: 20px;
+  margin-left: 30px;
+
+  font-family: 'Dongle', sans-serif;
+  font-size: 60px;
+  font-weight: bold;
+  color: var(--Brown-Text);
+  white-space: nowrap;
+`
+
+export const LetterButtonGo = styled.button`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  background-color: var(--Brown-LightText);
+  box-shadow: 0px 5px 5px #E6E6E6;
+  cursor: pointer;
+  border: none;
+  width: 200px;
+  height: 75px;
+  margin-right: 20px;
+  border-radius: 20px;
+  margin-top: 15px;
+  margin-left: 30px;
+
+  font-family: 'Dongle', sans-serif;
+  font-size: 60px;
+  font-weight: bold;
+  color: var(--White-Block);
+  white-space: nowrap;
+`
+
+export const LetterButtonDel = styled.button`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  background-color: var(--Orange-Button);
+  opacity: 0.8;
+  box-shadow: 0px 5px 5px #E6E6E6;
+  cursor: pointer;
+  border: none;
+  width: 200px;
+  height: 75px;
+  margin-right: 20px;
+  border-radius: 20px;
+  margin-top: 10px;
+  margin-left: 30px;
+
+  font-family: 'Dongle', sans-serif;
+  font-size: 60px;
+  font-weight: bold;
+  color: var(--White-Block);
+  white-space: nowrap;
 `
