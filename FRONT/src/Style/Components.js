@@ -608,3 +608,186 @@ export const PromiseTodoItemDoneTag = styled.p`
   cursor: pointer;
   user-select: none;
 `
+
+export const PaintingToolModalComponentTag = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  /* width: 1100px; */
+  /* width: 100%; */
+  /* height: 200px; */
+  background-color: var(--Beige-Light);
+  border-radius: 30px;
+  z-index: 1;
+`
+
+export const ModalBackgroundTag = styled.div`
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  background-color: #05050560;
+`
+
+export const ColorPickerTag = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 4px;
+  background-color: #FFE400;
+  border-radius: 12px;
+`
+
+export const ColorTag = styled.div`
+  width: 100px;
+  height: 100px;
+  cursor: pointer;
+`
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// LetterPage
+
+export const LetterPageHeader = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+
+  font-family: 'Dongle', sans-serif;
+`
+
+export const BrownText100 = styled.div`
+  font-weight:bold;
+  font-size: 100px;
+  color: var(--Brown-Text);
+  margin-left: 20px;
+`
+
+export const LightButton120 = styled.button`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  background-color: var(--Beige-Light);
+  box-shadow: 0px 5px 5px #E6E6E6;
+  cursor: pointer;
+  border: none;
+  width: 120px;
+  height: 70px;
+  margin-left: 20px;
+  border-radius: 20px;
+
+  font-family: 'Dongle', sans-serif;
+  font-size: 50px;
+  font-weight: bold;
+  color: var(--Brown-Text);
+  white-space: nowrap;
+`
+export const BrownLightButton150 = styled.button`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  background-color: var(--Brown-LightText);
+  box-shadow: 0px 5px 5px #E6E6E6;
+  cursor: pointer;
+  border: none;
+  width: 150px;
+  height: 70px;
+  margin-left: 10px;
+  border-radius: 20px;
+
+  font-family: 'Dongle', sans-serif;
+  font-size: 50px;
+  font-weight: bold;
+  color: var(--White-Block);
+  white-space: nowrap;
+`
+
+export const OrangeButton250 = styled.button`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  background-color: var(--Orange-Button);
+  opacity:0.9;
+  box-shadow: 0px 5px 5px #E6E6E6;
+  cursor: pointer;
+  border: none;
+  width: 250px;
+  height: 70px;
+  margin-left: 50px;
+  border-radius: 20px;
+
+  font-family: 'Dongle', sans-serif;
+  font-size: 55px;
+  font-weight: bold;
+  color: var(--White-Block);
+  white-space: nowrap;
+`
+
+export const LetterItem = styled.div`
+  background-color: #FDFDF5;
+  box-shadow: 0px 5px 5px #E6E6E6;
+  width: 1090px;
+  height: 100px;
+  border-radius: 20px;
+  margin-top: 30px;
+  margin-left: 50px;
+`
+
+export const LetterItemContent = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  font-family: 'Dongle', sans-serif;
+  font-size: 64px;
+  font-weight: bold;
+  color: var(--Brown-LightText);
+
+  padding-left: 30px;
+  padding-right: 30px;
+`
+
+export const LetterItemAuthor = styled.div`
+  font-size: 48px;
+  text-align: center;
+  margin-bottom: -20px;
+`
