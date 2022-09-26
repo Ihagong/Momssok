@@ -625,14 +625,48 @@ export const PromiseTodoItemDoneTag = styled.p`
 export const PaintingToolModalComponentTag = styled.div`
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  width: 400px;
+  height: 280px;
+  background-color: #FBDEBC;
+  border-radius: 20px;
+`
+
+export const PaintingToolButtonTag = styled.button`
+  display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
-  /* width: 1100px; */
-  /* width: 100%; */
-  /* height: 200px; */
-  background-color: var(--Beige-Light);
-  border-radius: 30px;
+  width: 100px;
+  height: 168px;
+  border: 0;
+  background-color: transparent;
+  cursor: pointer;
+  border-radius: 20px;
   z-index: 1;
+`
+
+export const StrokeWidthButtonTag = styled.button`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100px;
+  height: 100px;
+  border: 0;
+  background-color: transparent;
+  cursor: pointer;
+  border-radius: 20px;
+`
+
+export const StrokeWidthTag = styled.div`
+  height: 100px;
+  border: 0;
+  background-color: white;
+  cursor: pointer;
+  border-radius: 100px;
+  transform: rotate(-45deg);
 `
 
 export const ModalBackgroundTag = styled.div`
@@ -646,7 +680,7 @@ export const ModalBackgroundTag = styled.div`
   background-color: #05050560;
 `
 
-export const ColorPickerTag = styled.div`
+export const ColorPickerModalComponentTag = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
