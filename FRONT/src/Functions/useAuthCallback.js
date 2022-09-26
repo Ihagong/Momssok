@@ -249,7 +249,30 @@ export function useAuthCallback() {
     })
   }
 
+  const findPasswordCallback = async (email) => {
+    axios({
+      method: 'get',
+      url: '/api/user/findPassword',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      params: {
+        email,
+      }
+    })
+    .then (response => {
+      if (response.data) {
+        console.log(response.data)
+        console.log('임시 비밀번호가 전송되었습니다.')
+        navigate('/login')
+      }
+    })
+    .catch(error => {
+      console.log(error.response.data)
+    })
+  }
+
   return { authCheckCallback, authEmailCallback, signUpCallback, userInfoCallback,
     editAccountCallback, logInCallback, logOutCallback, deleteUserCallback, profileInfoCallback,
-    createProfileCallback }
+    createProfileCallback, findPasswordCallback }
 }
