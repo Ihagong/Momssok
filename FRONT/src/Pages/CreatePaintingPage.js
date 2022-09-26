@@ -46,6 +46,15 @@ pencilBlue.src = '/textures/pencil_blue.png'
 const pencilPurple = new Image()
 pencilPurple.src = '/textures/pencil_purple.png'
 
+const pencilApricot = new Image()
+pencilApricot.src = '/textures/pencil_apricot.png'
+
+const pencilBrown = new Image()
+pencilBrown.src = '/textures/pencil_brown.png'
+
+const pencilGray = new Image()
+pencilGray.src = '/textures/pencil_gray.png'
+
 // 크레파스
 
 const crayonBlack = new Image()
@@ -80,6 +89,15 @@ crayonBlue.src = '/textures/crayon_blue.png'
 
 const crayonPurple = new Image()
 crayonPurple.src = '/textures/crayon_purple.png'
+
+const crayonApricot = new Image()
+crayonApricot.src = '/textures/crayon_apricot.png'
+
+const crayonBrown = new Image()
+crayonBrown.src = '/textures/crayon_brown.png'
+
+const crayonGray = new Image()
+crayonGray.src = '/textures/crayon_gray.png'
 
 // 물감
 
@@ -117,8 +135,10 @@ crayonPurple.src = '/textures/crayon_purple.png'
 // paintPurple.src = '/textures/paint_purple.png'
 
 const textures = [
-  [pencilBlack, pencilWhite, pencilPink, pencilRed, pencilOrange, pencilYellow, pencilLightGreen, pencilGreen, pencilSkyBlue, pencilBlue, pencilPurple],
-  [crayonBlack, crayonWhite, crayonPink, crayonRed, crayonOrange, crayonYellow, crayonLightGreen, crayonGreen, crayonSkyBlue, crayonBlue, crayonPurple],
+  [pencilWhite, pencilPink, pencilRed, pencilOrange, pencilYellow, pencilLightGreen, pencilGreen,
+    pencilBlack, pencilGray, pencilBrown, pencilApricot, pencilPurple, pencilBlue, pencilSkyBlue],
+  [crayonWhite, crayonPink, crayonRed, crayonOrange, crayonYellow, crayonLightGreen, crayonGreen,
+    crayonBlack, crayonGray, crayonBrown, crayonApricot, crayonPurple, crayonBlue, crayonSkyBlue],
   // [paintBlack, paintWhite, paintPink, paintRed, paintOrange, paintYellow, paintLightGreen, paintGreen, paintSkyBlue, paintBlue, paintPurple],
 ]
 
