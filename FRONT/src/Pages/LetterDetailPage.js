@@ -21,7 +21,7 @@ function LetterDetailPage() {
       if (targetLetter) {
         setOriginData(targetLetter)
       } else {
-        alert("존재하지 않은 편지 입니다.");
+        alert("존재하지 않은 편지 입니다.")
         navigate("/letter", { replace: true })
       }
     } 
