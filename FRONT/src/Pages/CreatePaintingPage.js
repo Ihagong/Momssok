@@ -9,6 +9,7 @@ import { CanvasProvider } from '../Components/CanvasComponent/CanvasContext'
 import { PaintingToolModalComponent } from '../Components/CanvasComponent/PaintingToolModalComponent'
 import { ColorPickerModalComponent } from '../Components/CanvasComponent/ColorPickerModalComponent'
 import { PaintingToolTag, ChildButtonTag1, ChildButtonTag2 } from '../Style/Components'
+import { MotionDetectionComponent } from '../Components/CanvasComponent/MotionDetectionComponent'
 
 
 // 크레파스
@@ -116,6 +117,9 @@ function CreatePaintingPage(props) {
   const [strokeColorIndex, setStrokeColorIndex] = useState(0)
   const [strokeTextureIndex, setStrokeTextureIndex] = useState(0)
   const [strokeLineWidthIndex, setStrokeLineWidthIndex] = useState(0)
+  const [isCamOn, setIsCamOn] = useState(false)
+  const [offset, setOffset] = useState({offsetX: 0, offsetY: 0})
+  const [gesture, setGesture] = useState('defaultGesture')
 
   const handleClickCloseButton = () => {
   }
@@ -153,7 +157,7 @@ function CreatePaintingPage(props) {
 
   return (
     <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
-      <CanvasProvider loadedPainting={props.loadedPainting} textures={textures}
+      <CanvasProvider loadedPainting={props.loadedPainting} textures={textures} isCamOn={isCamOn} offset={offset} gesture={gesture}
         strokeColorIndex={strokeColorIndex} strokeTextureIndex={strokeTextureIndex} strokeLineWidthIndex={strokeLineWidthIndex}>
         <PaintingToolModalComponent modalOpen={paintingToolModalOpen} modalClose={handleClickModalClose}
           changeStrokeTexture={changeStrokeTexture} changeStrokeLineWidthIndex={changeStrokeLineWidthIndex} onClick={() => setModalOpen(false)} />
@@ -169,7 +173,8 @@ function CreatePaintingPage(props) {
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', width: '1060px', padding: '20px' }}>
             <PaintingToolTag onClick={handleClickPaintingToolButton}><img src='/icons/tools.svg'></img></PaintingToolTag>
             <PaintingToolTag onClick={handleClickColorPickerButton}><img src='/icons/color.svg'></img></PaintingToolTag>
-            <PaintingToolTag><img src='/icons/camera.svg'></img></PaintingToolTag>
+            { isCamOn ? <MotionDetectionComponent onClick={() => setIsCamOn(false)} canvasWidth={1100*2} canvasHeight={550*2} setOffset={setOffset} setGesture={setGesture} />
+              : <PaintingToolTag onClick={() => setIsCamOn(true)}><img src='/icons/camera.svg'></img></PaintingToolTag> }
             <ChildButtonTag1 style={{ width: '200px' }} onClick={handleClickCloseButton}>닫기</ChildButtonTag1>
             <ChildButtonTag2 style={{ width: '200px' }} onClick={handleClickSaveButton}>저장</ChildButtonTag2>
           </div>
