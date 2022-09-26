@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ihagong.momssok.mapper.UserMapper">
+    <select id="searchByEmail" parameterType="String" resultType="com.ihagong.momssok.model.dto.UserApiDto">
+        SELECT user.email,user.username,password.password FROM user inner join password on user.email=password.email WHERE user.email=#{email};
+    </select>
+    <select id="searchByEmailAuth" parameterType="String" resultType="com.ihagong.momssok.model.dto.UserAuthenticationDto">
+        SELECT * FROM user_authentication WHERE email=#{email};
+    </select>
+    <insert id="registEmailAuth" parameterType="com.ihagong.momssok.model.dto.UserAuthenticationDto" >
+        INSERT INTO user_authentication(email,code)
+        values (#{email},#{code});
+    </insert>
+    <insert id="registUser" parameterType="com.ihagong.momssok.model.dto.UserDto" >
+        INSERT INTO user(email,username,created_date,modified_date)
+        values (#{email},#{username},#{created_date},#{modified_date});
+    </insert>
+    <insert id="registPassword" parameterType="com.ihagong.momssok.model.dto.PasswordDto" >
+        INSERT INTO password(email,password)
+        values (#{email},#{password});
+    </insert>
+
+    <delete id="deleteEmailAuth" parameterType="String" >
+        delete from user_authentication where email = #{email}
+    </delete>
+    <select id="findPassword" parameterType="String" resultType="com.ihagong.momssok.model.dto.PasswordDto">
+        SELECT * FROM password WHERE email=#{email};
+    </select>
+    <update id="updatePassword" parameterType="com.ihagong.momssok.model.dto.PasswordDto" >
+        UPDATE password set password=#{password} where email=#{email};
+    </update>
+    <select id="searchProfileList" parameterType="String" resultType="com.ihagong.momssok.model.dto.ProfileDto">
+        SELECT * FROM profile WHERE email=#{email};
+    </select>
+    <select id="checkExistProfileName" parameterType="String" resultType="int">
+        SELECT count(*) FROM profile WHERE email_name=#{email_name} ;
+    </select>
+
+    <insert id="saveProfile" parameterType="com.ihagong.momssok.model.dto.ProfileDto" >
+        INSERT INTO profile(email_name,email,name,birthday,image_path,created_date,modified_date,profile_password,is_parent)
+        values (#{email_name},#{email},#{name},#{birthday},#{image_path},#{created_date},#{modified_date},#{profile_password},#{is_parent});
+    </insert>
+
+    <select id="searchUserDetail" parameterType="String" resultType="com.ihagong.momssok.model.dto.UserDto">
+        SELECT * FROM user WHERE email=#{email} ;
+    </select>
+
+    <update id="updateUser" parameterType="com.ihagong.momssok.model.dto.UserDto" >
+        UPDATE user set username=#{username},modified_date=#{modified_date} where email=#{email};
+    </update>
+    <update id="updateProfile" parameterType="com.ihagong.momssok.model.dto.ProfileDto" >
+        UPDATE profile set email_name=#{email_name},name=#{name},birthday=#{birthday},image_path=#{image_path},modified_date=#{modified_date},
+                           profile_password=#{profile_password} where email=#{email} and name=#{beforeName};
+    </update>
+    <update id="updateParentName" parameterType="com.ihagong.momssok.model.dto.ProfileDto" >
+        UPDATE profile set email_name=#{email_name},name=#{name} where email=#{email} and is_parent=1;
+    </update>
+
+    <delete id="deleteUser">
+        delete from user where email = #{email}
+    </delete>
+</mapper>
