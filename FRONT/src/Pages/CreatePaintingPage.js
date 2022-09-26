@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { CanvasComponent } from '../Components/CanvasComponent/CanvasComponent'
 // import { ClearCanvasButton } from '../Components/CanvasComponent/ClearCanvasButton'
 // import { ChangeStrokeStyleButton } from '../Components/CanvasComponent/ChangeStrokeStyleButton'
-// import { SaveCanvasButton } from '../Components/CanvasComponent/SaveCanvasButton'
+import { SaveCanvasButton } from '../Components/CanvasComponent/SaveCanvasButton'
 // import { AddObjectButton } from '../Components/CanvasComponent/addObjectButton'
 // import { ChangeLineWidthBar } from '../Components/CanvasComponent/ChangeLineWidthBar'
 import { CanvasProvider } from '../Components/CanvasComponent/CanvasContext'
@@ -167,9 +167,9 @@ function CreatePaintingPage(props) {
         <PaintingToolModalComponent modalOpen={paintingToolModalOpen} modalClose={handleClickModalClose} changeStrokeTexture={changeStrokeTexture} onClick={() => setModalOpen(false)} />
         <CanvasComponent />
         <div style={{ display: 'flex' }}>
+        <SaveCanvasButton />
           {/* <ChangeStrokeStyleButton />
           <ClearCanvasButton />
-          <SaveCanvasButton />
           <AddObjectButton />
           <ChangeLineWidthBar /> */}
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', width: '1060px', padding: '20px' }}>
