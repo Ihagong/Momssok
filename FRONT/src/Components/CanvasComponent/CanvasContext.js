@@ -7,10 +7,8 @@ import * as HANDS from '@mediapipe/hands'
 
 const CanvasContext = React.createContext()
 
-export const CanvasProvider = ({ children, loadedPainting, textures, strokeColorIndex, strokeTextureIndex }) => {
+export const CanvasProvider = ({ children, loadedPainting, textures, strokeColorIndex, strokeTextureIndex, strokeLineWidthIndex }) => {
   const [isDrawing, setIsDrawing] = useState(false)
-  // const [strokeColorIdx, setStrokeColorIndex] = useState(strokeColorIndex)
-  const [strokeTexture, setStrokeTexture] = useState(0)
   const [gesture, setGesture] = useState('defaultGesture')
   const [offset, setOffset] = useState({offsetX: 0, offsetY: 0})
   const [imgSrcs, setImgSrcs] = useState([])
@@ -20,13 +18,21 @@ export const CanvasProvider = ({ children, loadedPainting, textures, strokeColor
   useEffect(() => {
     const canvas = canvasRef.current
     const context = canvas.getContext('2d')
-    context.strokeStyle = strokeTextureIndex === 2 ? strokeColor[strokeColorIndex]+'06' : strokeColor[strokeColorIndex]
+    context.strokeStyle = strokeTextureIndex === 3 ? strokeColor[strokeColorIndex]+'06' : strokeColor[strokeColorIndex]
   }, [strokeColorIndex, strokeTextureIndex])
 
+  useEffect(() => {
+    const canvas = canvasRef.current
+    const context = canvas.getContext('2d')
+    context.lineWidth = strokeLineWidth[strokeLineWidthIndex]
+  }, [strokeLineWidthIndex])
+
   const strokeColor = [
-    '#F6F6F6', '#F88484', '#EB2C37', '#EB8C35', '#FEED01', '#94C120', '#0C8E36',
-    '#121212', '#74BBEE', '#7E4319', '#F6C4A8', '#882BA8', '#0665C4', '#74BBEE'
+    '#121212', '#F88484', '#EB2C37', '#EB8C35', '#FEED01', '#94C120', '#0C8E36',
+    '#F6F6F6', '#74BBEE', '#7E4319', '#F6C4A8', '#882BA8', '#0665C4', '#74BBEE'
   ]
+
+  const strokeLineWidth = [5, 10, 20, 30]
 
   const prepareCanvas = () => {
     const canvas = canvasRef.current
@@ -39,7 +45,7 @@ export const CanvasProvider = ({ children, loadedPainting, textures, strokeColor
     context.scale(2, 2)
     context.lineCap = 'round'
     context.strokeStyle = strokeColor[strokeColorIndex]
-    context.lineWidth = 20
+    context.lineWidth = strokeLineWidth[strokeLineWidthIndex]
     contextRef.current = context
     
     context.drawImage(loadedPainting, 0, 0, 2200, 1100, 0, 0, 1100, 550)
@@ -75,10 +81,10 @@ export const CanvasProvider = ({ children, loadedPainting, textures, strokeColor
     }
     const { offsetX, offsetY } = nativeEvent
     contextRef.current.lineTo(offsetX, offsetY)
-    if (strokeTextureIndex !== 2) {
+    if (strokeTextureIndex === 1 || strokeTextureIndex === 2) {
       const lineWidth = contextRef.current.lineWidth
       // x시작 좌표, y 시작 좌표, 가로 크기, 세로 크기, 그림 x 위치, 그림 y 위치, 그림 가로 크기, 그림 세로 크기
-      contextRef.current.drawImage(textures[strokeTextureIndex][strokeColorIndex], 0, 0, 1100, 550, offsetX-(lineWidth/4), offsetY-(lineWidth/4), lineWidth*2, lineWidth)
+      contextRef.current.drawImage(textures[strokeTextureIndex-1][strokeColorIndex], 0, 0, 1100, 550, offsetX-(lineWidth/4), offsetY-(lineWidth/4), lineWidth*6, lineWidth*3)
     } else {
       contextRef.current.stroke()
     }
@@ -97,34 +103,6 @@ export const CanvasProvider = ({ children, loadedPainting, textures, strokeColor
     const canvas = canvasRef.current
     const context = canvas.getContext('2d')
     context.clearRect(0, 0, canvas.width, canvas.height)
-  }
-
-  // const changeStrokeStyle = (color) => {
-  //   const canvas = canvasRef.current
-  //   const context = canvas.getContext('2d')
-  //   context.strokeStyle = color
-  // }
-
-  const changeStrokeTexture = (texture) => {
-    setStrokeTexture(texture)
-    const canvas = canvasRef.current
-    const context = canvas.getContext('2d')
-    if (strokeTexture === 2) {
-      context.strokeStyle = strokeColor[strokeColorIndex]+'06'
-    } else {
-      context.strokeStyle = strokeColor[strokeColorIndex]
-    }
-  }
-  
-  const changeStrokeColor = (colorIndex) => {
-    // setStrokeColorIndex(colorIndex)
-    // const canvas = canvasRef.current
-    // const context = canvas.getContext('2d')
-    // if (strokeTexture === 2) {
-    //   context.strokeStyle = strokeColor[colorIndex]+'06'
-    // } else {
-    //   context.strokeStyle = strokeColor[colorIndex]
-    // }
   }
 
   const changeLineWidth = (lineWidth) => {
@@ -256,9 +234,6 @@ export const CanvasProvider = ({ children, loadedPainting, textures, strokeColor
         prepareCanvas,
         startDrawing,
         finishDrawing,
-        changeStrokeColor,
-        // changeStrokeStyle,
-        changeStrokeTexture,
         clearCanvas,
         saveCanvas,
         addObject,
