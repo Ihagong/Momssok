@@ -40,9 +40,9 @@ export function CanvasComponent() {
         }}>
       </div>
       <PaintingCanvasTag
-        onMouseDown={startDrawing}
-        onMouseUp={finishDrawing}
-        onMouseMove={draw}
+        // onMouseDown={startDrawing}
+        // onMouseUp={finishDrawing}
+        // onMouseMove={draw}
         onPointerDown={startDrawing}
         onPointerUp={finishDrawing}
         onPointerMove={draw}
