@@ -31,6 +31,7 @@ const LetterEditorComponent = ({ isDetail, originData }) => {
         letterId: letterId,
         date: new Date().getTime(),
         author: "다은이",
+        check: false,
         receiver,
         title,
         content,
