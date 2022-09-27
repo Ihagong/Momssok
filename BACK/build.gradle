@@ -39,6 +39,9 @@ dependencies {
 	implementation group: 'com.sun.xml.bind', name: 'jaxb-core', version: '2.3.0.1'
 	// https://mvnrepository.com/artifact/com.sun.xml.bind/jaxb-impl
 	implementation group: 'com.sun.xml.bind', name: 'jaxb-impl', version: '2.3.1'
+
+	implementation 'com.google.code.gson:gson:2.9.0'
+	implementation 'org.json:json:20190722'
 }
 
 tasks.named('test') {

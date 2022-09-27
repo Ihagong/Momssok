@@ -3,10 +3,7 @@ package com.ihagong.momssok.service;
 import com.ihagong.momssok.mapper.LetterMapper;
 import com.ihagong.momssok.model.dto.LetterApiDto;
 import com.ihagong.momssok.model.dto.LetterDto;
-import com.ihagong.momssok.model.dto.UserApiDto;
 import lombok.RequiredArgsConstructor;
-import org.apache.commons.io.FileUtils;
-import org.springframework.core.io.ByteArrayResource;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -62,16 +59,25 @@ public class LetterService {
 
     }
     public Map<Boolean,Object> lookupLetter(int letter_id) throws IOException {
+
         String email = SecurityContextHolder.getContext().getAuthentication().getName();
         Map<Boolean, Object> result = new HashMap<>();
         Map<String, Object> resultBody = new HashMap<>();
+        if(letterMapper.detailletter(letter_id)==null){
+            resultBody.put("message", "해당 letter_id가 데이터베이스에 존재하지 않습니다.");
+            result.put(false, resultBody);
+            return result;
+        }
+        letterMapper.updateRead(letter_id);
         LetterDto dto = letterMapper.detailletter(letter_id);
         LetterApiDto letter = new LetterApiDto();
         letter.setContent(dto.getContent());
         letter.setDate(dto.getDate());
         letter.setTitle(dto.getTitle());
-        letter.setSend_from(dto.getSend_from().replace(email+"_",""));
-        letter.setSend_to(dto.getSend_to().replace(email+"_",""));
+        letter.setLetter_id(dto.getLetter_id());
+        letter.setAuthor(dto.getSend_from().replace(email+"_",""));
+        letter.setReceiver(dto.getSend_to().replace(email+"_",""));
+        letter.setCheck(dto.getRead_check());
 
         resultBody.put("letter", letter);
         result.put(true, resultBody);
@@ -96,9 +102,12 @@ public class LetterService {
             letter.setContent(dto.getContent());
             letter.setDate(dto.getDate());
             letter.setTitle(dto.getTitle());
-            letter.setSend_from(dto.getSend_from().replace(email+"_",""));
-            letter.setSend_to(dto.getSend_to().replace(email+"_",""));
+            letter.setAuthor(dto.getSend_from().replace(email+"_",""));
+            letter.setReceiver(dto.getSend_to().replace(email+"_",""));
+            letter.setLetter_id(dto.getLetter_id());
+            letter.setCheck(dto.getRead_check());
             letters.add(letter);
+
         }
 
         resultBody.put("letters", letters);
