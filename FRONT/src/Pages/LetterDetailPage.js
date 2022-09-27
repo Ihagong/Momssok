@@ -1,7 +1,8 @@
-import React, { useContext, useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 
-import { LetterStateContext } from '../App'
+import { useRecoilState } from 'recoil'
+import { totalLetterListState } from '../store/atoms'
 import LetterEditorComponent from '../Components/LetterEditorComponent'
 
 
@@ -11,7 +12,7 @@ function LetterDetailPage() {
   const [originData, setOriginData] = useState()
   const { letterId } = useParams()
   
-  const letterList = useContext(LetterStateContext)
+  const [letterList, setLetterList] = useRecoilState(totalLetterListState)
 
   useEffect(() => {
     if (letterList.length >= 1) {
