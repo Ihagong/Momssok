@@ -1,12 +1,59 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { ModalBackgroundTag, ColorPickerModalComponentTag, ColorTag } from '../../Style/Components'
 
 
-export function ColorPickerModalComponent({ modalOpen, modalClose, strokeColorIndex, changeStrokeColor }) {
+export function ColorPickerModalComponent({ modalOpen, setColorPickerModalOpen, offset, gesture, strokeColorIndex, changeStrokeColor }) {
+
+  useEffect(() => {
+    const offsetX = offset.offsetX
+    const offsetY = offset.offsetY
+    console.log(offset)
+    if (modalOpen && gesture === 'indexGesture') {
+      if (offsetY >= 270 && offsetY <= 370) {
+        if (offsetX >= 210 && offsetX < 310) {
+          changeStrokeColor(0)
+        } else if (offsetX >= 310 && offsetX < 410) {
+          changeStrokeColor(1)
+        } else if (offsetX >= 410 && offsetX < 510) {
+          changeStrokeColor(2)
+        } else if (offsetX >= 510 && offsetX < 610) {
+          changeStrokeColor(3)
+        } else if (offsetX >= 610 && offsetX < 710) {
+          changeStrokeColor(4)
+        } else if (offsetX >= 710 && offsetX < 810) {
+          changeStrokeColor(5)
+        } else if (offsetX >= 810 && offsetX < 910) {
+          changeStrokeColor(6)
+        } else {
+          setColorPickerModalOpen(false)
+        }
+      } else if (offsetY >= 370 && offsetY <= 470) {
+        if (offsetX >= 210 && offsetX < 310) {
+          changeStrokeColor(7)
+        } else if (offsetX >= 310 && offsetX < 410) {
+          changeStrokeColor(8)
+        } else if (offsetX >= 410 && offsetX < 510) {
+          changeStrokeColor(9)
+        } else if (offsetX >= 510 && offsetX < 610) {
+          changeStrokeColor(10)
+        } else if (offsetX >= 610 && offsetX < 710) {
+          changeStrokeColor(11)
+        } else if (offsetX >= 710 && offsetX < 810) {
+          changeStrokeColor(12)
+        } else if (offsetX >= 810 && offsetX < 910) {
+          changeStrokeColor(13)
+        } else {
+          setColorPickerModalOpen(false)
+        }
+      } else if (!(offsetY >= 570 && offsetY <= 710 && offsetX >= 260 && offsetX <= 400)) {
+        setColorPickerModalOpen(false)
+      }
+    }
+  }, [offset, gesture])
 
   const onCloseModal = (e) => {
     if (e.target === e.currentTarget) {
-      modalClose()
+      setColorPickerModalOpen(false)
     }
   }
 

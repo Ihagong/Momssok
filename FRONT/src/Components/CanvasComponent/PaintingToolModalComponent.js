@@ -2,14 +2,14 @@ import React, { useEffect, useState } from 'react'
 import { PaintingToolModalComponentTag, ModalBackgroundTag, PaintingToolButtonTag, StrokeWidthButtonTag, StrokeWidthTag } from '../../Style/Components'
 
 
-export function PaintingToolModalComponent({ modalOpen, modalClose, changeStrokeTexture, changeStrokeLineWidthIndex, offset, gesture }) {
+export function PaintingToolModalComponent({ modalOpen, setPaintingToolModalOpen, offset, gesture, changeStrokeTexture, changeStrokeLineWidthIndex }) {
   const [toolIndex, setToolIndex] = useState(0)
   const [lineWidthIndex, setLineWidthIndex] = useState(0)
 
   useEffect(() => {
     const offsetX = offset.offsetX
     const offsetY = offset.offsetY
-    if (gesture === 'indexGesture') {
+    if (modalOpen && gesture === 'indexGesture') {
       if (offsetY >= 240 && offsetY <= 400) {
         if (offsetX >= 360 && offsetX < 460) {
           handleClickToolButton(0)
@@ -20,7 +20,7 @@ export function PaintingToolModalComponent({ modalOpen, modalClose, changeStroke
         } else if (offsetX >= 660 && offsetX < 760) {
           handleClickToolButton(3)
         } else {
-          modalClose()
+          setPaintingToolModalOpen(false)
         }
       } else if (offsetY >= 420 && offsetY <= 510) {
         if (offsetX >= 360 && offsetX < 460) {
@@ -32,15 +32,17 @@ export function PaintingToolModalComponent({ modalOpen, modalClose, changeStroke
         } else if (offsetX >= 660 && offsetX < 760) {
           handleClickLineWidthButton(3)
         } else {
-          modalClose()
+          setPaintingToolModalOpen(false)
         }
+      } else if (!(offsetY >= 570 && offsetY <= 710 && offsetX >= 60 && offsetX < 200)) {
+        setPaintingToolModalOpen(false)
       }
     }
   }, [offset, gesture])
 
   const onCloseModal = (e) => {
     if (e.target === e.currentTarget) {
-      modalClose()
+      setPaintingToolModalOpen(false)
     }
   }
 
