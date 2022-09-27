@@ -151,6 +151,23 @@ public class UserController {
             return new ResponseEntity<>(result.get(false), HttpStatus.BAD_REQUEST);
     }
 
+    @RequestMapping(value = "/user/deleteProfile", method = RequestMethod.DELETE)
+    public ResponseEntity<?> deleteProfile(@RequestParam String name) {
+        Map<Boolean,Object> result = userService.deleteProfile(name);
+        if(result.get(true)!=null)
+            return new ResponseEntity<>(result.get(true), HttpStatus.OK);
+        else
+            return new ResponseEntity<>(result.get(false), HttpStatus.BAD_REQUEST);
+    }
+
+
+
+
+
+
+
+
+
 
 
 
