@@ -3,18 +3,19 @@ package com.ihagong.momssok.service;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.json.JSONObject;
-import org.springframework.http.HttpEntity;
-import org.springframework.http.HttpMethod;
-import org.springframework.http.ResponseEntity;
+import org.springframework.http.*;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
+import org.springframework.util.LinkedMultiValueMap;
+import org.springframework.util.MultiValueMap;
 import org.springframework.web.client.RestTemplate;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.Map;
 @Service
-public class FastApi {
+public class FastApiEmotion {
     @Async
-    public void fastApi(String text) throws JsonProcessingException {
+    public void fastApiEmotion(String text) throws JsonProcessingException {
         HttpEntity<String> entity = new HttpEntity<>("");
         RestTemplate rt = new RestTemplate();
         ResponseEntity<String> response = rt.exchange(
