@@ -39,7 +39,7 @@ export function CanvasComponent() {
           position: 'absolute',
         }}>
       </div>
-      <PaintingCanvasTag
+      <PaintingCanvasTag style={{ touchAction: 'none' }}
         // onMouseDown={startDrawing}
         // onMouseUp={finishDrawing}
         // onMouseMove={draw}
