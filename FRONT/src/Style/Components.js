@@ -2,11 +2,14 @@ import styled from 'styled-components'
 import './color.css'
 
 
-export const FindPasswordTag = styled.a`
+export const FindPasswordTag = styled.div`
   color: var(--Brown-LightText);
   font-family: 'Jua', sans-serif;
-  font-size: 28px;
+  font-size: 26px;
+  text-align: end;
   text-decoration: underline;
+  margin-right: 10px;
+  margin-top: 5px;
   cursor: pointer;
   user-select: none;
 `
@@ -20,10 +23,11 @@ export const SignUpTag = styled.a`
   user-select: none;
 `
 
-export const TextTag = styled.p`
+export const TextTag = styled.div`
   color: var(--Brown-LightText);
   font-family: 'Jua', sans-serif;
   font-size: 28px;
+  text-align: center;
   user-select: none;
 `
 
@@ -186,6 +190,7 @@ export const InputTag1 = styled.input`
   width: 390px;
   height: 70px;
   padding: 0 30px;
+  margin-top: 20px;
   background-color: var(--Beige-Block);
   border-radius: 20px;
   border: 1px solid var(--Beige-Stroke);
@@ -1058,3 +1063,28 @@ export const LetterButtonDel = styled.button`
   color: var(--White-Block);
   white-space: nowrap;
 `
+
+// LoginPage
+export const LoginPageBody = styled.div`
+  display: flex;
+  justify-content: space-around;
+`
+
+export const JuaBrown = styled.div`
+  font-family: 'Jua', sans-serif;
+  color: var(--Brown-Text);
+  white-space: nowrap;
+`
+
+export const JuaBrownLight = styled.div`
+  font-family: 'Jua', sans-serif;
+  color: var(--Brown-LightText);
+  white-space: nowrap;
+`
+
+export const GugiPink = styled.span`
+  font-family: 'Gugi', cursive;
+  color: #FC3F83;
+  white-space: nowrap;
+`
+
