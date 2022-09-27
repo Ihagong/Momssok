@@ -726,6 +726,7 @@ export const WebCamTag = styled.div`
 export const PointerTag = styled.img`
   position: absolute;
   width: 80px;
+  z-index: 2;
 `
 
 
