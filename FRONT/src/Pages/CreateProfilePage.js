@@ -25,8 +25,8 @@ function CreateProfilePage() {
     } else if (!year || !month || !day) {
       console.log('생일을 확인해주세요.')
     } else {
-      const birthday = `${ year ? year : 2000 }/${ month ? month : 1 }/${ day ? day : 1 }`
-      // createProfileCallback(name, birthday, null, selectedImageIndex)
+      const birthday = `${ year ? year : 2000 }-${ month ? month < 10 ? '0'+month : month : '01' }-${ day ? day < 10 ? '0'+day : day : '01' }`
+      createProfileCallback(name, birthday, selectedImageIndex, null)
     }
   }
 
