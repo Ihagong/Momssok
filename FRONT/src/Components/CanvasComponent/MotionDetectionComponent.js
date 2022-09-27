@@ -3,9 +3,9 @@ import { Hands } from '@mediapipe/hands'
 import * as HANDS from '@mediapipe/hands'
 import * as cam from '@mediapipe/camera_utils'
 import Webcam from 'react-webcam'
+import { WebCamTag } from '../../Style/Components'
 
-
-export function MotionDetectionComponent({ canvasWidth, canvasHeight, setOffset, setGesture }) {
+export function MotionDetectionComponent({ canvasWidth, canvasHeight, setOffset, setGesture, setIsCamOn, setToolIndex }) {
   const canvasRef = useRef(null)
 
   const webcamRef = useRef(null)
@@ -36,14 +36,29 @@ export function MotionDetectionComponent({ canvasWidth, canvasHeight, setOffset,
         connect(canvasCtx, landmarks, HANDS.HAND_CONNECTIONS,
                       {color: '#00FF00', lineWidth: 5})
         drawLandmarks(canvasCtx, landmarks, {color: '#FF0000', lineWidth: 2})
-        
-        if (landmarks[8].y < landmarks[7].y) {
-          setGesture('upGesture')
-          setOffset({ offsetX: Math.ceil((1-landmarks[8].x)*(canvasWidth/2)), offsetY: Math.ceil(landmarks[8].y*(canvasHeight/2)) })
+        const offsetX = Math.ceil((1-(landmarks[9].x))*(canvasWidth/2))
+        const offsetY = Math.ceil((landmarks[9].y)*(canvasHeight/2))
+        setOffset({ offsetX, offsetY })
+        let gesture = 'defaultGesture'
+        if (landmarks[10].y < landmarks[11].y && landmarks[14].y < landmarks[15].y && landmarks[18].y < landmarks[19].y && landmarks[7].y < landmarks[0].y) {
+          if (landmarks[6].y < landmarks[7].y) {
+            gesture = 'fistGesture'
+          } else {
+            gesture = 'indexGesture'
+          }
+        } else {
+          gesture = 'palmGesture'
         }
-        else {
-          setGesture('downGesture')
+        setGesture(gesture)
+        console.log(offsetX, offsetY)
+        if (gesture === 'indexGesture' && offsetY >= 560 && offsetY <= 700) {
+          if (offsetX >= 60 && offsetX <= 200) {
+            setToolIndex(0)
+          } else if (offsetX >= 260 && offsetX <= 400) {
+            setToolIndex(1)
+          }
         }
+
       }
     }
     canvasCtx.restore()
@@ -81,36 +96,33 @@ export function MotionDetectionComponent({ canvasWidth, canvasHeight, setOffset,
 
   return (
     <>
-      <Webcam
-        ref={webcamRef}
-        style={{
-          position: 'absolute',
-          marginLeft: 'auto',
-          marginRight: 'auto',
-          left: 0,
-          right: 0,
-          textAlign: 'center',
-          zindex: 9,
-          width: 128,
-          height: 96,
-        }}
-      />{' '}
-      <canvas
-        ref={camCanvasRef}
-        className='output_canvas'
-        id='output_canvas'
-        style={{
-          position: 'absolute',
-          marginLeft: 'auto',
-          marginRight: 'auto',
-          left: 0,
-          right: 0,
-          textAlign: 'center',
-          zindex: 9,
-          width: 128,
-          height: 96,
-        }}
-      ></canvas>
+      <WebCamTag onClick={() => setIsCamOn(false)}>
+        <Webcam
+          ref={webcamRef}
+          mirrored={true}
+          style={{
+            position: 'absolute',
+            left: 10,
+            textAlign: 'center',
+            zindex: 9,
+            width: 0,
+            height: 0,
+          }}
+        />
+        <canvas
+          ref={camCanvasRef}
+          className='output_canvas'
+          id='output_canvas'
+          style={{
+            textAlign: 'center',
+            zindex: 9,
+            width: 160,
+            height: 120,
+            borderRadius: '20px',
+            transform: 'scaleX(-1)',
+          }}
+        ></canvas>
+      </WebCamTag>
     </>
   )
 }
