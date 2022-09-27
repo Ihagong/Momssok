@@ -1,24 +1,48 @@
-import { useContext, useEffect, useRef, useState } from "react"
+import { useEffect, useRef, useState } from "react"
 import { useNavigate } from "react-router-dom"
 
+import { useRecoilState } from 'recoil'
+import { totalLetterListState, LetterIdState } from '../store/atoms'
 
-import { LetterDispatchContext } from "../App"
+
 import { LogoTag, EditorBody, LetterTitleBody, LetterTitleDiv, LetterTitleInput, LetterContentBody, LetterContentDiv, LetterContentTextArea, LetterEditorComponentBody, LetterButton, LetterButtonBack, LetterButtonGo, LetterButtonDel } from "../Style/Components"
 import { getStringDate } from "../util/date"
 
 const LetterEditorComponent = ({ isDetail, originData }) => {
   const navigate = useNavigate()
 
+  const [letterList, setLetterList] = useRecoilState(totalLetterListState)
+  const [letterId, setLetterId] = useRecoilState(LetterIdState)
+
   const receiverRef = useRef()
   const titleRef = useRef()
   const contentRef = useRef()
 
-  const { onCreate, onRemove } = useContext(LetterDispatchContext)
 
   const [receiver, setReceiver] = useState("")
   const [title, setTitle] = useState("")
   const [content, setContent] = useState("")
   const [date, setDate] = useState("")
+
+  // CREATE
+  const onCreate = (receiver, title, content) => {
+    setLetterList([
+      {
+        letterId: letterId,
+        date: new Date().getTime(),
+        author: "다은이",
+        receiver,
+        title,
+        content,
+      }, ...letterList
+    ])
+    setLetterId(letterId + 1)
+
+  }
+  // REMOVE
+  const onRemove = (targetId) => {
+    setLetterList(letterList.filter((it) => it.letterId !== targetId))
+  }
 
 
   const handleSubmit = () => {
@@ -35,6 +59,7 @@ const LetterEditorComponent = ({ isDetail, originData }) => {
       return
     } {
       if (!isDetail) {
+        setLetterId(letterId + 1)
         onCreate(receiver, title, content)
       } else {
         navigate("/letter/create", { replace: true })
