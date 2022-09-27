@@ -5,7 +5,7 @@ import * as cam from '@mediapipe/camera_utils'
 import Webcam from 'react-webcam'
 import { WebCamTag } from '../../Style/Components'
 
-export function MotionDetectionComponent({ canvasWidth, canvasHeight, setOffset, setGesture, setIsCamOn, setToolIndex }) {
+export function MotionDetectionComponent({ canvasWidth, canvasHeight, setOffset, setGesture, setIsCamOn, handleSelectTool }) {
   const canvasRef = useRef(null)
 
   const webcamRef = useRef(null)
@@ -50,14 +50,19 @@ export function MotionDetectionComponent({ canvasWidth, canvasHeight, setOffset,
           gesture = 'palmGesture'
         }
         setGesture(gesture)
-        console.log(offsetX, offsetY)
-        if (gesture === 'indexGesture' && offsetY >= 560 && offsetY <= 700) {
-          if (offsetX >= 60 && offsetX <= 200) {
-            setToolIndex(0)
-          } else if (offsetX >= 260 && offsetX <= 400) {
-            setToolIndex(1)
-          }
+
+        // console.log(offsetX, offsetY)
+        if (gesture === 'indexGesture') {
+          handleSelectTool(offsetX, offsetY)
         }
+
+        // if (gesture === 'indexGesture' && offsetY >= 560 && offsetY <= 700) {
+        //   if (offsetX >= 60 && offsetX <= 200) {
+        //     setToolIndex(0)
+        //   } else if (offsetX >= 260 && offsetX <= 400) {
+        //     setToolIndex(1)
+        //   }
+        // }
 
       }
     }
