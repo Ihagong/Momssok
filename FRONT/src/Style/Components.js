@@ -11,7 +11,7 @@ export const FindPasswordTag = styled.div`
   margin-right: 10px;
   margin-top: 5px;
   cursor: pointer;
-  user-select: none;
+  user-select: auto;
 `
 
 export const SignUpTag = styled.a`
@@ -20,7 +20,7 @@ export const SignUpTag = styled.a`
   font-size: 28px;
   text-decoration: underline;
   cursor: pointer;
-  user-select: none;
+  user-select: auto;
 `
 
 export const TextTag = styled.div`
@@ -28,7 +28,7 @@ export const TextTag = styled.div`
   font-family: 'Jua', sans-serif;
   font-size: 28px;
   text-align: center;
-  user-select: none;
+  user-select: auto;
 `
 
 export const ButtonTag1 = styled.button`
@@ -41,7 +41,7 @@ export const ButtonTag1 = styled.button`
   font-family: 'Jua', sans-serif;
   font-size: 36px;
   cursor: pointer;
-  user-select: none;
+  user-select: auto;
 `
 
 export const ButtonTag2 = styled.button`
@@ -54,7 +54,7 @@ export const ButtonTag2 = styled.button`
   font-family: 'Jua', sans-serif;
   font-size: 28px;
   cursor: pointer;
-  user-select: none;
+  user-select: auto;
 `
 
 export const ButtonTag3 = styled.button`
@@ -67,7 +67,7 @@ export const ButtonTag3 = styled.button`
   font-family: 'Jua', sans-serif;
   font-size: 40px;
   cursor: pointer;
-  user-select: none;
+  user-select: auto;
 `
 
 export const ButtonTag4 = styled.button`
@@ -80,7 +80,7 @@ export const ButtonTag4 = styled.button`
   font-family: 'Jua', sans-serif;
   font-size: 40px;
   cursor: pointer;
-  user-select: none;
+  user-select: auto;
 `
 
 export const ChildButtonTag1 = styled.button`
@@ -96,7 +96,7 @@ export const ChildButtonTag1 = styled.button`
   font-family: 'Dongle', sans-serif;
   font-size: 64px;
   cursor: pointer;
-  user-select: none;
+  user-select: auto;
 `
 
 export const ChildButtonTag2 = styled.button`
@@ -112,7 +112,7 @@ export const ChildButtonTag2 = styled.button`
   font-family: 'Dongle', sans-serif;
   font-size: 64px;
   cursor: pointer;
-  user-select: none;
+  user-select: auto;
 `
 
 export const ChildButtonTag3 = styled.button`
@@ -129,7 +129,7 @@ export const ChildButtonTag3 = styled.button`
   font-size: 64px;
   line-height: 60px;
   cursor: pointer;
-  user-select: none;
+  user-select: auto;
 `
 
 export const ChildButtonTag4 = styled.button`
@@ -145,7 +145,7 @@ export const ChildButtonTag4 = styled.button`
   font-family: 'Dongle', sans-serif;
   font-size: 64px;
   cursor: pointer;
-  user-select: none;
+  user-select: auto;
 `
 
 export const ChildButtonTag5 = styled.button`
@@ -158,7 +158,7 @@ export const ChildButtonTag5 = styled.button`
   font-family: 'Dongle', sans-serif;
   font-size: 28px;
   cursor: pointer;
-  user-select: none;
+  user-select: auto;
 `
 
 export const AddProfileButtonTag = styled.button`
@@ -173,7 +173,7 @@ export const AddProfileButtonTag = styled.button`
     width: 70px;
     height: 70px;
   }
-  user-select: none;
+  user-select: auto;
 `
 
 export const AddProfileTextTag = styled.p`
@@ -182,7 +182,7 @@ export const AddProfileTextTag = styled.p`
   font-family: 'Jua', sans-serif;
   font-size: 40px;
   margin: 0;
-  user-select: none;
+  user-select: auto;
 `
 
 export const InputTag1 = styled.input`
@@ -199,7 +199,7 @@ export const InputTag1 = styled.input`
   ::placeholder {
     color: var(--Beige-HintText);
   }
-  user-select: none;
+  user-select: auto;
 `
 
 export const ChildProfileComponentTag = styled.div`
@@ -215,7 +215,7 @@ export const ChildProfileComponentTag = styled.div`
   font-size: 20px;
   background-color: var(--Brown-GrayText);
   cursor: pointer;
-  user-select: none;
+  user-select: auto;
   p {
     color: var(--Brown-Text);
     font-size: 28px;
@@ -232,7 +232,7 @@ export const ProfileInfoInputTag = styled.input`
   border: 2px solid var(--Beige-Stroke);
   font-family: 'Jua', sans-serif;
   font-size: 28px;
-  user-select: none;
+  user-select: auto;
 `
 
 export const ProfileInfoLabelTag = styled.label`
@@ -240,7 +240,7 @@ export const ProfileInfoLabelTag = styled.label`
   font-family: 'Jua', sans-serif;
   font-size: 36px;
   margin: 0;
-  user-select: none;
+  user-select: auto;
 `
 
 export const ChildMenuTag = styled.div`
@@ -260,7 +260,7 @@ export const ChildMenuTabTag = styled.div`
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  user-select: none;
+  user-select: auto;
   img {
     width: 110px;
     height: 110px;
@@ -280,7 +280,7 @@ export const ChildMenuSelectedTabTag = styled.div`
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  user-select: none;
+  user-select: auto;
   img {
     width: 110px;
     height: 110px;
@@ -304,7 +304,7 @@ export const ChildSubMenuButtonTag = styled.div`
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  user-select: none;
+  user-select: auto;
   img {
     height: 180px;
   }
@@ -380,7 +380,7 @@ export const DiaryWeatherBoxTag = styled.div`
   border-radius: 10px;
   border: 1px solid var(--Beige-Stroke);
   cursor: pointer;
-  user-select: none;
+  user-select: auto;
 
   button {
     display: flex;
@@ -438,7 +438,7 @@ export const EditProfileButtonTag = styled.button`
   font-family: 'Jua', sans-serif;
   font-size: 36px;
   cursor: pointer;
-  user-select: none;
+  user-select: auto;
 `
 
 export const ParentMenuButtonTag = styled.div`
@@ -455,7 +455,7 @@ export const ParentMenuButtonTag = styled.div`
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  user-select: none;
+  user-select: auto;
   h4 {
     margin: 0;
     color: var(--Brown-Text);
@@ -477,7 +477,7 @@ export const PaintingCanvasTag = styled.canvas`
 export const PaintingToolTag = styled.div`
   width: 160px;
   cursor: pointer;
-  user-select: none;
+  user-select: auto;
 `
 
 export const PaintingCardTag = styled.div`
@@ -525,7 +525,7 @@ export const CalendarTag = styled.div`
   font-weight: bold;
   text-align: center;
   cursor: pointer;
-  user-select: none;
+  user-select: auto;
 `
 
 export const CalendarDateTag = styled.div`
@@ -543,7 +543,7 @@ export const CalendarDateTag = styled.div`
   font-family: 'Dongle', sans-serif;
   font-size: 40px;
   cursor: pointer;
-  user-select: none;
+  user-select: auto;
   p {
     margin: 0 0 0 10px;
     line-height: 40px;
@@ -564,7 +564,7 @@ export const PromiseItemTag1 = styled.div`
   border: 0;
   transform: rotate(8deg);
   cursor: pointer;
-  user-select: none;
+  user-select: auto;
 `
 
 export const PromiseItemTag2 = styled.div`
@@ -575,7 +575,7 @@ export const PromiseItemTag2 = styled.div`
   border: 0;
   transform: rotate(-6deg);
   cursor: pointer;
-  user-select: none;
+  user-select: auto;
 `
 
 export const PromiseBoardTag = styled.div`
@@ -610,7 +610,7 @@ export const PromiseTodoItemTag = styled.p`
   margin: 0;
   color: var(--Brown-Text);
   cursor: pointer;
-  user-select: none;
+  user-select: auto;
 `
 
 export const PromiseTodoItemDoneTag = styled.p`
@@ -624,7 +624,7 @@ export const PromiseTodoItemDoneTag = styled.p`
   text-decoration: line-through;
   color: var(--Brown-Stroke);
   cursor: pointer;
-  user-select: none;
+  user-select: auto;
 `
 
 export const PaintingToolModalComponentTag = styled.div`
