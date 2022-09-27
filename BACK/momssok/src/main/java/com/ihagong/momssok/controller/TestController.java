@@ -21,15 +21,22 @@ import java.util.Map;
 @CrossOrigin("*")
 public class TestController {
     private final TestService testService;
-    @RequestMapping(value = "/test", method = RequestMethod.GET)
-    public ResponseEntity<?> ApiTest(@RequestParam String  text) throws IOException {
-        Map<Boolean,Object> result = testService.ApiTest(text);
+    @RequestMapping(value = "/testEmotion", method = RequestMethod.GET)
+    public ResponseEntity<?> testEmotion(@RequestParam String  text) throws IOException {
+        Map<Boolean,Object> result = testService.ApiTestEmotion(text);
         if(result.get(true)!=null)
             return new ResponseEntity<>(result.get(true), HttpStatus.OK);
         else
             return new ResponseEntity<>(result.get(false), HttpStatus.BAD_REQUEST);
     }
 
-
+    @RequestMapping(value = "/testDetection", method = RequestMethod.GET)
+    public ResponseEntity<?> testDetection(@RequestParam MultipartFile file) throws IOException {
+        Map<Boolean,Object> result = testService.ApiTestDetection(file);
+        if(result.get(true)!=null)
+            return new ResponseEntity<>(result.get(true), HttpStatus.OK);
+        else
+            return new ResponseEntity<>(result.get(false), HttpStatus.BAD_REQUEST);
+    }
 
 }
