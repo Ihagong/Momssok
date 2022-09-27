@@ -10,4 +10,5 @@ import java.util.List;
 public interface DrawingMapper {
     List<DrawingDto> lookupAllDrawing(String email_name) throws SQLException;
     DrawingDto lookupDrawing(int drawing_id) throws SQLException;
+    int deleteDrawing(String email) throws SQLException;
 }
