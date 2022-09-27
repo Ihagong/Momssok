@@ -2,8 +2,12 @@ package com.ihagong.momssok.controller;
 
 import com.ihagong.momssok.model.dto.DrawingApiDto;
 import com.ihagong.momssok.model.dto.DrawingDto;
+import com.ihagong.momssok.model.dto.DrawingInputDto;
+import com.ihagong.momssok.model.dto.DrawingOutDto;
 import com.ihagong.momssok.service.DrawingService;
+import com.ihagong.momssok.service.DrawingServiceImpl;
 import lombok.RequiredArgsConstructor;
+import org.apache.commons.io.FileUtils;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -12,6 +16,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
 import java.io.FileOutputStream;
+import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
@@ -25,6 +30,7 @@ public class DrawingController {
     private final String fail = "FAIL";
     private final String error = "ERROR";
     private final DrawingService drawingService;
+    private final DrawingServiceImpl drawingServiceImpl;
 
     @GetMapping("/searchDrawing")
     public Map<String, Object> lookupAllDrawing(@RequestParam String name){
@@ -53,9 +59,8 @@ public class DrawingController {
     public Map<String, Object> lookupDrawing(@RequestParam int drawing_id){
         Map<String, Object> result = new HashMap<>();
 
-        DrawingDto drawing;
         try {
-            drawing = drawingService.lookupDrawing(drawing_id);
+            DrawingDto drawing = drawingService.lookupDrawing(drawing_id);
             if(drawing != null){
                 result.put("statue", success);
                 result.put("data", drawing);
@@ -126,11 +131,11 @@ public class DrawingController {
         return result;
     }
 
-    //AI 서버로 그림 분석 결과 요청할 때 그림을 보낸다.(태그는 시리얼라이즈 처리)
+    //AI 서버로 그림 분석 결과 요청할 때 그림을 보낸다
     @GetMapping("/detection")
     public ResponseEntity<?> detection(@RequestParam MultipartFile file){
 
-        Map<Boolean,Object> result = drawingService.detection(file);
+        Map<Boolean,Object> result = drawingServiceImpl.detection(file);
 
         if(result.get(true)!=null)
             return new ResponseEntity<>(result.get(true), HttpStatus.OK);
@@ -138,18 +143,32 @@ public class DrawingController {
             return new ResponseEntity<>(result.get(false), HttpStatus.BAD_REQUEST);
     }
 
-//    @PutMapping("/updateDrawing")
-//    public Map<String, Object> updateDrawing(@RequestBody DrawingDto drawing){
-//
-//        Map<String, Object> result = new HashMap<>();
-//
-//        try {
-//            String email = SecurityContextHolder.getContext().getAuthentication().getName();
-//        }
-//    }
+    @PutMapping("/updateDrawing")
+    public Map<String, Object> updateDrawing(@RequestBody DrawingApiDto drawing){  //base64랑 아이 이름을 받는다
 
-    @GetMapping("/getDrawing")  //이미지를 base64 형태로 인코딩하여 프론트에 보내기
-    public String getBase64(@RequestParam int drawing_id){
+        Map<String, Object> result = new HashMap<>();
+
+        try {
+            String email = SecurityContextHolder.getContext().getAuthentication().getName();
+            String name = drawing.getName();
+            String email_name = email + "_" + name;
+            drawing.setEmail_name(email_name);
+
+            int res = drawingService.updateDrawing(drawing);  //삭제하려는 사용자가 현재 사용자와 일치하면 삭제
+            if(res == 1){
+                result.put("status", success);
+            }else{
+                result.put("status", fail);
+            }
+        } catch (Exception e) {
+            result.put("status", error);
+            result.put("message", e.toString());
+        }
+        return result;
+    }
+
+    @GetMapping("/getDrawing")  //이미지를 base64로 인코딩하여 프론트에 보내기
+    public String getBase64(@RequestParam int drawing_id) throws Exception {
 
         String painting = drawingService.getDrawing(drawing_id);  //이미지를 가져온다
 
@@ -160,15 +179,14 @@ public class DrawingController {
     }
 
     @DeleteMapping("/deleteDrawing")
-    public Map<String, Object> deleteDrawing(@RequestBody int drawing_id){
+    public Map<String, Object> deleteDrawing(@RequestBody DrawingOutDto drawing){  //email과 그림 id를 받는다
 
         Map<String, Object> result = new HashMap<>();
 
         try {
-            //이메일과 id를 같이 넣어주자
-
             String email = SecurityContextHolder.getContext().getAuthentication().getName();
-            int res = drawingService.deleteDrawing(email);  //삭제하려는 사용자가 현재 사용자와 일치하면 삭제
+            drawing.setEmail(email);
+            int res = drawingService.deleteDrawing(drawing);  //삭제하려는 사용자가 현재 사용자와 일치하면 삭제
             if(res == 1){
                 result.put("status", success);
             }else{
