@@ -8,7 +8,7 @@ import { SaveCanvasButton } from '../Components/CanvasComponent/SaveCanvasButton
 import { CanvasProvider } from '../Components/CanvasComponent/CanvasContext'
 import { PaintingToolModalComponent } from '../Components/CanvasComponent/PaintingToolModalComponent'
 import { ColorPickerModalComponent } from '../Components/CanvasComponent/ColorPickerModalComponent'
-import { PaintingToolTag, ChildButtonTag1, ChildButtonTag2 } from '../Style/Components'
+import { PaintingToolTag, ChildButtonTag1, ChildButtonTag2, PointerTag } from '../Style/Components'
 import { MotionDetectionComponent } from '../Components/CanvasComponent/MotionDetectionComponent'
 
 
@@ -111,8 +111,8 @@ const textures = [
 
 function CreatePaintingPage(props) {
   // console.log(loadedPaintingSrc)
-  const [colorPickerModalOpen, setColorPickerModalOpen] = useState(false)
   const [paintingToolModalOpen, setPaintingToolModalOpen] = useState(false)
+  const [colorPickerModalOpen, setColorPickerModalOpen] = useState(false)
   const [modalOpen, setModalOpen] = useState(false)
   const [strokeColorIndex, setStrokeColorIndex] = useState(0)
   const [strokeTextureIndex, setStrokeTextureIndex] = useState(0)
@@ -120,6 +120,7 @@ function CreatePaintingPage(props) {
   const [isCamOn, setIsCamOn] = useState(false)
   const [offset, setOffset] = useState({offsetX: 0, offsetY: 0})
   const [gesture, setGesture] = useState('defaultGesture')
+  const [selectedToolIndex, setSelectedToolIndex] = useState(0)
 
   const handleClickCloseButton = () => {
   }
@@ -142,21 +143,41 @@ function CreatePaintingPage(props) {
 
   const changeStrokeTexture = (textureIndex) => {
     setStrokeTextureIndex(textureIndex)
-    console.log(textureIndex)
   }
 
   const changeStrokeColor = (colorIndex) => {
     setStrokeColorIndex(colorIndex)
-    console.log(colorIndex)
   }
 
   const changeStrokeLineWidthIndex = (lineWidthIndex) => {
     setStrokeLineWidthIndex(lineWidthIndex)
-    console.log(lineWidthIndex)
   }
+
+  const handleSelectTool = (toolIndex) => {
+    if (selectedToolIndex !== toolIndex) {
+      setSelectedToolIndex(toolIndex)
+      if (toolIndex === 0) {
+        setPaintingToolModalOpen(true)
+      } else if (toolIndex === 1) {
+        setColorPickerModalOpen(true)
+      }
+    }
+  }
+  
+  // const handleSelectTool = (selectedToolIndex) => {
+  //   setSelectedTool(selectedToolIndex)
+  // }
+  
+  // var targetTop = target.getBoundingClientRect().top;
+
+  // var abTop = window.pageYOffset + target.getBoundingClientRect().top;
+
+  // console.log((window.innerWidth-1100)/2, window.innerHeight-750)
 
   return (
     <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
+      { gesture !== 'defaultGesture' ? <PointerTag style={{ left: offset.offsetX+100, top: offset.offsetY }}
+        src= { gesture === 'indexGesture' ? '/icons/pointer.png' : gesture === 'palmGesture' ? '/icons/backhand.png' : '/icons/paintingTool_brush.png' } /> : null}
       <CanvasProvider loadedPainting={props.loadedPainting} textures={textures} isCamOn={isCamOn} offset={offset} gesture={gesture}
         strokeColorIndex={strokeColorIndex} strokeTextureIndex={strokeTextureIndex} strokeLineWidthIndex={strokeLineWidthIndex}>
         <PaintingToolModalComponent modalOpen={paintingToolModalOpen} modalClose={handleClickModalClose}
@@ -173,7 +194,7 @@ function CreatePaintingPage(props) {
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', width: '1060px', padding: '20px' }}>
             <PaintingToolTag onClick={handleClickPaintingToolButton}><img src='/icons/tools.svg'></img></PaintingToolTag>
             <PaintingToolTag onClick={handleClickColorPickerButton}><img src='/icons/color.svg'></img></PaintingToolTag>
-            { isCamOn ? <MotionDetectionComponent onClick={() => setIsCamOn(false)} canvasWidth={1100*2} canvasHeight={550*2} setOffset={setOffset} setGesture={setGesture} />
+            { isCamOn ? <MotionDetectionComponent setIsCamOn={setIsCamOn} canvasWidth={1100*2+200} canvasHeight={550*2+400} setOffset={setOffset} setGesture={setGesture} setToolIndex={handleSelectTool} />
               : <PaintingToolTag onClick={() => setIsCamOn(true)}><img src='/icons/camera.svg'></img></PaintingToolTag> }
             <ChildButtonTag1 style={{ width: '200px' }} onClick={handleClickCloseButton}>닫기</ChildButtonTag1>
             <ChildButtonTag2 style={{ width: '200px' }} onClick={handleClickSaveButton}>저장</ChildButtonTag2>

@@ -22,11 +22,7 @@ export const CanvasProvider = ({ children, loadedPainting, textures, offset, ges
   }, [strokeLineWidthIndex])
 
   useEffect(() => {
-    console.log(offset)
-  }, [offset])
-
-  useEffect(() => {
-    if (gesture === 'upGesture') {
+    if (gesture === 'fistGesture') {
       startMotionDrawing()
     }
     else {
@@ -35,7 +31,9 @@ export const CanvasProvider = ({ children, loadedPainting, textures, offset, ges
   }, [gesture])
 
   useEffect(() => {
-    motionDraw()
+    if (gesture === 'fistGesture') {
+      motionDraw()
+    }
   }, [offset])
   
   const strokeColor = [
