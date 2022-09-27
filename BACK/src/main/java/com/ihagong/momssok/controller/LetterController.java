@@ -1,8 +1,6 @@
 package com.ihagong.momssok.controller;
 
-import com.ihagong.momssok.model.dto.UserApiDto;
 import com.ihagong.momssok.service.LetterService;
-import com.ihagong.momssok.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.apache.commons.io.FileUtils;
 import org.springframework.core.io.ByteArrayResource;
@@ -23,9 +21,9 @@ import java.util.Map;
 public class LetterController {
     private final LetterService letterService;
     @RequestMapping(value = "/letter/sendLetter", method = RequestMethod.POST)
-    public ResponseEntity<?> sendLetter(@RequestParam MultipartFile videoFile, @RequestParam String send_from,
-                                        @RequestParam String send_to, @RequestParam String title,@RequestParam String content) throws IOException {
-        Map<Boolean,Object> result = letterService.sendLetter(videoFile,send_from,send_to, title,content);
+    public ResponseEntity<?> sendLetter(@RequestParam MultipartFile videoFile, @RequestParam String author,
+                                        @RequestParam String receiver, @RequestParam String title, @RequestParam String content) throws IOException {
+        Map<Boolean,Object> result = letterService.sendLetter(videoFile, author, receiver, title,content);
         if(result.get(true)!=null)
             return new ResponseEntity<>(result.get(true), HttpStatus.OK);
         else
