@@ -51,7 +51,7 @@ export function MotionDetectionComponent({ canvasWidth, canvasHeight, setOffset,
         }
         setGesture(gesture)
 
-        // console.log(offsetX, offsetY)
+        console.log(offsetX, offsetY)
         if (gesture === 'indexGesture') {
           handleSelectTool(offsetX, offsetY)
         }

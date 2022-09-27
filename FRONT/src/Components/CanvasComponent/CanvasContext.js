@@ -38,7 +38,7 @@ export const CanvasProvider = ({ children, loadedPainting, textures, offset, ges
   
   const strokeColor = [
     '#121212', '#F88484', '#EB2C37', '#EB8C35', '#FEED01', '#94C120', '#0C8E36',
-    '#F6F6F6', '#74BBEE', '#7E4319', '#F6C4A8', '#882BA8', '#0665C4', '#74BBEE'
+    '#F6F6F6', '#747474', '#7E4319', '#F6C4A8', '#882BA8', '#0665C4', '#74BBEE'
   ]
 
   const strokeLineWidth = [5, 10, 20, 30]

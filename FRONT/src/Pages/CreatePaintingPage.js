@@ -120,7 +120,7 @@ function CreatePaintingPage(props) {
   const [isCamOn, setIsCamOn] = useState(false)
   const [offset, setOffset] = useState({offsetX: 0, offsetY: 0})
   const [gesture, setGesture] = useState('defaultGesture')
-  const [selectedToolIndex, setSelectedToolIndex] = useState(0)
+  // const [selectedToolIndex, setSelectedToolIndex] = useState(0)
 
   const handleClickCloseButton = () => {
   }
@@ -156,9 +156,10 @@ function CreatePaintingPage(props) {
   const handleSelectTool = (offsetX, offsetY) => {
     const left = (window.innerWidth-1100)/2
     const diff = 130
+    console.log(offsetX, offsetY)
     
     if (offsetY >= 570 && offsetY <= 710) {
-      if (offsetX >= 60 && offsetX <= 200) {
+      if (offsetX >= 60 && offsetX < 200) {
         setModalOpen(false)
         setPaintingToolModalOpen(true)
       } else if (offsetX >= 260 && offsetX <= 400) {
@@ -192,9 +193,9 @@ function CreatePaintingPage(props) {
         src= { gesture === 'indexGesture' ? '/icons/pointer.png' : gesture === 'palmGesture' ? '/icons/backhand.png' : '/icons/paintingTool_brush.png' } /> : null}
       <CanvasProvider loadedPainting={props.loadedPainting} textures={textures} isCamOn={isCamOn} offset={offset} gesture={gesture}
         strokeColorIndex={strokeColorIndex} strokeTextureIndex={strokeTextureIndex} strokeLineWidthIndex={strokeLineWidthIndex}>
-        <PaintingToolModalComponent modalOpen={paintingToolModalOpen} modalClose={handleClickModalClose} motionTextureIndex={strokeTextureIndex} offset={offset} gesture={gesture}
+        <PaintingToolModalComponent modalOpen={paintingToolModalOpen} setPaintingToolModalOpen={setPaintingToolModalOpen} motionTextureIndex={strokeTextureIndex} offset={offset} gesture={gesture}
           changeStrokeTexture={changeStrokeTexture} changeStrokeLineWidthIndex={changeStrokeLineWidthIndex} onClick={() => setModalOpen(false)} />
-        <ColorPickerModalComponent modalOpen={colorPickerModalOpen} modalClose={handleClickModalClose}
+        <ColorPickerModalComponent modalOpen={colorPickerModalOpen} setColorPickerModalOpen={setColorPickerModalOpen} offset={offset} gesture={gesture}
           strokeColorIndex={strokeColorIndex} changeStrokeColor={changeStrokeColor} onClick={() => setModalOpen(false)} />
         <CanvasComponent />
         <div style={{ display: 'flex' }}>
