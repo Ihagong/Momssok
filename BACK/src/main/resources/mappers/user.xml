@@ -38,7 +38,7 @@
     </select>
 
     <insert id="saveProfile" parameterType="com.ihagong.momssok.model.dto.ProfileDto" >
-        INSERT INTO profile(email_name,email,name,birthday,image_path,created_date,modified_date,profile_password,is_parent)
+        INSERT INTO profile(email_name,email,name,birthday,image_num,created_date,modified_date,profile_password,is_parent)
         values (#{email_name},#{email},#{name},#{birthday},#{image_num},#{created_date},#{modified_date},#{profile_password},#{is_parent});
     </insert>
 
@@ -50,7 +50,7 @@
         UPDATE user set username=#{username},modified_date=#{modified_date} where email=#{email};
     </update>
     <update id="updateProfile" parameterType="com.ihagong.momssok.model.dto.ProfileDto" >
-        UPDATE profile set email_name=#{email_name},name=#{name},birthday=#{birthday},image_path=#{image_num},modified_date=#{modified_date},
+        UPDATE profile set email_name=#{email_name},name=#{name},birthday=#{birthday},image_num=#{image_num},modified_date=#{modified_date},
                            profile_password=#{profile_password} where email=#{email} and name=#{beforeName};
     </update>
     <update id="updateParentName" parameterType="com.ihagong.momssok.model.dto.ProfileDto" >
@@ -60,4 +60,8 @@
     <delete id="deleteUser">
         delete from user where email = #{email}
     </delete>
+    <delete id="deleteProfile">
+        delete from profile where email_name = #{email_name}
+    </delete>
+
 </mapper>

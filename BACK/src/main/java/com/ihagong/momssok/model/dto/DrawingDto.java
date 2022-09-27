@@ -8,7 +8,6 @@ import lombok.NoArgsConstructor;
 public class DrawingDto {
     private int drawing_id;
     private String email_name;
-    private String drawing_base64;  //추가
     private String image_path;
     private String tag;
     private String created_date;
