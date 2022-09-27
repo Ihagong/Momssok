@@ -855,7 +855,6 @@ export const LightButton250 = styled.button`
 `
 
 export const LetterItem = styled.div`
-  background-color: #FDFDF5;
   box-shadow: 0px 5px 5px #E6E6E6;
   width: 1090px;
   height: 100px;
@@ -1064,6 +1063,13 @@ export const LetterButtonDel = styled.button`
   white-space: nowrap;
 `
 
+export const LetterItemTitle = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`
+
+
 // LoginPage
 export const LoginPageBody = styled.div`
   display: flex;
@@ -1088,3 +1094,8 @@ export const GugiPink = styled.span`
   white-space: nowrap;
 `
 
+export const GugiBrown = styled.span`
+  font-family: 'Gugi', cursive;
+  color: var(--Brown-Text);
+  white-space: nowrap;
+`

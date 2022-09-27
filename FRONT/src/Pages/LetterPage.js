@@ -12,6 +12,7 @@ const LetterPage = () => {
   const navigate = useNavigate()
   const [letterList, setLetterList] = useRecoilState(totalLetterListState)
 
+  
   const filterList = letterList.filter((it) => it.receiver === "찬석이")
 
 
