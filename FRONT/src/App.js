@@ -45,7 +45,7 @@ function App() {
         <Route exact path='/profile' element={ logInToken ? <ProfilePage /> : <Navigate to='/login' replace /> } />
         <Route exact path='/profile/manage' element={ logInToken ? <ManageProfilePage /> : <Navigate to='/login' replace /> } />
         <Route exact path='/profile/create' element={ <CreateProfilePage /> } />
-        <Route exact path='/profile/:profileId/edit' element={ <EditProfilePage /> } />
+        <Route exact path='/profile/edit' element={ <EditProfilePage /> } />
         <Route exact path='/child' element={ <ChildMainPage /> } />
         <Route exact path='/painting/create' element={ <CreatePaintingPage loadedPainting={loadedPainting} /> } />
         <Route exact path='/painting/load' element={ <LoadPaintingPage /> } />
