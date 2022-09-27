@@ -16,7 +16,7 @@ public class AsyncConfig {
         executor.setCorePoolSize(6);
         executor.setMaxPoolSize(6);
         executor.setQueueCapacity(500);
-        executor.setThreadNamePrefix("seung-pool-");
+        executor.setThreadNamePrefix("pool-");
         executor.initialize();
         return executor;
     }
