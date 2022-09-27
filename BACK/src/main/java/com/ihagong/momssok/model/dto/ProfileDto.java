@@ -13,7 +13,7 @@ public class ProfileDto {
     private String email;
     private String name;
     private Date birthday;
-    private String image_path;
+    private String image_num;
     private String profile_password;
     private Date created_date;
     private Date modified_date;
