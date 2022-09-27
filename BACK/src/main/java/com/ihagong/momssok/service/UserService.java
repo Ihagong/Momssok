@@ -358,5 +358,20 @@ public class UserService {
             return result;
         }
     }
+    public Map<Boolean,Object> deleteProfile(String name)  {
+        Map<Boolean, Object> result = new HashMap<>();
+        Map<String, Object> resultBody = new HashMap<>();
+        String email=SecurityContextHolder.getContext().getAuthentication().getName();
+        if(userMapper.deleteProfile(email+"_"+name)==1) {
+            resultBody.put("Messege", "프로필이 삭제되었습니다.");
+            result.put(true, resultBody);
+            return result;
+        }
+        else{
+            resultBody.put("Messege", "프로필 삭제 오류");
+            result.put(false, resultBody);
+            return result;
+        }
 
+    }
 }
