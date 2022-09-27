@@ -3,6 +3,8 @@ package com.ihagong.momssok.controller;
 import com.ihagong.momssok.model.dto.DrawingDto;
 import com.ihagong.momssok.service.DrawingService;
 import lombok.RequiredArgsConstructor;
+import org.apache.tomcat.util.http.fileupload.IOUtils;
+import org.springframework.core.io.ByteArrayResource;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.util.Base64Utils;
 import org.springframework.web.bind.annotation.*;
@@ -10,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.swing.filechooser.FileSystemView;
 import java.io.File;
 import java.io.FileOutputStream;
+import java.nio.file.StandardCopyOption;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
@@ -75,26 +78,35 @@ public class DiaryController {
         Map<String, Object> result = new HashMap<>();
 
         String base64 = drawing.split(",")[1];
+        System.out.println(base64);
 
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyyMMddHHmm");
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyyMMdd");
         String fileName = simpleDateFormat.format(new Date());
 
         try {
             //저장할 파일 경로(실제 파일 생성 X)
-            File filePath = new File(FileSystemView.getFileSystemView().getHomeDirectory() + "/resources/");
-            System.out.println(filePath);
-            //C:\Users\multicampus\Desktop\resources
+//            File filePath = new File(FileSystemView.getFileSystemView().getHomeDirectory() + "/resources/" + fileName);
+            String filePath = "C:\\Users\\multicampus\\Desktop\\resources\\20220927";
+            System.out.println(filePath);  //C:\Users\multicampus\Desktop\resources\20220927
 
             //base64를 이미지 파일로 변환하고 저장한다.
-            byte[] imageBytes = Base64.getDecoder().decode(base64
-                                        .replace('-', '+')
-                                        .replace('_', '/'));
+//            byte[] imageBytes = Base64.getDecoder().decode(base64
+//                                        .replace('-', '+')
+//                                        .replace('_', '/'));
 //            byte[] imageBytes = Base64Utils.decodeFromUrlSafeString(base64);
-            System.out.println(imageBytes);
+            ByteArrayResource resource = new ByteArrayResource(javax.xml.bind.DatatypeConverter.parseBase64Binary(base64.toString()));
+            File targetFile = new File(filePath);
+            java.nio.file.Files.copy(
+                    resource.getInputStream(),
+                    targetFile.toPath(),
+                    StandardCopyOption.REPLACE_EXISTING);
+            IOUtils.closeQuietly(resource.getInputStream());
 
-            FileOutputStream fileOutputStream = new FileOutputStream(filePath);
-            fileOutputStream.write(imageBytes);
-            fileOutputStream.close();
+            System.out.println(resource);
+
+//            FileOutputStream fileOutputStream = new FileOutputStream(filePath);
+//            fileOutputStream.write(resource);
+//            fileOutputStream.close();
 
 //            try {
 //                DrawingDto drawing =
