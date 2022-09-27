@@ -60,4 +60,8 @@
     <delete id="deleteUser">
         delete from user where email = #{email}
     </delete>
+    <delete id="deleteProfile">
+        delete from profile where email_name = #{email_name}
+    </delete>
+
 </mapper>
