@@ -18,7 +18,13 @@ public class DrawingServiceImpl implements DrawingService{
         return drawingMapper.lookupAllDrawing(email_name);
     }
 
+    @Override
     public DrawingDto lookupDrawing(int drawing_id) throws Exception {
         return drawingMapper.lookupDrawing(drawing_id);
+    }
+
+    @Override
+    public int deleteDrawing(String email) throws Exception {
+        return drawingMapper.deleteDrawing(email);
     }
 }
