@@ -11,7 +11,7 @@ public class ProfileApiDto {
     private String email;
     private String name;
     private Date birthday;
-    private String image_base64;
+    private String image_num;
     private String profile_password;
     private Date created_date;
     private Date modified_date;

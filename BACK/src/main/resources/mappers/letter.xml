@@ -15,4 +15,7 @@
     <select id="detailletter" parameterType="int" resultType="com.ihagong.momssok.model.dto.LetterDto">
         SELECT * FROM letter WHERE letter_id=#{letter_id};
     </select>
+    <update id="updateRead" parameterType="int" >
+        UPDATE letter set read_check=1 where letter_id=#{letter_id};
+    </update>
 </mapper>
