@@ -10,7 +10,6 @@ import { useAuthCallback } from '../Functions/useAuthCallback'
 function ProfilePage() {
   const [profileInfo, setProfileInfo] = useRecoilState(profileInfoState)
   const navigate = useNavigate()
-  // const childrenList = [{ id: 0, name: '찬석이', birth: '2017.12', age: 6 }] // 아이 정보
   
   const { logOutCallback, profileInfoCallback } = useAuthCallback()
 
@@ -22,6 +21,10 @@ function ProfilePage() {
     navigate('/profile/manage')
   }
 
+  const handleClickChildProfile = () => {
+    navigate('/child')
+  }
+
   useEffect(() => {
     if (profileInfo.length === 0) {
       profileInfoCallback()
@@ -30,13 +33,15 @@ function ProfilePage() {
 
   return (
     <>
-      { profileInfo.length ?
+      { profileInfo?.length ?
         <>
           <h3>프로필을 선택해주세요.</h3>
           <h4>우리 아이마다 맞춤으로 서비스 이용이 가능합니다.</h4>
-          {profileInfo.map((info, index) => (
-            <ChildProfileComponent key={index} info={info} />
-          ))}
+          <div style={{ display: 'flex' }}>
+            { profileInfo?.map((info, index) => {if (!info.is_parent) {
+              return <ChildProfileComponent key={index} info={info} handleClickChildProfile={handleClickChildProfile} />
+            }})}
+          </div>
           <ButtonTag3 onClick={handleClickManageProfileButton}>아이 관리</ButtonTag3>
           <ButtonTag3 onClick={logOutCallback}>로그아웃</ButtonTag3>
         </>

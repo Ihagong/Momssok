@@ -22,6 +22,10 @@ function ProfilePage() {
     navigate('/account')
   }
 
+  const handleClickChildProfile = (info) => {
+    navigate('/profile/edit', { state: info })
+  }
+
   useEffect(() => {
     if (profileInfo.length === 0) {
       profileInfoCallback()
@@ -33,9 +37,9 @@ function ProfilePage() {
       <h3>프로필을 선택 또는 등록해주세요.</h3>
       <h4>우리 아이마다 개별적인 관리와 분석 결과를 제공합니다.</h4>
       <div style={{ display: 'flex' }}>
-        {profileInfo.map((info, index) => (
-          <ChildProfileComponent key={index} info={info} />
-        ))}
+        { profileInfo?.map((info, index) => {if (!info.is_parent) {
+          return <ChildProfileComponent key={index} info={info} handleClickChildProfile={handleClickChildProfile} />
+        }})}
         <CreateProfileComponent />
       </div>
       <ButtonTag3 style={{ width: '400px' }} onClick={handleClickManageProfileButton}>프로필 수정 및 삭제</ButtonTag3>
