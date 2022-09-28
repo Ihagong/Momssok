@@ -1,0 +1,26 @@
+<annotation>
+	<folder>dataset</folder>
+	<filename>baby-deer-vector-illustration-260nw-1309231831.jpg</filename>
+	<path>C:\Users\ssafy\shutterscrape\dataset\baby-deer-vector-illustration-260nw-1309231831.jpg</path>
+	<source>
+		<database>Unknown</database>
+	</source>
+	<size>
+		<width>260</width>
+		<height>280</height>
+		<depth>1</depth>
+	</size>
+	<segmented>0</segmented>
+	<object>
+		<name>animal</name>
+		<pose>Unspecified</pose>
+		<truncated>0</truncated>
+		<difficult>0</difficult>
+		<bndbox>
+			<xmin>70</xmin>
+			<ymin>27</ymin>
+			<xmax>187</xmax>
+			<ymax>183</ymax>
+		</bndbox>
+	</object>
+</annotation>

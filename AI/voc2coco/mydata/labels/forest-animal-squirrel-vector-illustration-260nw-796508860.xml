@@ -1,0 +1,26 @@
+<annotation>
+	<folder>animals</folder>
+	<filename>forest-animal-squirrel-vector-illustration-260nw-796508860.jpg</filename>
+	<path>C:\Users\82106\Downloads\animals\animals\forest-animal-squirrel-vector-illustration-260nw-796508860.jpg</path>
+	<source>
+		<database>Unknown</database>
+	</source>
+	<size>
+		<width>260</width>
+		<height>280</height>
+		<depth>3</depth>
+	</size>
+	<segmented>0</segmented>
+	<object>
+		<name>animal</name>
+		<pose>Unspecified</pose>
+		<truncated>0</truncated>
+		<difficult>0</difficult>
+		<bndbox>
+			<xmin>15</xmin>
+			<ymin>64</ymin>
+			<xmax>214</xmax>
+			<ymax>237</ymax>
+		</bndbox>
+	</object>
+</annotation>

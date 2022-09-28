@@ -1,0 +1,26 @@
+<annotation>
+	<folder>sky</folder>
+	<filename>icon-hand-draw-style-drawing-260nw-2153255377.jpg</filename>
+	<path>C:\Users\ssafy\shutterscrape\sky\icon-hand-draw-style-drawing-260nw-2153255377.jpg</path>
+	<source>
+		<database>Unknown</database>
+	</source>
+	<size>
+		<width>378</width>
+		<height>280</height>
+		<depth>3</depth>
+	</size>
+	<segmented>0</segmented>
+	<object>
+		<name>bird</name>
+		<pose>Unspecified</pose>
+		<truncated>0</truncated>
+		<difficult>0</difficult>
+		<bndbox>
+			<xmin>25</xmin>
+			<ymin>77</ymin>
+			<xmax>339</xmax>
+			<ymax>178</ymax>
+		</bndbox>
+	</object>
+</annotation>
