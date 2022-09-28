@@ -36,5 +36,6 @@ public class FastApiEmotion {
         System.out.println("percent : "+percent);
         System.out.println("score : "+score);
 
+
     }
 }

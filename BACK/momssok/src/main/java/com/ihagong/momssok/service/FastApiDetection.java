@@ -15,6 +15,7 @@ import java.util.Map;
 
 @Service
 public class FastApiDetection {
+    @Async
     public void fastApiDetection(MultipartFile file) {
 
         HttpHeaders headers = new HttpHeaders();
@@ -25,7 +26,6 @@ public class FastApiDetection {
 
         HttpEntity<MultiValueMap<String, Object>> requestEntity = new HttpEntity<>(body, headers);
         RestTemplate restTemplate = new RestTemplate();
-        System.out.println("test");
 
         ResponseEntity<String> response = restTemplate
                 .postForEntity("http://j7d203.p.ssafy.io:8003/tag", requestEntity, String.class);
