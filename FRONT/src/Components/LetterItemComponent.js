@@ -8,7 +8,7 @@ import { LetterItemTitle, LetterItem, LetterItemContent, LetterItemAuthor } from
 import { getStringDate } from "../util/date"
 
 
-const LetterItemComponent = ({ letterId, date, author, check, receiver, title, content }) => {
+const LetterItemComponent = ({ letter_id, date, author, check, receiver, title, content }) => {
   const navigate = useNavigate()
   const [letterList, setLetterList] = useRecoilState(totalLetterListState)
 
@@ -24,7 +24,7 @@ const LetterItemComponent = ({ letterId, date, author, check, receiver, title, c
     let newLetter = {}
     let newLetterList = []
     newLetter = {
-      letterId,
+      letter_id,
       date,
       author,
       check: true,
@@ -33,10 +33,10 @@ const LetterItemComponent = ({ letterId, date, author, check, receiver, title, c
       content
     }
     newLetterList = letterList.map((it) =>
-    it.letterId === letterId ? { ...newLetter } : it
+    it.letter_id === letter_id ? { ...newLetter } : it
     )
     onEdit(newLetterList)
-    navigate(`/letter/${letterId}`)
+    navigate(`/letter/${letter_id}`)
   };
 
   return (

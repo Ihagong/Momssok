@@ -10,17 +10,12 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.List;
 import java.util.Map;
 
 @RestController
@@ -56,6 +51,15 @@ public class UserController {
     @RequestMapping(value = "/user/login", method = RequestMethod.POST)
     public ResponseEntity<?> login(@RequestBody UserApiDto dto) {
         Map<Boolean,Object> result = userService.login(dto);
+        if(result.get(true)!=null)
+            return new ResponseEntity<>(result.get(true), HttpStatus.OK);
+        else
+            return new ResponseEntity<>(result.get(false), HttpStatus.BAD_REQUEST);
+    }
+
+    @RequestMapping(value = "/user/checkPassword", method = RequestMethod.GET)
+    public ResponseEntity<?> checkPassword(@RequestBody UserApiDto dto) {
+        Map<Boolean,Object> result = userService.checkPassword(dto);
         if(result.get(true)!=null)
             return new ResponseEntity<>(result.get(true), HttpStatus.OK);
         else
@@ -99,19 +103,19 @@ public class UserController {
     }
 
     @RequestMapping(value = "/user/saveProfile", method = RequestMethod.POST)
-    public ResponseEntity<?> saveProfile(@RequestParam MultipartFile profileImage,@RequestParam String name,
-                                         @RequestParam String birthday, @RequestParam String profile_password) throws IOException, ParseException {
+    public ResponseEntity<?> saveProfile(@RequestBody ProfileDto requestDto) throws IOException, ParseException {
         ProfileDto dto = new ProfileDto();
         dto.setEmail(SecurityContextHolder.getContext().getAuthentication().getName());
-        dto.setName(name);
-        dto.setEmail_name(SecurityContextHolder.getContext().getAuthentication().getName()+"_"+name);
-        SimpleDateFormat formatter = new SimpleDateFormat("yyyy/MM/dd");
-        Date date = formatter.parse(birthday);
-        dto.setBirthday(date);
-        dto.setProfile_password(profile_password);
+        dto.setName(requestDto.getName());
+        dto.setEmail_name(SecurityContextHolder.getContext().getAuthentication().getName()+"_"+requestDto.getName());
+        //SimpleDateFormat formatter = new SimpleDateFormat("yyyy/MM/dd");
+        //Date date = formatter.parse(birthday);
+        dto.setBirthday(requestDto.getBirthday());
+        dto.setProfile_password(requestDto.getProfile_password());
         dto.setCreated_date(new Date());
         dto.setIs_parent(false);
-        Map<Boolean,Object> result = userService.saveProfile(dto,profileImage);
+        dto.setImage_num(requestDto.getImage_num());
+        Map<Boolean,Object> result = userService.saveProfile(dto);
         if(result.get(true)!=null)
             return new ResponseEntity<>(result.get(true), HttpStatus.OK);
         else
@@ -129,24 +133,40 @@ public class UserController {
 
 
     @RequestMapping(value = "/user/updateProfile", method = RequestMethod.PUT)
-    public ResponseEntity<?> updateProfile(@RequestParam MultipartFile profileImage,@RequestParam String name,
-                                           @RequestParam String birthday, @RequestParam String profile_password,
-                                           @RequestParam String beforeName) throws IOException, ParseException {
+    public ResponseEntity<?> updateProfile(@RequestBody ProfileDto requestDto) throws IOException, ParseException {
         ProfileDto dto = new ProfileDto();
         dto.setEmail(SecurityContextHolder.getContext().getAuthentication().getName());
-        dto.setName(name);
-        dto.setEmail_name(SecurityContextHolder.getContext().getAuthentication().getName()+"_"+name);
-        SimpleDateFormat formatter = new SimpleDateFormat("yyyy/MM/dd");
-        Date date = formatter.parse(birthday);
-        dto.setBirthday(date);
-        dto.setProfile_password(profile_password);
+        dto.setName(requestDto.getName());
+        dto.setEmail_name(SecurityContextHolder.getContext().getAuthentication().getName()+"_"+requestDto.getName());
+        //SimpleDateFormat formatter = new SimpleDateFormat("yyyy/MM/dd");
+       // Date date = formatter.parse(birthday);
+        dto.setBirthday(requestDto.getBirthday());
+        dto.setProfile_password(requestDto.getProfile_password());
         dto.setModified_date(new Date());
-        Map<Boolean,Object> result = userService.updateProfile(dto,profileImage,beforeName);
+        dto.setImage_num(requestDto.getImage_num());
+        Map<Boolean,Object> result = userService.updateProfile(dto,requestDto.getBeforeName());
         if(result.get(true)!=null)
             return new ResponseEntity<>(result.get(true), HttpStatus.OK);
         else
             return new ResponseEntity<>(result.get(false), HttpStatus.BAD_REQUEST);
     }
+
+    @RequestMapping(value = "/user/deleteProfile", method = RequestMethod.DELETE)
+    public ResponseEntity<?> deleteProfile(@RequestParam String name) {
+        Map<Boolean,Object> result = userService.deleteProfile(name);
+        if(result.get(true)!=null)
+            return new ResponseEntity<>(result.get(true), HttpStatus.OK);
+        else
+            return new ResponseEntity<>(result.get(false), HttpStatus.BAD_REQUEST);
+    }
+
+
+
+
+
+
+
+
 
 
 

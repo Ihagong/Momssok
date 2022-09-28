@@ -34,4 +34,6 @@ public interface UserMapper {
     int updateParentName(ProfileDto dto);
 
     int deleteUser(String email);
+
+    int deleteProfile(String email_name);
 }

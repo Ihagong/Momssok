@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ihagong.momssok.mapper.DrawingMapper">
+    <select id="lookupAllDrawing" parameterType="String" resultType="com.ihagong.momssok.model.dto.DrawingDto">
+        SELECT * FROM drawing
+        WHERE email_name = #{email_name}
+    </select>
+
+    <select id="lookupDrawing" parameterType="int" resultType="com.ihagong.momssok.model.dto.DrawingDto">
+        SELECT * FROM drawing
+        WHERE drawing_id = #{drawing_id}
+    </select>
+
+    <insert id="saveDrawing" parameterType="DrawingDto">
+        INSERT INTO drawing
+            (drawing_id, email_name, image_path, created_date, modified_date)
+        VALUES
+            (#{drawing_id}, #{email_name}, #{image_path}, NOW(), NOW())
+    </insert>
+
+    <update id="updateDrawing" parameterType="DrawingApiDto">
+        UPDATE drawing
+        SET image_path = #{image_path}, modified_date = NOW()
+        WHERE email_name = #{email_name}
+    </update>
+
+    <select id="getDrawing" parameterType="int" resultType="String">
+        SELECT image_path FROM drawing
+        WHERE drawing_id = #{drawing_id}
+    </select>
+
+    <delete id="deleteDrawing" parameterType="String">
+        DELETE FROM drawing
+        WHERE email_name LIKE(CONCAT(#{email}, '%')) AND drawing_id = #{drawing_id}
+    </delete>
+</mapper>

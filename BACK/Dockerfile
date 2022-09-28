@@ -1,6 +1,6 @@
 #backend/Dockerfile
 
-FROM openjdk:11 as builder
+FROM openjdk:8 as builder
 COPY gradlew .
 COPY gradle gradle
 COPY build.gradle .
