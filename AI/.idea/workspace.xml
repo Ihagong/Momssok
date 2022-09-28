@@ -1,7 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="59fda5d3-c11b-482b-996d-19a056a7413a" name="Default Changelist" comment="" />
+    <list default="true" id="59fda5d3-c11b-482b-996d-19a056a7413a" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/detection/faster_rcnn_model.py" beforeDir="false" afterPath="$PROJECT_DIR$/detection/faster_rcnn_model.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/detection/temp.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/detection/temp.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/detection/test.py" beforeDir="false" afterPath="$PROJECT_DIR$/detection/test.py" afterDir="false" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -12,23 +18,25 @@
     <session id="-1413182">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="3" />
+          <entry key="project.closed" value="4" />
           <entry key="project.open.time.1" value="1" />
+          <entry key="project.open.time.4" value="1" />
           <entry key="project.open.time.6" value="1" />
+          <entry key="project.open.time.7" value="1" />
           <entry key="project.open.time.8" value="1" />
-          <entry key="project.opened" value="3" />
+          <entry key="project.opened" value="5" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
-          <entry key="jpg" value="1" />
+          <entry key="jpg" value="2" />
           <entry key="py" value="4" />
           <entry key="txt" value="1" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
-          <entry key="Image" value="1" />
+          <entry key="Image" value="2" />
           <entry key="PLAIN_TEXT" value="1" />
           <entry key="Python" value="4" />
         </counts>
@@ -37,13 +45,13 @@
         <counts>
           <entry key="Python Console" value="76" />
           <entry key="dummy" value="13" />
-          <entry key="py" value="1133" />
+          <entry key="py" value="1205" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="PLAIN_TEXT" value="13" />
-          <entry key="Python" value="1209" />
+          <entry key="Python" value="1281" />
         </counts>
       </usages-collector>
     </session>
@@ -53,8 +61,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/detection/faster_rcnn_model.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="464">
-              <caret line="38" column="53" selection-start-line="38" selection-start-column="53" selection-end-line="38" selection-end-column="53" />
+            <state relative-caret-position="228">
+              <caret line="24" lean-forward="true" selection-start-line="24" selection-end-line="24" />
               <folding>
                 <element signature="e#0#26#0" expanded="true" />
               </folding>
@@ -62,11 +70,16 @@
           </provider>
         </entry>
       </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/detection/temp.jpg">
+          <provider selected="true" editor-type-id="images" />
+        </entry>
+      </file>
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/detection/test.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="84">
-              <caret line="40" column="21" selection-start-line="40" selection-start-column="21" selection-end-line="40" selection-end-column="21" />
+            <state relative-caret-position="380">
+              <caret line="50" column="16" lean-forward="true" selection-start-line="50" selection-start-column="16" selection-end-line="50" selection-end-column="16" />
               <folding>
                 <element signature="e#0#26#0" expanded="true" />
               </folding>
@@ -77,7 +90,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/detection/train.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1805">
+            <state relative-caret-position="190">
               <caret line="33" selection-start-line="33" selection-end-line="33" />
               <folding>
                 <marker date="1664036263332" expanded="true" signature="3081:3082" ph="..." />
@@ -89,10 +102,10 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/detection/server.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="464">
+            <state relative-caret-position="589">
               <caret line="31" column="38" selection-start-line="31" selection-start-column="38" selection-end-line="31" selection-end-column="38" />
               <folding>
                 <element signature="e#0#13#0" expanded="true" />
@@ -120,12 +133,12 @@
         <option value="$PROJECT_DIR$/detection/train.py" />
         <option value="$PROJECT_DIR$/detection/model.py" />
         <option value="$PROJECT_DIR$/detection/server.py" />
-        <option value="$PROJECT_DIR$/detection/faster_rcnn_model.py" />
         <option value="$PROJECT_DIR$/detection/test.py" />
+        <option value="$PROJECT_DIR$/detection/faster_rcnn_model.py" />
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
+  <component name="ProjectFrameBounds" extendedState="7">
     <option name="x" value="615" />
     <option name="y" value="-35" />
     <option name="width" value="1440" />
@@ -148,11 +161,6 @@
               <item name="AI" type="b2602c69:ProjectViewProjectNode" />
               <item name="AI" type="462c0819:PsiDirectoryNode" />
               <item name="detection" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="AI" type="b2602c69:ProjectViewProjectNode" />
-              <item name="AI" type="462c0819:PsiDirectoryNode" />
-              <item name="voc2coco" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -234,6 +242,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.32980832" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -259,32 +268,29 @@
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/새 텍스트 문서.txt" />
-    <entry file="file://$PROJECT_DIR$/detection/temp.jpg">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/detection/test.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="84">
-          <caret line="40" column="21" selection-start-line="40" selection-start-column="21" selection-end-line="40" selection-end-column="21" />
+        <state relative-caret-position="380">
+          <caret line="50" column="16" lean-forward="true" selection-start-line="50" selection-start-column="16" selection-end-line="50" selection-end-column="16" />
           <folding>
             <element signature="e#0#26#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/detection/faster_rcnn_model.py">
+    <entry file="file://$PROJECT_DIR$/detection/server.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="464">
-          <caret line="38" column="53" selection-start-line="38" selection-start-column="53" selection-end-line="38" selection-end-column="53" />
+        <state relative-caret-position="589">
+          <caret line="31" column="38" selection-start-line="31" selection-start-column="38" selection-end-line="31" selection-end-column="38" />
           <folding>
-            <element signature="e#0#26#0" expanded="true" />
+            <element signature="e#0#13#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/detection/train.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1805">
+        <state relative-caret-position="190">
           <caret line="33" selection-start-line="33" selection-end-line="33" />
           <folding>
             <marker date="1664036263332" expanded="true" signature="3081:3082" ph="..." />
@@ -295,15 +301,18 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/detection/server.py">
+    <entry file="file://$PROJECT_DIR$/detection/faster_rcnn_model.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="464">
-          <caret line="31" column="38" selection-start-line="31" selection-start-column="38" selection-end-line="31" selection-end-column="38" />
+        <state relative-caret-position="228">
+          <caret line="24" lean-forward="true" selection-start-line="24" selection-end-line="24" />
           <folding>
-            <element signature="e#0#13#0" expanded="true" />
+            <element signature="e#0#26#0" expanded="true" />
           </folding>
         </state>
       </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/detection/temp.jpg">
+      <provider selected="true" editor-type-id="images" />
     </entry>
   </component>
 </project>
