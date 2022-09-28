@@ -8,7 +8,7 @@ import { SaveCanvasButton } from '../Components/CanvasComponent/SaveCanvasButton
 import { CanvasProvider } from '../Components/CanvasComponent/CanvasContext'
 import { PaintingToolModalComponent } from '../Components/CanvasComponent/PaintingToolModalComponent'
 import { ColorPickerModalComponent } from '../Components/CanvasComponent/ColorPickerModalComponent'
-import { PaintingToolTag, ChildButtonTag1, ChildButtonTag2, PointerTag } from '../Style/Components'
+import { PaintingToolTag, ChildButtonTag1, ChildButtonTag2, PointerTag, PaintingGuideTag } from '../Style/Components'
 import { MotionDetectionComponent } from '../Components/CanvasComponent/MotionDetectionComponent'
 
 
@@ -197,7 +197,12 @@ function CreatePaintingPage(props) {
           changeStrokeTexture={changeStrokeTexture} changeStrokeLineWidthIndex={changeStrokeLineWidthIndex} onClick={() => setModalOpen(false)} />
         <ColorPickerModalComponent modalOpen={colorPickerModalOpen} setColorPickerModalOpen={setColorPickerModalOpen} offset={offset} gesture={gesture}
           strokeColorIndex={strokeColorIndex} changeStrokeColor={changeStrokeColor} onClick={() => setModalOpen(false)} />
-        <CanvasComponent />
+        <div style={{ display: 'flex' }}>
+          <CanvasComponent />
+          <PaintingGuideTag>
+            <>그려주세요</>
+          </PaintingGuideTag>
+        </div>
         <div style={{ display: 'flex' }}>
         <SaveCanvasButton />
           {/* <ChangeStrokeStyleButton />
@@ -210,7 +215,7 @@ function CreatePaintingPage(props) {
             { isCamOn ? <MotionDetectionComponent setIsCamOn={setIsCamOn} canvasWidth={1100*2+200} canvasHeight={550*2+400} setOffset={setOffset} setGesture={setGesture} handleSelectTool={handleSelectTool} />
               : <PaintingToolTag onClick={() => setIsCamOn(true)}><img src='/icons/camera.svg'></img></PaintingToolTag> }
             <ChildButtonTag1 style={{ width: '200px' }} onClick={handleClickCloseButton}>닫기</ChildButtonTag1>
-            <ChildButtonTag2 style={{ width: '200px' }} onClick={handleClickSaveButton}>저장</ChildButtonTag2>
+            <ChildButtonTag2 style={{ width: '200px' }} onClick={handleClickSaveButton}>다음</ChildButtonTag2>
           </div>
         </div>
       </CanvasProvider>

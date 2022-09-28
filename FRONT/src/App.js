@@ -23,6 +23,7 @@ import CreateLetterPage from './Pages/CreateLetterPage'
 import LetterDetailPage from './Pages/LetterDetailPage'
 import FindPasswordPage from './Pages/FindPasswordPage'
 import AnimalDictionaryPage from './Pages/AnimalDictionaryPage'
+import CreateDictionaryPaintingPage from './Pages/CreateDictionaryPaintingPage'
 
 import { useRecoilState } from 'recoil'
 import { loadedPaintingState, logInTokenState } from './store/atoms'
@@ -63,6 +64,7 @@ function App() {
         <Route exact path='/letter/:letterId' element={ <LetterDetailPage /> } />
         <Route exact path='/findpassword' element={ <FindPasswordPage /> } />
         <Route exact path='/dictionary' element={ <AnimalDictionaryPage /> } />
+        <Route exact path='/dictionary/create' element={ <CreateDictionaryPaintingPage /> } />
       </Routes>
     </Router>
   );
