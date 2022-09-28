@@ -8,6 +8,7 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.lang.Nullable;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -21,7 +22,7 @@ import java.util.Map;
 public class LetterController {
     private final LetterService letterService;
     @RequestMapping(value = "/letter/sendLetter", method = RequestMethod.POST)
-    public ResponseEntity<?> sendLetter(@RequestParam MultipartFile videoFile, @RequestParam String author,
+    public ResponseEntity<?> sendLetter(@RequestParam @Nullable MultipartFile videoFile, @RequestParam String author,
                                         @RequestParam String receiver, @RequestParam String title, @RequestParam String content) throws IOException {
         Map<Boolean,Object> result = letterService.sendLetter(videoFile, author, receiver, title,content);
         if(result.get(true)!=null)
