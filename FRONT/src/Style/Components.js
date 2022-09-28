@@ -729,6 +729,44 @@ export const PointerTag = styled.img`
   z-index: 2;
 `
 
+export const DictionaryCardComponentTag = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: var(--White-Block);
+  border: 1px solid var(--Beige-Stroke);
+  border-radius: 30px;
+  width: 200px;
+  height: 200px;
+  padding: 20px;
+  color: var(--Brown-Text);
+  font-family: 'Dongle', sans-serif;
+  font-size: 60px;
+  img {
+    height: 130px;
+  }
+  cursor: pointer;
+`
+
+export const DictionaryDetailComponentTag = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: var(--White-Block);
+  border: 1px solid var(--Beige-Stroke);
+  border-radius: 30px;
+  width: 550px;
+  height: 600px;
+  padding: 20px;
+  color: var(--Brown-Text);
+  font-family: 'Dongle', sans-serif;
+  font-size: 60px;
+  img {
+    height: 400px;
+  }
+`
+
+
 
 
 
