@@ -2,12 +2,12 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.ihagong.momssok.mapper.DrawingMapper">
-    <select id="lookupAllDrawing" parameterType="String" resultType="com.ihagong.momssok.model.dto.DrawingDto">
+    <select id="lookupAllDrawing" parameterType="String" resultType="DrawingDto">
         SELECT * FROM drawing
         WHERE email_name = #{email_name}
     </select>
 
-    <select id="lookupDrawing" parameterType="int" resultType="com.ihagong.momssok.model.dto.DrawingDto">
+    <select id="lookupDrawing" parameterType="int" resultType="DrawingDto">
         SELECT * FROM drawing
         WHERE drawing_id = #{drawing_id}
     </select>
