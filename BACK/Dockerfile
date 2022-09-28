@@ -11,7 +11,7 @@ RUN ./gradlew bootJar
 
 VOLUME /tmp
 
-FROM openjdk:11
+FROM openjdk:8
 COPY --from=builder build/libs/*.jar app.jar
 
 EXPOSE 8443
