@@ -37,8 +37,8 @@ public class LetterService {
             String filepath = path + uuid + "_" + videoFile.getOriginalFilename();
             System.out.println(System.getProperty("user.dir"));
             File f=new File(filepath);
-            f.mkdirs();
-            f.createNewFile();
+            //f.mkdirs();
+            //f.createNewFile();
 
             System.out.println(f.getPath());
             System.out.println(f.getAbsolutePath());
@@ -95,8 +95,8 @@ public class LetterService {
 
     public File getVideo(int letter_id) throws IOException {
         LetterDto dto = letterMapper.detailletter(letter_id);
-        //File video=  new File(dto.getVideo_path());
-        File video=  new File( "/home/ubuntu/files/모션인식도구선택.mp4");
+        File video=  new File(dto.getVideo_path());
+        //File video=  new File( "/home/ubuntu/files/모션인식도구선택.mp4");
 
         return video;
     }
