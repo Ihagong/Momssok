@@ -1,10 +1,13 @@
 import React from 'react'
+import LetterEditorComponent from '../Components/LetterEditorComponent'
 
-function CreateLetterPage() {
+
+const CreateLetterPage = () => {
   return (
-    <>
-    </>
-  );
+    <div>
+      <LetterEditorComponent />
+    </div>
+  )
 }
 
 export default CreateLetterPage
