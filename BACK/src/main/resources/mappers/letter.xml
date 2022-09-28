@@ -19,6 +19,6 @@
         UPDATE letter set read_check=1 where letter_id=#{letter_id};
     </update>
     <delete id="deleteLetter">
-        delete from profile where email_name = #{email_name}
+        delete from letter where letter_id = #{letter_id}
     </delete>
 </mapper>
