@@ -37,13 +37,15 @@ public class LetterService {
             String filepath = path + uuid + "_" + videoFile.getOriginalFilename();
             System.out.println(System.getProperty("user.dir"));
             File f=new File(filepath);
-            //f.mkdirs();
-            //f.createNewFile();
+            f.mkdirs();
+            f.createNewFile();
 
             System.out.println(f.getPath());
             System.out.println(f.getAbsolutePath());
 
             videoFile.transferTo(f);
+            System.out.println(videoFile.getOriginalFilename());
+            System.out.println(videoFile.getSize());
             letter.setVideo_path(filepath);
         }
         letter.setDate(new Date());
