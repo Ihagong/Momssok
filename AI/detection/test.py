@@ -15,9 +15,9 @@ def faster_rcnn(image):
     print(device)
 
 
-    label_dic = {'airplane': 1, 'animal': 2, 'bird': 3, 'boat': 4, 'building': 5, 'car': 6, 'cat': 7, 'cloud': 8, 'dog': 9,
-     'elephant': 10, 'fish': 11, 'flower': 12, 'fruit': 13, 'heart': 14, 'moon': 15, 'person': 16, 'play': 17,
-     'rainbow': 18, 'roket': 19, 'star': 20, 'sun': 21, 'tree': 22}
+    label_dic = {'비행기': 1, '동물': 2, '새': 3, '배': 4, '건물': 5, '자동차': 6, '고양이': 7, '구름': 8, '강아지': 9,
+     '코끼리': 10, '물고기': 11, '꽃': 12, '과일': 13, '하트': 14, '달': 15, '사람': 16, '놀이': 17,
+     '무지개': 18, '로켓': 19, '별': 20, '해': 21, '나무': 22}
 
     model = faster_rcnn_model.faster_rcnn()
 
@@ -58,7 +58,7 @@ def faster_rcnn(image):
         tag_dic[a].append(b.tolist())
 
     # 태그:위치 딕셔너리를 보내는 버전
-    return tag_dic
+    # return tag_dic
 
     # 태그만 보내는 버전
-    # return objects
+    return list(set(objects))
