@@ -1,0 +1,6 @@
+tokenizers
+transformers
+attrdict
+uvicorn
+numpy
+fastapi
