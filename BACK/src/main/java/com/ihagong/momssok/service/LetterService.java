@@ -30,9 +30,9 @@ public class LetterService {
         }
         letter.setTitle(title);
         letter.setContent(content);
-        System.out.println(videoFile.getContentType());
+        //System.out.println(videoFile.getContentType());
         if(videoFile!=null) {
-            String path = "C:\\Users\\multicampus\\Documents\\fileTest\\";
+            String path = "/home/ubuntu/files/";
             UUID uuid = UUID.randomUUID();
             String filepath = path + uuid + "_" + videoFile.getOriginalFilename();
             videoFile.transferTo(new File(filepath));
