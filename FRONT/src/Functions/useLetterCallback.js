@@ -55,29 +55,6 @@ export function useLetterCallback() {
         })
     }
 
-    // const letterCheckCallback = async (letter_id) => {
-    //     axios({
-    //         method: 'get',
-    //         url: '/api/letter/check',
-    //         headers: {
-    //         'Content-Type': 'application/json',
-    //         'Authorization': logInToken,
-    //         },
-    //         params: {
-    //         "letter_id": letter_id,
-    //         }
-    //     })
-    //     .then(response => {
-    //         if (response.data) {
-    //         console.log(response.data)
-    //         console.log('해당 편지를 읽음 처리 하였습니다.')
-    //         }
-    //     })
-    //     .catch(error => {
-    //         console.log(error.response.data)
-    //     })
-    // }
-
     const letterRemoveCallback = async (letter_id) => {
         axios({
             method: 'delete',
@@ -129,5 +106,5 @@ export function useLetterCallback() {
         })
       }
   
-    return { letterInfoCallback, letterDetailCallback, letterSendCallback, letterCheckCallback, letterRemoveCallback }
+    return { letterInfoCallback, letterDetailCallback, letterSendCallback, letterRemoveCallback }
   }
