@@ -58,6 +58,14 @@ public class LetterController {
         else
             return new ResponseEntity<>(result.get(false), HttpStatus.BAD_REQUEST);
     }
+    @RequestMapping(value = "/letter/deleteLetter", method = RequestMethod.DELETE)
+    public ResponseEntity<?> deleteLetter(@RequestParam int letter_id) {
+        Map<Boolean,Object> result = letterService.deleteLetter(letter_id);
+        if(result.get(true)!=null)
+            return new ResponseEntity<>(result.get(true), HttpStatus.OK);
+        else
+            return new ResponseEntity<>(result.get(false), HttpStatus.BAD_REQUEST);
+    }
 
 
 }
