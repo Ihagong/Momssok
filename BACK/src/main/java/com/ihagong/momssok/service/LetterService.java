@@ -35,6 +35,7 @@ public class LetterService {
             String path = "/home/ubuntu/files/";
             UUID uuid = UUID.randomUUID();
             String filepath = path + uuid + "_" + videoFile.getOriginalFilename();
+
             File f=new File(filepath);
             f.mkdirs();
             f.createNewFile();
@@ -93,7 +94,8 @@ public class LetterService {
 
     public File getVideo(int letter_id) throws IOException {
         LetterDto dto = letterMapper.detailletter(letter_id);
-        File video=  new File(dto.getVideo_path());
+        //File video=  new File(dto.getVideo_path());
+        File video=  new File( "/home/ubuntu/files/모션인식도구선택.mp4");
 
         return video;
     }
