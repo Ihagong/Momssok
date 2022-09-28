@@ -1,0 +1,26 @@
+<annotation>
+	<folder>animals</folder>
+	<filename>cute-animal-christmas-theme-set-260nw-2048618081.jpg</filename>
+	<path>C:\Users\82106\Downloads\animals\animals\cute-animal-christmas-theme-set-260nw-2048618081.jpg</path>
+	<source>
+		<database>Unknown</database>
+	</source>
+	<size>
+		<width>385</width>
+		<height>280</height>
+		<depth>3</depth>
+	</size>
+	<segmented>0</segmented>
+	<object>
+		<name>bird</name>
+		<pose>Unspecified</pose>
+		<truncated>0</truncated>
+		<difficult>0</difficult>
+		<bndbox>
+			<xmin>25</xmin>
+			<ymin>56</ymin>
+			<xmax>140</xmax>
+			<ymax>160</ymax>
+		</bndbox>
+	</object>
+</annotation>

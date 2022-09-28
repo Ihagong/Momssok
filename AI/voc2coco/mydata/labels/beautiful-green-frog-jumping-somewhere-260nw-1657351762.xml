@@ -1,0 +1,26 @@
+<annotation>
+	<folder>dataset</folder>
+	<filename>beautiful-green-frog-jumping-somewhere-260nw-1657351762.jpg</filename>
+	<path>C:\Users\ssafy\shutterscrape\dataset\beautiful-green-frog-jumping-somewhere-260nw-1657351762.jpg</path>
+	<source>
+		<database>Unknown</database>
+	</source>
+	<size>
+		<width>260</width>
+		<height>280</height>
+		<depth>3</depth>
+	</size>
+	<segmented>0</segmented>
+	<object>
+		<name>animal</name>
+		<pose>Unspecified</pose>
+		<truncated>0</truncated>
+		<difficult>0</difficult>
+		<bndbox>
+			<xmin>34</xmin>
+			<ymin>76</ymin>
+			<xmax>226</xmax>
+			<ymax>152</ymax>
+		</bndbox>
+	</object>
+</annotation>

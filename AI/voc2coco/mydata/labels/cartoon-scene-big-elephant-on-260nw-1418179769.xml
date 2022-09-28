@@ -1,0 +1,26 @@
+<annotation>
+	<folder>total_data</folder>
+	<filename>cartoon-scene-big-elephant-on-260nw-1418179769.jpg</filename>
+	<path>C:\Users\ssafy\shutterscrape\total_data\cartoon-scene-big-elephant-on-260nw-1418179769.jpg</path>
+	<source>
+		<database>Unknown</database>
+	</source>
+	<size>
+		<width>312</width>
+		<height>280</height>
+		<depth>3</depth>
+	</size>
+	<segmented>0</segmented>
+	<object>
+		<name>elephant</name>
+		<pose>Unspecified</pose>
+		<truncated>0</truncated>
+		<difficult>0</difficult>
+		<bndbox>
+			<xmin>46</xmin>
+			<ymin>19</ymin>
+			<xmax>269</xmax>
+			<ymax>217</ymax>
+		</bndbox>
+	</object>
+</annotation>

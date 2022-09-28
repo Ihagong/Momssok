@@ -1,0 +1,26 @@
+<annotation>
+	<folder>car</folder>
+	<filename>car-vector-illustration-tshirt-design-260nw-1037146369.jpg</filename>
+	<path>C:\Users\ssafy\shutterscrape\car\car-vector-illustration-tshirt-design-260nw-1037146369.jpg</path>
+	<source>
+		<database>Unknown</database>
+	</source>
+	<size>
+		<width>325</width>
+		<height>280</height>
+		<depth>3</depth>
+	</size>
+	<segmented>0</segmented>
+	<object>
+		<name>car</name>
+		<pose>Unspecified</pose>
+		<truncated>0</truncated>
+		<difficult>0</difficult>
+		<bndbox>
+			<xmin>32</xmin>
+			<ymin>60</ymin>
+			<xmax>212</xmax>
+			<ymax>197</ymax>
+		</bndbox>
+	</object>
+</annotation>

@@ -1,0 +1,26 @@
+<annotation>
+	<folder>total_data</folder>
+	<filename>colorful-drawing-beautiful-flower-260nw-302152709.jpg</filename>
+	<path>C:\Users\ssafy\shutterscrape\total_data\colorful-drawing-beautiful-flower-260nw-302152709.jpg</path>
+	<source>
+		<database>Unknown</database>
+	</source>
+	<size>
+		<width>195</width>
+		<height>280</height>
+		<depth>3</depth>
+	</size>
+	<segmented>0</segmented>
+	<object>
+		<name>flower</name>
+		<pose>Unspecified</pose>
+		<truncated>0</truncated>
+		<difficult>0</difficult>
+		<bndbox>
+			<xmin>44</xmin>
+			<ymin>27</ymin>
+			<xmax>157</xmax>
+			<ymax>206</ymax>
+		</bndbox>
+	</object>
+</annotation>

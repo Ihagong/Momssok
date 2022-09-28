@@ -1,0 +1,26 @@
+<annotation>
+	<folder>animals</folder>
+	<filename>animal-going-school-cartoon-theme-260nw-316676861.jpg</filename>
+	<path>C:\Users\82106\Downloads\animals\animals\animal-going-school-cartoon-theme-260nw-316676861.jpg</path>
+	<source>
+		<database>Unknown</database>
+	</source>
+	<size>
+		<width>260</width>
+		<height>280</height>
+		<depth>3</depth>
+	</size>
+	<segmented>0</segmented>
+	<object>
+		<name>animal</name>
+		<pose>Unspecified</pose>
+		<truncated>0</truncated>
+		<difficult>0</difficult>
+		<bndbox>
+			<xmin>81</xmin>
+			<ymin>42</ymin>
+			<xmax>174</xmax>
+			<ymax>131</ymax>
+		</bndbox>
+	</object>
+</annotation>

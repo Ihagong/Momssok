@@ -24,6 +24,10 @@ wheels/
 .idea/
 pip-wheel-metadata/
 share/python-wheels/
+<<<<<<< HEAD
+check/
+=======
+>>>>>>> 4e104372d1e290df05ee475f908550df18738092
 *.egg-info/
 .installed.cfg
 *.egg
@@ -123,7 +127,7 @@ venv.bak/
 /site
 /dataset
 /check
-
+check/
 # mypy
 .mypy_cache/
 .dmypy.json
