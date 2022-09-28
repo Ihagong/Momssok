@@ -45,7 +45,7 @@ public class DrawingServiceImpl implements DrawingService{
 
 
 //    @Async  //스레드 사용
-//    public Map<Boolean,Object> detection(MultipartFile file) {
+//    public void detection(MultipartFile file) {
 //
 //        Map<Boolean,Object> result = new HashMap<>();
 //
@@ -64,7 +64,7 @@ public class DrawingServiceImpl implements DrawingService{
 //
 //        JSONObject jObject = new JSONObject(response.getBody());
 //        JSONObject tag = jObject.getJSONObject("tag");  //객체 이름
-//        Map cord = new ObjectMapper().readValue(tag.toString(), Map.class);  //좌표
+//        Map cord = new ObjectMapper().readValue(tag.toString(), Map.class);  //좌표 x
 //        System.out.println("태그 저장");
 //
 //    }
