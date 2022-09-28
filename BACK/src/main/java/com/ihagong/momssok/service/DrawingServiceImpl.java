@@ -1,9 +1,19 @@
 package com.ihagong.momssok.service;
 
 import com.ihagong.momssok.mapper.DrawingMapper;
+import com.ihagong.momssok.model.dto.DrawingApiDto;
 import com.ihagong.momssok.model.dto.DrawingDto;
+import com.ihagong.momssok.model.dto.DrawingOutDto;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.util.LinkedMultiValueMap;
+import org.springframework.util.MultiValueMap;
+import org.springframework.web.client.RestTemplate;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
@@ -24,7 +34,40 @@ public class DrawingServiceImpl implements DrawingService{
     }
 
     @Override
-    public int deleteDrawing(String email) throws Exception {
-        return drawingMapper.deleteDrawing(email);
+    public int saveDrawing(DrawingDto drawingDto) throws Exception {
+        return drawingMapper.saveDrawing(drawingDto);
+    }
+
+    public void detection(MultipartFile file) {
+
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.MULTIPART_FORM_DATA);
+
+        MultiValueMap<String, Object> body = new LinkedMultiValueMap<>();
+        body.add("file", file.getResource());
+
+        HttpEntity<MultiValueMap<String, Object>> requestEntity = new HttpEntity<>(body, headers);
+        RestTemplate restTemplate = new RestTemplate();
+        System.out.println("test");
+
+        ResponseEntity<String> response = restTemplate
+                .postForEntity("http://j7d203.p.ssafy.io:8003/tag", requestEntity, String.class);
+
+        //받은 데이터 시리얼라이즈
+    }
+
+    @Override
+    public int updateDrawing(DrawingApiDto drawing) throws Exception {
+        return drawingMapper.updateDrawing(drawing);
+    }
+
+    @Override
+    public String getDrawing(int drawing_id) throws Exception {
+        return drawingMapper.getDrawing(drawing_id);
+    }
+
+    @Override
+    public int deleteDrawing(DrawingOutDto drawing) throws Exception {
+        return drawingMapper.deleteDrawing(drawing);
     }
 }
