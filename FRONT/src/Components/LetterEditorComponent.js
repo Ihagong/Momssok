@@ -2,17 +2,19 @@ import { useEffect, useRef, useState } from "react"
 import { useNavigate } from "react-router-dom"
 
 import { useRecoilState } from 'recoil'
-import { totalLetterListState, LetterIdState } from '../store/atoms'
-
+import { totalLetterListState, profileInfoState } from '../store/atoms'
+import { useLetterCallback } from '../Functions/useLetterCallback'
 
 import { LogoTag, EditorBody, LetterTitleBody, LetterTitleDiv, LetterTitleInput, LetterContentBody, LetterContentDiv, LetterContentTextArea, LetterEditorComponentBody, LetterButton, LetterButtonBack, LetterButtonGo, LetterButtonDel } from "../Style/Components"
 import { getStringDate } from "../util/date"
 
-const LetterEditorComponent = ({ isDetail, originData }) => {
+const LetterEditorComponent = ({ isDetail, letterItem }) => {
   const navigate = useNavigate()
 
   const [letterList, setLetterList] = useRecoilState(totalLetterListState)
-  const [letterId, setLetterId] = useRecoilState(LetterIdState)
+  const [profileInfo, setProfileInfo] = useRecoilState(profileInfoState)
+
+  const { letterSendCallback } = useLetterCallback()
 
   const receiverRef = useRef()
   const titleRef = useRef()
@@ -23,21 +25,13 @@ const LetterEditorComponent = ({ isDetail, originData }) => {
   const [title, setTitle] = useState("")
   const [content, setContent] = useState("")
   const [date, setDate] = useState("")
+  const [author, setAuthor] = useState("")
+
+  setAuthor(profileInfo["name"])
 
   // CREATE
   const onCreate = (receiver, title, content) => {
-    setLetterList([
-      {
-        letterId: letterId,
-        date: new Date().getTime(),
-        author: "다은이",
-        receiver,
-        title,
-        content,
-      }, ...letterList
-    ])
-    setLetterId(letterId + 1)
-
+    letterSendCallback(author, receiver, title, content)
   }
   // REMOVE
   const onRemove = (targetId) => {
@@ -59,7 +53,6 @@ const LetterEditorComponent = ({ isDetail, originData }) => {
       return
     } {
       if (!isDetail) {
-        setLetterId(letterId + 1)
         onCreate(receiver, title, content)
       } else {
         navigate("/letter/create", { replace: true })
@@ -71,19 +64,19 @@ const LetterEditorComponent = ({ isDetail, originData }) => {
 
   const handleRemove = () => {
     if (window.confirm("정말 삭제하시겠습니까?")) {
-      onRemove(originData.letterId)
+      // onRemove(letterItem.letter_id)
       navigate("/letter", { replace: true })
     }
   }
 
   useEffect(() => {
     if (isDetail) {
-      setReceiver(originData.receiver);
-      setTitle(originData.title);
-      setContent(originData.content);
-      setDate(getStringDate(new Date(parseInt(originData.date))))
+      setReceiver(letterItem.receiver);
+      setTitle(letterItem.title);
+      setContent(letterItem.content);
+      setDate(getStringDate(new Date(parseInt(letterItem.date))))
     }
-  }, [isDetail, originData]);
+  }, [isDetail, letterItem]);
   
   return (
     <LetterEditorComponentBody>
@@ -94,7 +87,7 @@ const LetterEditorComponent = ({ isDetail, originData }) => {
       <EditorBody>
         <LetterTitleBody>
           <div>{isDetail ? "시간 : " : "누가 : "}</div>
-          <LetterTitleDiv>{isDetail ? date : "다은이"}</LetterTitleDiv>
+          <LetterTitleDiv>{isDetail ? date : author}</LetterTitleDiv>
         </LetterTitleBody>
 
         <LetterTitleBody>
