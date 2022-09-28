@@ -15,4 +15,4 @@ RUN pip install fastapi
 RUN pip install torch
 #RUN pip install -r requirements.txt
 
-CMD uvicorn --host=0.0.0.0 --port 8004 fastApi:app
+CMD uvicorn --host=0.0.0.0 --port 8002 fastApi:app
