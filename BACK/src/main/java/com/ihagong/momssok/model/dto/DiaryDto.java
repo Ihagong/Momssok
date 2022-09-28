@@ -11,7 +11,7 @@ public class DiaryDto {
     private String content;
     private String weather;
     private String emotion;
-    private String created_date;  //수정
+    private String date;
     private String tag;
     private int is_temporary_save;
     private int is_deleted_from_child;
