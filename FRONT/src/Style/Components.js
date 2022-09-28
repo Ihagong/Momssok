@@ -719,7 +719,15 @@ export const ProfileSelectedImageTag = styled.div`
   cursor: pointer;
 `
 
+export const WebCamTag = styled.div`
+  cursor: pointer;
+`
 
+export const PointerTag = styled.img`
+  position: absolute;
+  width: 80px;
+  z-index: 2;
+`
 
 
 
