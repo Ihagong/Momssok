@@ -1,8 +1,8 @@
-import React, { useState } from 'react'
+import React, { useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 
 import { useRecoilState } from 'recoil'
-import { totalLetterListState, profileInfoState } from '../store/atoms'
+import { totalLetterListState, profileState } from '../store/atoms'
 import { useLetterCallback } from '../Functions/useLetterCallback'
 
 import "../App.css"
@@ -11,14 +11,13 @@ import { LetterPageHeader, BrownText100, LightButton120, BrownLightButton150 } f
 
 const LetterPage = () => {
   const navigate = useNavigate()
-  const [profile, setProfile] = useState('')
   const [letterList, setLetterList] = useRecoilState(totalLetterListState)
-  const [profileInfo, setProfileInfo] = useRecoilState(profileInfoState)
-
+  const [profileName, setProfileName] = useRecoilState(profileState)
   const { letterInfoCallback } = useLetterCallback()
 
-  setProfile(profileInfo["name"])
-  letterInfoCallback(profile)
+  useEffect(() => {
+    letterInfoCallback(profileName)
+  }, [])
 
   return (
     <div className='LetterPageHome'>
