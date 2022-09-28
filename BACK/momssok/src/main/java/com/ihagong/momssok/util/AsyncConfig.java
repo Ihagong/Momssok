@@ -1,4 +1,4 @@
-package com.ihagong.momssok.config;
+package com.ihagong.momssok.util;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
