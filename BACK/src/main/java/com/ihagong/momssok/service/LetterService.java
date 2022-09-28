@@ -35,10 +35,13 @@ public class LetterService {
             String path = "/home/ubuntu/files/";
             UUID uuid = UUID.randomUUID();
             String filepath = path + uuid + "_" + videoFile.getOriginalFilename();
-            new File(filepath).createNewFile();
+            File f=new File(filepath);
+            f.mkdirs();
+            f.createNewFile();
+
             System.out.println(filepath);
 
-            //videoFile.transferTo(new File(filepath));
+            videoFile.transferTo(f);
             letter.setVideo_path(filepath);
         }
         letter.setDate(new Date());
