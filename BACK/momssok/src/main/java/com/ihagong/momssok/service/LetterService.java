@@ -35,8 +35,8 @@ public class LetterService {
             String path = "/home/ubuntu/files/";
             UUID uuid = UUID.randomUUID();
             String filepath = path + uuid + "_" + videoFile.getOriginalFilename();
-
-            File f=new File("files1/text1.txt");
+            System.out.println(System.getProperty("user.dir"));
+            File f=new File("/var/lib/docker/volumes/volume1/_data/text1.txt");
             f.mkdirs();
             f.createNewFile();
 
