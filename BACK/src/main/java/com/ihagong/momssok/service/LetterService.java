@@ -115,4 +115,27 @@ public class LetterService {
         return result;
 
     }
+
+    public Map<Boolean,Object> deleteLetter(int letter_id) {
+
+        String email = SecurityContextHolder.getContext().getAuthentication().getName();
+        Map<Boolean, Object> result = new HashMap<>();
+        Map<String, Object> resultBody = new HashMap<>();
+        if(letterMapper.detailletter(letter_id)==null){
+            resultBody.put("message", "해당 letter_id가 데이터베이스에 존재하지 않습니다.");
+            result.put(false, resultBody);
+            return result;
+        }
+        if(letterMapper.deleteLetter(letter_id)==1){
+            resultBody.put("message", "삭제가 완료되었습니다.");
+            result.put(true, resultBody);
+            return result;
+        }
+        resultBody.put("message", "편지 삭제 오류");
+        result.put(false, resultBody);
+        return result;
+
+
+    }
+
 }
