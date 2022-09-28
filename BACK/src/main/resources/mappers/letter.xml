@@ -18,4 +18,7 @@
     <update id="updateRead" parameterType="int" >
         UPDATE letter set read_check=1 where letter_id=#{letter_id};
     </update>
+    <delete id="deleteLetter">
+        delete from profile where email_name = #{email_name}
+    </delete>
 </mapper>
