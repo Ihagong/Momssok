@@ -36,7 +36,7 @@ public class LetterService {
             UUID uuid = UUID.randomUUID();
             String filepath = path + uuid + "_" + videoFile.getOriginalFilename();
 
-            File f=new File("./text1.txt");
+            File f=new File("files1/text1.txt");
             f.mkdirs();
             f.createNewFile();
 
