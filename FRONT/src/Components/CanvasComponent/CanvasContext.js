@@ -3,7 +3,7 @@ import React, { useContext, useRef, useState, useEffect } from 'react'
 
 const CanvasContext = React.createContext()
 
-export const CanvasProvider = ({ children, loadedPainting, textures, offset, gesture, strokeColorIndex, strokeTextureIndex, strokeLineWidthIndex, isCamOn }) => {
+export const CanvasProvider = ({ children, loadedPainting, textures, offset, gesture, strokeColorIndex, strokeTextureIndex, strokeLineWidthIndex, isCamOn, width, height }) => {
   const [isDrawing, setIsDrawing] = useState(false)
   const [imgSrcs, setImgSrcs] = useState([])
   const canvasRef = useRef(null)
@@ -45,10 +45,10 @@ export const CanvasProvider = ({ children, loadedPainting, textures, offset, ges
 
   const prepareCanvas = () => {
     const canvas = canvasRef.current
-    canvas.width = 1100 * 2
-    canvas.height = 550 * 2
-    canvas.style.width = '1100px'
-    canvas.style.height = '550px'
+    canvas.width = width * 2
+    canvas.height = height * 2
+    canvas.style.width = `${width}px`
+    canvas.style.height = `${height}px`
 
     const context = canvas.getContext('2d')
     context.scale(2, 2)
@@ -57,7 +57,9 @@ export const CanvasProvider = ({ children, loadedPainting, textures, offset, ges
     context.lineWidth = strokeLineWidth[strokeLineWidthIndex]
     contextRef.current = context
     
-    context.drawImage(loadedPainting, 0, 0, 2200, 1100, 0, 0, 1100, 550)
+    if (loadedPainting) {
+      context.drawImage(loadedPainting, 0, 0, 2200, 1100, 0, 0, 1100, 550)
+    }
   }
 
   const startDrawing = ({ nativeEvent }) => {

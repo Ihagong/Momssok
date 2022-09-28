@@ -766,6 +766,22 @@ export const DictionaryDetailComponentTag = styled.div`
   }
 `
 
+export const PaintingGuideTag = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 500px;
+  height: 550px;
+  color: var(--Brown-Text);
+  font-family: 'Dongle', sans-serif;
+  font-size: 60px;
+  img {
+    height: 400px;
+  }
+`
+
+
 
 
 
