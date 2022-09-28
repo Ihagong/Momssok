@@ -245,6 +245,8 @@ export const ProfileInfoLabelTag = styled.label`
 
 export const ChildMenuTag = styled.div`
   display: flex;
+  align-items: center;
+  margin-top: 30px;
 `
 
 export const ChildMenuTabTag = styled.div`
@@ -254,9 +256,13 @@ export const ChildMenuTabTag = styled.div`
   font-family: 'Dongle', sans-serif;
   width: 170px;
   height: 200px;
+  margin-left: 10px;
+  margin-right: 10px;
   font-size: 60px;
+  font-weight: bold;
   border-radius: 30px;
   background-color: var(--Beige-Light);
+  box-shadow: 0px 5px 5px #E6E6E6;
   align-items: center;
   justify-content: center;
   cursor: pointer;
@@ -272,11 +278,16 @@ export const ChildMenuSelectedTabTag = styled.div`
   display: flex;
   flex-direction: column;
   font-family: 'Dongle', sans-serif;
+  font-weight: bold;
+  margin-top: -10px;
+  margin-left: 10px;
+  margin-right: 10px;
   width: 180px;
   height: 210px;
   font-size: 60px;
   border-radius: 30px;
   background-color: #FF6029CC;
+  box-shadow: 0px 5px 5px #E6E6E6;
   align-items: center;
   justify-content: center;
   cursor: pointer;
@@ -289,6 +300,9 @@ export const ChildMenuSelectedTabTag = styled.div`
 
 export const ChildSubMenuTag = styled.div`
   display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 80px;
 `
 
 export const ChildSubMenuButtonTag = styled.div`
@@ -298,9 +312,13 @@ export const ChildSubMenuButtonTag = styled.div`
   font-family: 'Dongle', sans-serif;
   width: 350px;
   height: 350px;
+  margin-right: 70px;
+  margin-left: 70px;
   font-size: 96px;
+  font-weight: bold;
   border-radius: 50px;
   background-color: var(--Beige-Light);
+  box-shadow: 0px 5px 5px #E6E6E6;
   align-items: center;
   justify-content: center;
   cursor: pointer;
@@ -317,9 +335,13 @@ export const LogoTag = styled.img`
 export const ChildProfileTag = styled.div`
   display: flex;
   flex-direction: column;
+  margin-left: 20px;
+  margin-bottom: -20px;
   align-items: center;
   font-family: 'Dongle', sans-serif;
   font-size: 60px;
+  font-weight: bold;
+  color: var(--Brown-LightText);
   cursor: pointer;
   img {
     height: 130px;

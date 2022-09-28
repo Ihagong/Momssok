@@ -44,7 +44,7 @@ const LetterListComponent = ({ letterList }) => {
       } 
       <div>
         {getProcessedLetterList().map((it) => (
-          <LetterItemComponent key={it.letterId} {...it} />
+          <LetterItemComponent key={it.letter_id} {...it} />
         ))}
       </div>
     </div>
