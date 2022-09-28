@@ -131,16 +131,16 @@ public class DrawingController {
     }
 
     //AI 서버로 그림 분석 결과 요청할 때 그림을 보낸다
-    @GetMapping("/detection")
-    public ResponseEntity<?> detection(@RequestParam MultipartFile file){
-
-        Map<Boolean,Object> result = drawingServiceImpl.detection(file);
-
-        if(result.get(true)!=null)
-            return new ResponseEntity<>(result.get(true), HttpStatus.OK);
-        else
-            return new ResponseEntity<>(result.get(false), HttpStatus.BAD_REQUEST);
-    }
+//    @GetMapping("/detection")
+//    public ResponseEntity<?> detection(@RequestParam MultipartFile file){
+//
+//        Map<Boolean,Object> result = drawingServiceImpl.detection(file);
+//
+//        if(result.get(true)!=null)
+//            return new ResponseEntity<>(result.get(true), HttpStatus.OK);
+//        else
+//            return new ResponseEntity<>(result.get(false), HttpStatus.BAD_REQUEST);
+//    }
 
     @PutMapping("/updateDrawing")
     public Map<String, Object> updateDrawing(@RequestBody DrawingApiDto drawing){  //그림 id, base64, 아이 이름을 받는다
