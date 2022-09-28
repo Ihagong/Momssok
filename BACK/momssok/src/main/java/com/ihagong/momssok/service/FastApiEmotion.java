@@ -37,6 +37,5 @@ public class FastApiEmotion {
         System.out.println("score : "+score);
 
 
-
     }
 }
