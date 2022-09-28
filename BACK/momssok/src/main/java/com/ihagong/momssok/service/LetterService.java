@@ -37,6 +37,7 @@ public class LetterService {
             String filepath = path + uuid + "_" + videoFile.getOriginalFilename();
             new File(filepath).createNewFile();
             System.out.println(filepath);
+
             //videoFile.transferTo(new File(filepath));
             letter.setVideo_path(filepath);
         }
