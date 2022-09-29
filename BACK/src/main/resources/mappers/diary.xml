@@ -1,7 +1,29 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.example.demo.mapper.UserMapper">
+<mapper namespace="com.ihagong.momssok.mapper.DiaryMapper">
+    <select id="lookupCalender" parameterType="DiaryDto" resultType="DiaryDto">
+        SELECT d.id, d.emotion, d.date
+        FROM diary d
+        WHERE email_name = #{email_name} AND d.date LIKE(CONCAT(#{date}, '%'))
+        <if test="is_deleted_from_child != 1">
+            AND is_deleted_from_child = #{is_deleted_from_child}
+        </if>
+    </select>
 
+    <select id="lookupGallery" parameterType="String" resultType="DiaryDto">
+        SELECT d.id, d.drawing_id, d.title, d.content, d.weather, d.emotion, d.date, d.tag
+        FROM diary d
+        WHERE email_name = #{email_name}
+        <if test="is_deleted_from_child != 1">
+            AND is_deleted_from_child = #{is_deleted_from_child}
+        </if>
+    </select>
+
+    <select id="searchDiary" parameterType="String" resultType="DiaryDto">
+        SELECT *
+        FROM diary
+        WHERE title LIKE(CONCAT("%", #{option}, "%"))
+    </select>
 
 </mapper>
