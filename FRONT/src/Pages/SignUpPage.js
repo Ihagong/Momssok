@@ -1,10 +1,11 @@
 import React, { useState } from 'react'
-import { ButtonTag1, ButtonTag2, InputTag1 } from '../Style/Components'
-import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
 import { useAuthCallback } from '../Functions/useAuthCallback'
 import { useRecoilState } from 'recoil'
 import { signUpTokenState } from '../store/atoms'
+
+import { GugiBrown, JuaBrown, JuaBrownLight,  LoginPageBody, ButtonTag1, ButtonTag2, InputTag1 } from '../Style/Components'
+
 
 
 function SignUpPage() {
@@ -49,29 +50,37 @@ function SignUpPage() {
   }
 
   return (
-    <div>
-      <h2>맘쏙 회원가입</h2>
-      <p>지금 회원가입 하신 후</p>
-      <p>맘쏙의 다양한 서비스를 만나보세요.</p>
-      <div style={{ display: 'flex', flexDirection: 'column' }}>
-        <InputTag1 type='text' placeholder='이름' value={username} onChange={(e) => {setUsername(e.target.value)}}/>
-        <span>
-          <InputTag1 type='email' placeholder='이메일' value={email} onChange={(e) => {setEmail(e.target.value)}}/>
-          <ButtonTag2 onClick={handleClickAuth}>인증</ButtonTag2>
-        </span>
-        <span>
-          <InputTag1 type='text' placeholder='인증번호' value={authNumber} onChange={(e) => {setAuthNumber(e.target.value)}}/>
-          <ButtonTag2 onClick={handleClickAuthCheck}>확인</ButtonTag2>
-        </span>
-        <InputTag1 type='password' placeholder='비밀번호' value={password} onChange={(e) => {setPassword(e.target.value)}}/>
-        <p>8-16자의 영문 대소문자, 숫자 또는 특수문자 조합</p>
-        <InputTag1 type='password' placeholder='비밀번호 확인' value={passwordCheck} onChange={(e) => {setPasswordCheck(e.target.value)}}/>
-        { password !== passwordCheck ?
-          <p>비밀번호가 다릅니다.</p>
-        : null }
-        <ButtonTag1 onClick={handleClickSignUp}>회원가입</ButtonTag1>
-      </div>
-    </div>
+    <LoginPageBody>
+      <section style={{marginLeft: "30px", marginTop: "60px"}}>
+        <JuaBrown style={{fontSize: "80px"}}>
+          <GugiBrown style={{marginRight: "20px"}}>맘쏙</GugiBrown>
+          회원가입
+        </JuaBrown>
+        <JuaBrownLight style={{fontSize: "36px"}}>지금 회원가입 하신 후</JuaBrownLight>
+        <JuaBrownLight style={{fontSize: "36px"}}>맘쏙의 다양한 서비스를 만나보세요.</JuaBrownLight>
+        <img style={{marginLeft: "40px", marginTop: "80px"}} src='/icons/mom.svg' />
+      </section>
+      <section style={{marginLeft: "60px", marginTop: "60px"}}>
+        <div style={{ display: 'flex', flexDirection: 'column' }}>
+          <InputTag1 type='text' placeholder='이름' value={username} onChange={(e) => {setUsername(e.target.value)}}/>
+          <span>
+            <InputTag1 type='email' placeholder='이메일' value={email} onChange={(e) => {setEmail(e.target.value)}}/>
+            <ButtonTag2 onClick={handleClickAuth} style={{marginLeft: "15px"}}>인증</ButtonTag2>
+          </span>
+          <span>
+            <InputTag1 type='text' placeholder='인증번호' value={authNumber} onChange={(e) => {setAuthNumber(e.target.value)}}/>
+            <ButtonTag2 onClick={handleClickAuthCheck} style={{marginLeft: "15px"}}>확인</ButtonTag2>
+          </span>
+          <InputTag1 type='password' placeholder='비밀번호' value={password} onChange={(e) => {setPassword(e.target.value)}}/>
+          <JuaBrownLight style={{fontSize: "18px", marginTop: "10px", marginLeft: "50px"}}>8-16자의 영문 대소문자, 숫자 또는 특수문자 조합</JuaBrownLight>
+          <InputTag1 type='password' placeholder='비밀번호 확인' value={passwordCheck} onChange={(e) => {setPasswordCheck(e.target.value)}}/>
+          { password !== passwordCheck ?
+            <JuaBrownLight style={{fontSize: "20px", marginTop: "10px", marginLeft: "110px", marginBottom: "-40px", color: "#ED0000"}}>비밀번호가 일치하지 않습니다.</JuaBrownLight>
+          : null }
+          <ButtonTag1 onClick={handleClickSignUp} style={{marginTop: "70px"}}>회원가입</ButtonTag1>
+        </div>
+      </section>
+    </LoginPageBody>
   );
 }
 

@@ -63,7 +63,8 @@ export const ButtonTag3 = styled.button`
   color: var(--Brown-Text);
   background-color: var(--Beige-Light);
   border-radius: 20px;
-  border: 0;
+  border: none;
+  box-shadow: 0px 5px 5px #E6E6E6;
   font-family: 'Jua', sans-serif;
   font-size: 40px;
   cursor: pointer;
@@ -245,6 +246,8 @@ export const ProfileInfoLabelTag = styled.label`
 
 export const ChildMenuTag = styled.div`
   display: flex;
+  align-items: center;
+  margin-top: 30px;
 `
 
 export const ChildMenuTabTag = styled.div`
@@ -254,9 +257,13 @@ export const ChildMenuTabTag = styled.div`
   font-family: 'Dongle', sans-serif;
   width: 170px;
   height: 200px;
+  margin-left: 10px;
+  margin-right: 10px;
   font-size: 60px;
+  font-weight: bold;
   border-radius: 30px;
   background-color: var(--Beige-Light);
+  box-shadow: 0px 5px 5px #E6E6E6;
   align-items: center;
   justify-content: center;
   cursor: pointer;
@@ -272,11 +279,16 @@ export const ChildMenuSelectedTabTag = styled.div`
   display: flex;
   flex-direction: column;
   font-family: 'Dongle', sans-serif;
+  font-weight: bold;
+  margin-top: -10px;
+  margin-left: 10px;
+  margin-right: 10px;
   width: 180px;
   height: 210px;
   font-size: 60px;
   border-radius: 30px;
   background-color: #FF6029CC;
+  box-shadow: 0px 5px 5px #E6E6E6;
   align-items: center;
   justify-content: center;
   cursor: pointer;
@@ -289,6 +301,9 @@ export const ChildMenuSelectedTabTag = styled.div`
 
 export const ChildSubMenuTag = styled.div`
   display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 80px;
 `
 
 export const ChildSubMenuButtonTag = styled.div`
@@ -298,9 +313,13 @@ export const ChildSubMenuButtonTag = styled.div`
   font-family: 'Dongle', sans-serif;
   width: 350px;
   height: 350px;
+  margin-right: 70px;
+  margin-left: 70px;
   font-size: 96px;
+  font-weight: bold;
   border-radius: 50px;
   background-color: var(--Beige-Light);
+  box-shadow: 0px 5px 5px #E6E6E6;
   align-items: center;
   justify-content: center;
   cursor: pointer;
@@ -317,9 +336,13 @@ export const LogoTag = styled.img`
 export const ChildProfileTag = styled.div`
   display: flex;
   flex-direction: column;
+  margin-left: 20px;
+  margin-bottom: -20px;
   align-items: center;
   font-family: 'Dongle', sans-serif;
   font-size: 60px;
+  font-weight: bold;
+  color: var(--Brown-LightText);
   cursor: pointer;
   img {
     height: 130px;
@@ -719,6 +742,68 @@ export const ProfileSelectedImageTag = styled.div`
   cursor: pointer;
 `
 
+export const WebCamTag = styled.div`
+  cursor: pointer;
+`
+
+export const PointerTag = styled.img`
+  position: absolute;
+  width: 80px;
+  z-index: 2;
+`
+
+export const DictionaryCardComponentTag = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: var(--White-Block);
+  border: 1px solid var(--Beige-Stroke);
+  border-radius: 30px;
+  width: 200px;
+  height: 200px;
+  padding: 20px;
+  color: var(--Brown-Text);
+  font-family: 'Dongle', sans-serif;
+  font-size: 60px;
+  img {
+    height: 130px;
+  }
+  cursor: pointer;
+`
+
+export const DictionaryDetailComponentTag = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: var(--White-Block);
+  border: 1px solid var(--Beige-Stroke);
+  border-radius: 30px;
+  width: 550px;
+  height: 600px;
+  padding: 20px;
+  color: var(--Brown-Text);
+  font-family: 'Dongle', sans-serif;
+  font-size: 60px;
+  img {
+    height: 400px;
+  }
+`
+
+export const PaintingGuideTag = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 500px;
+  height: 550px;
+  color: var(--Brown-Text);
+  font-family: 'Dongle', sans-serif;
+  font-size: 60px;
+  img {
+    height: 400px;
+  }
+`
+
 
 
 
@@ -855,7 +940,6 @@ export const LightButton250 = styled.button`
 `
 
 export const LetterItem = styled.div`
-  background-color: #FDFDF5;
   box-shadow: 0px 5px 5px #E6E6E6;
   width: 1090px;
   height: 100px;
@@ -1064,6 +1148,23 @@ export const LetterButtonDel = styled.button`
   white-space: nowrap;
 `
 
+export const LetterItemTitle = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`
+
+export const LetterEmpty = styled.div`
+  font-family: 'Dongle', sans-serif;
+  font-size: 90px;
+  font-weight: bold;
+  text-align: center;
+  color: var(--Brown-Text);
+  margin-top: 150px;
+  white-space: nowrap;
+`
+
+
 // LoginPage
 export const LoginPageBody = styled.div`
   display: flex;
@@ -1088,3 +1189,34 @@ export const GugiPink = styled.span`
   white-space: nowrap;
 `
 
+export const GugiBrown = styled.span`
+  font-family: 'Gugi', cursive;
+  color: var(--Brown-Text);
+  white-space: nowrap;
+`
+
+// ProfilePage
+
+export const ProfileTitle = styled.section`
+  text-align: center;
+  margin-top: 50px;
+  margin-bottom: 50px;
+`
+
+export const JuaOrange = styled.span`
+  font-family: 'Jua', sans-serif;
+  color: var(--Orange-Text);
+  white-space: nowrap;
+`
+
+export const ProfileBlock = styled.section`
+  display: flex;
+  justify-content: space-evenly;
+  margin-top: 100px;
+`
+
+export const ProfileFooter = styled.section`
+  display: flex;
+  justify-content: center;
+  margin-top: 130px;
+`

@@ -1,8 +1,9 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 
 import { useRecoilState } from 'recoil'
-import { totalLetterListState } from '../store/atoms'
+import { totalLetterListState, profileState } from '../store/atoms'
+import { useLetterCallback } from '../Functions/useLetterCallback'
 
 import "../App.css"
 import LetterListComponent from '../Components/LetterListComponent'
@@ -11,9 +12,12 @@ import { LetterPageHeader, BrownText100, LightButton120, BrownLightButton150 } f
 const LetterPage = () => {
   const navigate = useNavigate()
   const [letterList, setLetterList] = useRecoilState(totalLetterListState)
+  const [profileName, setProfileName] = useRecoilState(profileState)
+  const { letterInfoCallback } = useLetterCallback()
 
-  const filterList = letterList.filter((it) => it.receiver === "찬석이")
-
+  useEffect(() => {
+    letterInfoCallback(profileName)
+  }, [])
 
   return (
     <div className='LetterPageHome'>
@@ -24,7 +28,7 @@ const LetterPage = () => {
         <BrownText100>편지 읽기</BrownText100>
 
       </LetterPageHeader>
-      <LetterListComponent letterList={filterList} />
+      <LetterListComponent letterList={letterList} />
     </div>
 
   )
