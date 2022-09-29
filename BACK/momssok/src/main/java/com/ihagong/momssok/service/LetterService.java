@@ -14,13 +14,12 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
-import static com.ihagong.momssok.util.Time.getTime;
 
 @Service
 @RequiredArgsConstructor
 public class LetterService {
     private final LetterMapper letterMapper;
-    public Map<Boolean,Object> sendLetter(MultipartFile videoFile, String send_from, String send_to, String title, String content) throws IOException, ParseException {
+    public Map<Boolean,Object> sendLetter(MultipartFile videoFile, String send_from, String send_to, String title, String content) throws IOException {
         String email= SecurityContextHolder.getContext().getAuthentication().getName();
         Map<Boolean, Object> result = new HashMap<>();
         Map<String, String> resultBody = new HashMap<>();
@@ -53,7 +52,7 @@ public class LetterService {
             letter.setVideo_path(filepath);
         }
 
-        letter.setDate(getTime());
+        letter.setDate(new Date());
         if(letter.getSend_from().contains(email)&&letter.getSend_to().contains(email)) {
             if (letterMapper.saveLetter(letter) == 1) {
                 resultBody.put("Messege", "편지 전송 완료");
