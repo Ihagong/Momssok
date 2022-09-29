@@ -1,0 +1,26 @@
+<annotation>
+	<folder>sky</folder>
+	<filename>icon-hand-draw-style-drawing-260nw-2094547777.jpg</filename>
+	<path>C:\Users\ssafy\shutterscrape\sky\icon-hand-draw-style-drawing-260nw-2094547777.jpg</path>
+	<source>
+		<database>Unknown</database>
+	</source>
+	<size>
+		<width>260</width>
+		<height>280</height>
+		<depth>3</depth>
+	</size>
+	<segmented>0</segmented>
+	<object>
+		<name>star</name>
+		<pose>Unspecified</pose>
+		<truncated>0</truncated>
+		<difficult>0</difficult>
+		<bndbox>
+			<xmin>24</xmin>
+			<ymin>128</ymin>
+			<xmax>124</xmax>
+			<ymax>234</ymax>
+		</bndbox>
+	</object>
+</annotation>

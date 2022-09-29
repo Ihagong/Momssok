@@ -1,0 +1,26 @@
+<annotation>
+	<folder>sky</folder>
+	<filename>cute-red-flower-crayon-hand-260nw-2189097813.jpg</filename>
+	<path>C:\Users\ssafy\shutterscrape\sky\cute-red-flower-crayon-hand-260nw-2189097813.jpg</path>
+	<source>
+		<database>Unknown</database>
+	</source>
+	<size>
+		<width>347</width>
+		<height>280</height>
+		<depth>3</depth>
+	</size>
+	<segmented>0</segmented>
+	<object>
+		<name>flower</name>
+		<pose>Unspecified</pose>
+		<truncated>0</truncated>
+		<difficult>0</difficult>
+		<bndbox>
+			<xmin>64</xmin>
+			<ymin>26</ymin>
+			<xmax>311</xmax>
+			<ymax>246</ymax>
+		</bndbox>
+	</object>
+</annotation>

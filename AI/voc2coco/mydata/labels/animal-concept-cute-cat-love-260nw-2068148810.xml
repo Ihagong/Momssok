@@ -1,0 +1,26 @@
+<annotation>
+	<folder>animals</folder>
+	<filename>animal-concept-cute-cat-love-260nw-2068148810.jpg</filename>
+	<path>C:\Users\82106\Downloads\animals\animals\animal-concept-cute-cat-love-260nw-2068148810.jpg</path>
+	<source>
+		<database>Unknown</database>
+	</source>
+	<size>
+		<width>239</width>
+		<height>280</height>
+		<depth>3</depth>
+	</size>
+	<segmented>0</segmented>
+	<object>
+		<name>cat</name>
+		<pose>Unspecified</pose>
+		<truncated>1</truncated>
+		<difficult>0</difficult>
+		<bndbox>
+			<xmin>46</xmin>
+			<ymin>1</ymin>
+			<xmax>182</xmax>
+			<ymax>190</ymax>
+		</bndbox>
+	</object>
+</annotation>

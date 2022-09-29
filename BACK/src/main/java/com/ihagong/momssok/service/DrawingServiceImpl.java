@@ -2,9 +2,7 @@ package com.ihagong.momssok.service;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.ihagong.momssok.mapper.DrawingMapper;
-import com.ihagong.momssok.model.dto.DrawingApiDto;
-import com.ihagong.momssok.model.dto.DrawingDto;
-import com.ihagong.momssok.model.dto.DrawingOutDto;
+import com.ihagong.momssok.model.dto.*;
 import lombok.RequiredArgsConstructor;
 import org.json.JSONObject;
 import org.springframework.http.HttpEntity;
@@ -12,12 +10,17 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.scheduling.annotation.Async;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -43,9 +46,14 @@ public class DrawingServiceImpl implements DrawingService{
         return drawingMapper.saveDrawing(drawingDto);
     }
 
+    @Override
+    public int getImageId(String email_name) throws Exception {
+        return drawingMapper.getImageId(email_name);
+    }
+
 
 //    @Async  //스레드 사용
-//    public Map<Boolean,Object> detection(MultipartFile file) {
+//    public void detection(MultipartFile file) {
 //
 //        Map<Boolean,Object> result = new HashMap<>();
 //
@@ -64,7 +72,7 @@ public class DrawingServiceImpl implements DrawingService{
 //
 //        JSONObject jObject = new JSONObject(response.getBody());
 //        JSONObject tag = jObject.getJSONObject("tag");  //객체 이름
-//        Map cord = new ObjectMapper().readValue(tag.toString(), Map.class);  //좌표
+//        Map cord = new ObjectMapper().readValue(tag.toString(), Map.class);  //좌표 x
 //        System.out.println("태그 저장");
 //
 //    }
@@ -83,4 +91,5 @@ public class DrawingServiceImpl implements DrawingService{
     public int deleteDrawing(DrawingOutDto drawing) throws Exception {
         return drawingMapper.deleteDrawing(drawing);
     }
+
 }

@@ -1,0 +1,26 @@
+<annotation>
+	<folder>car</folder>
+	<filename>childrens-machine-260nw-252422902.jpg</filename>
+	<path>C:\Users\ssafy\shutterscrape\car\childrens-machine-260nw-252422902.jpg</path>
+	<source>
+		<database>Unknown</database>
+	</source>
+	<size>
+		<width>435</width>
+		<height>280</height>
+		<depth>3</depth>
+	</size>
+	<segmented>0</segmented>
+	<object>
+		<name>car</name>
+		<pose>Unspecified</pose>
+		<truncated>0</truncated>
+		<difficult>0</difficult>
+		<bndbox>
+			<xmin>29</xmin>
+			<ymin>30</ymin>
+			<xmax>408</xmax>
+			<ymax>228</ymax>
+		</bndbox>
+	</object>
+</annotation>

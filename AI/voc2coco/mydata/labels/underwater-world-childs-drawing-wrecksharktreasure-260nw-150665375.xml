@@ -1,0 +1,26 @@
+<annotation>
+	<folder>person1</folder>
+	<filename>underwater-world-childs-drawing-wrecksharktreasure-260nw-150665375.jpg</filename>
+	<path>C:\Users\multicampus\Downloads\특화프로젝트\person1\person1\underwater-world-childs-drawing-wrecksharktreasure-260nw-150665375.jpg</path>
+	<source>
+		<database>Unknown</database>
+	</source>
+	<size>
+		<width>368</width>
+		<height>280</height>
+		<depth>3</depth>
+	</size>
+	<segmented>0</segmented>
+	<object>
+		<name>fish</name>
+		<pose>Unspecified</pose>
+		<truncated>0</truncated>
+		<difficult>0</difficult>
+		<bndbox>
+			<xmin>180</xmin>
+			<ymin>18</ymin>
+			<xmax>343</xmax>
+			<ymax>126</ymax>
+		</bndbox>
+	</object>
+</annotation>

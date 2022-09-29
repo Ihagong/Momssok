@@ -1,0 +1,26 @@
+<annotation>
+	<folder>animals</folder>
+	<filename>cartoon-animal-mouse-cheese-bow-260nw-1162461775.jpg</filename>
+	<path>C:\Users\82106\Downloads\animals\animals\cartoon-animal-mouse-cheese-bow-260nw-1162461775.jpg</path>
+	<source>
+		<database>Unknown</database>
+	</source>
+	<size>
+		<width>645</width>
+		<height>280</height>
+		<depth>3</depth>
+	</size>
+	<segmented>0</segmented>
+	<object>
+		<name>animal</name>
+		<pose>Unspecified</pose>
+		<truncated>0</truncated>
+		<difficult>0</difficult>
+		<bndbox>
+			<xmin>141</xmin>
+			<ymin>44</ymin>
+			<xmax>318</xmax>
+			<ymax>230</ymax>
+		</bndbox>
+	</object>
+</annotation>

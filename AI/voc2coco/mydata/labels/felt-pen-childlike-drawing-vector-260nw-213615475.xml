@@ -1,0 +1,26 @@
+<annotation>
+	<folder>sky</folder>
+	<filename>felt-pen-childlike-drawing-vector-260nw-213615475.jpg</filename>
+	<path>C:\Users\ssafy\shutterscrape\sky\felt-pen-childlike-drawing-vector-260nw-213615475.jpg</path>
+	<source>
+		<database>Unknown</database>
+	</source>
+	<size>
+		<width>381</width>
+		<height>280</height>
+		<depth>3</depth>
+	</size>
+	<segmented>0</segmented>
+	<object>
+		<name>rainbow</name>
+		<pose>Unspecified</pose>
+		<truncated>0</truncated>
+		<difficult>0</difficult>
+		<bndbox>
+			<xmin>21</xmin>
+			<ymin>33</ymin>
+			<xmax>363</xmax>
+			<ymax>207</ymax>
+		</bndbox>
+	</object>
+</annotation>

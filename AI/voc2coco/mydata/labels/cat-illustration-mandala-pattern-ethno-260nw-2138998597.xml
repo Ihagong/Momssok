@@ -1,0 +1,26 @@
+<annotation>
+	<folder>total_data</folder>
+	<filename>cat-illustration-mandala-pattern-ethno-260nw-2138998597.jpg</filename>
+	<path>C:\Users\ssafy\shutterscrape\total_data\cat-illustration-mandala-pattern-ethno-260nw-2138998597.jpg</path>
+	<source>
+		<database>Unknown</database>
+	</source>
+	<size>
+		<width>260</width>
+		<height>280</height>
+		<depth>3</depth>
+	</size>
+	<segmented>0</segmented>
+	<object>
+		<name>cat</name>
+		<pose>Unspecified</pose>
+		<truncated>0</truncated>
+		<difficult>0</difficult>
+		<bndbox>
+			<xmin>83</xmin>
+			<ymin>50</ymin>
+			<xmax>197</xmax>
+			<ymax>232</ymax>
+		</bndbox>
+	</object>
+</annotation>
