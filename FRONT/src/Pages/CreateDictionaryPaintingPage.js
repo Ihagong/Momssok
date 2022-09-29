@@ -202,7 +202,7 @@ function CreatePaintingPage(props) {
   // var abTop = window.pageYOffset + target.getBoundingClientRect().top;
 
   // console.log((window.innerWidth-1100)/2, window.innerHeight-200)
-  const order = ['head', 'body', 'tail']
+  const order = ['tail', 'body', 'head']
   const name = 'elephant'
   return (
     <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
@@ -216,13 +216,12 @@ function CreatePaintingPage(props) {
           strokeColorIndex={strokeColorIndex} changeStrokeColor={changeStrokeColor} onClick={() => setModalOpen(false)} />
         <div style={{ display: 'flex' }}>
           <>
-            { isDone ?
               <div style={{ position: 'absolute' }}>
                 {dictionaryPaintingList.map((paintingInfo, index) => {
-                  return <img className={'elephant'+paintingInfo.part.charAt(0).toUpperCase() + paintingInfo.part.slice(1)} style={{ position: 'absolute', width: '500px' }} src={paintingInfo.url}></img>
+                  return <img className={'elephant'+paintingInfo.part.charAt(0).toUpperCase() + paintingInfo.part.slice(1)}
+                    style={{ position: 'absolute', width: '500px', pointerEvents: 'none' }} src={paintingInfo.url}></img>
                 })}
               </div>
-            : null }
             <CanvasComponent />
             <img style={{ position: 'absolute', opacity: '0.1', pointerEvents: 'none', width: '500px' }} src={`/images/${name}/${name}_${order[partIndex]}.svg`}></img>
           </>
