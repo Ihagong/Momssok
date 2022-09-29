@@ -4,13 +4,11 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.io.Serializable;
-import java.util.List;
 
 @Getter
 @Setter
-public class PromiseItemDto implements Serializable {
+public class PromiseInnerItemDto  implements Serializable{
     private int id;
-    private List<PromiseInnerItemDto> todoList;
+    private String todo;
     private int done;
-    private String gift;
 }
