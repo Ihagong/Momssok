@@ -17,7 +17,6 @@ function ManageProfilePage() {
   const { logOutCallback, profileInfoCallback } = useAuthCallback()
 
   const handleClickManageProfileButton = () => {
-    // navigate('/')
     setIsEditProfile(!isEditProfile)
   }
 
@@ -27,6 +26,7 @@ function ManageProfilePage() {
 
   const handleClickChildProfile = (info) => {
     if (isEditProfile) {
+      console.log(info)
       navigate('/profile/edit', { state: info })
     } else {
       navigate('/parent')
@@ -47,13 +47,13 @@ function ManageProfilePage() {
         { profileInfo?.map((info, index) => {if (!info.is_parent) {
           return <ChildProfileComponent key={index} info={info} handleClickChildProfile={handleClickChildProfile} />
         }})}
-        <CreateProfileComponent />
+        { profileInfo.length < 5 ?
+          <CreateProfileComponent />
+          : null }
       </div>
       { isEditProfile ?
         <ButtonTag4 style={{ width: '400px' }} onClick={handleClickManageProfileButton}>프로필 수정 완료</ButtonTag4>
         : <ButtonTag3 style={{ width: '400px' }} onClick={handleClickManageProfileButton}>프로필 수정 및 삭제</ButtonTag3> }
-      
-      
       <ButtonTag3 onClick={handleClickEditAccountButton}>회원 수정</ButtonTag3>
     </>
   );

@@ -11,7 +11,7 @@ function EditProfilePage() {
   const [year, setYear] = useState(beforeBirthday.getFullYear())
   const [month, setMonth] = useState(beforeBirthday.getMonth()+1)
   const [day, setDay] = useState(beforeBirthday.getDate())
-  const [selectedImageIndex, setSelectedImageIndex] = useState(state.selectedImageIndex)
+  const [selectedImageIndex, setSelectedImageIndex] = useState(Number(state.image_num))
 
   const { updateProfileCallback, deleteProfileCallback } = useAuthCallback()
 
@@ -59,18 +59,18 @@ function EditProfilePage() {
       <ProfileInfoLabelTag>캐릭터</ProfileInfoLabelTag>
       <p>캐릭터 이미지</p>
       <span>
-        { selectedImageIndex === 0 ? <ProfileSelectedImageTag><img src='/images/profile.png' /></ProfileSelectedImageTag>
-          :  <ProfileImageTag onClick={() => setSelectedImageIndex(0)}><img src='/images/profile.png' /></ProfileImageTag> }
-        { selectedImageIndex === 1 ? <ProfileSelectedImageTag><img src='/images/profile.png' /></ProfileSelectedImageTag>
-          :  <ProfileImageTag onClick={() => setSelectedImageIndex(1)}><img src='/images/profile.png' /></ProfileImageTag> }
-        { selectedImageIndex === 2 ? <ProfileSelectedImageTag><img src='/images/profile.png' /></ProfileSelectedImageTag>
-          :  <ProfileImageTag onClick={() => setSelectedImageIndex(2)}><img src='/images/profile.png' /></ProfileImageTag> }
-        { selectedImageIndex === 3 ? <ProfileSelectedImageTag><img src='/images/profile.png' /></ProfileSelectedImageTag>
-          :  <ProfileImageTag onClick={() => setSelectedImageIndex(3)}><img src='/images/profile.png' /></ProfileImageTag> }
-        { selectedImageIndex === 4 ? <ProfileSelectedImageTag><img src='/images/profile.png' /></ProfileSelectedImageTag>
-          :  <ProfileImageTag onClick={() => setSelectedImageIndex(4)}><img src='/images/profile.png' /></ProfileImageTag> }
-        { selectedImageIndex === 5 ? <ProfileSelectedImageTag><img src='/images/profile.png' /></ProfileSelectedImageTag>
-          :  <ProfileImageTag onClick={() => setSelectedImageIndex(5)}><img src='/images/profile.png' /></ProfileImageTag> }
+        { selectedImageIndex === 0 ? <ProfileSelectedImageTag><img src='/images/profileImage_0.png' /></ProfileSelectedImageTag>
+          :  <ProfileImageTag onClick={() => setSelectedImageIndex(0)}><img src='/images/profileImage_0.png' /></ProfileImageTag> }
+        { selectedImageIndex === 1 ? <ProfileSelectedImageTag><img src='/images/profileImage_1.png' /></ProfileSelectedImageTag>
+          :  <ProfileImageTag onClick={() => setSelectedImageIndex(1)}><img src='/images/profileImage_1.png' /></ProfileImageTag> }
+        { selectedImageIndex === 2 ? <ProfileSelectedImageTag><img src='/images/profileImage_2.png' /></ProfileSelectedImageTag>
+          :  <ProfileImageTag onClick={() => setSelectedImageIndex(2)}><img src='/images/profileImage_2.png' /></ProfileImageTag> }
+        { selectedImageIndex === 3 ? <ProfileSelectedImageTag><img src='/images/profileImage_3.png' /></ProfileSelectedImageTag>
+          :  <ProfileImageTag onClick={() => setSelectedImageIndex(3)}><img src='/images/profileImage_3.png' /></ProfileImageTag> }
+        { selectedImageIndex === 4 ? <ProfileSelectedImageTag><img src='/images/profileImage_4.png' /></ProfileSelectedImageTag>
+          :  <ProfileImageTag onClick={() => setSelectedImageIndex(4)}><img src='/images/profileImage_4.png' /></ProfileImageTag> }
+        { selectedImageIndex === 5 ? <ProfileSelectedImageTag><img src='/images/profileImage_5.png' /></ProfileSelectedImageTag>
+          :  <ProfileImageTag onClick={() => setSelectedImageIndex(5)}><img src='/images/profileImage_5.png' /></ProfileImageTag> }
       </span>
       <span>
         <ButtonTag3 onClick={handleClickPrevPage}>이전</ButtonTag3>
