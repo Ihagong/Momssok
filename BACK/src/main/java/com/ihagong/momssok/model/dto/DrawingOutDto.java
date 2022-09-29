@@ -7,5 +7,6 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class DrawingOutDto {
     private int drawing_id;
-    private String email;
+    private String name;
+    private String email_name;
 }
