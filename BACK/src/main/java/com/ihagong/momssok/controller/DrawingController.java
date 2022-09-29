@@ -31,6 +31,7 @@ public class DrawingController {
     private final DrawingService drawingService;
     private final DrawingServiceImpl drawingServiceImpl;
 
+
     @GetMapping("/searchDrawing")
     public Map<String, Object> lookupAllDrawing(@RequestParam String name){
         Map<String, Object> result = new HashMap<>();
@@ -54,6 +55,7 @@ public class DrawingController {
         return result;
     }
 
+
     @GetMapping("/detailDrawing")
     public Map<String, Object> lookupDrawing(@RequestParam int drawing_id){
         Map<String, Object> result = new HashMap<>();
@@ -74,6 +76,7 @@ public class DrawingController {
         return result;
     }
 
+
     @PostMapping("/saveDrawing")
     public Map<String, Object> saveDrawing(  //프론트에서 base64를 받아 이미지로 변환시킨 뒤 db에 저장, ai 서버로 보내서 태그랑 같이 받아와 저장
             @RequestBody DrawingDto drawing){  //base64 문자열, 아이 이름
@@ -82,7 +85,6 @@ public class DrawingController {
 
         String base64Source = drawing.getDrawing_base64();
         String base64 = base64Source.split(",")[1];
-        System.out.println(base64);
 
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyyMMdd");
         String fileName = simpleDateFormat.format(new Date());  //파일명
@@ -131,9 +133,10 @@ public class DrawingController {
         return result;
     }
 
+
     //AI 서버로 그림 분석 결과 요청할 때 그림을 보낸다
 //    @GetMapping("/detection")
-//    public ResponseEntity<?> detection(@RequestParam MultipartFile file){
+//    public ResponseEntity<?> detection(@RequestParam MultipartFile file){  //image_path에서 파일명을 잘라서 쓸까?
 //
 //        Map<Boolean,Object> result = drawingServiceImpl.detection(file);
 //
@@ -142,6 +145,20 @@ public class DrawingController {
 //        else
 //            return new ResponseEntity<>(result.get(false), HttpStatus.BAD_REQUEST);
 //    }
+
+
+    @GetMapping("/getDrawing")  //이미지를 base64로 인코딩하여 프론트에 보내기
+    public String getBase64(@RequestParam int drawing_id) throws Exception {
+
+        String painting = drawingService.getDrawing(drawing_id);  //이미지를 가져온다
+
+        byte[] file = FileUtils.readFileToByteArray(new File(painting));  //bytearray로 변환
+        String base64 = Base64.getEncoder().encodeToString(file);  //base64로 인코딩
+
+//        return base64;
+        return "date:image/png;base64," + base64;
+    }
+
 
     @PutMapping("/updateDrawing")
     public Map<String, Object> updateDrawing(@RequestBody DrawingApiDto drawing){  //그림 id, base64, 아이 이름을 받는다
@@ -167,40 +184,35 @@ public class DrawingController {
             UUID uuid = UUID.randomUUID();  //파일명 중복 방지용 식별자
             String filePath = path + fileName + "_" + uuid + ".png";
 
-            //base64를 이미지 파일로 변환하고 저장한다.
-            byte[] imageBytes = Base64.getDecoder().decode(base64
-                    .replace('-', '+')
-                    .replace('_', '/'));
-//            byte[] imageBytes = Base64Utils.decodeFromUrlSafeString(base64);
+            ByteArrayResource resource = new ByteArrayResource(javax.xml.bind.DatatypeConverter.parseBase64Binary(base64));
+            File targetFile = new File(filePath);
+            java.nio.file.Files.copy(
+                    resource.getInputStream(),
+                    targetFile.toPath(),
+                    StandardCopyOption.REPLACE_EXISTING);
+            IOUtils.closeQuietly(resource.getInputStream());
 
-            FileOutputStream fileOutputStream = new FileOutputStream(filePath);
-            fileOutputStream.write(imageBytes);
-            fileOutputStream.close();
-
-            drawing.setImage_path(filePath);
-            int res = drawingService.updateDrawing(drawing);  //수정하려는 사용자가 현재 사용자와 일치한지 확인
-            if(res == 1){
-                result.put("status", success);
-            }else{
-                result.put("status", fail);
+            try {
+                drawing.setImage_path(filePath);
+                int res = drawingService.updateDrawing(drawing);  //수정하려는 사용자가 현재 사용자와 일치한지 확인
+                if(res == 1){
+                    result.put("status", success);
+                }else{
+                    result.put("status", fail);
+                }
+            } catch (Exception e) {
+                result.put("status", error);
+                result.put("message", e.toString());
             }
+
         } catch (Exception e) {
             result.put("status", error);
             result.put("message", e.toString());
         }
         return result;
+
     }
 
-    @GetMapping("/getDrawing")  //이미지를 base64로 인코딩하여 프론트에 보내기
-    public String getBase64(@RequestParam int drawing_id) throws Exception {
-
-        String painting = drawingService.getDrawing(drawing_id);  //이미지를 가져온다
-
-        byte[] file = FileUtils.readFileToByteArray(new File(painting));  //bytearray로 변환
-        String base64 = Base64.getEncoder().encodeToString(file);  //base64로 인코딩
-
-        return base64;
-    }
 
     @DeleteMapping("/deleteDrawing")
     public Map<String, Object> deleteDrawing(@RequestBody DrawingOutDto drawing){
