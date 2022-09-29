@@ -1,19 +1,21 @@
 package com.ihagong.momssok.controller;
 
-import com.ihagong.momssok.model.dto.*;
+import com.ihagong.momssok.model.dto.DrawingApiDto;
+import com.ihagong.momssok.model.dto.DrawingDto;
+import com.ihagong.momssok.model.dto.DrawingOutDto;
 import com.ihagong.momssok.service.DrawingService;
 import com.ihagong.momssok.service.DrawingServiceImpl;
 import lombok.RequiredArgsConstructor;
 import org.apache.commons.io.FileUtils;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
+import org.apache.tomcat.util.http.fileupload.IOUtils;
+import org.springframework.core.io.ByteArrayResource;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
 import java.io.FileOutputStream;
-import java.io.IOException;
+import java.nio.file.StandardCopyOption;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
@@ -74,7 +76,7 @@ public class DrawingController {
 
     @PostMapping("/saveDrawing")
     public Map<String, Object> saveDrawing(  //프론트에서 base64를 받아 이미지로 변환시킨 뒤 db에 저장, ai 서버로 보내서 태그랑 같이 받아와 저장
-                                             @RequestBody DrawingDto drawing){  //base64 문자열, 아이 이름
+            @RequestBody DrawingDto drawing){  //base64 문자열, 아이 이름
 
         Map<String, Object> result = new HashMap<>();
 
@@ -85,23 +87,23 @@ public class DrawingController {
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyyMMdd");
         String fileName = simpleDateFormat.format(new Date());  //파일명
 
-        //저장할 파일 경로
+        //저장할 파일 경로(resources 폴더 만들고 실행)
         String path = "C:\\Users\\multicampus\\Desktop\\resources\\";
 
         UUID uuid = UUID.randomUUID();  //파일명 중복 방지용 식별자
         String filePath = path + fileName + "_" + uuid + ".png";
+//        File test = new File("C:\\Users\\multicampus\\Desktop\\resources\\20220930_5727f8fb-700c-42ad-9507-362538cdc352.png");
 
         try {
 
             //base64를 이미지 파일로 변환하고 저장한다.
-            byte[] imageBytes = Base64.getDecoder().decode(base64
-                    .replace('-', '+')
-                    .replace('_', '/'));
-//            byte[] imageBytes = Base64Utils.decodeFromUrlSafeString(base64);
-
-            FileOutputStream fileOutputStream = new FileOutputStream(filePath);
-            fileOutputStream.write(imageBytes);
-            fileOutputStream.close();
+            ByteArrayResource resource = new ByteArrayResource(javax.xml.bind.DatatypeConverter.parseBase64Binary(base64));
+            File targetFile = new File(filePath);
+            java.nio.file.Files.copy(
+                    resource.getInputStream(),
+                    targetFile.toPath(),
+                    StandardCopyOption.REPLACE_EXISTING);
+            IOUtils.closeQuietly(resource.getInputStream());
 
             try {
                 String email= SecurityContextHolder.getContext().getAuthentication().getName();  //user의 email을 꺼낸다
@@ -207,7 +209,10 @@ public class DrawingController {
 
         try {
             String email = SecurityContextHolder.getContext().getAuthentication().getName();
-            drawing.setEmail(email);
+            String name = drawing.getName();
+            String email_name = email + "_" + name;
+            drawing.setEmail_name(email_name);
+
             int res = drawingService.deleteDrawing(drawing);  //삭제하려는 사용자가 현재 사용자와 일치하면 삭제
             if(res == 1){
                 result.put("status", success);
