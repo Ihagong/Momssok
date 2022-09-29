@@ -15,4 +15,6 @@ public interface DiaryMapper {
     List<DiaryDto> searchDiary(String option) throws SQLException;
     int saveDiary(DiarySaveDto diary) throws SQLException;
     DiaryDto lookupDiary(int id) throws SQLException;
+    int updateDiary(DiarySaveDto diary) throws SQLException;
+    int deleteDiary(DiarySaveDto diary) throws SQLException;
 }
