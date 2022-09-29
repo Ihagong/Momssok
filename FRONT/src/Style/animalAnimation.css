@@ -1,0 +1,217 @@
+@keyframes dog-leftear {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(15deg) translate(-40px, 20px);
+  }
+}
+
+@keyframes dog-rightear {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(-15deg) translate(40px, 20px);
+  }
+}
+
+@keyframes dog-tail {
+  from {
+    transform: rotate(20deg) translate(60px, -20px);
+  }
+  to {
+    transform: rotate(0deg) translate(0px, 0px);
+  }
+}
+
+.dogBody {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 3;
+}
+
+.dogLeftEar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: dog-leftear 1s linear forwards infinite alternate;
+  z-index: 2;
+}
+
+.dogRightEar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: dog-rightear 1s linear forwards infinite alternate;
+  z-index: 2;
+}
+
+.dogTail {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: dog-tail 1s linear forwards infinite alternate;
+  z-index: 1;
+}
+
+
+@keyframes rabbit-leftear {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(10deg) translate(-10px, -10px);
+  }
+}
+
+@keyframes rabbit-rightear {
+  from {
+    transform: rotate(5deg);
+  }
+  to {
+    transform: rotate(-10deg) translate(20px, 30px);
+  }
+}
+
+@keyframes rabbit-tail {
+  from {
+    transform: rotate(0deg) translate(0px, 0px);
+  }
+  to {
+    transform: rotate(0deg) translate(10px, -10px);
+  }
+}
+
+.rabbitBody {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 3;
+}
+
+.rabbitLeftEar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: rabbit-leftear 1s linear forwards infinite alternate;
+  z-index: 2;
+}
+
+.rabbitRightEar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: rabbit-rightear 1s linear forwards infinite alternate;
+  z-index: 2;
+}
+
+.rabbitTail {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: rabbit-tail 1s linear forwards infinite alternate;
+  z-index: 1;
+}
+
+
+@keyframes elephant-head {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(-20deg) translate(10px, -10px);
+  }
+}
+
+@keyframes elephant-tail {
+  from {
+    transform: rotate(-10deg) translate(0px, 40px);
+  }
+  to {
+    transform: rotate(0deg) translate(0px, 0px);
+  }
+}
+
+.elephantBody {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2;
+}
+
+.elephantHead {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: elephant-head 1s linear forwards infinite alternate;
+  z-index: 3;
+}
+
+.elephantTail {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: elephant-tail 1s linear forwards infinite alternate;
+  z-index: 1;
+}
+
+
+@keyframes cat-leftwhiskers {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(-10deg) translate(20px, -10px);
+  }
+}
+
+@keyframes cat-rightwhiskers {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(15deg) translate(-20px, 10px);
+  }
+}
+
+@keyframes cat-tail {
+  from {
+    transform: rotate(0deg) translate(10px, -10px);
+  }
+  to {
+    transform: rotate(-20deg) translate(-20px, -30px);
+  }
+}
+
+.catBody {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2;
+}
+
+.catLeftWhiskers {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: cat-leftwhiskers 1s linear forwards infinite alternate;
+  z-index: 3;
+}
+
+.catRightWhiskers {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: cat-rightwhiskers 1s linear forwards infinite alternate;
+  z-index: 3;
+}
+
+.catTail {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: cat-tail 1s linear forwards infinite alternate;
+  z-index: 1;
+}
