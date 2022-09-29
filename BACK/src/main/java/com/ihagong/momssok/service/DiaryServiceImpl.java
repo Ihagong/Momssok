@@ -26,4 +26,8 @@ public class DiaryServiceImpl implements DiaryService{
         return diaryMapper.lookupGallery(email_name);
     }
 
+    public List<DiaryDto> searchDiary(String option) throws Exception {
+        return diaryMapper.searchDiary(option);
+    }
+
 }

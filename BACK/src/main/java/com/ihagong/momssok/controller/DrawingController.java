@@ -1,9 +1,6 @@
 package com.ihagong.momssok.controller;
 
-import com.ihagong.momssok.model.dto.DrawingApiDto;
-import com.ihagong.momssok.model.dto.DrawingDto;
-import com.ihagong.momssok.model.dto.DrawingInputDto;
-import com.ihagong.momssok.model.dto.DrawingOutDto;
+import com.ihagong.momssok.model.dto.*;
 import com.ihagong.momssok.service.DrawingService;
 import com.ihagong.momssok.service.DrawingServiceImpl;
 import lombok.RequiredArgsConstructor;
@@ -116,6 +113,8 @@ public class DrawingController {
                 int res = drawingService.saveDrawing(drawing);  //이미지 저장
                 if (res == 1) {
                     result.put("status", success);
+                    int id = drawingService.getImageId(email_name);
+                    result.put("data", id);
                 }else{
                     result.put("status", fail);
                 }
@@ -221,4 +220,5 @@ public class DrawingController {
         }
         return result;
     }
+
 }
