@@ -11,13 +11,19 @@
         </if>
     </select>
 
-    <select id="lookupGallery" parameterType="" resultType="DiaryDto">
+    <select id="lookupGallery" parameterType="String" resultType="DiaryDto">
         SELECT d.id, d.drawing_id, d.title, d.content, d.weather, d.emotion, d.date, d.tag
         FROM diary d
         WHERE email_name = #{email_name}
         <if test="is_deleted_from_child != 1">
             AND is_deleted_from_child = #{is_deleted_from_child}
         </if>
+    </select>
+
+    <select id="searchDiary" parameterType="String" resultType="DiaryDto">
+        SELECT *
+        FROM diary
+        WHERE title LIKE(CONCAT("%", #{option}, "%"))
     </select>
 
 </mapper>

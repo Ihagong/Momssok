@@ -11,4 +11,5 @@ import java.util.List;
 public interface DiaryMapper {
     List<DiaryDto> lookupCalender(DiaryDayDto diary) throws SQLException;
     List<DiaryDto> lookupGallery(String email_name) throws SQLException;
+    List<DiaryDto> searchDiary(String option) throws SQLException;
 }

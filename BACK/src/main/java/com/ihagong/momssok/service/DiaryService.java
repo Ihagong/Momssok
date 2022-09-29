@@ -9,4 +9,5 @@ public interface DiaryService {
 
     List<DiaryDto> lookupCalender(DiaryDayDto diary) throws Exception;
     List<DiaryDto> lookupGallery(String email_name) throws Exception;
+    List<DiaryDto> searchDiary(String option) throws Exception;
 }

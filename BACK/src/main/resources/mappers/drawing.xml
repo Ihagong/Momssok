@@ -19,6 +19,11 @@
             (#{drawing_id}, #{email_name}, #{image_path}, NOW(), NOW())
     </insert>
 
+    <select id="getImageId" parameterType="String" resultType="int">
+        SELECT drawing_id FROM drawing
+        ORDER BY created_date DESC LIMIT 1
+    </select>
+
     <update id="updateDrawing" parameterType="DrawingApiDto">
         UPDATE drawing
         SET image_path = #{image_path}, modified_date = NOW()

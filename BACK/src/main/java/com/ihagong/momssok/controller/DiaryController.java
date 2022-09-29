@@ -2,6 +2,7 @@ package com.ihagong.momssok.controller;
 
 import com.ihagong.momssok.model.dto.DiaryDayDto;
 import com.ihagong.momssok.model.dto.DiaryDto;
+import com.ihagong.momssok.model.dto.DiarySaveDto;
 import com.ihagong.momssok.model.dto.DrawingDto;
 import com.ihagong.momssok.service.DiaryService;
 import lombok.RequiredArgsConstructor;
@@ -88,6 +89,29 @@ public class DiaryController {
             if(diaryList != null){
                 result.put("status", success);
                 result.put("data", diaryList);
+            }else{
+                result.put("status", fail);
+            }
+        } catch (Exception e) {
+            result.put("status", error);
+            result.put("message", e.toString());
+        }
+        return result;
+    }
+
+    @PostMapping("/saveDiary")
+    public Map<String, Object> saveDiary(@RequestBody DiarySaveDto diary){
+        Map<String, Object> result = new HashMap<>();
+
+        try{
+            String email= SecurityContextHolder.getContext().getAuthentication().getName();
+            String name = diary.getName();
+            String email_name = email + "_" + name;
+            diary.setEmail_name(email_name);
+            int res = diary.saveDiary(diary);
+            if(res == 1) {
+                result.put("status", success);
+                result.put("data", diary);
             }else{
                 result.put("status", fail);
             }
