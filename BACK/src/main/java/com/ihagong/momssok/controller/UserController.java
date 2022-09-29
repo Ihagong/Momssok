@@ -18,13 +18,14 @@ import java.text.ParseException;
 import java.util.Date;
 import java.util.Map;
 
+
 @RestController
 @RequiredArgsConstructor
 @CrossOrigin("*")
 public class UserController {
     private final UserService userService;
     @RequestMapping(value = "/user/signUp", method = RequestMethod.POST)
-    public ResponseEntity<?> signUp(@RequestBody UserApiDto dto) { //이메일 인증 성공한 토큰 헤더에 있어야 접근 가능
+    public ResponseEntity<?> signUp(@RequestBody UserApiDto dto)  { //이메일 인증 성공한 토큰 헤더에 있어야 접근 가능
         Map<Boolean,Object> result = userService.signUp(dto);
         if(result.get(true)!=null)
             return new ResponseEntity<>(result.get(true), HttpStatus.OK);
@@ -85,7 +86,7 @@ public class UserController {
     }
 
     @RequestMapping(value = "/user/updateUser", method = RequestMethod.PUT)
-    public ResponseEntity<?> updateUser(@RequestBody UserApiDto requestDto) {
+    public ResponseEntity<?> updateUser(@RequestBody UserApiDto requestDto) throws ParseException {
         Map<Boolean,Object> result = userService.updateUser(requestDto);
         if(result.get(true)!=null)
             return new ResponseEntity<>(result.get(true), HttpStatus.OK);
@@ -143,6 +144,7 @@ public class UserController {
         dto.setBirthday(requestDto.getBirthday());
         dto.setProfile_password(requestDto.getProfile_password());
         dto.setModified_date(new Date());
+        System.out.println(dto.getModified_date());
         dto.setImage_num(requestDto.getImage_num());
         Map<Boolean,Object> result = userService.updateProfile(dto,requestDto.getBeforeName());
         if(result.get(true)!=null)
