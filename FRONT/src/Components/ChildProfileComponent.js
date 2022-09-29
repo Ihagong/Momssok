@@ -14,6 +14,7 @@ export function ChildProfileComponent({ info, handleClickChildProfile }) {
 
   return (
     <ChildProfileComponentTag onClick={() => handleClickChildProfile(info)}>
+      <img style={{ height: '110px' }} src={`/images/profileImage_${info.image_num}.png`}></img>
       <p>{info.name}</p>
       {birthdayInfo} | {age}세
     </ChildProfileComponentTag>

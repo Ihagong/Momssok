@@ -2,6 +2,7 @@ import { useRecoilState } from 'recoil'
 import { signUpTokenState, logInTokenState, userInfoState, profileInfoState } from '../store/atoms'
 import { useNavigate } from  'react-router-dom'
 import axios from 'axios'
+import ManageProfilePage from '../Pages/ManageProfilePage'
 
 
 export function useAuthCallback() {
@@ -270,7 +271,7 @@ export function useAuthCallback() {
         console.log(response.data)
         console.log('프로필이 수정되었습니다.')
         profileInfoCallback()
-        navigate('/profile/manage', { state: { isEditProfile : true } })
+        navigate('/profile/manage')
       }
     })
     .catch(error => {
