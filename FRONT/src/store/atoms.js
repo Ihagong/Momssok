@@ -82,9 +82,15 @@ export const totalLetterListState = atom({
   effects_UNSTABLE: [persistAtom]
 })
 
-export const LetterIdState = atom({
-  key: 'LetterIdState',
-  default: 1,
+export const letterItemState = atom({
+  key: 'letterItemState',
+  default: {},
+  effects_UNSTABLE: [persistAtom]
+})
+
+export const profileState = atom({
+  key: 'profileState',
+  default: '',
   effects_UNSTABLE: [persistAtom]
 })
 

@@ -2,6 +2,7 @@ import { useRecoilState } from 'recoil'
 import { signUpTokenState, logInTokenState, userInfoState, profileInfoState } from '../store/atoms'
 import { useNavigate } from  'react-router-dom'
 import axios from 'axios'
+import ManageProfilePage from '../Pages/ManageProfilePage'
 
 
 export function useAuthCallback() {
@@ -221,8 +222,7 @@ export function useAuthCallback() {
     })
   }
 
-  const createProfileCallback = async (name, birthday, profilePassword) => {
-    console.log(name, birthday, profilePassword)
+  const createProfileCallback = async (name, birthday, selectedImageIndex, profilePassword) => {
     axios({
       method: 'post',
       url: '/api/user/saveProfile',
@@ -231,7 +231,7 @@ export function useAuthCallback() {
         'Authorization': logInToken,
       },
       data: {
-        profileImage: null,
+        image_num: selectedImageIndex,
         name,
         birthday,
         profile_password: profilePassword,
@@ -240,8 +240,60 @@ export function useAuthCallback() {
     .then(response => {
       if (response.data) {
         console.log(response.data)
-        console.log('프로필이 조회되었습니다.')
-        setProfileInfo(response.data['profiles'])
+        console.log('프로필이 생성되었습니다.')
+        profileInfoCallback()
+        navigate('/profile')
+      }
+    })
+    .catch(error => {
+      console.log(error.response.data)
+    })
+  }
+
+  const updateProfileCallback = async (beforeName, name, birthday, selectedImageIndex, profilePassword) => {
+    axios({
+      method: 'put',
+      url: '/api/user/updateProfile',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': logInToken,
+      },
+      data: {
+        beforeName,
+        name,
+        birthday,
+        image_num: selectedImageIndex,
+        profile_password: profilePassword,
+      }
+    })
+    .then(response => {
+      if (response.data) {
+        console.log(response.data)
+        console.log('프로필이 수정되었습니다.')
+        profileInfoCallback()
+        navigate('/profile/manage')
+      }
+    })
+    .catch(error => {
+      console.log(error.response.data)
+    })
+  }
+
+  const deleteProfileCallback = async () => {
+    axios({
+      method: 'delete',
+      url: '/api/user',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': logInToken,
+      }
+    })
+    .then(response => {
+      if (response.data) {
+        console.log(response.data)
+        console.log('프로필이 삭제되었습니다.')
+        profileInfoCallback()
+        navigate('/profile')
       }
     })
     .catch(error => {
@@ -274,5 +326,5 @@ export function useAuthCallback() {
 
   return { authCheckCallback, authEmailCallback, signUpCallback, userInfoCallback,
     editAccountCallback, logInCallback, logOutCallback, deleteUserCallback, profileInfoCallback,
-    createProfileCallback, findPasswordCallback }
+    createProfileCallback, updateProfileCallback, deleteProfileCallback, findPasswordCallback }
 }

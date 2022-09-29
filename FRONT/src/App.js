@@ -22,6 +22,8 @@ import LetterPage from './Pages/LetterPage'
 import CreateLetterPage from './Pages/CreateLetterPage'
 import LetterDetailPage from './Pages/LetterDetailPage'
 import FindPasswordPage from './Pages/FindPasswordPage'
+import AnimalDictionaryPage from './Pages/AnimalDictionaryPage'
+import CreateDictionaryPaintingPage from './Pages/CreateDictionaryPaintingPage'
 
 import { useRecoilState } from 'recoil'
 import { loadedPaintingState, logInTokenState } from './store/atoms'
@@ -45,7 +47,7 @@ function App() {
         <Route exact path='/profile' element={ logInToken ? <ProfilePage /> : <Navigate to='/login' replace /> } />
         <Route exact path='/profile/manage' element={ logInToken ? <ManageProfilePage /> : <Navigate to='/login' replace /> } />
         <Route exact path='/profile/create' element={ <CreateProfilePage /> } />
-        <Route exact path='/profile/:profileId/edit' element={ <EditProfilePage /> } />
+        <Route exact path='/profile/edit' element={ <EditProfilePage /> } />
         <Route exact path='/child' element={ <ChildMainPage /> } />
         <Route exact path='/painting/create' element={ <CreatePaintingPage loadedPainting={loadedPainting} /> } />
         <Route exact path='/painting/load' element={ <LoadPaintingPage /> } />
@@ -61,6 +63,8 @@ function App() {
         <Route exact path='/letter/create' element={ <CreateLetterPage /> } />
         <Route exact path='/letter/:letterId' element={ <LetterDetailPage /> } />
         <Route exact path='/findpassword' element={ <FindPasswordPage /> } />
+        <Route exact path='/dictionary' element={ <AnimalDictionaryPage /> } />
+        <Route exact path='/dictionary/create' element={ <CreateDictionaryPaintingPage /> } />
       </Routes>
     </Router>
   );
