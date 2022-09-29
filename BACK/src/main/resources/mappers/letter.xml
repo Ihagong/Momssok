@@ -4,7 +4,7 @@
 <mapper namespace="com.ihagong.momssok.mapper.LetterMapper">
     <insert id="saveLetter" parameterType="com.ihagong.momssok.model.dto.LetterDto" >
         INSERT INTO letter(send_from,send_to,title,content,video_path,date)
-        values (#{send_from},#{send_to},#{title},#{content},#{video_path},#{date});
+        values (#{send_from},#{send_to},#{title},#{content},#{video_path},now());
     </insert>
     <select id="userCheck" parameterType="String" resultType="int">
         SELECT count(*) FROM profile WHERE email_name=#{email_name};
@@ -18,4 +18,7 @@
     <update id="updateRead" parameterType="int" >
         UPDATE letter set read_check=1 where letter_id=#{letter_id};
     </update>
+    <delete id="deleteLetter">
+        delete from letter where letter_id = #{letter_id}
+    </delete>
 </mapper>

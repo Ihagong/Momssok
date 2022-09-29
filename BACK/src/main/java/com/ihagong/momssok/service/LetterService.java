@@ -10,7 +10,10 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
 import java.io.IOException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.*;
+
 
 @Service
 @RequiredArgsConstructor
@@ -30,14 +33,25 @@ public class LetterService {
         }
         letter.setTitle(title);
         letter.setContent(content);
-        System.out.println(videoFile.getContentType());
+        //System.out.println(videoFile.getContentType());
         if(videoFile!=null) {
-            String path = "C:\\Users\\multicampus\\Documents\\fileTest\\";
+            String path = "/var/lib/docker/volumes/volume1/_data/";
             UUID uuid = UUID.randomUUID();
             String filepath = path + uuid + "_" + videoFile.getOriginalFilename();
-            videoFile.transferTo(new File(filepath));
+            System.out.println(System.getProperty("user.dir"));
+            File f=new File(filepath);
+            f.mkdirs();
+            f.createNewFile();
+
+            System.out.println(f.getPath());
+            System.out.println(f.getAbsolutePath());
+
+            videoFile.transferTo(f);
+            System.out.println(videoFile.getOriginalFilename());
+            System.out.println(videoFile.getSize());
             letter.setVideo_path(filepath);
         }
+
         letter.setDate(new Date());
         if(letter.getSend_from().contains(email)&&letter.getSend_to().contains(email)) {
             if (letterMapper.saveLetter(letter) == 1) {
@@ -88,6 +102,7 @@ public class LetterService {
     public File getVideo(int letter_id) throws IOException {
         LetterDto dto = letterMapper.detailletter(letter_id);
         File video=  new File(dto.getVideo_path());
+        //File video=  new File( "/home/ubuntu/files/모션인식도구선택.mp4");
 
         return video;
     }
@@ -115,4 +130,27 @@ public class LetterService {
         return result;
 
     }
+
+    public Map<Boolean,Object> deleteLetter(int letter_id) {
+
+        String email = SecurityContextHolder.getContext().getAuthentication().getName();
+        Map<Boolean, Object> result = new HashMap<>();
+        Map<String, Object> resultBody = new HashMap<>();
+        if(letterMapper.detailletter(letter_id)==null){
+            resultBody.put("message", "해당 letter_id가 데이터베이스에 존재하지 않습니다.");
+            result.put(false, resultBody);
+            return result;
+        }
+        if(letterMapper.deleteLetter(letter_id)==1){
+            resultBody.put("message", "삭제가 완료되었습니다.");
+            result.put(true, resultBody);
+            return result;
+        }
+        resultBody.put("message", "편지 삭제 오류");
+        result.put(false, resultBody);
+        return result;
+
+
+    }
+
 }
