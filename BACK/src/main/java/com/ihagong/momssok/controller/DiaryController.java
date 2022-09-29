@@ -108,7 +108,7 @@ public class DiaryController {
             String name = diary.getName();
             String email_name = email + "_" + name;
             diary.setEmail_name(email_name);
-            int res = diary.saveDiary(diary);
+            int res = diaryService.saveDiary(diary);
             if(res == 1) {
                 result.put("status", success);
                 result.put("data", diary);
@@ -122,6 +122,24 @@ public class DiaryController {
         return result;
     }
 
+    @GetMapping("/detailDiary")
+    public Map<String, Object> lookupDiary(@RequestParam int id){
+        Map<String, Object> result = new HashMap<>();
 
+        try {
+            DiaryDto diary = diaryService.lookupDiary(id);
+            if(diary != null){
+                result.put("statue", success);
+                result.put("data", diary);
+            }else{
+                result.put("status", fail);
+            }
+        } catch (Exception e) {
+            result.put("status", error);
+            result.put("message", e.toString());
+        }
+
+        return result;
+    }
 
 }
