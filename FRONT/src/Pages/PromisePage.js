@@ -1,12 +1,20 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { ChildButtonTag1, ChildProfileTag, PromiseBoardTag, PromiseItemTag1, PromiseItemTag2 } from '../Style/Components'
 import { PromiseModalComponent } from '../Components/PromiseModalComponent'
 import { useRecoilState } from 'recoil'
-import { modalOpenState } from '../store/atoms'
+import { modalOpenState, profileState } from '../store/atoms'
+import { usePromiseCallback } from '../Functions/usePromiseCallback'
 
 
 function PromisePage() {
+  const [profile, setProfile] = useRecoilState(profileState)
   // const [modalOpen, setModalOpen] = useState(false);
+  const { getAllPromiseCallback } = usePromiseCallback()
+
+  useEffect(() => {
+    getAllPromiseCallback(profile.name)
+  }, [])
+
   const [modalOpen, setModalOpen] = useRecoilState(modalOpenState)
   const [promiseId, setPromiseId] = useState(0)
 
