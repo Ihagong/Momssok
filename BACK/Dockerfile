@@ -17,7 +17,7 @@ COPY --from=builder build/libs/*.jar app.jar
 EXPOSE 8443
 
 # 배포용 properties 실행 명령어
-ENTRYPOINT ["java","-jar","app.jar","-Duser.timezone=Etc/GMT-0","--spring.config.name=application"] 
+ENTRYPOINT ["java","-jar","app.jar","-Duser.timezone=Etc/GMT+9","--spring.config.name=application"] 
 
 
 # 만약 배포용 properties를 사용하지 않는다면
