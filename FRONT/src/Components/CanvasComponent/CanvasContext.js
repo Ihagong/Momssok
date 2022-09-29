@@ -166,7 +166,7 @@ export const CanvasProvider = ({ children, loadedPainting, textures, offset, ges
     setImgSrcs(prev => [...prev, imgSrc])
   }
 
-  const order = ['head', 'body', 'tail']
+  const order = ['tail', 'body', 'head']
   const addPart = () => {
     const canvas = canvasRef.current
     const image = new Image()
