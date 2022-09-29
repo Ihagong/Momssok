@@ -32,7 +32,7 @@ async def upload_photo(file: UploadFile):
     contents = await file.read()
     with open("temp.jpg", "wb") as fp:
         fp.write(contents)
-    #result = test.faster_rcnn("temp.jpg")
+    result = test.faster_rcnn("temp.jpg")
     json_compatible_item_data = jsonable_encoder(result)
     return JSONResponse(content=json_compatible_item_data)
     #return json.dumps(result)
