@@ -1,5 +1,6 @@
 package com.ihagong.momssok.controller;
 
+import com.ihagong.momssok.model.dto.testImageDto;
 import com.ihagong.momssok.service.LetterService;
 import com.ihagong.momssok.service.TestService;
 import lombok.RequiredArgsConstructor;
@@ -30,6 +31,17 @@ public class TestController {
             return new ResponseEntity<>(result.get(false), HttpStatus.BAD_REQUEST);
     }
 
+
+    @RequestMapping(value = "/testDetection", method = RequestMethod.GET)
+    public ResponseEntity<?> testDetection2(@RequestBody testImageDto dto) throws IOException {
+        Map<Boolean,Object> result = testService.ApiTestDetection(dto);
+        if(result.get(true)!=null)
+            return new ResponseEntity<>(result.get(true), HttpStatus.OK);
+        else
+            return new ResponseEntity<>(result.get(false), HttpStatus.BAD_REQUEST);
+    }
+
+/*
     @RequestMapping(value = "/testDetection", method = RequestMethod.GET)
     public ResponseEntity<?> testDetection(@RequestParam MultipartFile file) throws IOException {
         Map<Boolean,Object> result = testService.ApiTestDetection(file);
@@ -39,4 +51,5 @@ public class TestController {
             return new ResponseEntity<>(result.get(false), HttpStatus.BAD_REQUEST);
     }
 
+ */
 }

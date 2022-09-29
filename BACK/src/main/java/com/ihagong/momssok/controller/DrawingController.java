@@ -77,7 +77,7 @@ public class DrawingController {
 
     @PostMapping("/saveDrawing")
     public Map<String, Object> saveDrawing(  //프론트에서 base64를 받아 이미지로 변환시킨 뒤 db에 저장, ai 서버로 보내서 태그랑 같이 받아와 저장
-                                             @RequestBody DrawingApiDto drawing){  //base64 문자열, 아이 이름
+                                             @RequestBody DrawingDto drawing){  //base64 문자열, 아이 이름
 
         Map<String, Object> result = new HashMap<>();
 
@@ -107,14 +107,13 @@ public class DrawingController {
             fileOutputStream.close();
 
             try {
-                DrawingDto drawingDto = new DrawingDto();
                 String email= SecurityContextHolder.getContext().getAuthentication().getName();  //user의 email을 꺼낸다
                 String name = drawing.getName();
                 String email_name = email + "_" + name;
 
-                drawingDto.setEmail_name(email_name);
-                drawingDto.setImage_path(filePath);
-                int res = drawingService.saveDrawing(drawingDto);  //이미지 저장
+                drawing.setEmail_name(email_name);
+                drawing.setImage_path(filePath);
+                int res = drawingService.saveDrawing(drawing);  //이미지 저장
                 if (res == 1) {
                     result.put("status", success);
                 }else{
@@ -132,19 +131,19 @@ public class DrawingController {
     }
 
     //AI 서버로 그림 분석 결과 요청할 때 그림을 보낸다
-    @GetMapping("/detection")
-    public ResponseEntity<?> detection(@RequestParam MultipartFile file){
-
-        Map<Boolean,Object> result = drawingServiceImpl.detection(file);
-
-        if(result.get(true)!=null)
-            return new ResponseEntity<>(result.get(true), HttpStatus.OK);
-        else
-            return new ResponseEntity<>(result.get(false), HttpStatus.BAD_REQUEST);
-    }
+//    @GetMapping("/detection")
+//    public ResponseEntity<?> detection(@RequestParam MultipartFile file){
+//
+//        Map<Boolean,Object> result = drawingServiceImpl.detection(file);
+//
+//        if(result.get(true)!=null)
+//            return new ResponseEntity<>(result.get(true), HttpStatus.OK);
+//        else
+//            return new ResponseEntity<>(result.get(false), HttpStatus.BAD_REQUEST);
+//    }
 
     @PutMapping("/updateDrawing")
-    public Map<String, Object> updateDrawing(@RequestBody DrawingApiDto drawing){  //base64랑 아이 이름을 받는다
+    public Map<String, Object> updateDrawing(@RequestBody DrawingApiDto drawing){  //그림 id, base64, 아이 이름을 받는다
 
         Map<String, Object> result = new HashMap<>();
 
@@ -154,7 +153,31 @@ public class DrawingController {
             String email_name = email + "_" + name;
             drawing.setEmail_name(email_name);
 
-            int res = drawingService.updateDrawing(drawing);  //삭제하려는 사용자가 현재 사용자와 일치하면 삭제
+            String base64Source = drawing.getDrawing_base64();
+            String base64 = base64Source.split(",")[1];
+            System.out.println(base64);
+
+            SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyyMMdd");
+            String fileName = simpleDateFormat.format(new Date());  //파일명
+
+            //저장할 파일 경로
+            String path = "C:\\Users\\multicampus\\Desktop\\resources\\";
+
+            UUID uuid = UUID.randomUUID();  //파일명 중복 방지용 식별자
+            String filePath = path + fileName + "_" + uuid + ".png";
+
+            //base64를 이미지 파일로 변환하고 저장한다.
+            byte[] imageBytes = Base64.getDecoder().decode(base64
+                    .replace('-', '+')
+                    .replace('_', '/'));
+//            byte[] imageBytes = Base64Utils.decodeFromUrlSafeString(base64);
+
+            FileOutputStream fileOutputStream = new FileOutputStream(filePath);
+            fileOutputStream.write(imageBytes);
+            fileOutputStream.close();
+
+            drawing.setImage_path(filePath);
+            int res = drawingService.updateDrawing(drawing);  //수정하려는 사용자가 현재 사용자와 일치한지 확인
             if(res == 1){
                 result.put("status", success);
             }else{

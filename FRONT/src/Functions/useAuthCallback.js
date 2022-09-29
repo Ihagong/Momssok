@@ -14,7 +14,7 @@ export function useAuthCallback() {
   const authCheckCallback = async (email, authNumber) => {
     axios({
       method: 'post',
-      url: 'http://j7d203.p.ssafy.io:8080/user/emailCertification',
+      url: '/api/user/emailCertification',
       headers: {
         'Content-Type': 'application/json',
       },
@@ -39,7 +39,7 @@ export function useAuthCallback() {
   const authEmailCallback = async (email) => {
     axios({
       method: 'post',
-      url: 'http://j7d203.p.ssafy.io:8080/user/emailInput',
+      url: '/api/user/emailInput',
       headers: {
         'Content-Type': 'application/x-www-form-urlencoded',
       },
@@ -61,7 +61,7 @@ export function useAuthCallback() {
   const signUpCallback = async (email, password, username) => {
     axios({
       method: 'post',
-      url: 'http://j7d203.p.ssafy.io:8080/user/signUp',
+      url: '/api/user/signUp',
       headers: {
         'Content-Type': 'application/json',
         'Authorization': signUpToken
@@ -87,7 +87,7 @@ export function useAuthCallback() {
   const userInfoCallback = async (token) => {
     axios({
       method: 'get',
-      url: 'http://j7d203.p.ssafy.io:8080/user/detailUser',
+      url: '/api/user/detailUser',
       headers: {
         'Content-Type': 'application/json',
         'Authorization': token ? token : logInToken,
@@ -108,7 +108,7 @@ export function useAuthCallback() {
   const editAccountCallback = async (username, password) => {
     axios({
       method: 'put',
-      url: 'http://j7d203.p.ssafy.io:8080/user/updateUser',
+      url: '/api/user/updateUser',
       headers: {
         'Content-Type': 'application/json',
         'Authorization': logInToken,
@@ -133,7 +133,7 @@ export function useAuthCallback() {
   const logInCallback = async (email, password) => {
     axios({
       method: 'post',
-      url: 'http://j7d203.p.ssafy.io:8080/user/login',
+      url: '/api/user/login',
       headers: {
         'Content-Type': 'application/json',
       },
@@ -159,7 +159,7 @@ export function useAuthCallback() {
   const logOutCallback = async () => {
     // axios({
     //   method: 'post',
-    //   url: 'http://j7d203.p.ssafy.io:8080/user/logout',
+    //   url: '/api/user/logout',
     // })
     // .then(response => {
     //   if (response.data) {
@@ -181,7 +181,7 @@ export function useAuthCallback() {
   const deleteUserCallback = async (logInToken) => {
     axios({
       method: 'delete',
-      url: 'http://j7d203.p.ssafy.io:8080/user/deleteUser',
+      url: '/api/user/deleteUser',
       headers: {
         'Content-Type': 'application/json',
         'Authorization': logInToken,
@@ -203,7 +203,7 @@ export function useAuthCallback() {
   const profileInfoCallback = async (token) => {
     axios({
       method: 'get',
-      url: 'http://j7d203.p.ssafy.io:8080/user/lookupAllprofile',
+      url: '/api/user/lookupAllprofile',
       headers: {
         'Content-Type': 'application/json',
         'Authorization': token ? token : logInToken,
@@ -225,7 +225,7 @@ export function useAuthCallback() {
     console.log(name, birthday, profilePassword)
     axios({
       method: 'post',
-      url: 'http://j7d203.p.ssafy.io:8080/user/saveProfile',
+      url: '/api/user/saveProfile',
       headers: {
         'Content-Type': 'application/json',
         'Authorization': logInToken,
@@ -249,7 +249,30 @@ export function useAuthCallback() {
     })
   }
 
+  const findPasswordCallback = async (email) => {
+    axios({
+      method: 'get',
+      url: '/api/user/findPassword',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      params: {
+        email,
+      }
+    })
+    .then (response => {
+      if (response.data) {
+        console.log(response.data)
+        console.log('임시 비밀번호가 전송되었습니다.')
+        navigate('/login')
+      }
+    })
+    .catch(error => {
+      console.log(error.response.data)
+    })
+  }
+
   return { authCheckCallback, authEmailCallback, signUpCallback, userInfoCallback,
     editAccountCallback, logInCallback, logOutCallback, deleteUserCallback, profileInfoCallback,
-    createProfileCallback }
+    createProfileCallback, findPasswordCallback }
 }

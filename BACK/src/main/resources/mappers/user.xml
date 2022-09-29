@@ -14,7 +14,7 @@
     </insert>
     <insert id="registUser" parameterType="com.ihagong.momssok.model.dto.UserDto" >
         INSERT INTO user(email,username,created_date,modified_date)
-        values (#{email},#{username},#{created_date},#{modified_date});
+        values (#{email},#{username},now(),#{modified_date});
     </insert>
     <insert id="registPassword" parameterType="com.ihagong.momssok.model.dto.PasswordDto" >
         INSERT INTO password(email,password)
@@ -39,7 +39,7 @@
 
     <insert id="saveProfile" parameterType="com.ihagong.momssok.model.dto.ProfileDto" >
         INSERT INTO profile(email_name,email,name,birthday,image_num,created_date,modified_date,profile_password,is_parent)
-        values (#{email_name},#{email},#{name},#{birthday},#{image_num},#{created_date},#{modified_date},#{profile_password},#{is_parent});
+        values (#{email_name},#{email},#{name},#{birthday},#{image_num},now(),#{modified_date},#{profile_password},#{is_parent});
     </insert>
 
     <select id="searchUserDetail" parameterType="String" resultType="com.ihagong.momssok.model.dto.UserDto">
@@ -47,10 +47,10 @@
     </select>
 
     <update id="updateUser" parameterType="com.ihagong.momssok.model.dto.UserDto" >
-        UPDATE user set username=#{username},modified_date=#{modified_date} where email=#{email};
+        UPDATE user set username=#{username},modified_date=now() where email=#{email};
     </update>
     <update id="updateProfile" parameterType="com.ihagong.momssok.model.dto.ProfileDto" >
-        UPDATE profile set email_name=#{email_name},name=#{name},birthday=#{birthday},image_num=#{image_num},modified_date=#{modified_date},
+        UPDATE profile set email_name=#{email_name},name=#{name},birthday=#{birthday},image_num=#{image_num},modified_date=now(),
                            profile_password=#{profile_password} where email=#{email} and name=#{beforeName};
     </update>
     <update id="updateParentName" parameterType="com.ihagong.momssok.model.dto.ProfileDto" >

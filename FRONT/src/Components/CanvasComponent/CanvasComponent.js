@@ -39,10 +39,13 @@ export function CanvasComponent() {
           position: 'absolute',
         }}>
       </div>
-      <PaintingCanvasTag
-        onMouseDown={startDrawing}
-        onMouseUp={finishDrawing}
-        onMouseMove={draw}
+      <PaintingCanvasTag style={{ touchAction: 'none' }}
+        // onMouseDown={startDrawing}
+        // onMouseUp={finishDrawing}
+        // onMouseMove={draw}
+        onPointerDown={startDrawing}
+        onPointerUp={finishDrawing}
+        onPointerMove={draw}
         ref={canvasRef}
       />
     </>

@@ -2,25 +2,33 @@ import styled from 'styled-components'
 import './color.css'
 
 
-export const FindPasswordTag = styled.a`
+export const FindPasswordTag = styled.div`
   color: var(--Brown-LightText);
   font-family: 'Jua', sans-serif;
-  font-size: 28px;
-  user-select: none;
+  font-size: 26px;
+  text-align: end;
+  text-decoration: underline;
+  margin-right: 10px;
+  margin-top: 5px;
+  cursor: pointer;
+  user-select: auto;
 `
 
 export const SignUpTag = styled.a`
   color: var(--Brown-Text);
   font-family: 'Jua', sans-serif;
   font-size: 28px;
-  user-select: none;
+  text-decoration: underline;
+  cursor: pointer;
+  user-select: auto;
 `
 
-export const TextTag = styled.p`
+export const TextTag = styled.div`
   color: var(--Brown-LightText);
   font-family: 'Jua', sans-serif;
   font-size: 28px;
-  user-select: none;
+  text-align: center;
+  user-select: auto;
 `
 
 export const ButtonTag1 = styled.button`
@@ -33,7 +41,7 @@ export const ButtonTag1 = styled.button`
   font-family: 'Jua', sans-serif;
   font-size: 36px;
   cursor: pointer;
-  user-select: none;
+  user-select: auto;
 `
 
 export const ButtonTag2 = styled.button`
@@ -46,7 +54,7 @@ export const ButtonTag2 = styled.button`
   font-family: 'Jua', sans-serif;
   font-size: 28px;
   cursor: pointer;
-  user-select: none;
+  user-select: auto;
 `
 
 export const ButtonTag3 = styled.button`
@@ -59,7 +67,7 @@ export const ButtonTag3 = styled.button`
   font-family: 'Jua', sans-serif;
   font-size: 40px;
   cursor: pointer;
-  user-select: none;
+  user-select: auto;
 `
 
 export const ButtonTag4 = styled.button`
@@ -72,7 +80,7 @@ export const ButtonTag4 = styled.button`
   font-family: 'Jua', sans-serif;
   font-size: 40px;
   cursor: pointer;
-  user-select: none;
+  user-select: auto;
 `
 
 export const ChildButtonTag1 = styled.button`
@@ -88,7 +96,7 @@ export const ChildButtonTag1 = styled.button`
   font-family: 'Dongle', sans-serif;
   font-size: 64px;
   cursor: pointer;
-  user-select: none;
+  user-select: auto;
 `
 
 export const ChildButtonTag2 = styled.button`
@@ -104,7 +112,7 @@ export const ChildButtonTag2 = styled.button`
   font-family: 'Dongle', sans-serif;
   font-size: 64px;
   cursor: pointer;
-  user-select: none;
+  user-select: auto;
 `
 
 export const ChildButtonTag3 = styled.button`
@@ -121,7 +129,7 @@ export const ChildButtonTag3 = styled.button`
   font-size: 64px;
   line-height: 60px;
   cursor: pointer;
-  user-select: none;
+  user-select: auto;
 `
 
 export const ChildButtonTag4 = styled.button`
@@ -137,7 +145,7 @@ export const ChildButtonTag4 = styled.button`
   font-family: 'Dongle', sans-serif;
   font-size: 64px;
   cursor: pointer;
-  user-select: none;
+  user-select: auto;
 `
 
 export const ChildButtonTag5 = styled.button`
@@ -150,7 +158,7 @@ export const ChildButtonTag5 = styled.button`
   font-family: 'Dongle', sans-serif;
   font-size: 28px;
   cursor: pointer;
-  user-select: none;
+  user-select: auto;
 `
 
 export const AddProfileButtonTag = styled.button`
@@ -165,7 +173,7 @@ export const AddProfileButtonTag = styled.button`
     width: 70px;
     height: 70px;
   }
-  user-select: none;
+  user-select: auto;
 `
 
 export const AddProfileTextTag = styled.p`
@@ -174,7 +182,7 @@ export const AddProfileTextTag = styled.p`
   font-family: 'Jua', sans-serif;
   font-size: 40px;
   margin: 0;
-  user-select: none;
+  user-select: auto;
 `
 
 export const InputTag1 = styled.input`
@@ -182,6 +190,7 @@ export const InputTag1 = styled.input`
   width: 390px;
   height: 70px;
   padding: 0 30px;
+  margin-top: 20px;
   background-color: var(--Beige-Block);
   border-radius: 20px;
   border: 1px solid var(--Beige-Stroke);
@@ -190,7 +199,7 @@ export const InputTag1 = styled.input`
   ::placeholder {
     color: var(--Beige-HintText);
   }
-  user-select: none;
+  user-select: auto;
 `
 
 export const ChildProfileComponentTag = styled.div`
@@ -199,10 +208,19 @@ export const ChildProfileComponentTag = styled.div`
   border-radius: 20px;
   display: flex;
   flex-direction: column;
+  justify-content: center;
   align-items: center;
+  font-family: 'Jua', sans-serif;
+  color: var(--Brown-LightText);
+  font-size: 20px;
   background-color: var(--Brown-GrayText);
   cursor: pointer;
-  user-select: none;
+  user-select: auto;
+  p {
+    color: var(--Brown-Text);
+    font-size: 28px;
+    margin: 8px 0 0 0;
+  }
 `
 
 export const ProfileInfoInputTag = styled.input`
@@ -214,7 +232,7 @@ export const ProfileInfoInputTag = styled.input`
   border: 2px solid var(--Beige-Stroke);
   font-family: 'Jua', sans-serif;
   font-size: 28px;
-  user-select: none;
+  user-select: auto;
 `
 
 export const ProfileInfoLabelTag = styled.label`
@@ -222,7 +240,7 @@ export const ProfileInfoLabelTag = styled.label`
   font-family: 'Jua', sans-serif;
   font-size: 36px;
   margin: 0;
-  user-select: none;
+  user-select: auto;
 `
 
 export const ChildMenuTag = styled.div`
@@ -242,7 +260,7 @@ export const ChildMenuTabTag = styled.div`
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  user-select: none;
+  user-select: auto;
   img {
     width: 110px;
     height: 110px;
@@ -262,7 +280,7 @@ export const ChildMenuSelectedTabTag = styled.div`
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  user-select: none;
+  user-select: auto;
   img {
     width: 110px;
     height: 110px;
@@ -286,7 +304,7 @@ export const ChildSubMenuButtonTag = styled.div`
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  user-select: none;
+  user-select: auto;
   img {
     height: 180px;
   }
@@ -362,7 +380,7 @@ export const DiaryWeatherBoxTag = styled.div`
   border-radius: 10px;
   border: 1px solid var(--Beige-Stroke);
   cursor: pointer;
-  user-select: none;
+  user-select: auto;
 
   button {
     display: flex;
@@ -420,7 +438,7 @@ export const EditProfileButtonTag = styled.button`
   font-family: 'Jua', sans-serif;
   font-size: 36px;
   cursor: pointer;
-  user-select: none;
+  user-select: auto;
 `
 
 export const ParentMenuButtonTag = styled.div`
@@ -437,7 +455,7 @@ export const ParentMenuButtonTag = styled.div`
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  user-select: none;
+  user-select: auto;
   h4 {
     margin: 0;
     color: var(--Brown-Text);
@@ -459,7 +477,7 @@ export const PaintingCanvasTag = styled.canvas`
 export const PaintingToolTag = styled.div`
   width: 160px;
   cursor: pointer;
-  user-select: none;
+  user-select: auto;
 `
 
 export const PaintingCardTag = styled.div`
@@ -507,7 +525,7 @@ export const CalendarTag = styled.div`
   font-weight: bold;
   text-align: center;
   cursor: pointer;
-  user-select: none;
+  user-select: auto;
 `
 
 export const CalendarDateTag = styled.div`
@@ -525,7 +543,7 @@ export const CalendarDateTag = styled.div`
   font-family: 'Dongle', sans-serif;
   font-size: 40px;
   cursor: pointer;
-  user-select: none;
+  user-select: auto;
   p {
     margin: 0 0 0 10px;
     line-height: 40px;
@@ -546,7 +564,7 @@ export const PromiseItemTag1 = styled.div`
   border: 0;
   transform: rotate(8deg);
   cursor: pointer;
-  user-select: none;
+  user-select: auto;
 `
 
 export const PromiseItemTag2 = styled.div`
@@ -557,7 +575,7 @@ export const PromiseItemTag2 = styled.div`
   border: 0;
   transform: rotate(-6deg);
   cursor: pointer;
-  user-select: none;
+  user-select: auto;
 `
 
 export const PromiseBoardTag = styled.div`
@@ -592,7 +610,7 @@ export const PromiseTodoItemTag = styled.p`
   margin: 0;
   color: var(--Brown-Text);
   cursor: pointer;
-  user-select: none;
+  user-select: auto;
 `
 
 export const PromiseTodoItemDoneTag = styled.p`
@@ -606,5 +624,467 @@ export const PromiseTodoItemDoneTag = styled.p`
   text-decoration: line-through;
   color: var(--Brown-Stroke);
   cursor: pointer;
-  user-select: none;
+  user-select: auto;
 `
+
+export const PaintingToolModalComponentTag = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  width: 400px;
+  height: 280px;
+  background-color: #FBDEBC;
+  border-radius: 20px;
+`
+
+export const PaintingToolButtonTag = styled.button`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100px;
+  height: 168px;
+  border: 0;
+  background-color: transparent;
+  cursor: pointer;
+  border-radius: 20px;
+  z-index: 1;
+`
+
+export const StrokeWidthButtonTag = styled.button`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100px;
+  height: 100px;
+  border: 0;
+  background-color: transparent;
+  cursor: pointer;
+  border-radius: 20px;
+`
+
+export const StrokeWidthTag = styled.div`
+  height: 100px;
+  border: 0;
+  background-color: white;
+  cursor: pointer;
+  border-radius: 100px;
+  transform: rotate(-45deg);
+`
+
+export const ModalBackgroundTag = styled.div`
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  background-color: #05050560;
+`
+
+export const ColorPickerModalComponentTag = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 4px;
+  background-color: #FFE400;
+  border-radius: 12px;
+`
+
+export const ColorTag = styled.div`
+  width: 100px;
+  height: 100px;
+  cursor: pointer;
+`
+
+export const ProfileImageTag = styled.div`
+  display: inline-block;
+  width: 150px;
+  height: 150px;
+  border: 6px solid #00000000;
+  border-radius: 50%;
+  cursor: pointer;
+`
+
+export const ProfileSelectedImageTag = styled.div`
+  display: inline-block;
+  width: 150px;
+  height: 150px;
+  border: 6px solid #FF005C;
+  border-radius: 50%;
+  cursor: pointer;
+`
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// LetterPage
+
+export const LetterPageHeader = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+
+  font-family: 'Dongle', sans-serif;
+`
+
+export const BrownText100 = styled.div`
+  font-weight:bold;
+  font-size: 100px;
+  color: var(--Brown-Text);
+  margin-left: 20px;
+`
+
+export const LightButton120 = styled.button`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  background-color: var(--Beige-Light);
+  box-shadow: 0px 5px 5px #E6E6E6;
+  cursor: pointer;
+  border: none;
+  width: 120px;
+  height: 70px;
+  margin-left: 20px;
+  border-radius: 20px;
+
+  font-family: 'Dongle', sans-serif;
+  font-size: 50px;
+  font-weight: bold;
+  color: var(--Brown-Text);
+  white-space: nowrap;
+`
+export const BrownLightButton150 = styled.button`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  background-color: var(--Brown-LightText);
+  box-shadow: 0px 5px 5px #E6E6E6;
+  cursor: pointer;
+  border: none;
+  width: 150px;
+  height: 70px;
+  margin-left: 10px;
+  border-radius: 20px;
+
+  font-family: 'Dongle', sans-serif;
+  font-size: 50px;
+  font-weight: bold;
+  color: var(--White-Block);
+  white-space: nowrap;
+`
+
+export const OrangeButton250 = styled.button`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  background-color: var(--Orange-Button);
+  opacity:0.9;
+  box-shadow: 0px 5px 5px #E6E6E6;
+  cursor: pointer;
+  border: none;
+  width: 250px;
+  height: 70px;
+  margin-left: 10px;
+  border-radius: 20px;
+
+  font-family: 'Dongle', sans-serif;
+  font-size: 55px;
+  font-weight: bold;
+  color: var(--White-Block);
+  white-space: nowrap;
+`
+
+export const LightButton250 = styled.button`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  background-color: var(--Beige-Light);
+  opacity:0.9;
+  box-shadow: 0px 5px 5px #E6E6E6;
+  cursor: pointer;
+  border: none;
+  width: 250px;
+  height: 70px;
+  margin-left: 10px;
+  border-radius: 20px;
+
+  font-family: 'Dongle', sans-serif;
+  font-size: 55px;
+  font-weight: bold;
+  color: var(--Brown-Text);
+  white-space: nowrap;
+`
+
+export const LetterItem = styled.div`
+  background-color: #FDFDF5;
+  box-shadow: 0px 5px 5px #E6E6E6;
+  width: 1090px;
+  height: 100px;
+  border-radius: 20px;
+  margin-top: 30px;
+  margin-left: 50px;
+`
+
+export const LetterItemContent = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  font-family: 'Dongle', sans-serif;
+  font-size: 64px;
+  font-weight: bold;
+  color: var(--Brown-LightText);
+
+  padding-left: 30px;
+  padding-right: 30px;
+`
+
+export const LetterItemAuthor = styled.div`
+  font-size: 48px;
+  text-align: center;
+  margin-bottom: -20px;
+`
+
+export const EditorBody = styled.div`
+  background-color: var(--White-Block);
+  border-radius: 30px;
+  border: 1px solid #C5BEB6;
+  box-shadow: 0px 5px 5px #E6E6E6;
+
+  width: 700px;
+  height: 740px;
+  margin-top: 20px;
+
+  font-family: 'Dongle', sans-serif;
+  font-size: 50px;
+  font-weight: bold;
+  color: var(--Brown-Text);
+  white-space: nowrap;
+`
+
+export const LetterTitleBody = styled.section`
+  display: flex;
+  justify-content: space-around;
+  margin-left: 20px;
+  margin-right: 20px;
+  margin-top: 20px;
+`
+
+export const LetterTitleDiv = styled.div`
+  background-color: #FFFFFF;
+  border-radius: 10px;
+  border: 1px solid #C5BEB6;
+
+  width: 530px;
+  height: 65px;
+  margin-left: 5px;
+  padding-left: 20px;
+
+  font-family: 'Dongle', sans-serif;
+  font-size: 44px;
+  font-weight: bold;
+  color: var(--Brown-LightText);
+  white-space: nowrap;
+`
+
+export const LetterTitleInput = styled.input`
+  background-color: #FFFFFF;
+  border-radius: 10px;
+  border: 1px solid #C5BEB6;
+
+  width: 530px;
+  height: 65px;
+  margin-left: 5px;
+  padding-left: 20px;
+
+  font-family: 'Dongle', sans-serif;
+  font-size: 44px;
+  font-weight: bold;
+  color: var(--Brown-LightText);
+  white-space: nowrap;
+`
+
+export const LetterContentBody = styled.section`
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+`
+
+export const LetterContentDiv = styled.div`
+  background-color: #FFFFFF;
+  border-radius: 10px;
+  border: 1px solid #C5BEB6;
+
+  width: 600px;
+  height: 400px;
+  padding-left: 20px;
+  padding-right: 20px;
+
+  font-family: 'Dongle', sans-serif;
+  font-size: 44px;
+  font-weight: bold;
+  color: var(--Brown-LightText);
+  white-space: normal;
+  overflow:auto; 
+`
+
+export const LetterContentTextArea = styled.textarea`
+  background-color: #FFFFFF;
+  border-radius: 10px;
+  border: 1px solid #C5BEB6;
+
+  width: 600px;
+  height: 400px;
+  padding-left: 20px;
+  padding-right: 20px;
+
+  font-family: 'Dongle', sans-serif;
+  font-size: 44px;
+  font-weight: bold;
+  color: var(--Brown-LightText);
+  white-space: normal;
+`
+
+export const LetterEditorComponentBody = styled.div`
+  display: flex;
+  justify-content: center;
+`
+
+export const LetterButton = styled.div`
+  display: flex;
+  flex-direction: column;
+`
+
+export const LetterButtonBack = styled.button`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  background-color: var(--Beige-Light);
+  box-shadow: 0px 5px 5px #E6E6E6;
+  cursor: pointer;
+  border: none;
+  width: 200px;
+  height: 75px;
+  margin-right: 20px;
+  border-radius: 20px;
+  margin-top: 20px;
+  margin-left: 30px;
+
+  font-family: 'Dongle', sans-serif;
+  font-size: 60px;
+  font-weight: bold;
+  color: var(--Brown-Text);
+  white-space: nowrap;
+`
+
+export const LetterButtonGo = styled.button`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  background-color: var(--Brown-LightText);
+  box-shadow: 0px 5px 5px #E6E6E6;
+  cursor: pointer;
+  border: none;
+  width: 200px;
+  height: 75px;
+  margin-right: 20px;
+  border-radius: 20px;
+  margin-top: 15px;
+  margin-left: 30px;
+
+  font-family: 'Dongle', sans-serif;
+  font-size: 60px;
+  font-weight: bold;
+  color: var(--White-Block);
+  white-space: nowrap;
+`
+
+export const LetterButtonDel = styled.button`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  background-color: var(--Orange-Button);
+  opacity: 0.8;
+  box-shadow: 0px 5px 5px #E6E6E6;
+  cursor: pointer;
+  border: none;
+  width: 200px;
+  height: 75px;
+  margin-right: 20px;
+  border-radius: 20px;
+  margin-top: 10px;
+  margin-left: 30px;
+
+  font-family: 'Dongle', sans-serif;
+  font-size: 60px;
+  font-weight: bold;
+  color: var(--White-Block);
+  white-space: nowrap;
+`
+
+// LoginPage
+export const LoginPageBody = styled.div`
+  display: flex;
+  justify-content: space-around;
+`
+
+export const JuaBrown = styled.div`
+  font-family: 'Jua', sans-serif;
+  color: var(--Brown-Text);
+  white-space: nowrap;
+`
+
+export const JuaBrownLight = styled.div`
+  font-family: 'Jua', sans-serif;
+  color: var(--Brown-LightText);
+  white-space: nowrap;
+`
+
+export const GugiPink = styled.span`
+  font-family: 'Gugi', cursive;
+  color: #FC3F83;
+  white-space: nowrap;
+`
+

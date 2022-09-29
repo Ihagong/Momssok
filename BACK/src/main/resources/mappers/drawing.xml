@@ -22,7 +22,7 @@
     <update id="updateDrawing" parameterType="DrawingApiDto">
         UPDATE drawing
         SET image_path = #{image_path}, modified_date = NOW()
-        WHERE email_name = #{email_name}
+        WHERE email_name = #{email_name} AND drawing_id = #{drawing_id}
     </update>
 
     <select id="getDrawing" parameterType="int" resultType="String">
