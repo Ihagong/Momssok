@@ -1,49 +1,25 @@
 import React from "react"
 import { useNavigate } from "react-router-dom"
 
-import { useRecoilState } from 'recoil'
-import { totalLetterListState } from '../store/atoms'
-
 import { LetterItemTitle, LetterItem, LetterItemContent, LetterItemAuthor } from "../Style/Components"
 import { getStringDate } from "../util/date"
 
 
-const LetterItemComponent = ({ letter_id, date, author, check, receiver, title, content }) => {
+const LetterItemComponent = ({ letter_id, date, author, check, title }) => {
   const navigate = useNavigate()
-  const [letterList, setLetterList] = useRecoilState(totalLetterListState)
 
+  const strDate = getStringDate(new Date(date))
 
-  const strDate = getStringDate(new Date(parseInt(date)))
-
-  //onEdit
-  const onEdit = (newLetterList) => {
-    setLetterList(newLetterList)
-  }
 
   const goDetail = () => {
-    let newLetter = {}
-    let newLetterList = []
-    newLetter = {
-      letter_id,
-      date,
-      author,
-      check: true,
-      receiver,
-      title,
-      content
-    }
-    newLetterList = letterList.map((it) =>
-    it.letter_id === letter_id ? { ...newLetter } : it
-    )
-    onEdit(newLetterList)
     navigate(`/letter/${letter_id}`)
   };
 
   return (
-    <LetterItem style={{backgroundColor: check === false ? "#FDFDF5" : "#F5F5F5"}}>  
+    <LetterItem style={{backgroundColor: check === 0 ? "#FDFDF5" : "#F5F5F5"}}>  
       <LetterItemContent onClick={goDetail}>
         <LetterItemTitle>
-          {check === false ? 
+          {check === 0 ? 
             <img src='/icons/letteroff.svg' />
             : <img src='/icons/letteron.svg' />
           } 
