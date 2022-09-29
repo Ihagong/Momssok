@@ -16,4 +16,7 @@
         UPDATE promise set email_name=#{email_name},promise_list=#{promise_list},promise_completed=#{promise_completed}
                        where promise_id=#{promise_id};
     </update>
+    <delete id="deletePromise">
+        delete from promise where email_name = #{email_name}
+    </delete>
 </mapper>
