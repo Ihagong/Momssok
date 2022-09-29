@@ -1,9 +1,6 @@
 package com.ihagong.momssok.controller;
 
-import com.ihagong.momssok.model.dto.DiaryDayDto;
-import com.ihagong.momssok.model.dto.DiaryDto;
-import com.ihagong.momssok.model.dto.DiarySaveDto;
-import com.ihagong.momssok.model.dto.DrawingDto;
+import com.ihagong.momssok.model.dto.*;
 import com.ihagong.momssok.service.DiaryService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -139,6 +136,52 @@ public class DiaryController {
             result.put("message", e.toString());
         }
 
+        return result;
+    }
+
+    @PutMapping("/updateDiary")
+    public Map<String, Object> updateDiary(@RequestBody DiarySaveDto diary){
+        Map<String, Object> result = new HashMap<>();
+
+        try {
+            String email= SecurityContextHolder.getContext().getAuthentication().getName();
+            String name = diary.getName();
+            String email_name = email + "_" + name;
+            diary.setEmail_name(email_name);
+            int res = diaryService.updateDiary(diary);
+            if(res == 1) {
+                result.put("status", success);
+                result.put("data", diaryService.lookupDiary(diary.getId()));
+            }else{
+                result.put("status", fail);
+            }
+        } catch (Exception e) {
+            result.put("status", error);
+            result.put("message", e.toString());
+        }
+        return result;
+    }
+
+    @PutMapping("/deleteDiary")
+    public Map<String, Object> deleteDiary(@RequestBody DiarySaveDto diary){  //아이페이지에서만 삭제 가능
+
+        Map<String, Object> result = new HashMap<>();
+
+        try {
+            String email = SecurityContextHolder.getContext().getAuthentication().getName();
+            String name = diary.getName();
+            String email_name = email + "_" + name;
+            diary.setEmail_name(email_name);
+            int res = diaryService.deleteDiary(diary);  //삭제하려는 사용자가 현재 사용자와 일치하면 삭제
+            if(res == 1){
+                result.put("status", success);
+            }else{
+                result.put("status", fail);
+            }
+        } catch (Exception e) {
+            result.put("status", error);
+            result.put("message", e.toString());
+        }
         return result;
     }
 
