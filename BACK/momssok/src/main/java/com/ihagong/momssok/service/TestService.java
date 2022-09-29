@@ -1,5 +1,6 @@
 package com.ihagong.momssok.service;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.ihagong.momssok.util.BASE64DecodedMultipartFile;
 import com.ihagong.momssok.model.dto.testImageDto;
 import lombok.RequiredArgsConstructor;
@@ -30,7 +31,7 @@ public class TestService {
     }
 
 
-    public Map<Boolean,Object> ApiTestDetection(testImageDto dto){
+    public Map<Boolean,Object> ApiTestDetection(testImageDto dto) throws JsonProcessingException {
 
         Map<Boolean, Object> result = new HashMap<>();
         Map<String, Object> resultBody = new HashMap<>();

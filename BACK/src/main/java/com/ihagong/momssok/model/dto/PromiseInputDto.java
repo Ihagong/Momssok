@@ -9,5 +9,5 @@ import java.util.List;
 @Setter
 public class PromiseInputDto {
     private String name;
-    private List<PromiseInputItemDto> promiseItems;
+    private List<PromiseItemDto> promiseItems;
 }
