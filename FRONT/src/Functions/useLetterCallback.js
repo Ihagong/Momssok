@@ -1,16 +1,16 @@
 import { useRecoilState } from 'recoil'
-import { logInTokenState, LetterItemState, totalLetterListState } from '../store/atoms'
+import { logInTokenState, letterItemState, totalLetterListState } from '../store/atoms'
 import axios from 'axios'
 
 export function useLetterCallback() {
     const [logInToken, setLogInToken] = useRecoilState(logInTokenState)
     const [letterList, setLetterList] = useRecoilState(totalLetterListState)
-    const [letterItem, setLetterItem] = useRecoilState(LetterItemState)
+    const [letterItem, setLetterItem] = useRecoilState(letterItemState)
   
     const letterInfoCallback = async (name) => {
         axios({
             method: 'get',
-            url: '/api/letter',
+            url: '/api/letter/lookupAllLetter',
             headers: {
             'Content-Type': 'application/json',
             'Authorization': logInToken,
@@ -34,7 +34,7 @@ export function useLetterCallback() {
     const letterDetailCallback = async (letter_id) => {
         axios({
             method: 'get',
-            url: '/api/letter',
+            url: '/api/letter/lookupLetter',
             headers: {
             'Content-Type': 'application/json',
             'Authorization': logInToken,
@@ -58,7 +58,7 @@ export function useLetterCallback() {
     const letterRemoveCallback = async (letter_id) => {
         axios({
             method: 'delete',
-            url: '/api/letter',
+            url: '/api/letter/deleteLetter',
             headers: {
             'Content-Type': 'application/json',
             'Authorization': logInToken,
@@ -78,18 +78,17 @@ export function useLetterCallback() {
         })
     }
 
-    const letterSendCallback = async (author, receiver, title, content) => {
-        console.log(author, receiver, title, content)
+    const letterSendCallback = async (profileName, receiver, title, content) => {
         axios({
           method: 'post',
-          url: '/api/letter/send',
+          url: '/api/letter/sendLetter',
           headers: {
-            'Content-Type': 'application/json',
+            'Content-Type': 'multipart/form-data',
             'Authorization': logInToken,
           },
           data: {
             "videoFile": null,
-            "author": author,
+            "author": profileName,
             "receiver": receiver,
             "title": title,
             "content": content,

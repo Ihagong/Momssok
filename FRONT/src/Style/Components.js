@@ -63,7 +63,8 @@ export const ButtonTag3 = styled.button`
   color: var(--Brown-Text);
   background-color: var(--Beige-Light);
   border-radius: 20px;
-  border: 0;
+  border: none;
+  box-shadow: 0px 5px 5px #E6E6E6;
   font-family: 'Jua', sans-serif;
   font-size: 40px;
   cursor: pointer;
@@ -1153,6 +1154,16 @@ export const LetterItemTitle = styled.div`
   align-items: center;
 `
 
+export const LetterEmpty = styled.div`
+  font-family: 'Dongle', sans-serif;
+  font-size: 90px;
+  font-weight: bold;
+  text-align: center;
+  color: var(--Brown-Text);
+  margin-top: 150px;
+  white-space: nowrap;
+`
+
 
 // LoginPage
 export const LoginPageBody = styled.div`
@@ -1182,4 +1193,30 @@ export const GugiBrown = styled.span`
   font-family: 'Gugi', cursive;
   color: var(--Brown-Text);
   white-space: nowrap;
+`
+
+// ProfilePage
+
+export const ProfileTitle = styled.section`
+  text-align: center;
+  margin-top: 50px;
+  margin-bottom: 50px;
+`
+
+export const JuaOrange = styled.span`
+  font-family: 'Jua', sans-serif;
+  color: var(--Orange-Text);
+  white-space: nowrap;
+`
+
+export const ProfileBlock = styled.section`
+  display: flex;
+  justify-content: space-evenly;
+  margin-top: 100px;
+`
+
+export const ProfileFooter = styled.section`
+  display: flex;
+  justify-content: center;
+  margin-top: 130px;
 `

@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from "react"
 import { useNavigate } from "react-router-dom"
 
 import { useRecoilState } from 'recoil'
-import { totalLetterListState, profileInfoState } from '../store/atoms'
+import { profileState, profileInfoState } from '../store/atoms'
 import { useLetterCallback } from '../Functions/useLetterCallback'
 
 import { LogoTag, EditorBody, LetterTitleBody, LetterTitleDiv, LetterTitleInput, LetterContentBody, LetterContentDiv, LetterContentTextArea, LetterEditorComponentBody, LetterButton, LetterButtonBack, LetterButtonGo, LetterButtonDel } from "../Style/Components"
@@ -11,39 +11,32 @@ import { getStringDate } from "../util/date"
 const LetterEditorComponent = ({ isDetail, letterItem }) => {
   const navigate = useNavigate()
 
-  const [letterList, setLetterList] = useRecoilState(totalLetterListState)
-  const [profileInfo, setProfileInfo] = useRecoilState(profileInfoState)
+  const [profileName, setProfileName] = useRecoilState(profileState)
+  const [profileList, setProfileList] = useRecoilState(profileInfoState)
 
-  const { letterSendCallback } = useLetterCallback()
+  const { letterSendCallback, letterRemoveCallback } = useLetterCallback()
 
-  const receiverRef = useRef()
   const titleRef = useRef()
   const contentRef = useRef()
 
-
+  const [author, setAuthor] = useState("")
   const [receiver, setReceiver] = useState("")
   const [title, setTitle] = useState("")
   const [content, setContent] = useState("")
   const [date, setDate] = useState("")
-  const [author, setAuthor] = useState("")
 
-  setAuthor(profileInfo["name"])
 
   // CREATE
   const onCreate = (receiver, title, content) => {
-    letterSendCallback(author, receiver, title, content)
+    letterSendCallback(profileName, receiver, title, content)
   }
   // REMOVE
   const onRemove = (targetId) => {
-    setLetterList(letterList.filter((it) => it.letterId !== targetId))
+    letterRemoveCallback(targetId)
   }
 
 
   const handleSubmit = () => {
-    if (receiver.length < 1) {
-      receiverRef.current.focus()
-      return
-    } 
     if (title.length < 1) {
       titleRef.current.focus()
       return
@@ -64,17 +57,23 @@ const LetterEditorComponent = ({ isDetail, letterItem }) => {
 
   const handleRemove = () => {
     if (window.confirm("정말 삭제하시겠습니까?")) {
-      // onRemove(letterItem.letter_id)
+      onRemove(letterItem.letter_id)
       navigate("/letter", { replace: true })
     }
   }
 
+  const handleClickRadioButton = (e) => {
+    setReceiver(e.target.value)
+  }
+
   useEffect(() => {
+
     if (isDetail) {
+      setAuthor(letterItem.author)
       setReceiver(letterItem.receiver);
       setTitle(letterItem.title);
       setContent(letterItem.content);
-      setDate(getStringDate(new Date(parseInt(letterItem.date))))
+      setDate(getStringDate(new Date(letterItem.date)))
     }
   }, [isDetail, letterItem]);
   
@@ -87,12 +86,25 @@ const LetterEditorComponent = ({ isDetail, letterItem }) => {
       <EditorBody>
         <LetterTitleBody>
           <div>{isDetail ? "시간 : " : "누가 : "}</div>
-          <LetterTitleDiv>{isDetail ? date : author}</LetterTitleDiv>
+          <LetterTitleDiv>{isDetail ? date : profileName}</LetterTitleDiv>
         </LetterTitleBody>
 
         <LetterTitleBody>
-          <div>누구 : </div>
-          {isDetail ? <LetterTitleDiv>{receiver}</LetterTitleDiv> : <LetterTitleInput ref={receiverRef} value={receiver} onChange={(e) => setReceiver(e.target.value)} />}
+          <div>{isDetail ? "누가 : " : "누구 : "}</div>
+          {isDetail ? <LetterTitleDiv>{author}</LetterTitleDiv> : 
+          <LetterTitleDiv>
+            {profileList.filter((it) => it.name !== profileName).map((it, idx) => (
+              <label key={idx} style={{marginRight: "10px"}}>
+                <input
+                  type="radio"
+                  value={it.name}
+                  checked={receiver === `${it.name}`}
+                  onChange= {handleClickRadioButton} />
+                <span> {it.name}</span>
+              </label>
+            ))}
+          </LetterTitleDiv>
+          }
         </LetterTitleBody>
 
         <LetterTitleBody>
