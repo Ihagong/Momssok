@@ -1,0 +1,26 @@
+<annotation>
+	<folder>sky</folder>
+	<filename>coloring-page-outline-cartoon-rocket-260nw-2062128824.jpg</filename>
+	<path>C:\Users\ssafy\shutterscrape\sky\coloring-page-outline-cartoon-rocket-260nw-2062128824.jpg</path>
+	<source>
+		<database>Unknown</database>
+	</source>
+	<size>
+		<width>260</width>
+		<height>280</height>
+		<depth>1</depth>
+	</size>
+	<segmented>0</segmented>
+	<object>
+		<name>roket</name>
+		<pose>Unspecified</pose>
+		<truncated>0</truncated>
+		<difficult>0</difficult>
+		<bndbox>
+			<xmin>100</xmin>
+			<ymin>35</ymin>
+			<xmax>162</xmax>
+			<ymax>142</ymax>
+		</bndbox>
+	</object>
+</annotation>

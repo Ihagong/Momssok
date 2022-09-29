@@ -1,0 +1,26 @@
+<annotation>
+	<folder>total_data</folder>
+	<filename>bird-kids-drawing-260nw-764858587.jpg</filename>
+	<path>C:\Users\ssafy\shutterscrape\total_data\bird-kids-drawing-260nw-764858587.jpg</path>
+	<source>
+		<database>Unknown</database>
+	</source>
+	<size>
+		<width>390</width>
+		<height>280</height>
+		<depth>3</depth>
+	</size>
+	<segmented>0</segmented>
+	<object>
+		<name>bird</name>
+		<pose>Unspecified</pose>
+		<truncated>0</truncated>
+		<difficult>0</difficult>
+		<bndbox>
+			<xmin>139</xmin>
+			<ymin>61</ymin>
+			<xmax>283</xmax>
+			<ymax>193</ymax>
+		</bndbox>
+	</object>
+</annotation>

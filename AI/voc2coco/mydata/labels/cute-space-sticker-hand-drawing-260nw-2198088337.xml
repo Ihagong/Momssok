@@ -1,0 +1,26 @@
+<annotation>
+	<folder>sky</folder>
+	<filename>cute-space-sticker-hand-drawing-260nw-2198088337.jpg</filename>
+	<path>C:\Users\ssafy\shutterscrape\sky\cute-space-sticker-hand-drawing-260nw-2198088337.jpg</path>
+	<source>
+		<database>Unknown</database>
+	</source>
+	<size>
+		<width>260</width>
+		<height>280</height>
+		<depth>3</depth>
+	</size>
+	<segmented>0</segmented>
+	<object>
+		<name>roket</name>
+		<pose>Unspecified</pose>
+		<truncated>0</truncated>
+		<difficult>0</difficult>
+		<bndbox>
+			<xmin>10</xmin>
+			<ymin>102</ymin>
+			<xmax>128</xmax>
+			<ymax>247</ymax>
+		</bndbox>
+	</object>
+</annotation>

@@ -13,6 +13,7 @@ public interface DrawingMapper {
     List<DrawingDto> lookupAllDrawing(String email_name) throws SQLException;
     DrawingDto lookupDrawing(int drawing_id) throws SQLException;
     int saveDrawing(DrawingDto drawingDto) throws SQLException;
+    int getImageId(String email_name) throws SQLException;
     int updateDrawing(DrawingApiDto drawing) throws SQLException;
     String getDrawing(int drawing_id) throws SQLException;
     int deleteDrawing(DrawingOutDto drawing) throws SQLException;

@@ -1,0 +1,26 @@
+<annotation>
+	<folder>animals</folder>
+	<filename>animal-world-coloring-book-children-260nw-1885763005.jpg</filename>
+	<path>C:\Users\82106\Downloads\animals\animals\animal-world-coloring-book-children-260nw-1885763005.jpg</path>
+	<source>
+		<database>Unknown</database>
+	</source>
+	<size>
+		<width>414</width>
+		<height>280</height>
+		<depth>3</depth>
+	</size>
+	<segmented>0</segmented>
+	<object>
+		<name>animal</name>
+		<pose>Unspecified</pose>
+		<truncated>0</truncated>
+		<difficult>0</difficult>
+		<bndbox>
+			<xmin>5</xmin>
+			<ymin>12</ymin>
+			<xmax>410</xmax>
+			<ymax>247</ymax>
+		</bndbox>
+	</object>
+</annotation>

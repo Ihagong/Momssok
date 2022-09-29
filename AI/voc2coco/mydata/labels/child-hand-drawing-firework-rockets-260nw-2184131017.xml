@@ -1,0 +1,26 @@
+<annotation>
+	<folder>sky</folder>
+	<filename>child-hand-drawing-firework-rockets-260nw-2184131017.jpg</filename>
+	<path>C:\Users\ssafy\shutterscrape\sky\child-hand-drawing-firework-rockets-260nw-2184131017.jpg</path>
+	<source>
+		<database>Unknown</database>
+	</source>
+	<size>
+		<width>351</width>
+		<height>280</height>
+		<depth>3</depth>
+	</size>
+	<segmented>0</segmented>
+	<object>
+		<name>building</name>
+		<pose>Unspecified</pose>
+		<truncated>0</truncated>
+		<difficult>0</difficult>
+		<bndbox>
+			<xmin>128</xmin>
+			<ymin>49</ymin>
+			<xmax>270</xmax>
+			<ymax>225</ymax>
+		</bndbox>
+	</object>
+</annotation>

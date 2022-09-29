@@ -1,0 +1,26 @@
+<annotation>
+	<folder>total_data</folder>
+	<filename>cute-bird-drawing-icon-260nw-687182062.jpg</filename>
+	<path>C:\Users\ssafy\shutterscrape\total_data\cute-bird-drawing-icon-260nw-687182062.jpg</path>
+	<source>
+		<database>Unknown</database>
+	</source>
+	<size>
+		<width>260</width>
+		<height>280</height>
+		<depth>1</depth>
+	</size>
+	<segmented>0</segmented>
+	<object>
+		<name>bird</name>
+		<pose>Unspecified</pose>
+		<truncated>0</truncated>
+		<difficult>0</difficult>
+		<bndbox>
+			<xmin>8</xmin>
+			<ymin>21</ymin>
+			<xmax>252</xmax>
+			<ymax>241</ymax>
+		</bndbox>
+	</object>
+</annotation>

@@ -1,0 +1,26 @@
+<annotation>
+	<folder>animals</folder>
+	<filename>cartoon-animal-design-koala-playing-260nw-1883124001.jpg</filename>
+	<path>C:\Users\82106\Downloads\animals\animals\cartoon-animal-design-koala-playing-260nw-1883124001.jpg</path>
+	<source>
+		<database>Unknown</database>
+	</source>
+	<size>
+		<width>260</width>
+		<height>280</height>
+		<depth>3</depth>
+	</size>
+	<segmented>0</segmented>
+	<object>
+		<name>animal</name>
+		<pose>Unspecified</pose>
+		<truncated>0</truncated>
+		<difficult>0</difficult>
+		<bndbox>
+			<xmin>43</xmin>
+			<ymin>29</ymin>
+			<xmax>222</xmax>
+			<ymax>229</ymax>
+		</bndbox>
+	</object>
+</annotation>

@@ -1,0 +1,26 @@
+<annotation>
+	<folder>animals</folder>
+	<filename>adorable-halloween-animal-illustration-personal-260nw-1470550688.jpg</filename>
+	<path>C:\Users\82106\Downloads\animals\animals\adorable-halloween-animal-illustration-personal-260nw-1470550688.jpg</path>
+	<source>
+		<database>Unknown</database>
+	</source>
+	<size>
+		<width>260</width>
+		<height>280</height>
+		<depth>3</depth>
+	</size>
+	<segmented>0</segmented>
+	<object>
+		<name>dog</name>
+		<pose>Unspecified</pose>
+		<truncated>0</truncated>
+		<difficult>0</difficult>
+		<bndbox>
+			<xmin>62</xmin>
+			<ymin>74</ymin>
+			<xmax>180</xmax>
+			<ymax>224</ymax>
+		</bndbox>
+	</object>
+</annotation>
