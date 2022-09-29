@@ -49,7 +49,7 @@ function SignUpPage() {
   }
 
   return (
-    <>
+    <div>
       <h2>맘쏙 회원가입</h2>
       <p>지금 회원가입 하신 후</p>
       <p>맘쏙의 다양한 서비스를 만나보세요.</p>
@@ -71,7 +71,7 @@ function SignUpPage() {
         : null }
         <ButtonTag1 onClick={handleClickSignUp}>회원가입</ButtonTag1>
       </div>
-    </>
+    </div>
   );
 }
 
