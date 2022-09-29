@@ -10,6 +10,7 @@ public interface DrawingService {
     List<DrawingDto> lookupAllDrawing(String email_name) throws Exception;
     DrawingDto lookupDrawing(int drawing_id) throws Exception;
     int saveDrawing(DrawingDto drawingDto) throws Exception;
+    int getImageId(String email_name) throws Exception;
     int updateDrawing(DrawingApiDto drawing) throws Exception;
     String getDrawing(int drawing_id) throws Exception;
     int deleteDrawing(DrawingOutDto drawing) throws Exception;
