@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.io.IOException;
+import java.text.ParseException;
 import java.util.*;
 
 @Service
@@ -23,7 +24,7 @@ public class UserService {
     @Autowired
     private JavaMailSender javaMailSender;
     @Transactional
-    public Map<Boolean,Object> signUp(UserApiDto requestDto) {
+    public Map<Boolean,Object> signUp(UserApiDto requestDto){
         //validateDuplicated(requestDto.getEmail());
         Map<Boolean,Object> result=new HashMap<>();
         Map<String,String> resultBody = new HashMap<>();
@@ -217,7 +218,7 @@ public class UserService {
         return result;
     }
 
-    public Map<Boolean,Object> updateUser(UserApiDto requestDto) {
+    public Map<Boolean,Object> updateUser(UserApiDto requestDto) throws ParseException {
         Map<Boolean, Object> result = new HashMap<>();
         Map<String, String> resultBody = new HashMap<>();
         String email=SecurityContextHolder.getContext().getAuthentication().getName();
