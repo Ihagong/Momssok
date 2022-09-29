@@ -13,4 +13,6 @@ public interface DiaryService {
     List<DiaryDto> searchDiary(String option) throws Exception;
     int saveDiary(DiarySaveDto diary) throws Exception;
     DiaryDto lookupDiary(int id) throws Exception;
+    int updateDiary(DiarySaveDto diary) throws Exception;
+    int deleteDiary(DiarySaveDto diary) throws Exception;
 }
