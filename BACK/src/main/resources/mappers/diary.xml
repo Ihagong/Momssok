@@ -26,4 +26,17 @@
         WHERE title LIKE(CONCAT("%", #{option}, "%"))
     </select>
 
+    <insert id="saveDiary" parameterType="DiarySaveDto">
+        INSERT INTO diary
+            (id, email_name, drawing_id, title, content, weather, `date`)
+        VALUES
+            (#{id}, #{email_name}, #{drawing_id}, #{title}, #{content}, #{weather}, NOW)
+    </insert>
+
+    <select id="lookupDiary" parameterType="int" resultType="DiarySaveDto">
+        SELECT id, drawing_id, title, content, weather, `date`
+        FROM diary
+        WHERE id = #{id}
+    </select>
+
 </mapper>
