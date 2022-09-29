@@ -64,7 +64,7 @@ function App() {
         <Route exact path='/letter/:letterId' element={ <LetterDetailPage /> } />
         <Route exact path='/findpassword' element={ <FindPasswordPage /> } />
         <Route exact path='/dictionary' element={ <AnimalDictionaryPage /> } />
-        <Route exact path='/dictionary/create' element={ <CreateDictionaryPaintingPage /> } />
+        <Route exact path='/dictionary/create/:detailId' element={ <CreateDictionaryPaintingPage /> } />
       </Routes>
     </Router>
   );
