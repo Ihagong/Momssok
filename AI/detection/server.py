@@ -1,6 +1,7 @@
 import base64
 import io
 import test
+import json
 from PIL import Image
 import matplotlib.pyplot as plt
 import matplotlib.image as img
@@ -33,4 +34,4 @@ async def upload_photo(file: UploadFile):
         fp.write(contents)
     result = test.faster_rcnn("temp.jpg")
 
-    return result
+    return json.dumps(result)
