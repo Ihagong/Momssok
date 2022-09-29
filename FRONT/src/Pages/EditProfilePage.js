@@ -21,13 +21,13 @@ function EditProfilePage() {
     navigate(-1)
   }
 
-  const handleClickCreateProfile = () => {
+  const handleClickUpdateProfile = () => {
     if (name === '') {
       console.log('이름을 입력해주세요.')
     } else if (!year || !month || !day) {
       console.log('생일을 확인해주세요.')
     } else {
-      const birthday = `${ year ? year : 2000 }-${ month ? month < 10 ? '0'+month : month : '01' }-${ day ? day < 10 ? '0'+day : day : '01' }`
+      const birthday = `${ year ? year : 2000 }-${ month ? `${Number(month)}`.padStart(2,'0') : '01' }-${ day ? `${Number(day)}`.padStart(2,'0') : '01' }`
       updateProfileCallback(state.name, name, birthday, selectedImageIndex, state.profilePassword)
     }
   }
@@ -75,7 +75,7 @@ function EditProfilePage() {
       <span>
         <ButtonTag3 onClick={handleClickPrevPage}>이전</ButtonTag3>
         <ButtonTag3 onClick={handleClickDeleteButton}>삭제</ButtonTag3>
-        <ButtonTag4 onClick={handleClickCreateProfile}>완료</ButtonTag4>
+        <ButtonTag4 onClick={handleClickUpdateProfile}>완료</ButtonTag4>
       </span>
     </div>
   );
