@@ -10,13 +10,17 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
 import java.io.IOException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.*;
+
+import static com.ihagong.momssok.util.Time.getTime;
 
 @Service
 @RequiredArgsConstructor
 public class LetterService {
     private final LetterMapper letterMapper;
-    public Map<Boolean,Object> sendLetter(MultipartFile videoFile, String send_from, String send_to, String title, String content) throws IOException {
+    public Map<Boolean,Object> sendLetter(MultipartFile videoFile, String send_from, String send_to, String title, String content) throws IOException, ParseException {
         String email= SecurityContextHolder.getContext().getAuthentication().getName();
         Map<Boolean, Object> result = new HashMap<>();
         Map<String, String> resultBody = new HashMap<>();
@@ -48,7 +52,8 @@ public class LetterService {
             System.out.println(videoFile.getSize());
             letter.setVideo_path(filepath);
         }
-        letter.setDate(new Date());
+
+        letter.setDate(getTime());
         if(letter.getSend_from().contains(email)&&letter.getSend_to().contains(email)) {
             if (letterMapper.saveLetter(letter) == 1) {
                 resultBody.put("Messege", "편지 전송 완료");
