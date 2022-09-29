@@ -9,6 +9,8 @@ import java.io.Serializable;
 @Setter
 public class PromiseInnerItemDto  implements Serializable{
     private int id;
+
+
     private String todo;
     private int done;
 }
