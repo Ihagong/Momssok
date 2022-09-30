@@ -1,10 +1,12 @@
 import base64
 import io
 import test
+import json
 from PIL import Image
 import matplotlib.pyplot as plt
 import matplotlib.image as img
-
+from fastapi.encoders import jsonable_encoder
+from fastapi.responses import JSONResponse
 
 from typing import Optional
 

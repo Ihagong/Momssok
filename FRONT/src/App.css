@@ -36,3 +36,45 @@
     transform: rotate(360deg);
   }
 }
+
+/* LetterPage */
+
+body {
+  display: flex;
+  justify-content: center;
+  /* align-items: center; */
+  min-height: 100vh;
+  margin: 0px;
+  overflow: hidden;
+  overscroll-behavior-y: none;
+}
+
+@media (min-width: 1200px) {
+  .LetterPageHome {
+    width: 1194px;
+  }
+}
+
+@media (max-width: 1200px) {
+  .LetterPageHome {
+    width: 1194px;
+  }
+}
+
+/* LoginPage */
+.LoginPageBody {
+  display: flex;
+  justify-content: space-around;
+}
+
+.JuaBrown {
+  font-family: 'Jua', sans-serif;
+  color: var(--Brown-Text);
+  white-space: nowrap;
+}
+
+.JuaBrownLight {
+  font-family: 'Jua', sans-serif;
+  color: var(--Brown-LightText);
+  white-space: nowrap;
+}
