@@ -201,7 +201,7 @@ public class DrawingController {
     }
 
     @DeleteMapping("/deleteDrawing")
-    public Map<String, Object> deleteDrawing(@RequestBody DrawingOutDto drawing){  //email과 그림 id를 받는다
+    public Map<String, Object> deleteDrawing(@RequestBody DrawingOutDto drawing){
 
         Map<String, Object> result = new HashMap<>();
 
