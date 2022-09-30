@@ -39,4 +39,16 @@
         WHERE id = #{id}
     </select>
 
+    <update id="updateDiary" parameterType="DiarySaveDto">
+        UPDATE diary
+        SET drawing_id = #{drawing_id}, title = #{title}, content = #{content}, weather = #{weather}
+        WHERE id = #{id} AND email_name = #{email_name}
+    </update>
+
+    <update id="deleteDiary" parameterType="DiarySaveDto">
+        UPDATE diary
+        SET is_deleted_from_child = 1
+        WHERE id = #{id} AND email_name = #{email_name}
+    </update>
+
 </mapper>
