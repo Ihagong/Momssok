@@ -76,6 +76,7 @@ const LetterEditorComponent = ({ isDetail, letterItem }) => {
       setDate(getStringDate(new Date(letterItem.date)))
     }
   }, [isDetail, letterItem]);
+
   
   return (
     <LetterEditorComponentBody>
