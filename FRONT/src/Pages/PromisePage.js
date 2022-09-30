@@ -3,16 +3,16 @@ import { ProfileEditFooter, ProfileChildren, ProfileFooter, ProfileBlock, Profil
 import { useNavigate } from  'react-router-dom'
 import { ChildProfileComponent } from '../Components/ChildProfileComponent'
 import { useRecoilState } from 'recoil'
-import { profileInfoState, profileState } from '../store/atoms'
+import { profileListState, profileState } from '../store/atoms'
 import { useAuthCallback } from '../Functions/useAuthCallback'
 
 
 function ProfilePage() {
-  const [profileInfo, setProfileInfo] = useRecoilState(profileInfoState)
+  const [profileList, setProfileList] = useRecoilState(profileListState)
   const [profileName, setProfileName] = useRecoilState(profileState)
   const navigate = useNavigate()
   
-  const { logOutCallback, profileInfoCallback } = useAuthCallback()
+  const { logOutCallback, profileListCallback } = useAuthCallback()
 
   const handleClickCreateProfileButton = () => {
     navigate('/profile/create')
@@ -29,22 +29,22 @@ function ProfilePage() {
   }
 
   useEffect(() => {
-    if (profileInfo.length === 0) {
-      profileInfoCallback()
+    if (profileList.length === 0) {
+      profileListCallback()
     }
   }, [])
 
 
   return (
     <>
-      { profileInfo?.length !== 1 ?
+      { profileList?.length !== 1 ?
         <div>
           <ProfileTitle>
             <JuaBrown style={{fontSize: "55px"}}>프로필을 선택해주세요.</JuaBrown>
             <JuaOrange style={{fontSize: "48px"}}>우리 아이마다 맞춤으로 서비스 이용이 가능합니다.</JuaOrange>
           </ProfileTitle>
           <ProfileBlock>
-            { profileInfo?.map((info, index) => {if (!info.is_parent) {
+            { profileList?.map((info, index) => {if (!info.is_parent) {
                 return <ChildProfileComponent key={index} info={info} handleClickChildProfile={handleClickChildProfile} />
             }})}
           </ProfileBlock>

@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { useNavigate } from  'react-router-dom'
 import { useAuthCallback } from '../Functions/useAuthCallback'
 
-import { ProfileEditFooter, ProfileInput, ProfileBlock, ProfileTitle, JuaBrown, JuaBrownLight, JuaOrange, ProfileInfoLabelTag, ProfileInfoInputTag, ButtonTag3, ButtonTag4, ProfileImageTag, ProfileSelectedImageTag } from '../Style/Components'
+import { ProfileEditFooter, ProfileInput, ProfileBlock, ProfileTitle, JuaBrown, JuaBrownLight, JuaOrange, ProfileListLabelTag, ProfileListInputTag, ButtonTag3, ButtonTag4, ProfileImageTag, ProfileSelectedImageTag } from '../Style/Components'
 
 
 function CreateProfilePage() {
@@ -40,17 +40,17 @@ function CreateProfilePage() {
 
       <ProfileInput>
         <div style={{ display: 'flex', flexDirection: 'column' }}>
-          <ProfileInfoLabelTag htmlFor='name'>이름</ProfileInfoLabelTag>
-          <ProfileInfoInputTag style={{ width: '230px' }} type='text' id='name' value={name} onChange={(e) => {setName(e.target.value)}} />
+          <ProfileListLabelTag htmlFor='name'>이름</ProfileListLabelTag>
+          <ProfileListInputTag style={{ width: '230px' }} type='text' id='name' value={name} onChange={(e) => {setName(e.target.value)}} />
         </div>
         <div style={{ display: 'flex', flexDirection: 'column' }}>
-          <ProfileInfoLabelTag htmlFor='year'>생년월일</ProfileInfoLabelTag>
+          <ProfileListLabelTag htmlFor='year'>생년월일</ProfileListLabelTag>
           <JuaBrownLight style={{fontSize: "40px" }}>
-            <ProfileInfoInputTag style={{ width: '160px', textAlign: "center" }} type='number' id='year' value={year} onChange={(e) => {setYear(e.target.value)}}  min="1900" max="2022" />
+            <ProfileListInputTag style={{ width: '160px', textAlign: "center" }} type='number' id='year' value={year} onChange={(e) => {setYear(e.target.value)}}  min="1900" max="2022" />
             <span style={{fontSize: "36px", marginRight: "20px"}}>년</span>
-            <ProfileInfoInputTag style={{ width: '80px', textAlign: "center" }} type='number' id='month' value={month} onChange={(e) => {setMonth(e.target.value)}} min="1" max="12" />
+            <ProfileListInputTag style={{ width: '80px', textAlign: "center" }} type='number' id='month' value={month} onChange={(e) => {setMonth(e.target.value)}} min="1" max="12" />
             <span style={{fontSize: "36px", marginRight: "20px"}}>월</span>
-            <ProfileInfoInputTag style={{ width: '80px', textAlign: "center" }} type='number' id='day' value={day} onChange={(e) => {setDay(e.target.value)}} min="1" max="31" />
+            <ProfileListInputTag style={{ width: '80px', textAlign: "center" }} type='number' id='day' value={day} onChange={(e) => {setDay(e.target.value)}} min="1" max="31" />
             <span style={{fontSize: "36px", marginRight: "20px"}}>일</span>
           </JuaBrownLight>
         </div>

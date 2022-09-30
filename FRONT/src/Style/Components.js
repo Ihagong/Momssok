@@ -232,7 +232,7 @@ export const ChildProfileComponentTag = styled.div`
   }
 `
 
-export const ProfileInfoInputTag = styled.input`
+export const ProfileListInputTag = styled.input`
   color: var(--Brown-LightText);
   height: 70px;
   padding: 0 30px;
@@ -245,7 +245,7 @@ export const ProfileInfoInputTag = styled.input`
   user-select: auto;
 `
 
-export const ProfileInfoLabelTag = styled.label`
+export const ProfileListLabelTag = styled.label`
   color: var(--Brown-Text);
   font-family: 'Jua', sans-serif;
   font-size: 36px;

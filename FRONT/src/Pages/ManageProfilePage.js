@@ -3,18 +3,18 @@ import { useNavigate, useLocation } from  'react-router-dom'
 import { ChildProfileComponent } from '../Components/ChildProfileComponent'
 import { CreateProfileComponent } from '../Components/CreateProfileComponent'
 import { useRecoilState } from 'recoil'
-import { profileInfoState } from '../store/atoms'
+import { profileListState } from '../store/atoms'
 import { useAuthCallback } from '../Functions/useAuthCallback'
 import { ProfileFooter, ProfileBlock, ProfileTitle, JuaBrown, JuaOrange, ButtonTag3, ButtonTag4 } from '../Style/Components'
 
 
 function ManageProfilePage() {
   const { state } = useLocation()
-  const [profileInfo, setProfileInfo] = useRecoilState(profileInfoState)
+  const [profileList, setProfileList] = useRecoilState(profileListState)
   const [isEditProfile, setIsEditProfile] = useState(false)
   const navigate = useNavigate()
   
-  const { logOutCallback, profileInfoCallback } = useAuthCallback()
+  const { logOutCallback, profileListCallback } = useAuthCallback()
 
   const handleClickManageProfileButton = () => {
     setIsEditProfile(!isEditProfile)
@@ -38,8 +38,8 @@ function ManageProfilePage() {
   }
 
   useEffect(() => {
-    if (profileInfo.length === 0) {
-      profileInfoCallback()
+    if (profileList.length === 0) {
+      profileListCallback()
     }
   }, [])
 
@@ -51,10 +51,10 @@ function ManageProfilePage() {
       </ProfileTitle>
 
       <ProfileBlock>
-        { profileInfo?.map((info, index) => {if (!info.is_parent) {
+        { profileList?.map((info, index) => {if (!info.is_parent) {
           return <ChildProfileComponent key={index} info={info} handleClickChildProfile={handleClickChildProfile} />
         }})}
-        { profileInfo.length < 5 ?
+        { profileList.length < 5 ?
           <CreateProfileComponent />
           : null }
       </ProfileBlock>
