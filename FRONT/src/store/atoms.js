@@ -94,3 +94,9 @@ export const profileState = atom({
   effects_UNSTABLE: [persistAtom]
 })
 
+export const dictionaryPaintingState = atom({
+  key: 'dictionaryPaintingState',
+  default: [],
+  effects_UNSTABLE: [persistAtom]
+})
+

@@ -114,6 +114,7 @@ export const ChildButtonTag2 = styled.button`
   font-size: 64px;
   cursor: pointer;
   user-select: auto;
+  z-index: 4;
 `
 
 export const ChildButtonTag3 = styled.button`
@@ -147,6 +148,7 @@ export const ChildButtonTag4 = styled.button`
   font-size: 64px;
   cursor: pointer;
   user-select: auto;
+  z-index: 4;
 `
 
 export const ChildButtonTag5 = styled.button`
