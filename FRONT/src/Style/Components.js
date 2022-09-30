@@ -387,11 +387,30 @@ export const DiaryInputTag = styled.input`
 export const DiaryContentInputTag = styled.textarea`
   color: var(--Brown-LightText);
   border-radius: 10px;
-  padding: 0;
+  padding: 0 0 0 10px;
   height: 70px;
-  border: 1px solid var(--Beige-Stroke);
-  font-family: 'Dongle', sans-serif;
+  /* border: 1px solid var(--Beige-Stroke); */
+  border-radius: 10px;
+  font-family: 'Gaegu', monospace;
   font-size: 40px;
+  /* color: var(--Brown-Text); */
+  position: absolute;
+  width: 604px;
+  height: 200px;
+  z-index: 2;
+  background-color: transparent;
+  letter-spacing: 22px;
+  line-height: 50px;
+  word-spacing: 16px;
+  border: 0;
+  resize: none;
+  /* scrollbar-width: none; */
+  scrollbar-width: 0;
+  /* text-indent: 5px; */
+  overflow: hidden;
+  :focus {
+    outline: none;
+  }
 `
 
 export const DiaryPaintingTag = styled.div`
