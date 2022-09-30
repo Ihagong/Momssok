@@ -1,10 +1,14 @@
 import React, { useContext, useRef, useState, useEffect } from 'react'
+import { useRecoilState } from 'recoil'
+import { dictionaryPaintingState } from '../../store/atoms'
 
 
 const CanvasContext = React.createContext()
 
-export const CanvasProvider = ({ children, loadedPainting, textures, offset, gesture, strokeColorIndex, strokeTextureIndex, strokeLineWidthIndex, isCamOn, width, height }) => {
+export const CanvasProvider = ({ children, loadedPainting, textures, offset, gesture, strokeColorIndex, strokeTextureIndex, strokeLineWidthIndex, isCamOn, width, height, partIndex }) => {
+  const [dictionaryPaintingList, setDictionaryPaintingList] = useRecoilState(dictionaryPaintingState)
   const [isDrawing, setIsDrawing] = useState(false)
+  const [imageIndex, setImageIndex] = useState(0)
   const [imgSrcs, setImgSrcs] = useState([])
   const canvasRef = useRef(null)
   const contextRef = useRef(null)
@@ -35,6 +39,16 @@ export const CanvasProvider = ({ children, loadedPainting, textures, offset, ges
       motionDraw()
     }
   }, [offset])
+
+  useEffect(() => {
+    setDictionaryPaintingList([])
+  }, [])
+
+  useEffect(() => {
+    if (partIndex) {
+      addPart()
+    }
+  }, [partIndex])
   
   const strokeColor = [
     '#121212', '#F88484', '#EB2C37', '#EB8C35', '#FEED01', '#94C120', '#0C8E36',
@@ -150,6 +164,22 @@ export const CanvasProvider = ({ children, loadedPainting, textures, offset, ges
     
     const imgSrc = saveCanvas.toDataURL()
     setImgSrcs(prev => [...prev, imgSrc])
+  }
+
+  const order = ['tail', 'body', 'head']
+  const addPart = () => {
+    const canvas = canvasRef.current
+    const image = new Image()
+    image.src = canvas.toDataURL()
+    const part = order[imageIndex]
+    setImageIndex(imageIndex+1)
+    const imageInfo = {
+      image,
+      part,
+      url: canvas.toDataURL(),
+    }
+    setDictionaryPaintingList(prev => [...prev, imageInfo])
+    clearCanvas()
   }
 
   return (
