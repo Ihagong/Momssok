@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from "react"
 import { useNavigate } from "react-router-dom"
 
 import { useRecoilState } from 'recoil'
-import { profileState, profileInfoState } from '../store/atoms'
+import { profileState, profileListState } from '../store/atoms'
 import { useLetterCallback } from '../Functions/useLetterCallback'
 
 import { LogoTag, EditorBody, LetterTitleBody, LetterTitleDiv, LetterTitleInput, LetterContentBody, LetterContentDiv, LetterContentTextArea, LetterEditorComponentBody, LetterButton, LetterButtonBack, LetterButtonGo, LetterButtonDel } from "../Style/Components"
@@ -12,7 +12,7 @@ const LetterEditorComponent = ({ isDetail, letterItem }) => {
   const navigate = useNavigate()
 
   const [profileName, setProfileName] = useRecoilState(profileState)
-  const [profileList, setProfileList] = useRecoilState(profileInfoState)
+  const [profileList, setProfileList] = useRecoilState(profileListState)
 
   const { letterSendCallback, letterRemoveCallback } = useLetterCallback()
 
