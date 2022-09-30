@@ -11,7 +11,7 @@ import { getStringDate } from "../util/date"
 const LetterEditorComponent = ({ isDetail, letterItem }) => {
   const navigate = useNavigate()
 
-  const [profileName, setProfileName] = useRecoilState(profileState)
+  const [profileInfo, setProfileInfo] = useRecoilState(profileState)
   const [profileList, setProfileList] = useRecoilState(profileListState)
 
   const { letterSendCallback, letterRemoveCallback } = useLetterCallback()
@@ -28,7 +28,7 @@ const LetterEditorComponent = ({ isDetail, letterItem }) => {
 
   // CREATE
   const onCreate = (receiver, title, content) => {
-    letterSendCallback(profileName.name, receiver, title, content)
+    letterSendCallback(profileInfo.name, receiver, title, content)
   }
   // REMOVE
   const onRemove = (targetId) => {
@@ -87,14 +87,14 @@ const LetterEditorComponent = ({ isDetail, letterItem }) => {
       <EditorBody>
         <LetterTitleBody>
           <div>{isDetail ? "시간 : " : "누가 : "}</div>
-          <LetterTitleDiv>{isDetail ? date : profileName.name}</LetterTitleDiv>
+          <LetterTitleDiv>{isDetail ? date : profileInfo.name}</LetterTitleDiv>
         </LetterTitleBody>
 
         <LetterTitleBody>
           <div>{isDetail ? "누가 : " : "누구 : "}</div>
           {isDetail ? <LetterTitleDiv>{author}</LetterTitleDiv> : 
           <LetterTitleDiv>
-            {profileList.filter((it) => it.name !== profileName.name).map((it, idx) => (
+            {profileList.filter((it) => it.name !== profileInfo.name).map((it, idx) => (
               <label key={idx} style={{marginRight: "10px"}}>
                 <input
                   type="radio"

@@ -10,9 +10,9 @@ import { ParentInfo, ParentTitle, ProfileEditFooter, ProfileChildren, ProfileFoo
 
 function ParentMainPage() {
   const navigate = useNavigate()
-  const [profileName, setProfileName] = useRecoilState(profileState)
+  const [profileInfo, setProfileInfo] = useRecoilState(profileState)
   const childInfo = { id: 0, name: '찬석이', birth: '2017.12', age: 6 } // 아이 정보
-  const [age, setAge] = useState(new Date().getFullYear() - new Date(profileName.birthday).getFullYear() + 1)
+  const [age, setAge] = useState(new Date().getFullYear() - new Date(profileInfo.birthday).getFullYear() + 1)
 
 
   const handleClickReportButton = () => {
@@ -35,9 +35,9 @@ function ParentMainPage() {
   return (
     <div>
       <ParentTitle>
-        <img style={{ width: "130px", height: "130px" }} src={`/images/profileImage_${profileName.image_num}.svg`} />
+        <img style={{ width: "130px", height: "130px" }} src={`/images/profileImage_${profileInfo.image_num}.svg`} />
         <ParentInfo>
-          <JuaBrown style={{ fontSize: "50px" }}>{profileName.name}
+          <JuaBrown style={{ fontSize: "50px" }}>{profileInfo.name}
             <span style={{ fontSize: "50px", color: "gray"}}> | </span>
             {age}세
           </JuaBrown>

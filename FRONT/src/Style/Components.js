@@ -525,9 +525,13 @@ export const PaintingCardTag = styled.div`
   align-items: center;
   color: var(--Brown-Text);
   background-color: var(--White-Block);
+  box-shadow: 0px 5px 5px #E6E6E6;
+
   border-radius: 30px;
   width: 200px;
   height: 200px;
+  margin-left: 30px;
+  margin-right: 30px;
   font-family: 'Jua', sans-serif;
   font-size: 28px;
   cursor: pointer;
@@ -537,7 +541,7 @@ export const PaintingCardTag = styled.div`
 `
 
 export const PaintingCardDateStyleTag = styled.p`
-  font-size: 28px;
+  font-size: 26px;
   margin: 0;
 `
 
@@ -862,6 +866,7 @@ export const LetterPageHeader = styled.div`
   display: flex;
   flex-direction: row;
   align-items: center;
+  justify-content: space-between;
 
   font-family: 'Dongle', sans-serif;
 `
