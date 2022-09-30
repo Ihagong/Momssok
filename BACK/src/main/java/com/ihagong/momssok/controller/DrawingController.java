@@ -9,6 +9,8 @@ import lombok.RequiredArgsConstructor;
 import org.apache.commons.io.FileUtils;
 import org.apache.tomcat.util.http.fileupload.IOUtils;
 import org.springframework.core.io.ByteArrayResource;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -147,17 +149,17 @@ public class DrawingController {
 //    }
 
 
-    @GetMapping("/getDrawing")  //이미지를 base64로 인코딩하여 프론트에 보내기
-    public String getBase64(@RequestParam int drawing_id) throws Exception {
-
-        String painting = drawingService.getDrawing(drawing_id);  //이미지를 가져온다
-
-        byte[] file = FileUtils.readFileToByteArray(new File(painting));  //bytearray로 변환
-        String base64 = Base64.getEncoder().encodeToString(file);  //base64로 인코딩
-
-//        return base64;
-        return "date:image/png;base64," + base64;
-    }
+//    @GetMapping("/getDrawing")  //이미지를 base64로 인코딩하여 프론트에 보내기
+//    public String getBase64(@RequestParam int drawing_id) throws Exception {
+//
+//        String painting = drawingService.getDrawing(drawing_id);  //이미지를 가져온다
+//
+//        byte[] file = FileUtils.readFileToByteArray(new File(painting));  //bytearray로 변환
+//        String base64 = Base64.getEncoder().encodeToString(file);  //base64로 인코딩
+//
+////        return base64;
+//        return "date:image/png;base64," + base64;
+//    }
 
 
     @PutMapping("/updateDrawing")
