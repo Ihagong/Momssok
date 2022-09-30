@@ -20,9 +20,10 @@ repositories {
 
 dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-web'
+
 	//mysql
 	implementation 'mysql:mysql-connector-java'
-	implementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter:2.1.2'
+	implementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter:2.1.4'
 
 	compileOnly 'org.projectlombok:lombok'
 	annotationProcessor 'org.projectlombok:lombok'
@@ -37,6 +38,8 @@ dependencies {
 	implementation 'org.json:json:20190722'
 	implementation 'commons-fileupload:commons-fileupload:1.4'
 	implementation 'com.google.code.findbugs:jsr305:3.0.2'
+	implementation group: 'javax.xml.bind', name: 'jaxb-api', version: '2.2.7'
+
 
 }
 

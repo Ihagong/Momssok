@@ -35,8 +35,8 @@
         WHERE drawing_id = #{drawing_id}
     </select>
 
-    <delete id="deleteDrawing" parameterType="String">
+    <delete id="deleteDrawing" parameterType="DrawingOutDto">
         DELETE FROM drawing
-        WHERE email_name LIKE(CONCAT(#{email}, '%')) AND drawing_id = #{drawing_id}
+        WHERE email_name = #{email_name} AND drawing_id = #{drawing_id}
     </delete>
 </mapper>
