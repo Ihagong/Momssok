@@ -15,18 +15,3 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
-
-@font-face{
-  font-family: "Jua";
-  src: url("../public/fonts/BMJUA_otf.otf");
-}
-
-@font-face{
-  font-family: "Dongle";
-  src: url("../public/fonts/Dongle-Regular.ttf");
-}
-
-@font-face{
-  font-family: "Gugi";
-  src: url("../public/fonts/Gugi-Regular.ttf");
-}

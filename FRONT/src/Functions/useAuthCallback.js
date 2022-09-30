@@ -279,13 +279,17 @@ export function useAuthCallback() {
     })
   }
 
-  const deleteProfileCallback = async () => {
+  const deleteProfileCallback = async (name) => {
+    console.log(name)
     axios({
       method: 'delete',
-      url: '/api/user',
+      url: '/api/user/deleteProfile',
       headers: {
-        'Content-Type': 'application/json',
+        'Content-Type': 'multipart/form-data',
         'Authorization': logInToken,
+      },
+      data: {
+        "name": name,
       }
     })
     .then(response => {
@@ -293,7 +297,7 @@ export function useAuthCallback() {
         console.log(response.data)
         console.log('프로필이 삭제되었습니다.')
         profileInfoCallback()
-        navigate('/profile')
+        navigate('/profile/manage')
       }
     })
     .catch(error => {

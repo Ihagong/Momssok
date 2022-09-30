@@ -19,9 +19,9 @@ const LetterListComponent = ({ letterList }) => {
   const getProcessedLetterList = () => {
     const compare = (a, b) => {
       if (sortType === "latest") {
-        return parseInt(b.date) - parseInt(a.date);
+        return parseInt(new Date(b.date).getTime()) - parseInt(new Date(a.date).getTime());
       } else {
-        return parseInt(a.date) - parseInt(b.date);
+        return parseInt(new Date(a.date).getTime()) - parseInt(new Date(b.date).getTime());
       }
     }
 
