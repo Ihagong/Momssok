@@ -24,7 +24,7 @@ export const userInfoState = atom({
 
 export const profileListState = atom({
   key: 'profileListState',
-  default: {},
+  default: [],
   effects_UNSTABLE: [persistAtom]
 })
 

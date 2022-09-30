@@ -8,7 +8,7 @@ import { profileState } from '../store/atoms'
 
 function ChildMainPage() {
   const [selectedTab, setSelctedTab] = useState(0)
-  const [profileName, setProfileName] = useRecoilState(profileState)
+  const [profileInfo, setProfileInfo] = useRecoilState(profileState)
 
 
   const navigate = useNavigate()
@@ -45,7 +45,7 @@ function ChildMainPage() {
           : <ChildMenuTabTag onClick={() => setSelctedTab(2)}><img src='icons/bearicon.svg' alt='편지' />편지</ChildMenuTabTag>}
         {selectedTab === 3 ? <ChildMenuSelectedTabTag><img src='icons/dog.svg' alt='놀이' />놀이</ChildMenuSelectedTabTag>
           : <ChildMenuTabTag onClick={() => setSelctedTab(3)}><img src='icons/dog.svg' alt='놀이' />놀이</ChildMenuTabTag>}
-        <ChildProfileTag style={{marginLeft: "30px"}} onClick={handleClickChildProfile}><img src={`/images/profileImage_${profileName.image_num}.svg`} />{profileName.name}</ChildProfileTag>
+        <ChildProfileTag style={{marginLeft: "30px"}} onClick={handleClickChildProfile}><img src={`/images/profileImage_${profileInfo.image_num}.svg`} />{profileInfo.name}</ChildProfileTag>
         
       </ChildMenuTag>
       <ChildSubMenuTag>

@@ -9,7 +9,7 @@ import { useAuthCallback } from '../Functions/useAuthCallback'
 
 function ProfilePage() {
   const [profileList, setProfileList] = useRecoilState(profileListState)
-  const [profileName, setProfileName] = useRecoilState(profileState)
+  const [profileInfo, setProfileInfo] = useRecoilState(profileState)
   const navigate = useNavigate()
   
   const { logOutCallback, profileListCallback } = useAuthCallback()
@@ -23,8 +23,7 @@ function ProfilePage() {
   }
 
   const handleClickChildProfile = (info) => {
-    setProfileName(info)
-    console.log(profileName)
+    setProfileInfo(info)
     navigate('/child')
   }
 

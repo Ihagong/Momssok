@@ -1,17 +1,20 @@
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
+
 import { useRecoilState } from 'recoil'
-import { loadedPaintingState } from '../store/atoms'
-import { ChildProfileTag, ChildButtonTag1, ChildButtonTag3, ChildButtonTag4, PaintingCardTag } from '../Style/Components'
+import { loadedPaintingState, profileState } from '../store/atoms'
+
+import { OrangeButton250, LightButton250, LetterPageHeader, BrownText100, LightButton120, BrownLightButton150, ChildProfileTag, ChildButtonTag1, ChildButtonTag3, ChildButtonTag4, PaintingCardTag } from '../Style/Components'
 import { PaintingCardComponent } from '../Components/PaintingCardComponent'
 
 
 function LoadPaintingPage() {
+  const navigate = useNavigate();
   const [loadedPaintingSrc, setLoadedPaintingSrc] = useRecoilState(loadedPaintingState)
+  const [profileInfo, setProfileInfo] = useRecoilState(profileState)
 
   const [sortOrder, setSortOrder] = useState(0)
 
-  const navigate = useNavigate();
 
   const handleChangeFile = (e) => {
     e.preventDefault()
@@ -30,6 +33,10 @@ function LoadPaintingPage() {
     })
   }
 
+  const handleClickChildProfile = () => {
+    navigate('/profile')
+  }
+
   const handleClickCreatePaintingButton = () => {
     setLoadedPaintingSrc('')
     navigate('/painting/create')
@@ -43,25 +50,28 @@ function LoadPaintingPage() {
   const paintingList = [{ id: 1, date: '2022.09.19', tags: ['운동회', '계주', '줄다리기'] }]
 
   return (
-    <>
-      <div style={{ display: 'flex' }}>
-        <ChildButtonTag1 style={{ width: '120px' }}>닫기</ChildButtonTag1>
-        <h3>그림 그리기</h3>
-        <ChildProfileTag><img src='/icons/boy.svg' />아이 이름</ChildProfileTag>
-      </div>
-      <div style={{ display: 'flex' }}>
+    <div className='LetterPageHome'>
+      <LetterPageHeader>
+        <div style={{ display: "flex", alignItems: "center", marginLeft: "30px" }}>
+          <LightButton120 onClick={() => navigate("/child")}>닫기</LightButton120>
+          <BrownText100>그림 그리기</BrownText100>
+        </div>
+          <ChildProfileTag style={{marginTop: "30px", marginRight: "40px"}} onClick={handleClickChildProfile}><img src={`/images/profileImage_${profileInfo.image_num}.svg`} />{profileInfo.name}</ChildProfileTag>
+      </LetterPageHeader>
+
+      <div style={{ display: 'flex', marginTop: "-20px" }}>
         { sortOrder === 0 ?
-          <ChildButtonTag3>최신순</ChildButtonTag3>
+          <OrangeButton250 style={{marginLeft: "70px"}}>최신순</OrangeButton250>
         :
-          <ChildButtonTag4 onClick={() => setSortOrder(0)}>최신순</ChildButtonTag4>
+          <LightButton250 style={{marginLeft: "70px"}} onClick={() => setSortOrder(0)}>최신순</LightButton250>
         }
         { sortOrder === 1 ?
-          <ChildButtonTag3>오래된순</ChildButtonTag3>
+          <OrangeButton250>오래된순</OrangeButton250>
         :
-          <ChildButtonTag4 onClick={() => setSortOrder(1)}>오래된순</ChildButtonTag4>
+          <LightButton250 onClick={() => setSortOrder(1)}>오래된순</LightButton250>
         }
       </div>
-      <div style={{ display: 'flex' }}>
+      <div style={{ display: 'flex', marginTop: "40px", marginLeft: "50px" }}>
         <PaintingCardTag onClick={handleClickCreatePaintingButton}><img src='/icons/plus_brown.svg' /></PaintingCardTag>
         {paintingList.map((info) => (
           <div onClick={handleClickLoadPaintingButton}>
@@ -69,7 +79,7 @@ function LoadPaintingPage() {
           </div>
         ))}
       </div>
-    </>
+    </div>
   );
 }
 
