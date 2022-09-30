@@ -59,7 +59,7 @@ function EditAccountPage() {
       <section style={{marginLeft: "60px", marginTop: "60px"}}>
         <div style={{ display: 'flex', flexDirection: 'column' }}>
           <InputTag1 type='text' placeholder='이름' value={username} onChange={(e) => {setUsername(e.target.value)}}/>
-          <InputTag1 type='email' placeholder='이메일' value={email} onChange={(e) => {setEmail(e.target.value)}}/>
+          <InputTag1 type='email' placeholder='이메일' value={email}  disabled onChange={(e) => {setEmail(e.target.value)}}/>
           <span>
             <InputTag1 type='password' placeholder='현재 비밀번호' value={currentPassword} onChange={(e) => {setCurrentPassword(e.target.value)}}/>
             <ButtonTag2 onClick={handleClickAuthPassword} style={{marginLeft: "15px"}}>인증</ButtonTag2>

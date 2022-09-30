@@ -114,6 +114,7 @@ export const ChildButtonTag2 = styled.button`
   font-size: 64px;
   cursor: pointer;
   user-select: auto;
+  z-index: 4;
 `
 
 export const ChildButtonTag3 = styled.button`
@@ -147,6 +148,7 @@ export const ChildButtonTag4 = styled.button`
   font-size: 64px;
   cursor: pointer;
   user-select: auto;
+  z-index: 4;
 `
 
 export const ChildButtonTag5 = styled.button`
@@ -163,6 +165,9 @@ export const ChildButtonTag5 = styled.button`
 `
 
 export const AddProfileButtonTag = styled.button`
+  display: flex;
+  justify-content: center;
+  align-items: center;
   width: 140px;
   height: 140px;
   color: white;
@@ -206,6 +211,8 @@ export const InputTag1 = styled.input`
 export const ChildProfileComponentTag = styled.div`
   width: 200px;
   height: 200px;
+  margin-left: 15px;
+  margin-right: 15px;
   border-radius: 20px;
   display: flex;
   flex-direction: column;
@@ -214,7 +221,8 @@ export const ChildProfileComponentTag = styled.div`
   font-family: 'Jua', sans-serif;
   color: var(--Brown-LightText);
   font-size: 20px;
-  background-color: var(--Brown-GrayText);
+  background-color: #f0e3c3;
+
   cursor: pointer;
   user-select: auto;
   p {
@@ -225,14 +233,15 @@ export const ChildProfileComponentTag = styled.div`
 `
 
 export const ProfileInfoInputTag = styled.input`
-  color: var(--Brown-Text);
+  color: var(--Brown-LightText);
   height: 70px;
   padding: 0 30px;
+  margin-right: 5px;
   background-color: var(--Beige-Light);
   border-radius: 20px;
   border: 2px solid var(--Beige-Stroke);
   font-family: 'Jua', sans-serif;
-  font-size: 28px;
+  font-size: 36px;
   user-select: auto;
 `
 
@@ -240,7 +249,7 @@ export const ProfileInfoLabelTag = styled.label`
   color: var(--Brown-Text);
   font-family: 'Jua', sans-serif;
   font-size: 36px;
-  margin: 0;
+  margin-bottom: 5px;
   user-select: auto;
 `
 
@@ -452,14 +461,16 @@ export const EditProfileButtonTag = styled.button`
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 300px;
-  height: 90px;
+  width: 250px;
+  height: 80px;
+  margin-left: 30px;
   color: white;
   background-color: #FF6029CC;
-  border-radius: 24px;
+  border-radius: 20px;
   border: 0;
+  box-shadow: 0px 10px 20px rgba(255, 96, 41, 0.4);
   font-family: 'Jua', sans-serif;
-  font-size: 36px;
+  font-size: 30px;
   cursor: pointer;
   user-select: auto;
 `
@@ -472,8 +483,11 @@ export const ParentMenuButtonTag = styled.div`
   width: 220px;
   height: 330px;
   font-size: 20px;
-  border-radius: 40px;
-  padding: 10px;
+  border-radius: 30px;
+  box-shadow: 0px 5px 5px #E6E6E6;
+  padding: 5px;
+  margin-left: 20px;
+  margin-right: 20px;
   background-color: var(--Beige-Light);
   align-items: center;
   justify-content: center;
@@ -488,6 +502,7 @@ export const ParentMenuButtonTag = styled.div`
     margin: 0;
   }
   img {
+    margin-top: 20px;
     height: 150px;
   }
 `
@@ -728,6 +743,8 @@ export const ProfileImageTag = styled.div`
   display: inline-block;
   width: 150px;
   height: 150px;
+  margin-left: 5px;
+  margin-right: 5px;
   border: 6px solid #00000000;
   border-radius: 50%;
   cursor: pointer;
@@ -737,7 +754,9 @@ export const ProfileSelectedImageTag = styled.div`
   display: inline-block;
   width: 150px;
   height: 150px;
-  border: 6px solid #FF005C;
+  margin-left: 5px;
+  margin-right: 5px;
+  border: 6px solid #EE5925;
   border-radius: 50%;
   cursor: pointer;
 `
@@ -751,6 +770,60 @@ export const PointerTag = styled.img`
   width: 80px;
   z-index: 2;
 `
+
+export const DictionaryCardComponentTag = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: var(--White-Block);
+  border: 1px solid var(--Beige-Stroke);
+  border-radius: 30px;
+  width: 200px;
+  height: 200px;
+  padding: 20px;
+  color: var(--Brown-Text);
+  font-family: 'Dongle', sans-serif;
+  font-size: 60px;
+  img {
+    height: 130px;
+  }
+  cursor: pointer;
+`
+
+export const DictionaryDetailComponentTag = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: var(--White-Block);
+  border: 1px solid var(--Beige-Stroke);
+  border-radius: 30px;
+  width: 550px;
+  height: 600px;
+  padding: 20px;
+  color: var(--Brown-Text);
+  font-family: 'Dongle', sans-serif;
+  font-size: 60px;
+  img {
+    height: 400px;
+  }
+`
+
+export const PaintingGuideTag = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 500px;
+  height: 550px;
+  color: var(--Brown-Text);
+  font-family: 'Dongle', sans-serif;
+  font-size: 60px;
+  img {
+    height: 400px;
+  }
+`
+
+
 
 
 
@@ -1157,7 +1230,8 @@ export const JuaOrange = styled.span`
 
 export const ProfileBlock = styled.section`
   display: flex;
-  justify-content: space-evenly;
+  justify-content: center;
+  align-items: center;
   margin-top: 100px;
 `
 
@@ -1165,4 +1239,42 @@ export const ProfileFooter = styled.section`
   display: flex;
   justify-content: center;
   margin-top: 130px;
+`
+
+export const ProfileEditFooter = styled.section`
+  display: flex;
+  justify-content: center;
+  margin-top: 50px;
+`
+
+export const ProfileInput = styled.section`
+  display: flex;
+  justify-content: space-evenly;
+  margin-top: 20px;
+`
+
+export const ProfileChildren = styled.section`
+  display: flex;
+  justify-content: end;
+  margin-top: -100px;
+  margin-right: -190px;
+`
+
+// ParentPage
+
+export const ParentTitle = styled.section`
+  display: flex;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  margin-top: 30px;
+  margin-bottom: 40px;
+`
+
+export const ParentInfo = styled.section`
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  margin-left: 30px;
 `
