@@ -32,7 +32,7 @@ def faster_rcnn():
                                                     rpn_batch_size_per_image=256, rpn_positive_fraction=0.5,
                                                     box_roi_pool=roi_pooler, box_head=box_head,
                                                     box_predictor=box_predictor,
-                                                    box_score_thresh=0.1, box_nms_thresh=0.5,
+                                                    box_score_thresh=0.5, box_nms_thresh=0.5,
                                                     box_detections_per_img=300,
                                                     box_fg_iou_thresh=0.5, box_bg_iou_thresh=0.5,
                                                     box_batch_size_per_image=128, box_positive_fraction=0.25

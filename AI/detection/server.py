@@ -37,10 +37,9 @@ async def upload_photo(file: UploadFile):
 
     for i in range(0, x):
         for j in range(0, y):
-            if px[i, j][-1] == 0:
+            if px[i, j][3] == 0:
                 px[i, j] = (255, 255, 255, 255)
-    im = im.convert('RGB')
-    im.save('temp.jpg')
-    result = test.faster_rcnn("temp.jpg")
+    im.save('temp2.png')
+    result = test.faster_rcnn("temp2.png")
 
     return result
