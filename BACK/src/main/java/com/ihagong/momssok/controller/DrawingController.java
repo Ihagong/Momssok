@@ -3,8 +3,10 @@ package com.ihagong.momssok.controller;
 import com.ihagong.momssok.model.dto.DrawingApiDto;
 import com.ihagong.momssok.model.dto.DrawingDto;
 import com.ihagong.momssok.model.dto.DrawingOutDto;
+import com.ihagong.momssok.model.dto.testImageDto;
 import com.ihagong.momssok.service.DrawingService;
 import com.ihagong.momssok.service.DrawingServiceImpl;
+import com.ihagong.momssok.service.TestService;
 import lombok.RequiredArgsConstructor;
 import org.apache.commons.io.FileUtils;
 import org.apache.tomcat.util.http.fileupload.IOUtils;
@@ -13,11 +15,11 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
-import java.io.FileOutputStream;
+import java.io.IOException;
 import java.nio.file.StandardCopyOption;
+import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
@@ -31,7 +33,7 @@ public class DrawingController {
     private final String fail = "FAIL";
     private final String error = "ERROR";
     private final DrawingService drawingService;
-    private final DrawingServiceImpl drawingServiceImpl;
+    private final TestService testService;
 
 
     @GetMapping("/searchDrawing")
@@ -64,6 +66,13 @@ public class DrawingController {
 
         try {
             DrawingDto drawing = drawingService.lookupDrawing(drawing_id);
+
+            String painting = drawingService.getDrawing(drawing_id);  //이미지를 가져온다
+
+            byte[] file = FileUtils.readFileToByteArray(new File(painting));  //bytearray로 변환
+            String base64 = "date:image/png;base64," + Base64.getEncoder().encodeToString(file);  //base64로 인코딩
+            drawing.setDrawing_base64(base64);
+
             if(drawing != null){
                 result.put("statue", success);
                 result.put("data", drawing);
@@ -119,8 +128,14 @@ public class DrawingController {
                 int res = drawingService.saveDrawing(drawing);  //이미지 저장
                 if (res == 1) {
                     result.put("status", success);
-                    int id = drawingService.getImageId(email_name);
+                    int id = drawingService.getImageId(name);
                     result.put("data", id);
+
+                    testImageDto dto = new testImageDto();
+                    dto.setImageBase64(base64Source);
+                    dto.setName(name);
+                    testService.ApiTestDetection(dto);
+
                 }else{
                     result.put("status", fail);
                 }
@@ -136,17 +151,15 @@ public class DrawingController {
     }
 
 
-    //AI 서버로 그림 분석 결과 요청할 때 그림을 보낸다
-//    @GetMapping("/detection")
-//    public ResponseEntity<?> detection(@RequestParam MultipartFile file){  //image_path에서 파일명을 잘라서 쓸까?
-//
-//        Map<Boolean,Object> result = drawingServiceImpl.detection(file);
-//
-//        if(result.get(true)!=null)
-//            return new ResponseEntity<>(result.get(true), HttpStatus.OK);
-//        else
-//            return new ResponseEntity<>(result.get(false), HttpStatus.BAD_REQUEST);
-//    }
+    //AI 서버로 그림 분석 결과 요청
+    @RequestMapping(value = "/testDetection", method = RequestMethod.GET)
+    public ResponseEntity<?> testDetection2(@RequestBody testImageDto dto) throws IOException, SQLException {
+        Map<Boolean,Object> result = testService.ApiTestDetection(dto);
+        if(result.get(true)!=null)
+            return new ResponseEntity<>(result.get(true), HttpStatus.OK);
+        else
+            return new ResponseEntity<>(result.get(false), HttpStatus.BAD_REQUEST);
+    }
 
 
 //    @GetMapping("/getDrawing")  //이미지를 base64로 인코딩하여 프론트에 보내기
@@ -157,7 +170,6 @@ public class DrawingController {
 //        byte[] file = FileUtils.readFileToByteArray(new File(painting));  //bytearray로 변환
 //        String base64 = Base64.getEncoder().encodeToString(file);  //base64로 인코딩
 //
-////        return base64;
 //        return "date:image/png;base64," + base64;
 //    }
 
