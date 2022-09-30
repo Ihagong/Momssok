@@ -387,7 +387,7 @@ export const DiaryInputTag = styled.input`
 export const DiaryContentInputTag = styled.textarea`
   color: var(--Brown-LightText);
   border-radius: 10px;
-  padding: 0 20px;
+  padding: 0;
   height: 70px;
   border: 1px solid var(--Beige-Stroke);
   font-family: 'Dongle', sans-serif;

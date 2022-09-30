@@ -37,7 +37,46 @@ export function DiaryComponent(props) {
           <DiaryInputTag id='title' style={{ width: '490px' }} value={title} onInput={((e) => setTitle(e.target.value))} />
         </div>
         <DiaryPaintingTag></DiaryPaintingTag>
-        <DiaryContentInputTag style={{ width: '600px', height: '200px' }} value={content} onInput={((e) => setContent(e.target.value))} />
+        <div style={{ display: 'flex' }}>
+          <DiaryContentInputTag style={{ width: '600px', height: '200px' }} value={content} onInput={((e) => setContent(e.target.value))} />
+          <div style={{ position: 'absolute', display: 'inline-grid', gridTemplateColumns: 'repeat(11, 1fr)', gridTemplateRows: 'repeat(3, 60px)', width: '600px', height: '200px',
+            backgroundColor: 'black', outline: '2px solid black', gridGap: '2px'
+            }}>
+              <div style={{ backgroundColor: 'white' }}>a</div>
+              <div style={{ backgroundColor: 'white' }}>a</div>
+              <div style={{ backgroundColor: 'white' }}>a</div>
+              <div style={{ backgroundColor: 'white' }}>a</div>
+              <div style={{ backgroundColor: 'white' }}>a</div>
+              <div style={{ backgroundColor: 'white' }}>a</div>
+              <div style={{ backgroundColor: 'white' }}>a</div>
+              <div style={{ backgroundColor: 'white' }}>a</div>
+              <div style={{ backgroundColor: 'white' }}>a</div>
+              <div style={{ backgroundColor: 'white' }}>a</div>
+              <div style={{ backgroundColor: 'white' }}>a</div>
+              <div style={{ backgroundColor: 'white' }}>a</div>
+              <div style={{ backgroundColor: 'white' }}>a</div>
+              <div style={{ backgroundColor: 'white' }}>a</div>
+              <div style={{ backgroundColor: 'white' }}>a</div>
+              <div style={{ backgroundColor: 'white' }}>a</div>
+              <div style={{ backgroundColor: 'white' }}>a</div>
+              <div style={{ backgroundColor: 'white' }}>a</div>
+              <div style={{ backgroundColor: 'white' }}>a</div>
+              <div style={{ backgroundColor: 'white' }}>a</div>
+              <div style={{ backgroundColor: 'white' }}>a</div>
+              <div style={{ backgroundColor: 'white' }}>a</div>
+              <div style={{ backgroundColor: 'white' }}>a</div>
+              <div style={{ backgroundColor: 'white' }}>a</div>
+              <div style={{ backgroundColor: 'white' }}>a</div>
+              <div style={{ backgroundColor: 'white' }}>a</div>
+              <div style={{ backgroundColor: 'white' }}>a</div>
+              <div style={{ backgroundColor: 'white' }}>a</div>
+              <div style={{ backgroundColor: 'white' }}>a</div>
+              <div style={{ backgroundColor: 'white' }}>a</div>
+              <div style={{ backgroundColor: 'white' }}>a</div>
+              <div style={{ backgroundColor: 'white' }}>a</div>
+              <div style={{ backgroundColor: 'white' }}>a</div>
+          </div>
+        </div>
       </DiaryComponentTag>
     </>
   )
