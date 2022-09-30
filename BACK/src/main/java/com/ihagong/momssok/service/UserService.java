@@ -4,19 +4,16 @@ import com.ihagong.momssok.mapper.UserMapper;
 import com.ihagong.momssok.model.dto.*;
 import com.ihagong.momssok.security.JwtTokenProvider;
 import lombok.RequiredArgsConstructor;
-import org.apache.commons.io.FileUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
-import org.springframework.mail.javamail.JavaMailSenderImpl;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.multipart.MultipartFile;
 
-import java.io.File;
 import java.io.IOException;
+import java.text.ParseException;
 import java.util.*;
 
 @Service
@@ -27,7 +24,7 @@ public class UserService {
     @Autowired
     private JavaMailSender javaMailSender;
     @Transactional
-    public Map<Boolean,Object> signUp(UserApiDto requestDto) {
+    public Map<Boolean,Object> signUp(UserApiDto requestDto){
         //validateDuplicated(requestDto.getEmail());
         Map<Boolean,Object> result=new HashMap<>();
         Map<String,String> resultBody = new HashMap<>();
@@ -159,6 +156,30 @@ public class UserService {
         }
 
     }
+
+    public Map<Boolean,Object> checkPassword(UserApiDto requestDto){
+        Map<Boolean,Object> result=new HashMap<>();
+        Map<String,String> resultBody = new HashMap<>();
+        UserApiDto user = userMapper.searchByEmail(requestDto.getEmail());
+        if(user!=null) {
+            if (!new BCryptPasswordEncoder().matches(requestDto.getPassword(), user.getPassword())){
+                resultBody.put("Messege","비밀번호가 일치하지 않습니다.");
+                result.put(false,resultBody);
+                return result;
+            }
+            resultBody.put("Messege","비밀번호가 일치합니다.");
+            result.put(true,resultBody);
+            return result;
+            //return new UserApiDto(user.getEmail(), jwtTokenProvider.createToken(requestDto.getEmail(), Collections.singletonList("ROLE_USER")) );
+        }
+        else{
+            resultBody.put("Messege","이메일 주소가 일치하지 않습니다.");
+            result.put(false,resultBody);
+            return result;
+        }
+
+    }
+
     public Map<Boolean,Object> findPassword(String email) {
         Map<Boolean, Object> result = new HashMap<>();
         Map<String, String> resultBody = new HashMap<>();
@@ -197,26 +218,35 @@ public class UserService {
         return result;
     }
 
-    public Map<Boolean,Object> updateUser(UserApiDto requestDto) {
+    public Map<Boolean,Object> updateUser(UserApiDto requestDto) throws ParseException {
         Map<Boolean, Object> result = new HashMap<>();
         Map<String, String> resultBody = new HashMap<>();
         String email=SecurityContextHolder.getContext().getAuthentication().getName();
         if(email!=null) {
-            UserDto user = new UserDto();
-            user.setEmail(email);
-            user.setUsername(requestDto.getUsername());
-            user.setModified_date(new Date());
-            userMapper.updateUser(user);
-            PasswordDto password = new PasswordDto();
-            password.setPassword(new BCryptPasswordEncoder().encode(requestDto.getPassword()));
-            password.setEmail(email);
-            userMapper.updatePassword(password);
-            ProfileDto profile = new ProfileDto();
-            profile.setEmail(email);
-            profile.setName(requestDto.getUsername());
-            profile.setEmail_name(email + "_" + requestDto.getUsername());
-            userMapper.updateParentName(profile);
-            resultBody.put("Messege", "수정 완료");
+            String str="";
+            if(requestDto.getUsername()!=null) {
+                UserDto user = new UserDto();
+                user.setEmail(email);
+                user.setUsername(requestDto.getUsername());
+                user.setModified_date(new Date());
+                userMapper.updateUser(user);
+                ProfileDto profile = new ProfileDto();
+                profile.setEmail(email);
+                profile.setName(requestDto.getUsername());
+                profile.setEmail_name(email + "_" + requestDto.getUsername());
+                userMapper.updateParentName(profile);
+                str+="이름 ";
+            }
+            if(requestDto.getPassword()!=null) {
+                PasswordDto password = new PasswordDto();
+                password.setPassword(new BCryptPasswordEncoder().encode(requestDto.getPassword()));
+                password.setEmail(email);
+                userMapper.updatePassword(password);
+                str+="비밀번호 ";
+
+
+            }
+            resultBody.put("Messege", str+"수정 완료");
             result.put(true, resultBody);
             return result;
         }
@@ -237,21 +267,24 @@ public class UserService {
         }
         else{
             resultBody.put("Messege", "회원 탈퇴 오류");
-            result.put(true, resultBody);
+            result.put(false, resultBody);
             return result;
         }
     }
 
-    public Map<Boolean,Object> saveProfile(ProfileDto requestDto, MultipartFile file) throws IOException {
+    public Map<Boolean,Object> saveProfile(ProfileDto requestDto) throws IOException {
         Map<Boolean, Object> result = new HashMap<>();
         Map<String, String> resultBody = new HashMap<>();
         if(userMapper.checkExistProfileName(requestDto.getEmail_name())==0){
+            /*
             String path="C:\\Users\\multicampus\\Documents\\fileTest\\";
             UUID uuid = UUID.randomUUID();
             String filepath=path+ uuid +"_"+file.getOriginalFilename();
             file.transferTo(new File(filepath));
             requestDto.setImage_path(filepath);
+             */
             userMapper.saveProfile(requestDto);
+
             resultBody.put("Messege","프로필 저장 완료");
             result.put(true,resultBody);
             return result;
@@ -279,11 +312,15 @@ public class UserService {
                 profileApiDto.setModified_date(profileDto.getModified_date());
                 profileApiDto.setIs_parent(profileDto.getIs_parent());
                 profileApiDto.setProfile_password(profileDto.getProfile_password());
+                profileApiDto.setImage_num(profileDto.getImage_num());
+                /*
                 if(profileDto.getImage_path()!=null) {
                     byte[] fileContent = FileUtils.readFileToByteArray(new File(profileDto.getImage_path()));
                     String encodedString = Base64.getEncoder().encodeToString(fileContent);
                     profileApiDto.setImage_base64(encodedString);
                 }
+
+                 */
                 profileApiList.add(profileApiDto);
             }
             resultBody.put("profiles",profileApiList);
@@ -299,15 +336,17 @@ public class UserService {
 
     }
 
-    public Map<Boolean,Object> updateProfile(ProfileDto requestDto,MultipartFile file,String beforeName) throws IOException {
+    public Map<Boolean,Object> updateProfile(ProfileDto requestDto,String beforeName) throws IOException {
         Map<Boolean, Object> result = new HashMap<>();
         Map<String, Object> resultBody = new HashMap<>();
-
+        /*
         String path="C:\\Users\\multicampus\\Documents\\fileTest\\";
         UUID uuid = UUID.randomUUID();
         String filepath=path+ uuid +"_"+file.getOriginalFilename();
         file.transferTo(new File(filepath));
         requestDto.setImage_path(filepath);
+
+         */
         requestDto.setBeforeName(beforeName);
         if(userMapper.updateProfile(requestDto)==1) {
             resultBody.put("Messege","프로필이 수정되었습니다.");
@@ -320,5 +359,20 @@ public class UserService {
             return result;
         }
     }
+    public Map<Boolean,Object> deleteProfile(String name)  {
+        Map<Boolean, Object> result = new HashMap<>();
+        Map<String, Object> resultBody = new HashMap<>();
+        String email=SecurityContextHolder.getContext().getAuthentication().getName();
+        if(userMapper.deleteProfile(email+"_"+name)==1) {
+            resultBody.put("Messege", "프로필이 삭제되었습니다.");
+            result.put(true, resultBody);
+            return result;
+        }
+        else{
+            resultBody.put("Messege", "프로필 삭제 오류");
+            result.put(false, resultBody);
+            return result;
+        }
 
+    }
 }

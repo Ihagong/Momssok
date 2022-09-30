@@ -1,7 +1,6 @@
 package com.ihagong.momssok.controller;
 
 import com.ihagong.momssok.model.dto.PromiseInputDto;
-import com.ihagong.momssok.model.dto.PromiseInputItemDto;
 import com.ihagong.momssok.service.PromiseService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -9,7 +8,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
-import java.util.List;
 import java.util.Map;
 
 @RestController
@@ -46,11 +44,11 @@ public class PromiseController {
 
     }
 
-    @RequestMapping(value = "/promise/updatePromise", method = RequestMethod.GET)
-    public ResponseEntity<?> updatePromise(@RequestParam String name) throws IOException, ClassNotFoundException {
+    @RequestMapping(value = "/promise/updatePromise", method = RequestMethod.PUT)
+    public ResponseEntity<?> updatePromise(@RequestParam String name,@RequestParam String index,@RequestParam String newTodo) throws IOException, ClassNotFoundException {
 
 
-        Map<Boolean,Object> result = promiseService.updatePromise(name);
+        Map<Boolean,Object> result = promiseService.updatePromise(name,index,newTodo);
 
         if(result.get(true)!=null)
             return new ResponseEntity<>(result.get(true), HttpStatus.OK);
@@ -59,4 +57,32 @@ public class PromiseController {
 
 
     }
+    @RequestMapping(value = "/promise/deletePromise", method = RequestMethod.DELETE)
+    public ResponseEntity<?> deletePromise(@RequestParam String name,@RequestParam String index) throws IOException, ClassNotFoundException {
+
+
+        Map<Boolean,Object> result = promiseService.deletePromise(name,index);
+
+        if(result.get(true)!=null)
+            return new ResponseEntity<>(result.get(true), HttpStatus.OK);
+        else
+            return new ResponseEntity<>(result.get(false), HttpStatus.BAD_REQUEST);
+
+
+    }
+    @RequestMapping(value = "/promise/donePromise", method = RequestMethod.PUT)
+    public ResponseEntity<?> donePromise(@RequestParam String name,@RequestParam String index) throws IOException, ClassNotFoundException {
+
+
+        Map<Boolean,Object> result = promiseService.donePromise(name,index);
+
+        if(result.get(true)!=null)
+            return new ResponseEntity<>(result.get(true), HttpStatus.OK);
+        else
+            return new ResponseEntity<>(result.get(false), HttpStatus.BAD_REQUEST);
+
+
+    }
+
+
 }

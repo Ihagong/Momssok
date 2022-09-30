@@ -4,6 +4,30 @@ import { recoilPersist } from 'recoil-persist'
 
 const { persistAtom } = recoilPersist()
 
+export const signUpTokenState = atom({
+  key: 'signUpTokenState',
+  default: '',
+  effects_UNSTABLE: [persistAtom]
+})
+
+export const logInTokenState = atom({
+  key: 'logInTokenState',
+  default: '',
+  effects_UNSTABLE: [persistAtom]
+})
+
+export const userInfoState = atom({
+  key: 'userInfoState',
+  default: null,
+  effects_UNSTABLE: [persistAtom]
+})
+
+export const profileInfoState = atom({
+  key: 'profileInfoState',
+  default: {},
+  effects_UNSTABLE: [persistAtom]
+})
+
 export const diaryContentState = atom({
   key: 'diaryContentState',
   default: '',
@@ -51,3 +75,22 @@ export const totalTodoListState = atom({
   },
   effects_UNSTABLE: [persistAtom]
 })
+
+export const totalLetterListState = atom({
+  key: 'totalLetterListState',
+  default: [],
+  effects_UNSTABLE: [persistAtom]
+})
+
+export const letterItemState = atom({
+  key: 'letterItemState',
+  default: {},
+  effects_UNSTABLE: [persistAtom]
+})
+
+export const profileState = atom({
+  key: 'profileState',
+  default: '',
+  effects_UNSTABLE: [persistAtom]
+})
+
