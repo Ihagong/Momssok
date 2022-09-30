@@ -22,6 +22,7 @@ function ParentMainPage() {
   }
 
   const handleClickPromiseButton = () => {
+    navigate('/promise')
   }
 
   const handleClickLetterButton = () => {
