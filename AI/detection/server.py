@@ -31,9 +31,17 @@ def from_image_to_bytes(img):
 @app.post("/tag")
 async def upload_photo(file: UploadFile):
     contents = await file.read()
-    with open("temp.jpg", "wb") as fp:
+    with open("temp.png", "wb") as fp:
         fp.write(contents)
-    result = test.faster_rcnn("temp.jpg")
-    json_compatible_item_data = jsonable_encoder(result)
-    return JSONResponse(content=json_compatible_item_data)
-    #return json.dumps(result)
+    im = Image.open('./temp.png')
+    x, y = im.size
+    px = im.load()
+
+    for i in range(0, x):
+        for j in range(0, y):
+            if px[i, j][3] == 0:
+                px[i, j] = (255, 255, 255, 255)
+    im.save('temp2.png')
+    result = test.faster_rcnn("temp2.png")
+
+    return result

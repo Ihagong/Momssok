@@ -23,11 +23,10 @@ def faster_rcnn(image):
 
 
     model.to(device)
-    saved_checkpoint = torch.load("Epoch33.pth", map_location=device)
+    saved_checkpoint = torch.load("Epoch30.pth", map_location=device)
     model.load_state_dict(saved_checkpoint, strict=False)  # 훈련파일
-    # image_path = "/home/jupyter-j7d203/drawing_dataset/97511345-행복한-가족의-어린이-사진-벡터-일러스트-레이-션.jpg"
 
-    test_image = Image.open(image).convert("RGB")
+    test_image = Image.open(image).convert('RGB')
     test_image = np.array(test_image)
 
     to_tensor = torchvision.transforms.ToTensor()
