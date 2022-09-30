@@ -32,6 +32,8 @@ public class TestController {
     }
 
 
+
+
     @RequestMapping(value = "/testDetection", method = RequestMethod.GET)
     public ResponseEntity<?> testDetection2(@RequestBody testImageDto dto) throws IOException {
         Map<Boolean,Object> result = testService.ApiTestDetection(dto);
