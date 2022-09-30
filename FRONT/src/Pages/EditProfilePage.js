@@ -1,7 +1,8 @@
-import React, { useEffect, useState } from 'react'
-import { ProfileInfoLabelTag, ProfileInfoInputTag, ButtonTag3, ButtonTag4, ProfileImageTag, ProfileSelectedImageTag } from '../Style/Components'
+import React, { useState } from 'react'
 import { useNavigate, useLocation } from  'react-router-dom'
 import { useAuthCallback } from '../Functions/useAuthCallback'
+
+import { ProfileEditFooter, ProfileInput, ProfileTitle, JuaBrownLight, JuaBrown, JuaOrange, ProfileInfoLabelTag, ProfileInfoInputTag, ButtonTag3, ButtonTag4, ProfileImageTag, ProfileSelectedImageTag } from '../Style/Components'
 
 
 function EditProfilePage() {
@@ -11,7 +12,7 @@ function EditProfilePage() {
   const [year, setYear] = useState(beforeBirthday.getFullYear())
   const [month, setMonth] = useState(beforeBirthday.getMonth()+1)
   const [day, setDay] = useState(beforeBirthday.getDate())
-  const [selectedImageIndex, setSelectedImageIndex] = useState(state.selectedImageIndex)
+  const [selectedImageIndex, setSelectedImageIndex] = useState(Number(state.image_num))
 
   const { updateProfileCallback, deleteProfileCallback } = useAuthCallback()
 
@@ -21,62 +22,74 @@ function EditProfilePage() {
     navigate(-1)
   }
 
-  const handleClickCreateProfile = () => {
+  const handleClickUpdateProfile = () => {
     if (name === '') {
       console.log('이름을 입력해주세요.')
     } else if (!year || !month || !day) {
       console.log('생일을 확인해주세요.')
     } else {
-      const birthday = `${ year ? year : 2000 }-${ month ? month < 10 ? '0'+month : month : '01' }-${ day ? day < 10 ? '0'+day : day : '01' }`
+      const birthday = `${ year ? year : 2000 }-${ month ? `${Number(month)}`.padStart(2,'0') : '01' }-${ day ? `${Number(day)}`.padStart(2,'0') : '01' }`
       updateProfileCallback(state.name, name, birthday, selectedImageIndex, state.profilePassword)
     }
   }
 
   const handleClickDeleteButton = () => {
     if (window.confirm('정말 삭제하시겠습니까?')) {
-      // deleteProfileCallback()
+      deleteProfileCallback(name)
     }
   }
 
   return (
-    <div style={{ display: 'flex', flexDirection: 'column' }}>
-      <h3>자녀 프로필 관리</h3>
-      <h4>아이의 이름과 생년월일, 캐릭터를 선택해 주세요.</h4>
-      <div style={{ display: 'flex' }}>
+    <div>
+      <ProfileTitle>
+        <JuaBrown style={{ fontSize: "55px" }}>자녀 프로필 관리</JuaBrown>
+        <JuaOrange style={{ fontSize: "48px" }}>아이의 이름과 생년월일, 캐릭터를 선택해 주세요.</JuaOrange>
+      </ProfileTitle>
+      <ProfileInput>
         <div style={{ display: 'flex', flexDirection: 'column' }}>
           <ProfileInfoLabelTag htmlFor='name'>이름</ProfileInfoLabelTag>
-          <ProfileInfoInputTag style={{ width: '300px' }} type='text' id='name' value={name} onChange={(e) => {setName(e.target.value)}} />
+          <ProfileInfoInputTag style={{ width: '230px', textAlign: "center", marginRight: '40px' }} type='text' id='name' value={name} onChange={(e) => {setName(e.target.value)}} />
         </div>
         <div style={{ display: 'flex', flexDirection: 'column' }}>
           <ProfileInfoLabelTag htmlFor='year'>생년월일</ProfileInfoLabelTag>
-          <span>
-            <ProfileInfoInputTag style={{ width: '200px' }} type='number' id='year' value={year} onChange={(e) => {setYear(e.target.value)}}  min="1900" max="2022" />년
-            <ProfileInfoInputTag style={{ width: '110px' }} type='number' id='month' value={month} onChange={(e) => {setMonth(e.target.value)}} min="1" max="12" />월
-            <ProfileInfoInputTag style={{ width: '110px' }} type='number' id='day' value={day} onChange={(e) => {setDay(e.target.value)}} min="1" max="31" />일
-          </span>
+          <JuaBrownLight style={{fontSize: "40px" }}>
+            <ProfileInfoInputTag style={{ width: '160px', textAlign: "center" }} type='number' id='year' value={year} onChange={(e) => {setYear(e.target.value)}}  min="1900" max="2022" />
+            <span style={{fontSize: "36px", marginRight: "20px"}}>년</span>
+            <ProfileInfoInputTag style={{ width: '80px', textAlign: "center" }} type='number' id='month' value={month} onChange={(e) => {setMonth(e.target.value)}} min="1" max="12" />
+            <span style={{fontSize: "36px", marginRight: "20px"}}>월</span>
+            <ProfileInfoInputTag style={{ width: '80px', textAlign: "center" }} type='number' id='day' value={day} onChange={(e) => {setDay(e.target.value)}} min="1" max="31" />
+            <span style={{fontSize: "36px", marginRight: "20px"}}>일</span>
+          </JuaBrownLight>
         </div>
-      </div>
-      <ProfileInfoLabelTag>캐릭터</ProfileInfoLabelTag>
-      <p>캐릭터 이미지</p>
-      <span>
-        { selectedImageIndex === 0 ? <ProfileSelectedImageTag><img src='/images/profile.png' /></ProfileSelectedImageTag>
-          :  <ProfileImageTag onClick={() => setSelectedImageIndex(0)}><img src='/images/profile.png' /></ProfileImageTag> }
-        { selectedImageIndex === 1 ? <ProfileSelectedImageTag><img src='/images/profile.png' /></ProfileSelectedImageTag>
-          :  <ProfileImageTag onClick={() => setSelectedImageIndex(1)}><img src='/images/profile.png' /></ProfileImageTag> }
-        { selectedImageIndex === 2 ? <ProfileSelectedImageTag><img src='/images/profile.png' /></ProfileSelectedImageTag>
-          :  <ProfileImageTag onClick={() => setSelectedImageIndex(2)}><img src='/images/profile.png' /></ProfileImageTag> }
-        { selectedImageIndex === 3 ? <ProfileSelectedImageTag><img src='/images/profile.png' /></ProfileSelectedImageTag>
-          :  <ProfileImageTag onClick={() => setSelectedImageIndex(3)}><img src='/images/profile.png' /></ProfileImageTag> }
-        { selectedImageIndex === 4 ? <ProfileSelectedImageTag><img src='/images/profile.png' /></ProfileSelectedImageTag>
-          :  <ProfileImageTag onClick={() => setSelectedImageIndex(4)}><img src='/images/profile.png' /></ProfileImageTag> }
-        { selectedImageIndex === 5 ? <ProfileSelectedImageTag><img src='/images/profile.png' /></ProfileSelectedImageTag>
-          :  <ProfileImageTag onClick={() => setSelectedImageIndex(5)}><img src='/images/profile.png' /></ProfileImageTag> }
-      </span>
-      <span>
-        <ButtonTag3 onClick={handleClickPrevPage}>이전</ButtonTag3>
-        <ButtonTag3 onClick={handleClickDeleteButton}>삭제</ButtonTag3>
-        <ButtonTag4 onClick={handleClickCreateProfile}>완료</ButtonTag4>
-      </span>
+      </ProfileInput>
+
+      <ProfileInput style={{ display: 'flex', flexDirection: 'column', marginTop: '30px'}}>
+        <JuaBrown style={{fontSize: "36px", marginBottom: '10px'}}>캐릭터</JuaBrown>
+        <div>
+          { selectedImageIndex === 0 ? <ProfileSelectedImageTag><img src='/images/profileImage_0.svg' /></ProfileSelectedImageTag>
+            :  <ProfileImageTag onClick={() => setSelectedImageIndex(0)}><img src='/images/profileImage_0.svg' /></ProfileImageTag> }
+          { selectedImageIndex === 1 ? <ProfileSelectedImageTag><img src='/images/profileImage_1.svg' /></ProfileSelectedImageTag>
+            :  <ProfileImageTag onClick={() => setSelectedImageIndex(1)}><img src='/images/profileImage_1.svg' /></ProfileImageTag> }
+          { selectedImageIndex === 2 ? <ProfileSelectedImageTag><img src='/images/profileImage_2.svg' /></ProfileSelectedImageTag>
+            :  <ProfileImageTag onClick={() => setSelectedImageIndex(2)}><img src='/images/profileImage_2.svg' /></ProfileImageTag> }
+          { selectedImageIndex === 3 ? <ProfileSelectedImageTag><img src='/images/profileImage_3.svg' /></ProfileSelectedImageTag>
+            :  <ProfileImageTag onClick={() => setSelectedImageIndex(3)}><img src='/images/profileImage_3.svg' /></ProfileImageTag> }
+          { selectedImageIndex === 4 ? <ProfileSelectedImageTag><img src='/images/profileImage_4.svg' /></ProfileSelectedImageTag>
+            :  <ProfileImageTag onClick={() => setSelectedImageIndex(4)}><img src='/images/profileImage_4.svg' /></ProfileImageTag> }
+          { selectedImageIndex === 5 ? <ProfileSelectedImageTag><img src='/images/profileImage_5.svg' /></ProfileSelectedImageTag>
+            :  <ProfileImageTag onClick={() => setSelectedImageIndex(5)}><img src='/images/profileImage_5.svg' /></ProfileImageTag> }
+        </div>
+      </ProfileInput>
+
+      <ProfileEditFooter>
+        <span>
+          <ButtonTag3 onClick={handleClickPrevPage}>이전</ButtonTag3>
+          <ButtonTag4 style={{ backgroundColor: "var(--Brown-Text)", marginLeft: "20px", marginRight: "20px" }} onClick={handleClickDeleteButton}>삭제</ButtonTag4>
+          <ButtonTag4 onClick={handleClickUpdateProfile}>수정</ButtonTag4>
+        </span>
+      </ProfileEditFooter>
+
+
     </div>
   );
 }

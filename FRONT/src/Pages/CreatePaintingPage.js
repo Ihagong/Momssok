@@ -192,7 +192,7 @@ function CreatePaintingPage(props) {
       { gesture !== 'defaultGesture' ? <PointerTag style={{ left: offset.offsetX+370, top: offset.offsetY }}
         src= { gesture === 'indexGesture' ? '/icons/pointer.png' : gesture === 'palmGesture' ? '/icons/backhand.png' : '/icons/paintingTool_brush.png' } /> : null}
       <CanvasProvider loadedPainting={props.loadedPainting} textures={textures} isCamOn={isCamOn} offset={offset} gesture={gesture}
-        strokeColorIndex={strokeColorIndex} strokeTextureIndex={strokeTextureIndex} strokeLineWidthIndex={strokeLineWidthIndex}>
+        strokeColorIndex={strokeColorIndex} strokeTextureIndex={strokeTextureIndex} strokeLineWidthIndex={strokeLineWidthIndex} width={500} height={550}>
         <PaintingToolModalComponent modalOpen={paintingToolModalOpen} setPaintingToolModalOpen={setPaintingToolModalOpen} motionTextureIndex={strokeTextureIndex} offset={offset} gesture={gesture}
           changeStrokeTexture={changeStrokeTexture} changeStrokeLineWidthIndex={changeStrokeLineWidthIndex} onClick={() => setModalOpen(false)} />
         <ColorPickerModalComponent modalOpen={colorPickerModalOpen} setColorPickerModalOpen={setColorPickerModalOpen} offset={offset} gesture={gesture}
