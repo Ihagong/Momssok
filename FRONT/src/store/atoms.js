@@ -90,7 +90,7 @@ export const letterItemState = atom({
 
 export const profileState = atom({
   key: 'profileState',
-  default: '',
+  default: {},
   effects_UNSTABLE: [persistAtom]
 })
 
