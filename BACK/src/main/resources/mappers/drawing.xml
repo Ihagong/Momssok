@@ -21,8 +21,15 @@
 
     <select id="getImageId" parameterType="String" resultType="int">
         SELECT drawing_id FROM drawing
+        WHERE email_name LIKE(CONCAT("%", #{name}))
         ORDER BY created_date DESC LIMIT 1
     </select>
+
+    <update id="saveTag" parameterType="DrawingTagDto">
+        UPDATE drawing
+        SET tag = #{tag}
+        WHERE drawing_id = #{drawing_id}
+    </update>
 
     <update id="updateDrawing" parameterType="DrawingApiDto">
         UPDATE drawing
