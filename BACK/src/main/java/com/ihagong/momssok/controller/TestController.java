@@ -32,16 +32,14 @@ public class TestController {
     }
 
 
-
-
-    @RequestMapping(value = "/testDetection", method = RequestMethod.GET)
-    public ResponseEntity<?> testDetection2(@RequestBody testImageDto dto) throws IOException {
-        Map<Boolean,Object> result = testService.ApiTestDetection(dto);
-        if(result.get(true)!=null)
-            return new ResponseEntity<>(result.get(true), HttpStatus.OK);
-        else
-            return new ResponseEntity<>(result.get(false), HttpStatus.BAD_REQUEST);
-    }
+//    @RequestMapping(value = "/testDetection", method = RequestMethod.GET)
+//    public ResponseEntity<?> testDetection2(@RequestBody testImageDto dto) throws IOException {
+//        Map<Boolean,Object> result = testService.ApiTestDetection(dto);
+//        if(result.get(true)!=null)
+//            return new ResponseEntity<>(result.get(true), HttpStatus.OK);
+//        else
+//            return new ResponseEntity<>(result.get(false), HttpStatus.BAD_REQUEST);
+//    }
 
 /*
     @RequestMapping(value = "/testDetection", method = RequestMethod.GET)

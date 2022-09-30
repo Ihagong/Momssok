@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.*;
 @Service
 @RequiredArgsConstructor
@@ -31,17 +32,17 @@ public class TestService {
     }
 
 
-    public Map<Boolean,Object> ApiTestDetection(testImageDto dto) throws JsonProcessingException {
+    public Map<Boolean,Object> ApiTestDetection(testImageDto dto) throws JsonProcessingException, SQLException {
 
         Map<Boolean, Object> result = new HashMap<>();
         Map<String, Object> resultBody = new HashMap<>();
 
-
         MultipartFile multipartFile = BASE64DecodedMultipartFile.base64ToMultipart(dto.getImageBase64());
+        dto.setMultipartFile(multipartFile);
 
         //통신 부분 스레드로 실행
-        fastApiDetection.fastApiDetection(multipartFile);
-        resultBody.put("messege", "즉시 응답 메세지");
+        fastApiDetection.fastApiDetection(dto);
+        resultBody.put("status", "SUCCESS");
         result.put(true, resultBody);
         return result;
 
