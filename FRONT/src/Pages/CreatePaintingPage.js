@@ -10,6 +10,7 @@ import { PaintingToolModalComponent } from '../Components/CanvasComponent/Painti
 import { ColorPickerModalComponent } from '../Components/CanvasComponent/ColorPickerModalComponent'
 import { PaintingToolTag, ChildButtonTag1, ChildButtonTag2, PointerTag } from '../Style/Components'
 import { MotionDetectionComponent } from '../Components/CanvasComponent/MotionDetectionComponent'
+import { ClearCanvasButton } from '../Components/CanvasComponent/ClearCanvasButton'
 
 
 // 크레파스
@@ -168,7 +169,10 @@ function CreatePaintingPage(props) {
       }
     }
   }
-  
+
+  const handleClickResetButton = () => {
+  }
+
 
   // const handleSelectTool = (toolIndex) => {
   //   if (selectedToolIndex !== toolIndex) {
@@ -208,8 +212,12 @@ function CreatePaintingPage(props) {
             <PaintingToolTag onClick={handleClickColorPickerButton}><img src='/icons/colorPicker.png'></img></PaintingToolTag>
             { isCamOn ? <MotionDetectionComponent setIsCamOn={setIsCamOn} canvasWidth={(1100+200)*2} canvasHeight={(550+200)*2} setOffset={setOffset} setGesture={setGesture} handleSelectTool={handleSelectTool} />
               : <PaintingToolTag onClick={() => setIsCamOn(true)}><img src='/icons/camera.svg'></img></PaintingToolTag> }
-            <ChildButtonTag1 style={{ width: '200px' }} onClick={handleClickCloseButton}>닫기</ChildButtonTag1>
-            <ChildButtonTag2 style={{ width: '200px' }} onClick={handleClickSaveButton}>저장</ChildButtonTag2>
+            {/* <ChildButtonTag1 style={{ width: '200px' }} onClick={handleClickResetButton}>원래대로</ChildButtonTag1> */}
+            <ClearCanvasButton />
+            <div style={{ display: 'flex', flexDirection: 'column' }}>
+              <ChildButtonTag1 style={{ width: '200px' }} onClick={handleClickCloseButton}>닫기</ChildButtonTag1>
+              <ChildButtonTag2 style={{ width: '200px' }} onClick={handleClickSaveButton}>저장</ChildButtonTag2>
+            </div>
           </div>
         </div>
       </CanvasProvider>
