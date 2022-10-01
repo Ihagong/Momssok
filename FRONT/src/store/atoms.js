@@ -105,3 +105,9 @@ export const promiseItemsState = atom({
   default: [],
   effects_UNSTABLE: [persistAtom]
 })
+
+export const animalDictionaryState = atom({
+  key: 'animalDictionaryState',
+  default: [],
+  effects_UNSTABLE: [persistAtom]
+})
