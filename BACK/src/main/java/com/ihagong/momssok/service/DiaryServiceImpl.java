@@ -23,8 +23,8 @@ public class DiaryServiceImpl implements DiaryService{
     }
 
     @Override
-    public List<DiaryDto> lookupGallery(String email_name) throws Exception {
-        return diaryMapper.lookupGallery(email_name);
+    public List<DiaryDto> lookupGallery(DiaryDayDto diary) throws Exception {
+        return diaryMapper.lookupGallery(diary);
     }
 
     @Override
