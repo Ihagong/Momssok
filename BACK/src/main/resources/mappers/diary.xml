@@ -2,18 +2,18 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.ihagong.momssok.mapper.DiaryMapper">
-    <select id="lookupCalender" parameterType="DiaryDto" resultType="DiaryDto">
+    <select id="lookupCalender" parameterType="DiaryDayDto" resultType="DiaryDto">
         SELECT d.id, d.emotion, d.date
         FROM diary d
-        WHERE email_name = #{email_name} AND d.date LIKE(CONCAT(#{date}, '%'))
+        WHERE email_name = #{email_name} AND d.date LIKE(CONCAT(#{date}, "%"))
         <if test="is_deleted_from_child != 1">
             AND is_deleted_from_child = #{is_deleted_from_child}
         </if>
     </select>
 
     <select id="lookupGallery" parameterType="String" resultType="DiaryDto">
-        SELECT d.id, d.drawing_id, d.title, d.content, d.weather, d.emotion, d.date, d.tag
-        FROM diary d
+        SELECT *
+        FROM diary
         WHERE email_name = #{email_name}
         <if test="is_deleted_from_child != 1">
             AND is_deleted_from_child = #{is_deleted_from_child}
@@ -28,13 +28,25 @@
 
     <insert id="saveDiary" parameterType="DiarySaveDto">
         INSERT INTO diary
-            (id, email_name, drawing_id, title, content, weather, `date`)
+            (email_name, drawing_id, title, content, weather, `date`, is_deleted_from_child)
         VALUES
-            (#{id}, #{email_name}, #{drawing_id}, #{title}, #{content}, #{weather}, NOW)
+            (#{email_name}, #{drawing_id}, #{title}, #{content}, #{weather}, #{date}, 0)
     </insert>
 
-    <select id="lookupDiary" parameterType="int" resultType="DiarySaveDto">
-        SELECT id, drawing_id, title, content, weather, `date`
+    <select id="getId" parameterType="String" resultType="int">
+        SELECT id FROM diary
+        WHERE email_name = #{email_name}
+        ORDER BY `date` DESC LIMIT 1
+    </select>
+
+    <update id="saveEmotion" parameterType="emotionDto">
+        UPDATE diary
+        SET emotion = #{emotion}
+        WHERE id = #{id}
+    </update>
+
+    <select id="lookupDiary" parameterType="int" resultType="DiaryDto">
+        SELECT id, drawing_id, title, content, weather, emotion, `date`
         FROM diary
         WHERE id = #{id}
     </select>
