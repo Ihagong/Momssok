@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ihagong.momssok.mapper.AnimalMapper">
+    <select id="searchAnimals"  resultType="com.ihagong.momssok.model.dto.AnimalDto">
+        SELECT * FROM animal;
+    </select>
+    <select id="searchAnimal_parts" parameterType="int"  resultType="com.ihagong.momssok.model.dto.AnimalPartDto">
+        SELECT * FROM animal_part where animal_id=#{animal_id};
+    </select>
+    <select id="searchAnimal_part_images" parameterType="AnimalPartImageSearchParamsDto"  resultType="AnimalPartImageDto">
+        SELECT * FROM animal_part_image where animal_part_id=#{animal_part_id} and email_name=#{email_name} limit 1;
+    </select>
+    <insert id="inputPartImage" parameterType="AnimalPartImageDto">
+        INSERT INTO animal_part_image(animal_part_id,email_name,image)
+        values (#{animal_part_id},#{email_name},#{image});
+    </insert>
+</mapper>

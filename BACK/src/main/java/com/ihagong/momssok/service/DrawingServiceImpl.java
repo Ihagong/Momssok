@@ -1,35 +1,20 @@
 package com.ihagong.momssok.service;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.ihagong.momssok.mapper.DrawingMapper;
-import com.ihagong.momssok.model.dto.*;
+import com.ihagong.momssok.model.dto.DrawingApiDto;
+import com.ihagong.momssok.model.dto.DrawingDto;
+import com.ihagong.momssok.model.dto.DrawingOutDto;
 import lombok.RequiredArgsConstructor;
-import org.json.JSONObject;
-import org.springframework.http.HttpEntity;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
-import org.springframework.scheduling.annotation.Async;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
-import org.springframework.util.LinkedMultiValueMap;
-import org.springframework.util.MultiValueMap;
-import org.springframework.web.client.RestTemplate;
-import org.springframework.web.multipart.MultipartFile;
 
-import java.io.ByteArrayOutputStream;
-import java.io.IOException;
-import java.io.ObjectOutputStream;
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 @Service
 @RequiredArgsConstructor
 public class DrawingServiceImpl implements DrawingService{
 
     private final DrawingMapper drawingMapper;
+
 
     @Override
     public List<DrawingDto> lookupAllDrawing(String email_name) throws Exception {
@@ -46,9 +31,10 @@ public class DrawingServiceImpl implements DrawingService{
         return drawingMapper.saveDrawing(drawingDto);
     }
 
+
     @Override
-    public int getImageId(String email_name) throws Exception {
-        return drawingMapper.getImageId(email_name);
+    public int getImageId(String name) throws Exception {
+        return drawingMapper.getImageId(name);
     }
 
 
