@@ -7,6 +7,7 @@
           <option value="model" />
           <option value="detection.test.faster_rcnn_model" />
           <option value="faster_rcnn_model" />
+          <option value="detection.faster_rcnn_model.resnet50" />
         </list>
       </option>
     </inspection_tool>
