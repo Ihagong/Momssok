@@ -12,7 +12,7 @@ import java.util.List;
 @Mapper
 public interface DiaryMapper {
     List<DiaryDto> lookupCalender(DiaryDayDto diary) throws SQLException;
-    List<DiaryDto> lookupGallery(String email_name) throws SQLException;
+    List<DiaryDto> lookupGallery(DiaryDayDto diary) throws SQLException;
     List<DiaryDto> searchDiary(String option) throws SQLException;
     int saveDiary(DiarySaveDto diary) throws SQLException;
     int getId(String email_name) throws SQLException;

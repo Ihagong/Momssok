@@ -11,9 +11,9 @@
         </if>
     </select>
 
-    <select id="lookupGallery" parameterType="String" resultType="DiaryDto">
+    <select id="lookupGallery" parameterType="DiaryDayDto" resultType="DiaryDto">
         SELECT *
-        FROM diary
+        FROM diary d
         WHERE email_name = #{email_name}
         <if test="is_deleted_from_child != 1">
             AND is_deleted_from_child = #{is_deleted_from_child}
