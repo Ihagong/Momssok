@@ -36,7 +36,7 @@ export function MotionDetectionComponent({ canvasWidth, canvasHeight, setOffset,
         connect(canvasCtx, landmarks, HANDS.HAND_CONNECTIONS,
                       {color: '#00FF00', lineWidth: 5})
         drawLandmarks(canvasCtx, landmarks, {color: '#FF0000', lineWidth: 2})
-        const offsetX = Math.ceil((1-(landmarks[9].x))*(canvasWidth/2))
+        const offsetX = Math.ceil((1-(landmarks[9].x))*(canvasWidth/2))-100
         const offsetY = Math.ceil((landmarks[9].y)*(canvasHeight/2))
         setOffset({ offsetX, offsetY })
         let gesture = 'defaultGesture'
@@ -51,11 +51,10 @@ export function MotionDetectionComponent({ canvasWidth, canvasHeight, setOffset,
         }
         setGesture(gesture)
 
-        console.log(offsetX, offsetY)
+        console.log(offsetX, offsetY, (window.innerWidth-1100), window.innerHeight)
         if (gesture === 'indexGesture') {
           handleSelectTool(offsetX, offsetY)
         }
-
         // if (gesture === 'indexGesture' && offsetY >= 560 && offsetY <= 700) {
         //   if (offsetX >= 60 && offsetX <= 200) {
         //     setToolIndex(0)
