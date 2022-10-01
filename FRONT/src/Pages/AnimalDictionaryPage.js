@@ -3,6 +3,7 @@ import { DictionaryDetailComponentTag, ChildButtonTag1, ChildButtonTag2, ChildBu
 import { DictionaryCardComponent } from '../Components/DictionaryCardComponent'
 import { DictionaryDetailImageComponent } from '../Components/DictionaryDetailImageComponent'
 import '../Style/animalAnimation.css'
+import { useNavigate } from 'react-router-dom'
 
 
 const AnimalDictionaryPage = () => {
@@ -36,10 +37,18 @@ const AnimalDictionaryPage = () => {
 
   const [detail, setDetail] = useState(animalList[0])
 
+  const navigate = useNavigate()
+
   const handleClickDictionaryCardComponent = (info) => {
     setDetail(info)
   }
 
+  const handleClickCreateDictionaryButton = (detailId) => {
+    console.log('그리기', detailId)
+    // setDetail(info)
+    navigate(`/dictionary/create/${detailId}`)
+  }
+  
   return (
     <div style={{ display: 'flex', flexDirection: 'column' }}>
       <div style={{ display: 'flex' }}>
@@ -52,7 +61,7 @@ const AnimalDictionaryPage = () => {
           {/* <img src={`/images/${detail.name}/${detail.name}.svg`}></img> */}
           <DictionaryDetailImageComponent name={detail.name} />
           <div style={{ display: 'flex' }}>
-            <ChildButtonTag4>그리기</ChildButtonTag4>
+            <ChildButtonTag4 onClick={() => handleClickCreateDictionaryButton(detail.id)}>그리기</ChildButtonTag4>
             <ChildButtonTag2>설명</ChildButtonTag2>
           </div>
         </DictionaryDetailComponentTag>

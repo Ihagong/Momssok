@@ -22,9 +22,9 @@ export const userInfoState = atom({
   effects_UNSTABLE: [persistAtom]
 })
 
-export const profileInfoState = atom({
-  key: 'profileInfoState',
-  default: {},
+export const profileListState = atom({
+  key: 'profileListState',
+  default: [],
   effects_UNSTABLE: [persistAtom]
 })
 
@@ -90,7 +90,18 @@ export const letterItemState = atom({
 
 export const profileState = atom({
   key: 'profileState',
-  default: '',
+  default: {},
   effects_UNSTABLE: [persistAtom]
 })
 
+export const dictionaryPaintingState = atom({
+  key: 'dictionaryPaintingState',
+  default: [],
+  effects_UNSTABLE: [persistAtom]
+})
+
+export const promiseItemsState = atom({
+  key: 'promiseItemsState',
+  default: [],
+  effects_UNSTABLE: [persistAtom]
+})

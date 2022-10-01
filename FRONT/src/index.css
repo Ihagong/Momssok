@@ -30,3 +30,9 @@ code {
   font-family: "Gugi";
   src: url("../public/fonts/Gugi-Regular.ttf");
 }
+
+
+@font-face{
+  font-family: "Gaegu";
+  src: url("../public/fonts/Gaegu-Regular.ttf");
+}

@@ -5,36 +5,41 @@ import { PaintingToolModalComponentTag, ModalBackgroundTag, PaintingToolButtonTa
 export function PaintingToolModalComponent({ modalOpen, setPaintingToolModalOpen, offset, gesture, changeStrokeTexture, changeStrokeLineWidthIndex }) {
   const [toolIndex, setToolIndex] = useState(0)
   const [lineWidthIndex, setLineWidthIndex] = useState(0)
+  const leftWidth = (window.innerWidth-1100)/2
 
   useEffect(() => {
     const offsetX = offset.offsetX
     const offsetY = offset.offsetY
     if (modalOpen && gesture === 'indexGesture') {
-      if (offsetY >= 240 && offsetY <= 400) {
-        if (offsetX >= 360 && offsetX < 460) {
+      if (offsetY >= 270 && offsetY < 450) {
+        if (offsetX >= 0 && offsetX < 100) {
           handleClickToolButton(0)
-        } else if (offsetX >= 460 && offsetX < 560) {
+        } else if (offsetX >= 100 && offsetX < 200) {
           handleClickToolButton(1)
-        } else if (offsetX >= 560 && offsetX < 660) {
+        } else if (offsetX >= 200 && offsetX < 300) {
           handleClickToolButton(2)
-        } else if (offsetX >= 660 && offsetX < 760) {
+        } else if (offsetX >= 300 && offsetX < 400) {
           handleClickToolButton(3)
+        } else if (offsetX >= 400 && offsetX < 500) {
+          handleClickToolButton(4)
         } else {
           setPaintingToolModalOpen(false)
         }
-      } else if (offsetY >= 420 && offsetY <= 510) {
-        if (offsetX >= 360 && offsetX < 460) {
+      } else if (offsetY >= 450 && offsetY <= 540) {
+        if (offsetX >= 0 && offsetX < 100) {
           handleClickLineWidthButton(0)
-        } else if (offsetX >= 460 && offsetX < 560) {
+        } else if (offsetX >= 100 && offsetX < 200) {
           handleClickLineWidthButton(1)
-        } else if (offsetX >= 560 && offsetX < 660) {
+        } else if (offsetX >= 200 && offsetX < 300) {
           handleClickLineWidthButton(2)
-        } else if (offsetX >= 660 && offsetX < 760) {
+        } else if (offsetX >= 300 && offsetX < 400) {
           handleClickLineWidthButton(3)
+        } else if (offsetX >= 400 && offsetX < 500) {
+          handleClickLineWidthButton(4)
         } else {
           setPaintingToolModalOpen(false)
         }
-      } else if (!(offsetY >= 570 && offsetY <= 710 && offsetX >= 60 && offsetX < 200)) {
+      } else if (!(offsetY >= 540 && offsetY <= 710 && offsetX >= 60 && offsetX < 200)) { // 아이콘 재배치 후 수정 필요
         setPaintingToolModalOpen(false)
       }
     }
@@ -59,8 +64,9 @@ export function PaintingToolModalComponent({ modalOpen, setPaintingToolModalOpen
   return (
     <>
       { modalOpen ?
+  
         <ModalBackgroundTag onClick={onCloseModal}>
-          <PaintingToolModalComponentTag>
+          <PaintingToolModalComponentTag style={{ left: `${leftWidth}px` }} >
             <div style={{ display: 'flex' }}>
               <PaintingToolButtonTag style={{ backgroundColor: toolIndex === 0 ? '#00000010' : null,
                 outline: toolIndex === 0 ? '6px solid #FF005C' : null  }} onClick={() => {handleClickToolButton(0)}}>
@@ -74,6 +80,9 @@ export function PaintingToolModalComponent({ modalOpen, setPaintingToolModalOpen
               <PaintingToolButtonTag style={{ backgroundColor: toolIndex === 3 ? '#00000010' : null,
                 outline: toolIndex === 3 ? '6px solid #FF005C' : null  }} onClick={() => {handleClickToolButton(3)}}>
                 <img src='/icons/paintingTool_brush.png' /></PaintingToolButtonTag>
+              <PaintingToolButtonTag style={{ backgroundColor: toolIndex === 4 ? '#00000010' : null,
+                outline: toolIndex === 4 ? '6px solid #FF005C' : null  }} onClick={() => {handleClickToolButton(4)}}>
+                <img src='/icons/paintingTool_eraser.png' /></PaintingToolButtonTag>
             </div>
             <div style={{ display: 'flex', backgroundColor: 'var(--Brown-LightText)', borderRadius: '20px' }}>
               <StrokeWidthButtonTag style={{ backgroundColor: lineWidthIndex === 0 ? '#00000010' : null,
@@ -86,10 +95,14 @@ export function PaintingToolModalComponent({ modalOpen, setPaintingToolModalOpen
               </StrokeWidthButtonTag>
               <StrokeWidthButtonTag style={{ backgroundColor: lineWidthIndex === 2 ? '#00000010' : null,
                 outline: lineWidthIndex === 2 ? '6px solid #FFE400' : null }} onClick={() => {handleClickLineWidthButton(2)}}>
-                <StrokeWidthTag style={{ width: '20px' }} />
+                <StrokeWidthTag style={{ width: '15px' }} />
               </StrokeWidthButtonTag>
               <StrokeWidthButtonTag style={{ backgroundColor: lineWidthIndex === 3 ? '#00000010' : null,
                 outline: lineWidthIndex === 3 ? '6px solid #FFE400' : null }} onClick={() => {handleClickLineWidthButton(3)}}>
+                <StrokeWidthTag style={{ width: '20px' }} />
+              </StrokeWidthButtonTag>
+              <StrokeWidthButtonTag style={{ backgroundColor: lineWidthIndex === 4 ? '#00000010' : null,
+                outline: lineWidthIndex === 4 ? '6px solid #FFE400' : null }} onClick={() => {handleClickLineWidthButton(4)}}>
                 <StrokeWidthTag style={{ width: '30px' }} />
               </StrokeWidthButtonTag>
             </div>

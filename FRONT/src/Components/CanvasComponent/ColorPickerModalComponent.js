@@ -9,43 +9,43 @@ export function ColorPickerModalComponent({ modalOpen, setColorPickerModalOpen, 
     const offsetY = offset.offsetY
     console.log(offset)
     if (modalOpen && gesture === 'indexGesture') {
-      if (offsetY >= 270 && offsetY <= 370) {
-        if (offsetX >= 210 && offsetX < 310) {
+      if (offsetY >= 346 && offsetY <= 446) {
+        if (offsetX >= 4 && offsetX < 104) {
           changeStrokeColor(0)
-        } else if (offsetX >= 310 && offsetX < 410) {
+        } else if (offsetX >= 104 && offsetX < 204) {
           changeStrokeColor(1)
-        } else if (offsetX >= 410 && offsetX < 510) {
+        } else if (offsetX >= 204 && offsetX < 304) {
           changeStrokeColor(2)
-        } else if (offsetX >= 510 && offsetX < 610) {
+        } else if (offsetX >= 304 && offsetX < 404) {
           changeStrokeColor(3)
-        } else if (offsetX >= 610 && offsetX < 710) {
+        } else if (offsetX >= 404 && offsetX < 504) {
           changeStrokeColor(4)
-        } else if (offsetX >= 710 && offsetX < 810) {
+        } else if (offsetX >= 504 && offsetX < 604) {
           changeStrokeColor(5)
-        } else if (offsetX >= 810 && offsetX < 910) {
+        } else if (offsetX >= 604 && offsetX < 704) {
           changeStrokeColor(6)
         } else {
           setColorPickerModalOpen(false)
         }
-      } else if (offsetY >= 370 && offsetY <= 470) {
-        if (offsetX >= 210 && offsetX < 310) {
+      } else if (offsetY >= 446 && offsetY <= 546) {
+        if (offsetX >= 4 && offsetX < 104) {
           changeStrokeColor(7)
-        } else if (offsetX >= 310 && offsetX < 410) {
+        } else if (offsetX >= 104 && offsetX < 204) {
           changeStrokeColor(8)
-        } else if (offsetX >= 410 && offsetX < 510) {
+        } else if (offsetX >= 204 && offsetX < 304) {
           changeStrokeColor(9)
-        } else if (offsetX >= 510 && offsetX < 610) {
+        } else if (offsetX >= 304 && offsetX < 404) {
           changeStrokeColor(10)
-        } else if (offsetX >= 610 && offsetX < 710) {
+        } else if (offsetX >= 404 && offsetX < 504) {
           changeStrokeColor(11)
-        } else if (offsetX >= 710 && offsetX < 810) {
+        } else if (offsetX >= 504 && offsetX < 604) {
           changeStrokeColor(12)
-        } else if (offsetX >= 810 && offsetX < 910) {
+        } else if (offsetX >= 604 && offsetX < 704) {
           changeStrokeColor(13)
         } else {
           setColorPickerModalOpen(false)
         }
-      } else if (!(offsetY >= 570 && offsetY <= 710 && offsetX >= 260 && offsetX <= 400)) {
+      } else if (!(offsetY >= 546 && offsetY <= 710 && offsetX >= 260 && offsetX <= 400)) { // 아이콘 재배치 후 수정 필요
         setColorPickerModalOpen(false)
       }
     }
@@ -61,7 +61,7 @@ export function ColorPickerModalComponent({ modalOpen, setColorPickerModalOpen, 
     <>
       { modalOpen ?
         <ModalBackgroundTag onClick={onCloseModal}>
-          <ColorPickerModalComponentTag>
+          <ColorPickerModalComponentTag style={{ left: `${(window.innerWidth-1100)/2}px` }}>
             <div style={{ display: 'flex' }}>
               <ColorTag style={{ backgroundColor: '#121212', borderRadius: strokeColorIndex === 0 ? '8px' : '10px 0 0 0',
                 outline: strokeColorIndex === 0 ? '6px solid #FF005C' : null,

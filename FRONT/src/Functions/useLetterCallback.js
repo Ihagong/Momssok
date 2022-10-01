@@ -79,6 +79,7 @@ export function useLetterCallback() {
     }
 
     const letterSendCallback = async (profileName, receiver, title, content) => {
+        console.log(profileName)
         axios({
           method: 'post',
           url: '/api/letter/sendLetter',
