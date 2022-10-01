@@ -362,7 +362,7 @@ export const DiaryComponentTag = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  padding: 20px 0 0 0;
 
   background-color: var(--White-Block);
   border-radius: 30px;
@@ -370,7 +370,6 @@ export const DiaryComponentTag = styled.div`
   box-shadow: 0px 5px 5px #E6E6E6;
 
   width: 700px;
-  height: 740px;
   margin-top: 20px;
 
   font-family: 'Dongle', sans-serif;
@@ -388,11 +387,23 @@ export const DiaryInputTag = styled.input`
   border-radius: 10px;
   padding: 0 20px;
   margin-bottom: 10px;
-  height: 70px;
+  height: 60px;
   width: 270px;
   border: 1px solid var(--Beige-Stroke);
   font-family: 'Dongle', sans-serif;
   font-size: 40px;
+  /* opacity: 0; */
+  ::-webkit-calendar-picker-indicator {
+    background-image: url('/icons/calendar.png')
+  }
+  ::-webkit-datetime-edit-text {
+    visibility: hidden;
+  }
+  ::-webkit-datetime-edit-day-field,
+  ::-webkit-datetime-edit-month-field,
+  ::-webkit-datetime-edit-year-field {
+    visibility: hidden;
+}
 `
 
 export const DiaryContentInputTag = styled.textarea`
@@ -434,7 +445,7 @@ export const DiaryPaintingTag = styled.div`
   border-radius: 10px;
   width: 600px;
   height: 300px;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
 `
 
 export const DiaryWeatherBoxTag = styled.div`
@@ -442,11 +453,11 @@ export const DiaryWeatherBoxTag = styled.div`
   position: relative;
   display: flex;
   width: 100px;
-  height: 70px;
+  height: 60px;
   margin-left: 10px;
   margin-bottom: 10px;
   border-radius: 10px;
-  border: 1px solid var(--Beige-Stroke);
+  outline: 1px solid var(--Beige-Stroke);
   cursor: pointer;
   user-select: auto;
 
@@ -457,14 +468,17 @@ export const DiaryWeatherBoxTag = styled.div`
     border: none;
     width: 100%;
     background: transparent;
+    padding: 0;
     cursor: pointer;
   }
 
   ul {
-    border: 1px solid var(--Beige-Stroke);
+    outline: 1px solid var(--Beige-Stroke);
+    
     background-color: white;
-    position: absolute; 
-    top: 20px;
+    position: absolute;
+    /* margin-top: 2px; */
+    top: 14px;
     width: 100%;
     padding: 0;
     border-radius: 10px;
@@ -477,7 +491,7 @@ export const DiaryWeatherBoxTag = styled.div`
     justify-content: center;
     align-items: center;
     width: 100%;
-    height: 70px;
+    height: 60px;
   }
 
   li:hover {
@@ -489,7 +503,7 @@ export const DiaryWeatherBoxTag = styled.div`
   }
 
   img {
-    height: 50px;
+    height: 40px;
   }
 `
 

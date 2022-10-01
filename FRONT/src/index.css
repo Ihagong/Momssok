@@ -16,6 +16,14 @@ code {
     monospace;
 }
 
+input[type=password] {
+  font-family: "Segoe UI";
+}
+
+input::placeholder {
+  font-family: "Jua";
+}
+
 @font-face{
   font-family: "Jua";
   src: url("../public/fonts/BMJUA_otf.otf");
