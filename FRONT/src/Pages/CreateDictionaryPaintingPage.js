@@ -206,7 +206,7 @@ function CreatePaintingPage(props) {
   const name = 'elephant'
   return (
     <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
-      { gesture !== 'defaultGesture' ? <PointerTag style={{ left: offset.offsetX+370, top: offset.offsetY }}
+      { gesture !== 'defaultGesture' ? <PointerTag style={{ left: offset.offsetX, top: offset.offsetY }}
         src= { gesture === 'indexGesture' ? '/icons/pointer.png' : gesture === 'palmGesture' ? '/icons/backhand.png' : '/icons/paintingTool_brush.png' } /> : null}
       <CanvasProvider loadedPainting={props.loadedPainting} textures={textures} isCamOn={isCamOn} offset={offset} gesture={gesture}
         strokeColorIndex={strokeColorIndex} strokeTextureIndex={strokeTextureIndex} strokeLineWidthIndex={strokeLineWidthIndex} width={500} height={550} partIndex={partIndex}>
@@ -236,8 +236,8 @@ function CreatePaintingPage(props) {
           <AddObjectButton />
           <ChangeLineWidthBar /> */}
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', width: '1060px', padding: '20px' }}>
-            <PaintingToolTag onClick={handleClickPaintingToolButton}><img src='/icons/tools.svg'></img></PaintingToolTag>
-            <PaintingToolTag onClick={handleClickColorPickerButton}><img src='/icons/color.svg'></img></PaintingToolTag>
+            <PaintingToolTag onClick={handleClickPaintingToolButton}><img src='/icons/paintingTools.png'></img></PaintingToolTag>
+            <PaintingToolTag onClick={handleClickColorPickerButton}><img src='/icons/colorPicker.png'></img></PaintingToolTag>
             { isCamOn ? <MotionDetectionComponent setIsCamOn={setIsCamOn} canvasWidth={1100*2+200} canvasHeight={550*2+400} setOffset={setOffset} setGesture={setGesture} handleSelectTool={handleSelectTool} />
               : <PaintingToolTag onClick={() => setIsCamOn(true)}><img src='/icons/camera.svg'></img></PaintingToolTag> }
             <ChildButtonTag1 style={{ width: '200px' }} onClick={handleClickCloseButton}>닫기</ChildButtonTag1>

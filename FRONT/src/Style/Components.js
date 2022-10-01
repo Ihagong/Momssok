@@ -706,11 +706,13 @@ export const PromiseTodoItemDoneTag = styled.p`
 `
 
 export const PaintingToolModalComponentTag = styled.div`
+  position: absolute;
+  top: 270px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  align-items: center;
-  width: 400px;
+  /* align-items: center; */
+  width: 500px;
   height: 280px;
   background-color: #FBDEBC;
   border-radius: 20px;
@@ -753,10 +755,9 @@ export const StrokeWidthTag = styled.div`
 `
 
 export const ModalBackgroundTag = styled.div`
-  position: absolute;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
+  position: fixed;
+  top: 0;
+  left: 0;
   align-items: center;
   width: 100%;
   height: 200%;
@@ -765,9 +766,8 @@ export const ModalBackgroundTag = styled.div`
 `
 
 export const ColorPickerModalComponentTag = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
+  position: absolute;
+  top: 342px;
   align-items: center;
   padding: 4px;
   background-color: #FFE400;
