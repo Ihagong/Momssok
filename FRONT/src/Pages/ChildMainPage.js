@@ -52,11 +52,11 @@ function ChildMainPage() {
         {selectedTab === 0 ?
           <>
             <ChildSubMenuButtonTag onClick={handleClickCreatePaintingButton}>
-              <LogoTag src='icons/draw.svg' />
+              <LogoTag src='/icons/draw.svg' />
               그림 그리기
             </ChildSubMenuButtonTag>
             <ChildSubMenuButtonTag onClick={handleClickDiaryButton}>
-              <LogoTag style={{marginBottom: '-10px'}} src='icons/diary.svg' />
+              <LogoTag style={{marginBottom: '-10px'}} src='/icons/diary.svg' />
               일기 쓰기
             </ChildSubMenuButtonTag>
           </>
@@ -65,11 +65,11 @@ function ChildMainPage() {
         {selectedTab === 1 ?
           <>
           <ChildSubMenuButtonTag onClick={handleClickCreateLetterButton}>
-            <LogoTag src='icons/lettericon.svg' />
+            <LogoTag src='/icons/stampicon.svg' />
             칭찬 도장
           </ChildSubMenuButtonTag>
           <ChildSubMenuButtonTag onClick={handleClickLetterButton}>
-            <LogoTag src='icons/airplane.svg' />
+            <LogoTag src='/icons/todoicon.svg' />
             오늘 할 일
           </ChildSubMenuButtonTag>
         </>
@@ -77,11 +77,11 @@ function ChildMainPage() {
         {selectedTab === 2 ?
           <>
             <ChildSubMenuButtonTag onClick={handleClickCreateLetterButton}>
-              <LogoTag src='icons/lettericon.svg' />
+              <LogoTag src='/icons/lettericon.svg' />
               편지 쓰기
             </ChildSubMenuButtonTag>
             <ChildSubMenuButtonTag onClick={handleClickLetterButton}>
-              <LogoTag src='icons/airplane.svg' />
+              <LogoTag src='/icons/airplane.svg' />
               편지 읽기
             </ChildSubMenuButtonTag>
           </>
@@ -90,12 +90,12 @@ function ChildMainPage() {
         {selectedTab === 3 ?
           <>
             <ChildSubMenuButtonTag onClick={handleClickCreatePaintingButton}>
-              <LogoTag src='icons/draw.svg' />
+              <LogoTag src='/icons/bookicon.svg' />
               동물 도감
             </ChildSubMenuButtonTag>
             <ChildSubMenuButtonTag onClick={handleClickCreatePaintingButton}>
-              <LogoTag src='icons/draw.svg' />
-              동요 듣기
+              <LogoTag src='/icons/songicon.svg' />
+              동요 나라
             </ChildSubMenuButtonTag>
           </>
           : null }
