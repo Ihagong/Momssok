@@ -54,15 +54,16 @@ public class DiaryController {
     }
 
     @GetMapping("/searchDiaryGallery")
-    public Map<String, Object> lookupDiaryGallery(@RequestParam String name){
+    public Map<String, Object> lookupDiaryGallery(@RequestBody DiaryDayDto diary){
         Map<String, Object> result = new HashMap<>();
         List<DiaryDto> diaryList = new ArrayList<>();
 
         try {
             String email= SecurityContextHolder.getContext().getAuthentication().getName();
-            String email_name = email + "_" + name;
+            String email_name = email + "_" + diary.getName();
 
-            diaryList = diaryService.lookupGallery(email_name);
+            diary.setEmail_name(email_name);
+            diaryList = diaryService.lookupGallery(diary);
 
             if(diaryList != null){
                 result.put("status", success);
