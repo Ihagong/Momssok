@@ -38,6 +38,11 @@ public class DiaryServiceImpl implements DiaryService{
     }
 
     @Override
+    public int getId(String email_name) throws Exception {
+        return diaryMapper.getId(email_name);
+    }
+
+    @Override
     public DiaryDto lookupDiary(int id) throws Exception {
         return diaryMapper.lookupDiary(id);
     }
