@@ -114,6 +114,7 @@ export const ChildButtonTag2 = styled.button`
   font-size: 64px;
   cursor: pointer;
   user-select: auto;
+  z-index: 4;
 `
 
 export const ChildButtonTag3 = styled.button`
@@ -147,6 +148,7 @@ export const ChildButtonTag4 = styled.button`
   font-size: 64px;
   cursor: pointer;
   user-select: auto;
+  z-index: 4;
 `
 
 export const ChildButtonTag5 = styled.button`
@@ -163,6 +165,9 @@ export const ChildButtonTag5 = styled.button`
 `
 
 export const AddProfileButtonTag = styled.button`
+  display: flex;
+  justify-content: center;
+  align-items: center;
   width: 140px;
   height: 140px;
   color: white;
@@ -206,6 +211,8 @@ export const InputTag1 = styled.input`
 export const ChildProfileComponentTag = styled.div`
   width: 200px;
   height: 200px;
+  margin-left: 15px;
+  margin-right: 15px;
   border-radius: 20px;
   display: flex;
   flex-direction: column;
@@ -214,7 +221,8 @@ export const ChildProfileComponentTag = styled.div`
   font-family: 'Jua', sans-serif;
   color: var(--Brown-LightText);
   font-size: 20px;
-  background-color: var(--Brown-GrayText);
+  background-color: #f0e3c3;
+
   cursor: pointer;
   user-select: auto;
   p {
@@ -224,23 +232,24 @@ export const ChildProfileComponentTag = styled.div`
   }
 `
 
-export const ProfileInfoInputTag = styled.input`
-  color: var(--Brown-Text);
+export const ProfileListInputTag = styled.input`
+  color: var(--Brown-LightText);
   height: 70px;
   padding: 0 30px;
+  margin-right: 5px;
   background-color: var(--Beige-Light);
   border-radius: 20px;
   border: 2px solid var(--Beige-Stroke);
   font-family: 'Jua', sans-serif;
-  font-size: 28px;
+  font-size: 36px;
   user-select: auto;
 `
 
-export const ProfileInfoLabelTag = styled.label`
+export const ProfileListLabelTag = styled.label`
   color: var(--Brown-Text);
   font-family: 'Jua', sans-serif;
   font-size: 36px;
-  margin: 0;
+  margin-bottom: 5px;
   user-select: auto;
 `
 
@@ -353,13 +362,22 @@ export const DiaryComponentTag = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
+
   background-color: var(--White-Block);
-  border: 1px solid var(--Beige-Stroke);
   border-radius: 30px;
+  border: 1px solid #C5BEB6;
+  box-shadow: 0px 5px 5px #E6E6E6;
+
   width: 700px;
-  padding: 20px;
+  height: 740px;
+  margin-top: 20px;
+
   font-family: 'Dongle', sans-serif;
-  font-size: 60px;
+  font-size: 50px;
+  font-weight: bold;
+  color: var(--Brown-Text);
+  white-space: nowrap;
   img {
     height: 130px;
   }
@@ -369,7 +387,9 @@ export const DiaryInputTag = styled.input`
   color: var(--Brown-LightText);
   border-radius: 10px;
   padding: 0 20px;
+  margin-bottom: 10px;
   height: 70px;
+  width: 270px;
   border: 1px solid var(--Beige-Stroke);
   font-family: 'Dongle', sans-serif;
   font-size: 40px;
@@ -378,28 +398,53 @@ export const DiaryInputTag = styled.input`
 export const DiaryContentInputTag = styled.textarea`
   color: var(--Brown-LightText);
   border-radius: 10px;
-  padding: 0 20px;
+  padding: 0 0 0 10px;
   height: 70px;
-  border: 1px solid var(--Beige-Stroke);
-  font-family: 'Dongle', sans-serif;
+  /* border: 1px solid var(--Beige-Stroke); */
+  border-radius: 10px;
+  font-family: 'Gaegu', monospace;
   font-size: 40px;
+  /* color: var(--Brown-Text); */
+  position: absolute;
+  width: 604px;
+  height: 200px;
+  z-index: 2;
+  background-color: transparent;
+  letter-spacing: 22px;
+  line-height: 50px;
+  word-spacing: 16px;
+  border: 0;
+  resize: none;
+  /* scrollbar-width: none; */
+  scrollbar-width: 0;
+  /* text-indent: 5px; */
+  overflow: hidden;
+  :focus {
+    outline: none;
+  }
 `
 
 export const DiaryPaintingTag = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
   color: var(--Brown-LightText);
   background-color: white;
   border: 1px solid var(--Beige-Stroke);
   border-radius: 10px;
   width: 600px;
   height: 300px;
+  margin-bottom: 20px;
 `
 
 export const DiaryWeatherBoxTag = styled.div`
   background-color: white;
   position: relative;
   display: flex;
-  width: 96px;
+  width: 100px;
   height: 70px;
+  margin-left: 10px;
+  margin-bottom: 10px;
   border-radius: 10px;
   border: 1px solid var(--Beige-Stroke);
   cursor: pointer;
@@ -452,14 +497,16 @@ export const EditProfileButtonTag = styled.button`
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 300px;
-  height: 90px;
+  width: 250px;
+  height: 80px;
+  margin-left: 30px;
   color: white;
   background-color: #FF6029CC;
-  border-radius: 24px;
+  border-radius: 20px;
   border: 0;
+  box-shadow: 0px 10px 20px rgba(255, 96, 41, 0.4);
   font-family: 'Jua', sans-serif;
-  font-size: 36px;
+  font-size: 30px;
   cursor: pointer;
   user-select: auto;
 `
@@ -472,8 +519,11 @@ export const ParentMenuButtonTag = styled.div`
   width: 220px;
   height: 330px;
   font-size: 20px;
-  border-radius: 40px;
-  padding: 10px;
+  border-radius: 30px;
+  box-shadow: 0px 5px 5px #E6E6E6;
+  padding: 5px;
+  margin-left: 20px;
+  margin-right: 20px;
   background-color: var(--Beige-Light);
   align-items: center;
   justify-content: center;
@@ -488,6 +538,7 @@ export const ParentMenuButtonTag = styled.div`
     margin: 0;
   }
   img {
+    margin-top: 20px;
     height: 150px;
   }
 `
@@ -510,9 +561,13 @@ export const PaintingCardTag = styled.div`
   align-items: center;
   color: var(--Brown-Text);
   background-color: var(--White-Block);
+  box-shadow: 0px 5px 5px #E6E6E6;
+
   border-radius: 30px;
   width: 200px;
   height: 200px;
+  margin-left: 30px;
+  margin-right: 30px;
   font-family: 'Jua', sans-serif;
   font-size: 28px;
   cursor: pointer;
@@ -522,7 +577,7 @@ export const PaintingCardTag = styled.div`
 `
 
 export const PaintingCardDateStyleTag = styled.p`
-  font-size: 28px;
+  font-size: 26px;
   margin: 0;
 `
 
@@ -651,11 +706,13 @@ export const PromiseTodoItemDoneTag = styled.p`
 `
 
 export const PaintingToolModalComponentTag = styled.div`
+  position: absolute;
+  top: 270px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  align-items: center;
-  width: 400px;
+  /* align-items: center; */
+  width: 500px;
   height: 280px;
   background-color: #FBDEBC;
   border-radius: 20px;
@@ -698,20 +755,19 @@ export const StrokeWidthTag = styled.div`
 `
 
 export const ModalBackgroundTag = styled.div`
-  position: absolute;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
+  position: fixed;
+  top: 0;
+  left: 0;
   align-items: center;
   width: 100%;
-  height: 100%;
+  height: 200%;
   background-color: #05050560;
+  z-index: 1;
 `
 
 export const ColorPickerModalComponentTag = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
+  position: absolute;
+  top: 342px;
   align-items: center;
   padding: 4px;
   background-color: #FFE400;
@@ -728,6 +784,8 @@ export const ProfileImageTag = styled.div`
   display: inline-block;
   width: 150px;
   height: 150px;
+  margin-left: 5px;
+  margin-right: 5px;
   border: 6px solid #00000000;
   border-radius: 50%;
   cursor: pointer;
@@ -737,7 +795,9 @@ export const ProfileSelectedImageTag = styled.div`
   display: inline-block;
   width: 150px;
   height: 150px;
-  border: 6px solid #FF005C;
+  margin-left: 5px;
+  margin-right: 5px;
+  border: 6px solid #EE5925;
   border-radius: 50%;
   cursor: pointer;
 `
@@ -843,6 +903,7 @@ export const LetterPageHeader = styled.div`
   display: flex;
   flex-direction: row;
   align-items: center;
+  justify-content: space-between;
 
   font-family: 'Dongle', sans-serif;
 `
@@ -1211,7 +1272,8 @@ export const JuaOrange = styled.span`
 
 export const ProfileBlock = styled.section`
   display: flex;
-  justify-content: space-evenly;
+  justify-content: center;
+  align-items: center;
   margin-top: 100px;
 `
 
@@ -1219,4 +1281,89 @@ export const ProfileFooter = styled.section`
   display: flex;
   justify-content: center;
   margin-top: 130px;
+`
+
+export const ProfileEditFooter = styled.section`
+  display: flex;
+  justify-content: center;
+  margin-top: 50px;
+`
+
+export const ProfileInput = styled.section`
+  display: flex;
+  justify-content: space-evenly;
+  margin-top: 20px;
+`
+
+export const ProfileChildren = styled.section`
+  display: flex;
+  justify-content: end;
+  margin-top: -100px;
+  margin-right: -190px;
+`
+
+// ParentPage
+
+export const ParentTitle = styled.section`
+  display: flex;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  margin-top: 30px;
+  margin-bottom: 40px;
+`
+
+export const ParentInfo = styled.section`
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  margin-left: 30px;
+`
+
+// DiaryPage
+
+export const DiaryContent = styled.section`
+  display: flex;
+  justify-content: center;
+  margin-top: 50px;
+`
+
+export const DiaryBlock = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  background-color: #FDFDF5;
+  box-shadow: 0px 5px 5px #E6E6E6;
+  width: 330px;
+  height: 450px;
+  border-radius: 30px;
+  margin-left: 20px;
+  margin-right: 20px;
+  cursor: pointer;
+`
+
+export const DiarySectionButtonTag = styled.div`
+  color: var(--Brown-Text);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  font-family: 'Dongle', sans-serif;
+  width: 200px;
+  height: 200px;
+  font-size: 50px;
+  font-weight: bold;
+  border-radius: 20px;
+  background-color: var(--Beige-Light);
+  box-shadow: 0px 5px 5px #E6E6E6;
+  cursor: pointer;
+  user-select: auto;
+  img {
+    height: 100px;
+    width: 100px;
+    margin-bottom: 5px;
+  }
 `

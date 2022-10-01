@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from "react"
 import { useNavigate } from "react-router-dom"
 
 import { useRecoilState } from 'recoil'
-import { profileState, profileInfoState } from '../store/atoms'
+import { profileState, profileListState } from '../store/atoms'
 import { useLetterCallback } from '../Functions/useLetterCallback'
 
 import { LogoTag, EditorBody, LetterTitleBody, LetterTitleDiv, LetterTitleInput, LetterContentBody, LetterContentDiv, LetterContentTextArea, LetterEditorComponentBody, LetterButton, LetterButtonBack, LetterButtonGo, LetterButtonDel } from "../Style/Components"
@@ -11,8 +11,8 @@ import { getStringDate } from "../util/date"
 const LetterEditorComponent = ({ isDetail, letterItem }) => {
   const navigate = useNavigate()
 
-  const [profileName, setProfileName] = useRecoilState(profileState)
-  const [profileList, setProfileList] = useRecoilState(profileInfoState)
+  const [profileInfo, setProfileInfo] = useRecoilState(profileState)
+  const [profileList, setProfileList] = useRecoilState(profileListState)
 
   const { letterSendCallback, letterRemoveCallback } = useLetterCallback()
 
@@ -28,7 +28,7 @@ const LetterEditorComponent = ({ isDetail, letterItem }) => {
 
   // CREATE
   const onCreate = (receiver, title, content) => {
-    letterSendCallback(profileName, receiver, title, content)
+    letterSendCallback(profileInfo.name, receiver, title, content)
   }
   // REMOVE
   const onRemove = (targetId) => {
@@ -76,6 +76,7 @@ const LetterEditorComponent = ({ isDetail, letterItem }) => {
       setDate(getStringDate(new Date(letterItem.date)))
     }
   }, [isDetail, letterItem]);
+
   
   return (
     <LetterEditorComponentBody>
@@ -86,14 +87,14 @@ const LetterEditorComponent = ({ isDetail, letterItem }) => {
       <EditorBody>
         <LetterTitleBody>
           <div>{isDetail ? "시간 : " : "누가 : "}</div>
-          <LetterTitleDiv>{isDetail ? date : profileName}</LetterTitleDiv>
+          <LetterTitleDiv>{isDetail ? date : profileInfo.name}</LetterTitleDiv>
         </LetterTitleBody>
 
         <LetterTitleBody>
           <div>{isDetail ? "누가 : " : "누구 : "}</div>
           {isDetail ? <LetterTitleDiv>{author}</LetterTitleDiv> : 
           <LetterTitleDiv>
-            {profileList.filter((it) => it.name !== profileName).map((it, idx) => (
+            {profileList.filter((it) => it.name !== profileInfo.name).map((it, idx) => (
               <label key={idx} style={{marginRight: "10px"}}>
                 <input
                   type="radio"

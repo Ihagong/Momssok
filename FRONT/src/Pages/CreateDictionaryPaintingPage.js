@@ -10,7 +10,10 @@ import { PaintingToolModalComponent } from '../Components/CanvasComponent/Painti
 import { ColorPickerModalComponent } from '../Components/CanvasComponent/ColorPickerModalComponent'
 import { PaintingToolTag, ChildButtonTag1, ChildButtonTag2, PointerTag, PaintingGuideTag } from '../Style/Components'
 import { MotionDetectionComponent } from '../Components/CanvasComponent/MotionDetectionComponent'
+import { useParams } from  'react-router-dom'
 
+import { useRecoilState } from 'recoil'
+import { dictionaryPaintingState } from '../store/atoms'
 
 // 크레파스
 
@@ -109,8 +112,11 @@ const textures = [
     pencilWhite, pencilGray, pencilBrown, pencilApricot, pencilPurple, pencilBlue, pencilSkyBlue],
 ]
 
+
+
 function CreatePaintingPage(props) {
-  // console.log(loadedPaintingSrc)
+  const [dictionaryPaintingList, setDictionaryPaintingList] = useRecoilState(dictionaryPaintingState)
+  console.log(dictionaryPaintingList)
   const [paintingToolModalOpen, setPaintingToolModalOpen] = useState(false)
   const [colorPickerModalOpen, setColorPickerModalOpen] = useState(false)
   const [modalOpen, setModalOpen] = useState(false)
@@ -120,12 +126,22 @@ function CreatePaintingPage(props) {
   const [isCamOn, setIsCamOn] = useState(false)
   const [offset, setOffset] = useState({offsetX: 0, offsetY: 0})
   const [gesture, setGesture] = useState('defaultGesture')
-  // const [selectedToolIndex, setSelectedToolIndex] = useState(0)
+  const [partIndex, setPartIndex] = useState(0)
+  const [isDone, setIsDone] = useState(false)
+  const { detailId } = useParams()
 
   const handleClickCloseButton = () => {
   }
 
-  const handleClickSaveButton = () => {
+  const handleClickNextButton = () => {
+    // console.log(order.length)
+    if (partIndex <= order.length-1) {
+      setPartIndex(partIndex+1)
+    }
+    if (partIndex >= order.length-1) {
+      setIsDone(true)
+      console.log('done!')
+    }
   }
 
   const handleClickPaintingToolButton = () => {
@@ -186,19 +202,29 @@ function CreatePaintingPage(props) {
   // var abTop = window.pageYOffset + target.getBoundingClientRect().top;
 
   // console.log((window.innerWidth-1100)/2, window.innerHeight-200)
-
+  const order = ['tail', 'body', 'head']
+  const name = 'elephant'
   return (
     <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
-      { gesture !== 'defaultGesture' ? <PointerTag style={{ left: offset.offsetX+370, top: offset.offsetY }}
+      { gesture !== 'defaultGesture' ? <PointerTag style={{ left: offset.offsetX, top: offset.offsetY }}
         src= { gesture === 'indexGesture' ? '/icons/pointer.png' : gesture === 'palmGesture' ? '/icons/backhand.png' : '/icons/paintingTool_brush.png' } /> : null}
       <CanvasProvider loadedPainting={props.loadedPainting} textures={textures} isCamOn={isCamOn} offset={offset} gesture={gesture}
-        strokeColorIndex={strokeColorIndex} strokeTextureIndex={strokeTextureIndex} strokeLineWidthIndex={strokeLineWidthIndex} width={500} height={550}>
+        strokeColorIndex={strokeColorIndex} strokeTextureIndex={strokeTextureIndex} strokeLineWidthIndex={strokeLineWidthIndex} width={500} height={550} partIndex={partIndex}>
         <PaintingToolModalComponent modalOpen={paintingToolModalOpen} setPaintingToolModalOpen={setPaintingToolModalOpen} motionTextureIndex={strokeTextureIndex} offset={offset} gesture={gesture}
           changeStrokeTexture={changeStrokeTexture} changeStrokeLineWidthIndex={changeStrokeLineWidthIndex} onClick={() => setModalOpen(false)} />
         <ColorPickerModalComponent modalOpen={colorPickerModalOpen} setColorPickerModalOpen={setColorPickerModalOpen} offset={offset} gesture={gesture}
           strokeColorIndex={strokeColorIndex} changeStrokeColor={changeStrokeColor} onClick={() => setModalOpen(false)} />
         <div style={{ display: 'flex' }}>
-          <CanvasComponent />
+          <>
+              <div style={{ position: 'absolute' }}>
+                {dictionaryPaintingList.map((paintingInfo, index) => {
+                  return <img className={'elephant'+paintingInfo.part.charAt(0).toUpperCase() + paintingInfo.part.slice(1)}
+                    style={{ position: 'absolute', width: '500px', pointerEvents: 'none' }} src={paintingInfo.url}></img>
+                })}
+              </div>
+            <CanvasComponent />
+            <img style={{ position: 'absolute', opacity: '0.1', pointerEvents: 'none', width: '500px' }} src={`/images/${name}/${name}_${order[partIndex]}.svg`}></img>
+          </>
           <PaintingGuideTag>
             <>그려주세요</>
           </PaintingGuideTag>
@@ -210,12 +236,12 @@ function CreatePaintingPage(props) {
           <AddObjectButton />
           <ChangeLineWidthBar /> */}
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', width: '1060px', padding: '20px' }}>
-            <PaintingToolTag onClick={handleClickPaintingToolButton}><img src='/icons/tools.svg'></img></PaintingToolTag>
-            <PaintingToolTag onClick={handleClickColorPickerButton}><img src='/icons/color.svg'></img></PaintingToolTag>
+            <PaintingToolTag onClick={handleClickPaintingToolButton}><img src='/icons/paintingTools.png'></img></PaintingToolTag>
+            <PaintingToolTag onClick={handleClickColorPickerButton}><img src='/icons/colorPicker.png'></img></PaintingToolTag>
             { isCamOn ? <MotionDetectionComponent setIsCamOn={setIsCamOn} canvasWidth={1100*2+200} canvasHeight={550*2+400} setOffset={setOffset} setGesture={setGesture} handleSelectTool={handleSelectTool} />
               : <PaintingToolTag onClick={() => setIsCamOn(true)}><img src='/icons/camera.svg'></img></PaintingToolTag> }
             <ChildButtonTag1 style={{ width: '200px' }} onClick={handleClickCloseButton}>닫기</ChildButtonTag1>
-            <ChildButtonTag2 style={{ width: '200px' }} onClick={handleClickSaveButton}>다음</ChildButtonTag2>
+            <ChildButtonTag2 style={{ width: '200px' }} onClick={handleClickNextButton}>{ partIndex < order.length-1 ? '다음' : '완료' }</ChildButtonTag2>
           </div>
         </div>
       </CanvasProvider>
