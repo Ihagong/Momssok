@@ -241,7 +241,7 @@ public class PromiseService {
         promise.setPromise_list(serializedItems);
         if(promiseMapper.updatePromise(promise)==1&&updated){
             resultBody.put("message", "done 완료");
-            result.put(false, resultBody);
+            result.put(true, resultBody);
             return result;
 
         }
