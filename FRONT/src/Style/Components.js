@@ -215,7 +215,6 @@ export const ChildProfileComponentTag = styled.div`
   margin-right: 15px;
   border-radius: 20px;
   display: flex;
-  flex-direction: column;
   justify-content: center;
   align-items: center;
   font-family: 'Jua', sans-serif;
@@ -1301,4 +1300,27 @@ export const ParentInfo = styled.section`
   align-items: flex-start;
   justify-content: center;
   margin-left: 30px;
+`
+
+// DiaryPage
+
+export const DiaryContent = styled.section`
+  display: flex;
+  justify-content: center;
+  margin-top: 50px;
+`
+
+export const DiaryBlock = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  background-color: #FDFDF5;
+  box-shadow: 0px 5px 5px #E6E6E6;
+  width: 330px;
+  height: 450px;
+  border-radius: 30px;
+  margin-left: 20px;
+  margin-right: 20px;
 `
