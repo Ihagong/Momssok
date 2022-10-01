@@ -44,7 +44,7 @@ body {
   justify-content: center;
   min-height: 100vh;
   margin: 0px;
-  overflow: hidden;
+  /* overflow: hidden; */
   overscroll-behavior-y: none;
 }
 

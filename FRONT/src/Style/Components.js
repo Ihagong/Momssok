@@ -853,13 +853,12 @@ export const DictionaryDetailComponentTag = styled.div`
   border: 1px solid var(--Beige-Stroke);
   border-radius: 30px;
   width: 550px;
-  height: 600px;
-  padding: 20px;
+  height: 560px;
   color: var(--Brown-Text);
   font-family: 'Dongle', sans-serif;
   font-size: 60px;
   img {
-    height: 400px;
+    height: 380px;
   }
 `
 
