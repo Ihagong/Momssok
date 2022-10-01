@@ -1,26 +1,25 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { PromiseModalComponentTag } from '../Style/Components'
 import { PromiseTodoItemTag, PromiseTodoItemDoneTag } from '../Style/Components'
-import { useRecoilState } from 'recoil'
-import { totalTodoListState } from '../store/atoms'
+import { usePromiseCallback } from '../Functions/usePromiseCallback'
 
 
-export function PromiseTodoItemComponent({ todoItem, promiseId }) {
-  const [totalTodoList, setTotalTodoList] = useRecoilState(totalTodoListState)
+export function PromiseTodoItemComponent({ todoItem, promiseItemId, name }) {
+  const { doneTodoCallback } = usePromiseCallback()
+  const [isDone, setIsDone] = useState(todoItem.done)
+
+  // useEffect(() => {
+    
+  // }, [todoItem])
 
   const handleClickTodoItem = () => {
-    const newList = { ...totalTodoList }
-    newList[promiseId] = totalTodoList[promiseId].map((listItem) => 
-        listItem.id === todoItem.id
-        ? { ...listItem, done: !listItem.done }
-        : listItem
-      )
-    setTotalTodoList(newList)
+    setIsDone(true)
+    doneTodoCallback(name, promiseItemId, todoItem.id)
   }
 
   return (
     <>
-      { todoItem.done ?
+      { isDone ?
         <PromiseTodoItemDoneTag onClick={handleClickTodoItem}>{ todoItem.todo }</PromiseTodoItemDoneTag>
       :
         <PromiseTodoItemTag onClick={handleClickTodoItem}>{ todoItem.todo }</PromiseTodoItemTag>

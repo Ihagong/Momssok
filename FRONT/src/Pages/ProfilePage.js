@@ -9,7 +9,7 @@ import { useAuthCallback } from '../Functions/useAuthCallback'
 
 function ProfilePage() {
   const [profileList, setProfileList] = useRecoilState(profileListState)
-  const [profileInfo, setProfileInfo] = useRecoilState(profileState)
+  const [profile, setProfile] = useRecoilState(profileState)
   const navigate = useNavigate()
   
   const { logOutCallback, profileListCallback } = useAuthCallback()
@@ -19,11 +19,18 @@ function ProfilePage() {
   }
 
   const handleClickManageProfileButton = () => {
+    console.log(profileList)
+    const parentProfile = profileList.forEach((profile) => {
+      if (profile.is_parent) {
+        return profile
+      }
+    })
+    setProfile(parentProfile)
     navigate('/profile/manage')
   }
 
   const handleClickChildProfile = (info) => {
-    setProfileInfo(info)
+    setProfile(info)
     navigate('/child')
   }
 
