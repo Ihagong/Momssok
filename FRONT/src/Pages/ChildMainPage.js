@@ -61,6 +61,19 @@ function ChildMainPage() {
             </ChildSubMenuButtonTag>
           </>
           : null }
+
+        {selectedTab === 1 ?
+          <>
+          <ChildSubMenuButtonTag onClick={handleClickCreateLetterButton}>
+            <LogoTag src='icons/lettericon.svg' />
+            칭찬 도장
+          </ChildSubMenuButtonTag>
+          <ChildSubMenuButtonTag onClick={handleClickLetterButton}>
+            <LogoTag src='icons/airplane.svg' />
+            오늘 할 일
+          </ChildSubMenuButtonTag>
+        </>
+          : null }
         {selectedTab === 2 ?
           <>
             <ChildSubMenuButtonTag onClick={handleClickCreateLetterButton}>
@@ -70,6 +83,19 @@ function ChildMainPage() {
             <ChildSubMenuButtonTag onClick={handleClickLetterButton}>
               <LogoTag src='icons/airplane.svg' />
               편지 읽기
+            </ChildSubMenuButtonTag>
+          </>
+          : null }
+
+        {selectedTab === 3 ?
+          <>
+            <ChildSubMenuButtonTag onClick={handleClickCreatePaintingButton}>
+              <LogoTag src='icons/draw.svg' />
+              동물 도감
+            </ChildSubMenuButtonTag>
+            <ChildSubMenuButtonTag onClick={handleClickCreatePaintingButton}>
+              <LogoTag src='icons/draw.svg' />
+              동요 듣기
             </ChildSubMenuButtonTag>
           </>
           : null }
