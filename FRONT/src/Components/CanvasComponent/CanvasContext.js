@@ -105,7 +105,7 @@ export const CanvasProvider = ({ children, loadedPainting, textures, offset, ges
       return
     }
     const { offsetX, offsetY } = nativeEvent
-      const lineWidth = contextRef.current.lineWidth
+    const lineWidth = contextRef.current.lineWidth
     if (strokeTextureIndex === 1 || strokeTextureIndex === 2) {
       // x시작 좌표, y 시작 좌표, 가로 크기, 세로 크기, 그림 x 위치, 그림 y 위치, 그림 가로 크기, 그림 세로 크기
       contextRef.current.drawImage(textures[strokeTextureIndex-1][strokeColorIndex], 0, 0, 1100, 550, offsetX-(lineWidth/4), offsetY-(lineWidth/4), lineWidth*6, lineWidth*3)
@@ -122,10 +122,12 @@ export const CanvasProvider = ({ children, loadedPainting, textures, offset, ges
       return
     }
     const { offsetX, offsetY } = offset
+    const lineWidth = contextRef.current.lineWidth
     if (strokeTextureIndex === 1 || strokeTextureIndex === 2) {
-      const lineWidth = contextRef.current.lineWidth
       // x시작 좌표, y 시작 좌표, 가로 크기, 세로 크기, 그림 x 위치, 그림 y 위치, 그림 가로 크기, 그림 세로 크기
       contextRef.current.drawImage(textures[strokeTextureIndex-1][strokeColorIndex], 0, 0, 1100, 550, offsetX-(lineWidth/4), offsetY-(lineWidth/4), lineWidth*6, lineWidth*3)
+    } else if (strokeTextureIndex === 4) {
+      contextRef.current.clearRect(offsetX-(lineWidth/4), offsetY-(lineWidth/4), lineWidth, lineWidth)
     } else {
       contextRef.current.lineTo(offsetX, offsetY)
       contextRef.current.stroke()
