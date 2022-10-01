@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useNavigate } from  'react-router-dom'
 
 import { DiarySectionButtonTag, LogoTag, DiaryComponentTag, DiaryInputTag, DiaryContentInputTag, DiaryWeatherBoxTag, DiaryPaintingTag } from '../Style/Components'
@@ -9,9 +9,12 @@ export function DiaryComponent(props) {
 
   const [title, setTitle] = useState(props.diaryId)
   const [content, setContent] = useState(props.diaryId)
-  const [weather, setWeather] = useState('맑음')
-  const [date, setDate] = useState('')
+  const [weatherIndex, setWeatherIndex] = useState(0)
+  const [date, setDate] = useState(new Date().toLocaleDateString().replace('. ', '-').replace('. ', '-').replace('.', ''))
   const [selectOpen, setSelectOpen] = useState(false)
+
+  const weatherList = ['sun', 'cloud', 'cloudy', 'rain', 'snow']
+  console.log(new Date())
 
   const contentGrid = () => {
     let result = []
@@ -42,26 +45,37 @@ export function DiaryComponent(props) {
     navigate('/painting/load')
   }
 
+  const handleClickWeatherBox = (index) => {
+    setSelectOpen(false)
+    setWeatherIndex(index)
+  }
+
   const grid = contentGrid()
+
+  const dateString = () => {
+    const dateList = date.split('-')
+    return `${dateList[0]}년 ${Number(dateList[1])}월 ${Number(dateList[2])}일`
+  }
 
   return (
     <DiaryComponentTag>
-      <div style={{ display: 'flex', alignItems: 'center' }}>
-        <div style={{ marginRight: "20px" }}>
+      <div style={{ display: 'flex', alignItems: 'center', height: '60px' }}>
+        <p style={{ position: 'absolute', top: '40px', margin: '0 0 0 110px', color: 'var(--Brown-LightText)', fontSize: '40px', fontWeight: '500' }}>{ dateString() }</p>
+        <div style={{ marginRight: '20px' }}>
           <label htmlFor='date'>날짜 : </label>
-          <DiaryInputTag id='date' value={date} onInput={((e) => setDate(e.target.value))} />
+          <DiaryInputTag style={{  }} type='date' id='date' value={date} onInput={((e) => setDate(e.target.value))} />
         </div>
         <div style={{ display: 'flex', alignItems: 'center' }}>
           <label htmlFor='weather'>날씨 : </label>
           <DiaryWeatherBoxTag>
-            <button onClick={() => setSelectOpen(!selectOpen)}><img src='/icons/sunicon.svg' alt='맑음'></img></button>
+            <button onClick={() => setSelectOpen(!selectOpen)}><img src={`/icons/${weatherList[weatherIndex]}icon.svg`} alt='맑음'></img></button>
             { selectOpen ?
               <ul>
-                <li onClick={() => {setSelectOpen(!selectOpen); setWeather('맑음')}}><img src='/icons/sunicon.svg' alt='맑음'></img></li>
-                <li onClick={() => {setSelectOpen(!selectOpen); setWeather('구름많음')}}><img src='/icons/cloudicon.svg' alt='구름많음'></img></li>
-                <li onClick={() => {setSelectOpen(!selectOpen); setWeather('흐림')}}><img src='/icons/cloudyicon.svg' alt='흐림'></img></li>
-                <li onClick={() => {setSelectOpen(!selectOpen); setWeather('비')}}><img src='/icons/rainicon.svg' alt='비'></img></li>
-                <li onClick={() => {setSelectOpen(!selectOpen); setWeather('눈')}}><img src='/icons/snowicon.svg' alt='눈'></img></li>
+                <li onClick={() => handleClickWeatherBox(0)}><img src='/icons/sunicon.svg' alt='맑음'></img></li>
+                <li onClick={() => handleClickWeatherBox(1)}><img src='/icons/cloudicon.svg' alt='구름많음'></img></li>
+                <li onClick={() => handleClickWeatherBox(2)}><img src='/icons/cloudyicon.svg' alt='흐림'></img></li>
+                <li onClick={() => handleClickWeatherBox(3)}><img src='/icons/rainicon.svg' alt='비'></img></li>
+                <li onClick={() => handleClickWeatherBox(4)}><img src='/icons/snowicon.svg' alt='눈'></img></li>
               </ul>
             : null }
           </DiaryWeatherBoxTag>
@@ -69,7 +83,7 @@ export function DiaryComponent(props) {
       </div>
       <div>
         <label htmlFor='title'>제목 : </label>
-        <DiaryInputTag id='title' style={{ width: '480px', marginBottom: "20px" }} value={title} onInput={((e) => setTitle(e.target.value))} />
+        <DiaryInputTag id='title' style={{ width: '480px' }} value={title} onInput={((e) => setTitle(e.target.value))} />
       </div>
       <DiaryPaintingTag>
         <DiarySectionButtonTag onClick={handleClickLoadPaintingButton}>
@@ -83,7 +97,7 @@ export function DiaryComponent(props) {
           </div>
         </DiarySectionButtonTag>
       </DiaryPaintingTag>
-      <div style={{ display: 'flex' }}>
+      <div style={{ display: 'flex', margin: '0 0 20px 0' }}>
         <div style={{ position: 'relative', display: 'grid', gridTemplateColumns: 'repeat(11, 3fr)', gridTemplateRows: 'repeat(4, 1fr)', width: '600px', height: '200px',
           backgroundColor: 'var(--Beige-Stroke)', outline: '1px solid var(--Beige-Stroke)', gridGap: '1px', zIndex: 1, borderRadius: '10px'
         }}>
