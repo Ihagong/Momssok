@@ -12,5 +12,7 @@ public class DiarySaveDto {
     private String title;
     private String content;
     private String weather;
+    private String emotion;
+    private String date;
     private String email_name;
 }
