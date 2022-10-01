@@ -9,4 +9,5 @@ public class DiaryDayDto {
     private String date;
     private String name;
     private String email_name;
+    private int is_deleted_from_child;
 }
