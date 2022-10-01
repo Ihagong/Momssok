@@ -215,6 +215,7 @@ export const ChildProfileComponentTag = styled.div`
   margin-right: 15px;
   border-radius: 20px;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   font-family: 'Jua', sans-serif;
@@ -361,13 +362,22 @@ export const DiaryComponentTag = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
+
   background-color: var(--White-Block);
-  border: 1px solid var(--Beige-Stroke);
   border-radius: 30px;
+  border: 1px solid #C5BEB6;
+  box-shadow: 0px 5px 5px #E6E6E6;
+
   width: 700px;
-  padding: 20px;
+  height: 740px;
+  margin-top: 20px;
+
   font-family: 'Dongle', sans-serif;
-  font-size: 60px;
+  font-size: 50px;
+  font-weight: bold;
+  color: var(--Brown-Text);
+  white-space: nowrap;
   img {
     height: 130px;
   }
@@ -377,7 +387,9 @@ export const DiaryInputTag = styled.input`
   color: var(--Brown-LightText);
   border-radius: 10px;
   padding: 0 20px;
+  margin-bottom: 10px;
   height: 70px;
+  width: 270px;
   border: 1px solid var(--Beige-Stroke);
   font-family: 'Dongle', sans-serif;
   font-size: 40px;
@@ -413,20 +425,26 @@ export const DiaryContentInputTag = styled.textarea`
 `
 
 export const DiaryPaintingTag = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
   color: var(--Brown-LightText);
   background-color: white;
   border: 1px solid var(--Beige-Stroke);
   border-radius: 10px;
   width: 600px;
   height: 300px;
+  margin-bottom: 20px;
 `
 
 export const DiaryWeatherBoxTag = styled.div`
   background-color: white;
   position: relative;
   display: flex;
-  width: 96px;
+  width: 100px;
   height: 70px;
+  margin-left: 10px;
+  margin-bottom: 10px;
   border-radius: 10px;
   border: 1px solid var(--Beige-Stroke);
   cursor: pointer;
@@ -1323,4 +1341,28 @@ export const DiaryBlock = styled.div`
   border-radius: 30px;
   margin-left: 20px;
   margin-right: 20px;
+  cursor: pointer;
+`
+
+export const DiarySectionButtonTag = styled.div`
+  color: var(--Brown-Text);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  font-family: 'Dongle', sans-serif;
+  width: 200px;
+  height: 200px;
+  font-size: 50px;
+  font-weight: bold;
+  border-radius: 20px;
+  background-color: var(--Beige-Light);
+  box-shadow: 0px 5px 5px #E6E6E6;
+  cursor: pointer;
+  user-select: auto;
+  img {
+    height: 100px;
+    width: 100px;
+    margin-bottom: 5px;
+  }
 `
