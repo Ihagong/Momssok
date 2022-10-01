@@ -8,7 +8,7 @@ import { SaveCanvasButton } from '../Components/CanvasComponent/SaveCanvasButton
 import { CanvasProvider } from '../Components/CanvasComponent/CanvasContext'
 import { PaintingToolModalComponent } from '../Components/CanvasComponent/PaintingToolModalComponent'
 import { ColorPickerModalComponent } from '../Components/CanvasComponent/ColorPickerModalComponent'
-import { PaintingToolTag, ChildButtonTag1, ChildButtonTag2, PointerTag } from '../Style/Components'
+import { LetterButtonBack, LetterButtonGo, PaintingToolTag, ChildButtonTag1, ChildButtonTag2, PointerTag } from '../Style/Components'
 import { MotionDetectionComponent } from '../Components/CanvasComponent/MotionDetectionComponent'
 import { ClearCanvasButton } from '../Components/CanvasComponent/ClearCanvasButton'
 
@@ -192,7 +192,7 @@ function CreatePaintingPage(props) {
   // console.log((window.innerWidth-1100)/2, window.innerHeight-200)
 
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
+    <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', marginTop: "15px" }}>
       { gesture !== 'defaultGesture' ? <PointerTag style={{ left: offset.offsetX+(window.innerWidth-1100)/2-40, top: offset.offsetY }}
         src= { gesture === 'indexGesture' ? '/icons/pointer.png' : gesture === 'palmGesture' ? '/icons/backhand.png' : '/icons/paintingTool_brush.png' } /> : null}
       <CanvasProvider loadedPainting={props.loadedPainting} textures={textures} isCamOn={isCamOn} offset={offset} gesture={gesture}
@@ -207,16 +207,15 @@ function CreatePaintingPage(props) {
           <ClearCanvasButton />
           <AddObjectButton />
           <ChangeLineWidthBar /> */}
-          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', width: '1060px', padding: '20px' }}>
-            <PaintingToolTag onClick={handleClickPaintingToolButton}><img src='/icons/paintingTools.png'></img></PaintingToolTag>
-            <PaintingToolTag onClick={handleClickColorPickerButton}><img src='/icons/colorPicker.png'></img></PaintingToolTag>
-            { isCamOn ? <MotionDetectionComponent setIsCamOn={setIsCamOn} canvasWidth={(1100+200)*2} canvasHeight={(550+200)*2} setOffset={setOffset} setGesture={setGesture} handleSelectTool={handleSelectTool} />
-              : <PaintingToolTag onClick={() => setIsCamOn(true)}><img src='/icons/camera.svg'></img></PaintingToolTag> }
-            {/* <ChildButtonTag1 style={{ width: '200px' }} onClick={handleClickResetButton}>원래대로</ChildButtonTag1> */}
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', width: '1060px', marginTop: "20px" }}>
+            <PaintingToolTag onClick={handleClickPaintingToolButton}><img style={{width: "130px", height: "130px"}} src='/icons/paintingTools.png'></img></PaintingToolTag>
+            <PaintingToolTag onClick={handleClickColorPickerButton}><img style={{width: "130px", height: "130px"}} src='/icons/colorPicker.png'></img></PaintingToolTag>
             <ClearCanvasButton />
+            { isCamOn ? <MotionDetectionComponent setIsCamOn={setIsCamOn} canvasWidth={(1100+200)*2} canvasHeight={(550+200)*2} setOffset={setOffset} setGesture={setGesture} handleSelectTool={handleSelectTool} />
+              : <PaintingToolTag onClick={() => setIsCamOn(true)}><img src='/icons/videoicon.svg'></img></PaintingToolTag> }
             <div style={{ display: 'flex', flexDirection: 'column' }}>
-              <ChildButtonTag1 style={{ width: '200px' }} onClick={handleClickCloseButton}>닫기</ChildButtonTag1>
-              <ChildButtonTag2 style={{ width: '200px' }} onClick={handleClickSaveButton}>저장</ChildButtonTag2>
+              <LetterButtonBack style={{marginTop: "0px", marginLeft: "0px", height: "65px" }} onClick={handleClickCloseButton}>닫기</LetterButtonBack>
+              <LetterButtonGo style={{marginTop: "10px", marginLeft: "0px", height: "65px" }} onClick={handleClickSaveButton}>저장</LetterButtonGo>
             </div>
           </div>
         </div>

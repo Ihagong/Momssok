@@ -100,7 +100,7 @@ export function MotionDetectionComponent({ canvasWidth, canvasHeight, setOffset,
 
   return (
     <>
-      <WebCamTag onClick={() => setIsCamOn(false)}>
+      <WebCamTag style={{ marginTop: "10px" }} onClick={() => setIsCamOn(false)}>
         <Webcam
           ref={webcamRef}
           mirrored={true}
@@ -120,9 +120,9 @@ export function MotionDetectionComponent({ canvasWidth, canvasHeight, setOffset,
           style={{
             textAlign: 'center',
             zindex: 9,
-            width: 160,
-            height: 120,
-            borderRadius: '20px',
+            width: 170,
+            height: 140,
+            borderRadius: '10px',
             transform: 'scaleX(-1)',
           }}
         ></canvas>
