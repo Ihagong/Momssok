@@ -281,6 +281,13 @@ export const ChildMenuTabTag = styled.div`
     width: 110px;
     height: 110px;
   }
+  :hover {
+    background-color: var(--Beige-Stroke);
+    transition: 0.3s;
+  }
+  :active {
+    transform: scale( 0.95 );
+  }
 `
 
 export const ChildMenuSelectedTabTag = styled.div`
@@ -335,6 +342,9 @@ export const ChildSubMenuButtonTag = styled.div`
   user-select: auto;
   img {
     height: 180px;
+  }
+  :hover {
+    transform: scale( 1.05 );
   }
 `
 
