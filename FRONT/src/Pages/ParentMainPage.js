@@ -3,17 +3,17 @@ import React, { useState } from 'react'
 import { useNavigate } from  'react-router-dom'
 
 import { useRecoilState } from 'recoil'
-import { profileState } from '../store/atoms'
+import { profileListState, profileState } from '../store/atoms'
 
 import { ParentInfo, ParentTitle, ProfileEditFooter, ProfileChildren, ProfileFooter, ProfileBlock, ProfileTitle, JuaOrange, JuaBrown, JuaBrownLight, AddProfileButtonTag, AddProfileTextTag, ButtonTag3, LogoTag, EditProfileButtonTag, ParentMenuButtonTag } from '../Style/Components'
 
 
 function ParentMainPage() {
   const navigate = useNavigate()
+  const [profileList, setProfileList] = useRecoilState(profileListState)
   const [profileInfo, setProfileInfo] = useRecoilState(profileState)
-  const childInfo = { id: 0, name: '찬석이', birth: '2017.12', age: 6 } // 아이 정보
   const [age, setAge] = useState(new Date().getFullYear() - new Date(profileInfo.birthday).getFullYear() + 1)
-
+  console.log(profileList)
 
   const handleClickReportButton = () => {
   }
