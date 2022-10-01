@@ -8,12 +8,12 @@ import { SaveCanvasButton } from '../Components/CanvasComponent/SaveCanvasButton
 import { CanvasProvider } from '../Components/CanvasComponent/CanvasContext'
 import { PaintingToolModalComponent } from '../Components/CanvasComponent/PaintingToolModalComponent'
 import { ColorPickerModalComponent } from '../Components/CanvasComponent/ColorPickerModalComponent'
-import { PaintingToolTag, ChildButtonTag1, ChildButtonTag2, PointerTag, PaintingGuideTag } from '../Style/Components'
+import { PaintingToolTag, ChildButtonTag1, ChildButtonTag2, PointerTag, PaintingGuideTag, PaintingCanvasTag } from '../Style/Components'
 import { MotionDetectionComponent } from '../Components/CanvasComponent/MotionDetectionComponent'
-import { useParams } from  'react-router-dom'
+import { useParams, useLocation, useNavigate } from  'react-router-dom'
 
 import { useRecoilState } from 'recoil'
-import { dictionaryPaintingState } from '../store/atoms'
+import { dictionaryPaintingState, animalDictionaryState } from '../store/atoms'
 
 // 크레파스
 
@@ -116,6 +116,7 @@ const textures = [
 
 function CreatePaintingPage(props) {
   const [dictionaryPaintingList, setDictionaryPaintingList] = useRecoilState(dictionaryPaintingState)
+  const [dictionaryAnimalList, setDictionaryAnimalList] = useRecoilState(animalDictionaryState)
   console.log(dictionaryPaintingList)
   const [paintingToolModalOpen, setPaintingToolModalOpen] = useState(false)
   const [colorPickerModalOpen, setColorPickerModalOpen] = useState(false)
@@ -129,16 +130,22 @@ function CreatePaintingPage(props) {
   const [partIndex, setPartIndex] = useState(0)
   const [isDone, setIsDone] = useState(false)
   const { detailId } = useParams()
+  const [animal, setAnimal] = useState(dictionaryAnimalList[detailId-1])
+  const navigate = useNavigate()
+  
+  console.log(animal.name)
+  const { state } = useLocation()
 
   const handleClickCloseButton = () => {
+    navigate('/dictionary')
   }
 
   const handleClickNextButton = () => {
     // console.log(order.length)
-    if (partIndex <= order.length-1) {
+    if (partIndex <= order.length) {
       setPartIndex(partIndex+1)
     }
-    if (partIndex >= order.length-1) {
+    if (partIndex >= order.length) {
       setIsDone(true)
       console.log('done!')
     }
@@ -203,30 +210,33 @@ function CreatePaintingPage(props) {
 
   // console.log((window.innerWidth-1100)/2, window.innerHeight-200)
   const order = ['tail', 'body', 'head']
-  const name = 'elephant'
   return (
     <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
       { gesture !== 'defaultGesture' ? <PointerTag style={{ left: offset.offsetX, top: offset.offsetY }}
         src= { gesture === 'indexGesture' ? '/icons/pointer.png' : gesture === 'palmGesture' ? '/icons/backhand.png' : '/icons/paintingTool_brush.png' } /> : null}
       <CanvasProvider loadedPainting={props.loadedPainting} textures={textures} isCamOn={isCamOn} offset={offset} gesture={gesture}
-        strokeColorIndex={strokeColorIndex} strokeTextureIndex={strokeTextureIndex} strokeLineWidthIndex={strokeLineWidthIndex} width={500} height={550} partIndex={partIndex}>
+        strokeColorIndex={strokeColorIndex} strokeTextureIndex={strokeTextureIndex} strokeLineWidthIndex={strokeLineWidthIndex} width={500} height={550} partIndex={partIndex} animal={animal} isDone={isDone}>
         <PaintingToolModalComponent modalOpen={paintingToolModalOpen} setPaintingToolModalOpen={setPaintingToolModalOpen} motionTextureIndex={strokeTextureIndex} offset={offset} gesture={gesture}
           changeStrokeTexture={changeStrokeTexture} changeStrokeLineWidthIndex={changeStrokeLineWidthIndex} onClick={() => setModalOpen(false)} />
         <ColorPickerModalComponent modalOpen={colorPickerModalOpen} setColorPickerModalOpen={setColorPickerModalOpen} offset={offset} gesture={gesture}
           strokeColorIndex={strokeColorIndex} changeStrokeColor={changeStrokeColor} onClick={() => setModalOpen(false)} />
         <div style={{ display: 'flex' }}>
           <>
-              <div style={{ position: 'absolute' }}>
-                {dictionaryPaintingList.map((paintingInfo, index) => {
-                  return <img className={'elephant'+paintingInfo.part.charAt(0).toUpperCase() + paintingInfo.part.slice(1)}
-                    style={{ position: 'absolute', width: '500px', pointerEvents: 'none' }} src={paintingInfo.url}></img>
-                })}
-              </div>
-            <CanvasComponent />
-            <img style={{ position: 'absolute', opacity: '0.1', pointerEvents: 'none', width: '500px' }} src={`/images/${name}/${name}_${order[partIndex]}.svg`}></img>
+            <div style={{ position: 'absolute' }}>
+              {dictionaryPaintingList.map((paintingInfo, index) => {
+                console.log(animal.name+'-'+paintingInfo.part)
+                return <img key={index}
+                className={ isDone ? animal.name+'-'+paintingInfo.part : null }
+                  style={{ position: 'absolute', width: '500px', pointerEvents: 'none', zIndex: -2 }} src={paintingInfo.url}></img>
+              })}
+            </div>
+            <CanvasComponent style={{ position: 'absolute', zIndex: '5' }} /> 
+            { partIndex < animal.parts.length ?
+              <img style={{ position: 'absolute', opacity: '0.1', pointerEvents: 'none', width: '500px' }} src={`/images/${animal.name}/${animal.name}_${animal.parts[partIndex]?.name}.svg`}></img>
+              : null }
           </>
           <PaintingGuideTag>
-            <>그려주세요</>
+          { partIndex < animal.parts.length ? <>{animal.parts[partIndex]?.name_ko} 그려주세요</> : <> 짜잔, 완성했어요!</>}
           </PaintingGuideTag>
         </div>
         <div style={{ display: 'flex' }}>
@@ -241,7 +251,7 @@ function CreatePaintingPage(props) {
             { isCamOn ? <MotionDetectionComponent setIsCamOn={setIsCamOn} canvasWidth={1100*2+200} canvasHeight={550*2+400} setOffset={setOffset} setGesture={setGesture} handleSelectTool={handleSelectTool} />
               : <PaintingToolTag onClick={() => setIsCamOn(true)}><img src='/icons/camera.svg'></img></PaintingToolTag> }
             <ChildButtonTag1 style={{ width: '200px' }} onClick={handleClickCloseButton}>닫기</ChildButtonTag1>
-            <ChildButtonTag2 style={{ width: '200px' }} onClick={handleClickNextButton}>{ partIndex < order.length-1 ? '다음' : '완료' }</ChildButtonTag2>
+            <ChildButtonTag2 style={{ width: '200px' }} onClick={handleClickNextButton}>{ partIndex < animal.parts.length ? '다음' : '완료' }</ChildButtonTag2>
           </div>
         </div>
       </CanvasProvider>

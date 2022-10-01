@@ -25,14 +25,14 @@
   }
 }
 
-.dogBody {
+.dog-body {
   display: flex;
   align-items: center;
   justify-content: center;
   z-index: 3;
 }
 
-.dogLeftEar {
+.dog-leftear {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -40,7 +40,7 @@
   z-index: 2;
 }
 
-.dogRightEar {
+.dog-rightear {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -48,7 +48,7 @@
   z-index: 2;
 }
 
-.dogTail {
+.dog-tail {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -84,14 +84,14 @@
   }
 }
 
-.rabbitBody {
+.rabbit-body {
   display: flex;
   align-items: center;
   justify-content: center;
   z-index: 3;
 }
 
-.rabbitLeftEar {
+.rabbit-leftear {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -99,7 +99,7 @@
   z-index: 2;
 }
 
-.rabbitRightEar {
+.rabbit-rightear {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -107,7 +107,7 @@
   z-index: 2;
 }
 
-.rabbitTail {
+.rabbit-tail {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -134,14 +134,14 @@
   }
 }
 
-.elephantBody {
+.elephant-body {
   display: flex;
   align-items: center;
   justify-content: center;
   z-index: 2;
 }
 
-.elephantHead {
+.elephant-head {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -149,7 +149,7 @@
   z-index: 3;
 }
 
-.elephantTail {
+.elephant-tail {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -185,14 +185,14 @@
   }
 }
 
-.catBody {
+.cat-body {
   display: flex;
   align-items: center;
   justify-content: center;
   z-index: 2;
 }
 
-.catLeftWhiskers {
+.cat-leftwhiskers {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -200,7 +200,7 @@
   z-index: 3;
 }
 
-.catRightWhiskers {
+.cat-rightwhiskers {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -208,7 +208,7 @@
   z-index: 3;
 }
 
-.catTail {
+.cat-tail {
   display: flex;
   align-items: center;
   justify-content: center;
