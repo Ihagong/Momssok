@@ -3,7 +3,7 @@
     transform: rotate(0deg);
   }
   to {
-    transform: rotate(15deg) translate(-40px, 20px);
+    transform: rotate(15deg) translate(-35px, 10px);
   }
 }
 
@@ -12,13 +12,13 @@
     transform: rotate(0deg);
   }
   to {
-    transform: rotate(-15deg) translate(40px, 20px);
+    transform: rotate(-15deg) translate(35px, 10px);
   }
 }
 
 @keyframes dog-tail {
   from {
-    transform: rotate(20deg) translate(60px, -20px);
+    transform: rotate(20deg) translate(40px, -20px);
   }
   to {
     transform: rotate(0deg) translate(0px, 0px);
@@ -71,7 +71,7 @@
     transform: rotate(5deg);
   }
   to {
-    transform: rotate(-10deg) translate(20px, 30px);
+    transform: rotate(-10deg) translate(10px, 20px);
   }
 }
 
@@ -80,7 +80,7 @@
     transform: rotate(0deg) translate(0px, 0px);
   }
   to {
-    transform: rotate(0deg) translate(10px, -10px);
+    transform: rotate(0deg) translate(5px, -10px);
   }
 }
 
@@ -127,10 +127,10 @@
 
 @keyframes elephant-tail {
   from {
-    transform: rotate(-10deg) translate(0px, 40px);
+    transform: rotate(-10deg) translate(0px, 30px);
   }
   to {
-    transform: rotate(0deg) translate(0px, 0px);
+    transform: rotate(0deg) translate(0px, 10px);
   }
 }
 
@@ -163,7 +163,7 @@
     transform: rotate(0deg);
   }
   to {
-    transform: rotate(-10deg) translate(20px, -10px);
+    transform: rotate(-10deg) translate(15px, -10px);
   }
 }
 
@@ -172,7 +172,7 @@
     transform: rotate(0deg);
   }
   to {
-    transform: rotate(15deg) translate(-20px, 10px);
+    transform: rotate(10deg) translate(-10px, 5px);
   }
 }
 
@@ -181,7 +181,7 @@
     transform: rotate(0deg) translate(10px, -10px);
   }
   to {
-    transform: rotate(-20deg) translate(-20px, -30px);
+    transform: rotate(-15deg) translate(-10px, -20px);
   }
 }
 

@@ -240,7 +240,7 @@ function CreatePaintingPage(props) {
           </PaintingGuideTag>
         </div>
         <div style={{ display: 'flex' }}>
-        <SaveCanvasButton />
+        {/* <SaveCanvasButton /> */}
           {/* <ChangeStrokeStyleButton />
           <ClearCanvasButton />
           <AddObjectButton />
