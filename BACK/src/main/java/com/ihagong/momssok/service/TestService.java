@@ -1,6 +1,7 @@
 package com.ihagong.momssok.service;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
+import com.ihagong.momssok.model.dto.EmotionSaveDto;
 import com.ihagong.momssok.util.BASE64DecodedMultipartFile;
 import com.ihagong.momssok.model.dto.testImageDto;
 import lombok.RequiredArgsConstructor;
@@ -16,16 +17,16 @@ import java.util.*;
 public class TestService {
     private final FastApiEmotion fastApiEmotion;
     private final FastApiDetection fastApiDetection;
-    public Map<Boolean,Object> ApiTestEmotion(String text) throws IOException {
+    public Map<Boolean,Object> ApiTestEmotion(EmotionSaveDto saveDto) throws IOException, SQLException {
 
         Map<Boolean, Object> result = new HashMap<>();
         Map<String, Object> resultBody = new HashMap<>();
 
 
         //통신 부분 스레드로 실행
-        fastApiEmotion.fastApiEmotion(text);
+        fastApiEmotion.fastApiEmotion(saveDto);
 
-        resultBody.put("messege", "즉시 응답 메세지");
+        resultBody.put("status", "SUCCESS");
         result.put(true, resultBody);
         return result;
 
