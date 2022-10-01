@@ -39,6 +39,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/promise/savePromise").hasRole("USER")
                 .antMatchers("/promise/lookupAllPromise").hasRole("USER")
                 .antMatchers("/promise/updatePromise").hasRole("USER")
+                .antMatchers("/promise/deletePromise").hasRole("USER")
+                .antMatchers("/promise/donePromise").hasRole("USER")
                 .and()
                 .addFilterBefore(new JwtAuthenticationFilter(jwtTokenProvider), UsernamePasswordAuthenticationFilter.class); // jwt 필터 추가
     }
