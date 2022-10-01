@@ -3,7 +3,7 @@
     transform: rotate(0deg);
   }
   to {
-    transform: rotate(15deg) translate(-40px, 20px);
+    transform: rotate(15deg) translate(-35px, 10px);
   }
 }
 
@@ -12,27 +12,27 @@
     transform: rotate(0deg);
   }
   to {
-    transform: rotate(-15deg) translate(40px, 20px);
+    transform: rotate(-15deg) translate(35px, 10px);
   }
 }
 
 @keyframes dog-tail {
   from {
-    transform: rotate(20deg) translate(60px, -20px);
+    transform: rotate(20deg) translate(40px, -20px);
   }
   to {
     transform: rotate(0deg) translate(0px, 0px);
   }
 }
 
-.dogBody {
+.dog-body {
   display: flex;
   align-items: center;
   justify-content: center;
   z-index: 3;
 }
 
-.dogLeftEar {
+.dog-leftear {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -40,7 +40,7 @@
   z-index: 2;
 }
 
-.dogRightEar {
+.dog-rightear {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -48,7 +48,7 @@
   z-index: 2;
 }
 
-.dogTail {
+.dog-tail {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -71,7 +71,7 @@
     transform: rotate(5deg);
   }
   to {
-    transform: rotate(-10deg) translate(20px, 30px);
+    transform: rotate(-10deg) translate(10px, 20px);
   }
 }
 
@@ -80,18 +80,18 @@
     transform: rotate(0deg) translate(0px, 0px);
   }
   to {
-    transform: rotate(0deg) translate(10px, -10px);
+    transform: rotate(0deg) translate(5px, -10px);
   }
 }
 
-.rabbitBody {
+.rabbit-body {
   display: flex;
   align-items: center;
   justify-content: center;
   z-index: 3;
 }
 
-.rabbitLeftEar {
+.rabbit-leftear {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -99,7 +99,7 @@
   z-index: 2;
 }
 
-.rabbitRightEar {
+.rabbit-rightear {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -107,7 +107,7 @@
   z-index: 2;
 }
 
-.rabbitTail {
+.rabbit-tail {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -127,21 +127,21 @@
 
 @keyframes elephant-tail {
   from {
-    transform: rotate(-10deg) translate(0px, 40px);
+    transform: rotate(-10deg) translate(0px, 30px);
   }
   to {
-    transform: rotate(0deg) translate(0px, 0px);
+    transform: rotate(0deg) translate(0px, 10px);
   }
 }
 
-.elephantBody {
+.elephant-body {
   display: flex;
   align-items: center;
   justify-content: center;
   z-index: 2;
 }
 
-.elephantHead {
+.elephant-head {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -149,7 +149,7 @@
   z-index: 3;
 }
 
-.elephantTail {
+.elephant-tail {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -163,7 +163,7 @@
     transform: rotate(0deg);
   }
   to {
-    transform: rotate(-10deg) translate(20px, -10px);
+    transform: rotate(-10deg) translate(15px, -10px);
   }
 }
 
@@ -172,7 +172,7 @@
     transform: rotate(0deg);
   }
   to {
-    transform: rotate(15deg) translate(-20px, 10px);
+    transform: rotate(10deg) translate(-10px, 5px);
   }
 }
 
@@ -181,18 +181,18 @@
     transform: rotate(0deg) translate(10px, -10px);
   }
   to {
-    transform: rotate(-20deg) translate(-20px, -30px);
+    transform: rotate(-15deg) translate(-10px, -20px);
   }
 }
 
-.catBody {
+.cat-body {
   display: flex;
   align-items: center;
   justify-content: center;
   z-index: 2;
 }
 
-.catLeftWhiskers {
+.cat-leftwhiskers {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -200,7 +200,7 @@
   z-index: 3;
 }
 
-.catRightWhiskers {
+.cat-rightwhiskers {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -208,7 +208,7 @@
   z-index: 3;
 }
 
-.catTail {
+.cat-tail {
   display: flex;
   align-items: center;
   justify-content: center;
