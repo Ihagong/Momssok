@@ -45,15 +45,15 @@ const AnimalDictionaryPage = () => {
       </div>
       <div style={{ display: 'flex' }}>
         <DictionaryDetailComponentTag>
-          <p style={{ margin: 0 }}>{animalList[detailIndex].name_ko}</p>
+          <p style={{ margin: 0, margin: '30px 0 0 0', lineHeight: '50px' }}>{animalList[detailIndex].name_ko}</p>
           {/* <img src={`/images/${animalList[detailIndex].name}/${animalList[detailIndex].name}.svg`}></img> */}
           <DictionaryDetailImageComponent name={animalList[detailIndex].name} />
           <div style={{ display: 'flex' }}>
             <ChildButtonTag4 onClick={() => handleClickCreateDictionaryButton(animalList[detailIndex])}>그리기</ChildButtonTag4>
-            <ChildButtonTag2>설명</ChildButtonTag2>
+            <ChildButtonTag2 style={{ margin: '0 0 0 20px' }}>설명</ChildButtonTag2>
           </div>
         </DictionaryDetailComponentTag>
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)' }}>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '10px', margin: '0 0 0 20px' }}>
           {animalList.map((element, index) => {
             return (
               <DictionaryCardComponent key={index} info={element} handleClickDictionaryCardComponent={handleClickDictionaryCardComponent}>
