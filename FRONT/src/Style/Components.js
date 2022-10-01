@@ -741,8 +741,9 @@ export const ModalBackgroundTag = styled.div`
   justify-content: center;
   align-items: center;
   width: 100%;
-  height: 100%;
+  height: 200%;
   background-color: #05050560;
+  z-index: 1;
 `
 
 export const ColorPickerModalComponentTag = styled.div`

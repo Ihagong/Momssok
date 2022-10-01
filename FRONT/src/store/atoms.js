@@ -100,3 +100,8 @@ export const dictionaryPaintingState = atom({
   effects_UNSTABLE: [persistAtom]
 })
 
+export const promiseItemsState = atom({
+  key: 'promiseItemsState',
+  default: [],
+  effects_UNSTABLE: [persistAtom]
+})
