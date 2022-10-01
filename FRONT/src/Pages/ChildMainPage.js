@@ -37,7 +37,7 @@ function ChildMainPage() {
 
   const handleClickAnimalDictionaryButton = () => {
     getAllDictionaryCallback(profileInfo.name)
-    navigate(`/dictionary`)
+    console.log(profileInfo.name)
   }
 
   return (
