@@ -9,6 +9,7 @@ import "../App.css"
 import LetterListComponent from '../Components/LetterListComponent'
 import { ChildProfileTag, LetterPageHeader, BrownText100, LightButton120, BrownLightButton150 } from '../Style/Components'
 
+
 const LetterPage = () => {
   const navigate = useNavigate()
   const [letterList, setLetterList] = useRecoilState(totalLetterListState)
