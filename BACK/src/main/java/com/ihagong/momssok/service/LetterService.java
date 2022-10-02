@@ -35,7 +35,7 @@ public class LetterService {
         letter.setContent(content);
         //System.out.println(videoFile.getContentType());
         if(videoFile!=null) {
-            String path = "/var/lib/docker/volumes/volume1/_data/";
+            String path = "/files1";
             UUID uuid = UUID.randomUUID();
             String filepath = path + uuid + "_" + videoFile.getOriginalFilename();
             System.out.println(System.getProperty("user.dir"));
