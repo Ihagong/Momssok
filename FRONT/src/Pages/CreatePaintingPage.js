@@ -5,6 +5,7 @@ import { CanvasComponent } from '../Components/CanvasComponent/CanvasComponent'
 // import { ClearCanvasButton } from '../Components/CanvasComponent/ClearCanvasButton'
 // import { ChangeStrokeStyleButton } from '../Components/CanvasComponent/ChangeStrokeStyleButton'
 import { SaveCanvasButton } from '../Components/CanvasComponent/SaveCanvasButton'
+import { SavePaintingButton } from '../Components/CanvasComponent/SavePaintingButton'
 // import { AddObjectButton } from '../Components/CanvasComponent/addObjectButton'
 // import { ChangeLineWidthBar } from '../Components/CanvasComponent/ChangeLineWidthBar'
 import { CanvasProvider } from '../Components/CanvasComponent/CanvasContext'
@@ -125,13 +126,9 @@ function CreatePaintingPage(props) {
   const [isCamOn, setIsCamOn] = useState(false)
   const [offset, setOffset] = useState({offsetX: 0, offsetY: 0})
   const [gesture, setGesture] = useState('defaultGesture')
-  // const [selectedToolIndex, setSelectedToolIndex] = useState(0)
 
   const handleClickCloseButton = () => {
     navigate('/painting/load')
-  }
-
-  const handleClickSaveButton = () => {
   }
 
   const handleClickPaintingToolButton = () => {
@@ -222,7 +219,8 @@ function CreatePaintingPage(props) {
               : <PaintingToolTag onClick={() => setIsCamOn(true)}><img src='/icons/videoicon.svg'></img></PaintingToolTag> }
             <div style={{ display: 'flex', flexDirection: 'column' }}>
               <LetterButtonBack style={{marginTop: "0px", marginLeft: "0px", height: "60px", fontSize: '55px' }} onClick={handleClickCloseButton}>닫기</LetterButtonBack>
-              <LetterButtonGo style={{marginTop: "10px", marginLeft: "0px", height: "60px", fontSize: '55px' }} onClick={handleClickSaveButton}>저장</LetterButtonGo>
+              {/* <LetterButtonGo style={{marginTop: "10px", marginLeft: "0px", height: "60px", fontSize: '55px' }} onClick={handleClickSaveButton}>저장</LetterButtonGo> */}
+              <SavePaintingButton />
             </div>
           </div>
         </div>

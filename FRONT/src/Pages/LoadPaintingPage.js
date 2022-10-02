@@ -1,20 +1,26 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
+import { usePaintingCallback } from '../Functions/usePaintingCallback'
 
 import { useRecoilState } from 'recoil'
-import { loadedPaintingState, profileState } from '../store/atoms'
+import { loadedPaintingState, profileState, loadedPaintingListState } from '../store/atoms'
 
 import { OrangeButton250, LightButton250, LetterPageHeader, BrownText100, LightButton120, BrownLightButton150, ChildProfileTag, ChildButtonTag1, ChildButtonTag3, ChildButtonTag4, PaintingCardTag } from '../Style/Components'
 import { PaintingCardComponent } from '../Components/PaintingCardComponent'
 
 
 function LoadPaintingPage() {
+  const { getAllPaintingCallback } = usePaintingCallback()
   const navigate = useNavigate();
   const [loadedPaintingSrc, setLoadedPaintingSrc] = useRecoilState(loadedPaintingState)
   const [profileInfo, setProfileInfo] = useRecoilState(profileState)
-
+  const [loadedPaintingList, setLoadedPaintingList] = useRecoilState(loadedPaintingListState)
+  
   const [sortOrder, setSortOrder] = useState(0)
 
+  useEffect(() => {
+    getAllPaintingCallback(profileInfo.name)
+  }, [])
 
   const handleChangeFile = (e) => {
     e.preventDefault()
@@ -47,8 +53,6 @@ function LoadPaintingPage() {
     navigate('/painting/create')
   }
 
-  const paintingList = [{ id: 1, date: '2022.09.19', tags: ['운동회', '계주', '줄다리기'] }]
-
   return (
     <div className='LetterPageHome'>
       <LetterPageHeader>
@@ -71,11 +75,11 @@ function LoadPaintingPage() {
           <LightButton250 onClick={() => setSortOrder(1)}>오래된순</LightButton250>
         }
       </div>
-      <div style={{ display: 'flex', marginTop: "40px", marginLeft: "50px" }}>
+      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 3fr)', marginTop: "40px", marginLeft: "50px" }}>
         <PaintingCardTag onClick={handleClickCreatePaintingButton}><img src='/icons/plus_brown.svg' /></PaintingCardTag>
-        {paintingList.map((info) => (
-          <div onClick={handleClickLoadPaintingButton}>
-            <PaintingCardComponent key={info.id} info={info} />
+        {loadedPaintingList.map((info) => (
+          <div key={info.drawing_id} onClick={handleClickLoadPaintingButton}>
+            <PaintingCardComponent info={info} />
           </div>
         ))}
       </div>

@@ -1,17 +1,20 @@
 import React, { useContext, useRef, useState, useEffect } from 'react'
 import { useRecoilState } from 'recoil'
-import { dictionaryPaintingState } from '../../store/atoms'
+import { profileState, dictionaryPaintingState } from '../../store/atoms'
+import { usePaintingCallback } from '../../Functions/usePaintingCallback'
 
 
 const CanvasContext = React.createContext()
 
 export const CanvasProvider = ({ children, loadedPainting, textures, offset, gesture, strokeColorIndex, strokeTextureIndex, strokeLineWidthIndex, isCamOn, width, height, partIndex, animal, isDone }) => {
+  const { savePaintingCallback, updatePaintingCallback } = usePaintingCallback()
   const [dictionaryPaintingList, setDictionaryPaintingList] = useRecoilState(dictionaryPaintingState)
   const [isDrawing, setIsDrawing] = useState(false)
   const [imageIndex, setImageIndex] = useState(0)
   const [imgSrcs, setImgSrcs] = useState([])
   const canvasRef = useRef(null)
   const contextRef = useRef(null)
+  const [profileInfo, setProfileInfo] = useRecoilState(profileState)
 
   useEffect(() => {
     const canvas = canvasRef.current
@@ -157,6 +160,18 @@ export const CanvasProvider = ({ children, loadedPainting, textures, offset, ges
     link.download = 'MyPainting'
     link.click()
   }
+  
+  const savePainting = () => {
+    const canvas = canvasRef.current
+    const imageURL = canvas.toDataURL()
+    console.log(loadedPainting)
+
+    if (false) {
+      updatePaintingCallback('id', profileInfo.name, imageURL)
+    } else {
+      savePaintingCallback(imageURL, profileInfo.name)
+    }
+  }
 
   const addObject = () => {
     const canvas = canvasRef.current
@@ -199,6 +214,7 @@ export const CanvasProvider = ({ children, loadedPainting, textures, offset, ges
         finishDrawing,
         clearCanvas,
         saveCanvas,
+        savePainting,
         addObject,
         changeLineWidth,
         draw,
