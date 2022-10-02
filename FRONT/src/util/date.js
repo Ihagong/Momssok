@@ -1,4 +1,5 @@
 export const getStringDate = (today) => {
+
   let year = today.getFullYear()
   let month = today.getMonth() + 1
   let date = today.getDate()
@@ -12,3 +13,4 @@ export const getStringDate = (today) => {
   }
   return `${year}년 ${month}월 ${date}일 ${hours}시 ${minutes}분`
 }
+
