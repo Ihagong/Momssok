@@ -847,8 +847,7 @@ export const DictionaryCardComponentTag = styled.div`
   border-radius: 20px;
   width: 200px;
   height: 200px;
-  padding: 20px;
-  margin: 10px;
+  padding: 10px;
   color: var(--Brown-Text);
   font-family: 'Dongle', sans-serif;
   font-size: 60px;
@@ -860,8 +859,6 @@ export const DictionaryCardComponentTag = styled.div`
 
 export const DictionaryDetailComponentTag = styled.div`
   display: flex;
-  flex-direction: column;
-  align-items: center;
   background-color: var(--White-Block);
   border: 1px solid var(--Beige-Stroke);
   border-radius: 20px;
