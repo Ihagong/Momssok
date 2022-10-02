@@ -51,7 +51,7 @@ function SignUpPage() {
 
   return (
     <LoginPageBody>
-      <section style={{marginLeft: "30px", marginTop: "60px"}}>
+      <section style={{marginLeft: "30px", marginTop: "40px"}}>
         <JuaBrown style={{fontSize: "80px"}}>
           <GugiBrown style={{marginRight: "20px"}}>맘쏙</GugiBrown>
           회원가입
@@ -60,7 +60,7 @@ function SignUpPage() {
         <JuaBrownLight style={{fontSize: "36px"}}>맘쏙의 다양한 서비스를 만나보세요.</JuaBrownLight>
         <img style={{marginLeft: "40px", marginTop: "80px"}} src='/icons/mom.svg' />
       </section>
-      <section style={{marginLeft: "60px", marginTop: "60px"}}>
+      <section style={{marginLeft: "60px", marginTop: "40px"}}>
         <div style={{ display: 'flex', flexDirection: 'column' }}>
           <InputTag1 type='text' placeholder='이름' value={username} onChange={(e) => {setUsername(e.target.value)}}/>
           <span>

@@ -21,11 +21,11 @@ function DiaryPage() {
   return (
     <div className='LetterPageHome'>
       <LetterPageHeader>
-        <div style={{display: "flex", alignItems: "center", marginLeft: "10px" }}>
+        <div style={{display: "flex", alignItems: "center", marginLeft: "10px", marginTop: "-50px" }}>
           <LightButton120 onClick={() => navigate("/child")}>닫기</LightButton120>
           <BrownText100>일기 쓰기</BrownText100>
         </div>
-        <ChildProfileTag style={{marginTop: "30px", marginRight: "40px"}} onClick={handleClickChildProfile}><img src={`/images/profileImage_${profileInfo.image_num}.svg`} />{profileInfo.name}</ChildProfileTag>
+        <ChildProfileTag style={{marginTop: "20px", marginRight: "40px"}} onClick={handleClickChildProfile}><img src={`/images/profileImage_${profileInfo.image_num}.svg`} />{profileInfo.name}</ChildProfileTag>
       </LetterPageHeader>
       <DiaryContent>
         <DiaryBlock onClick={() => navigate("/diary/create")}>
