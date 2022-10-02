@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { DictionaryDetailComponentTag, ChildButtonTag1, ChildButtonTag2, ChildButtonTag4, LightButton120, BrownLightButton150, BrownText100, LetterPageHeader } from '../Style/Components'
+import { DictionarySectionComponentTag, DictionaryDetailComponentTag, ChildButtonTag2, ChildButtonTag4, LightButton120, BrownText100, LetterPageHeader } from '../Style/Components'
 import { DictionaryCardComponent } from '../Components/DictionaryCardComponent'
 import { DictionaryDetailImageComponent } from '../Components/DictionaryDetailImageComponent'
 import '../Style/animalAnimation.css'
@@ -32,7 +32,7 @@ const AnimalDictionaryPage = () => {
   
   return (
     <div style={{ display: 'flex', flexDirection: 'column', height: '500px' }}>
-      <div style={{ display: 'flex' }}>
+      <div style={{ display: 'flex', marginTop: '-10px' }}>
         <LetterPageHeader>
           <div style={{display: "flex", alignItems: "center", marginLeft: "10px" }}>
             <LightButton120 onClick={() => navigate("/child")}>닫기</LightButton120>
@@ -40,10 +40,8 @@ const AnimalDictionaryPage = () => {
           </div>
         </LetterPageHeader>
 
-        {/* <ChildButtonTag1>닫기</ChildButtonTag1>
-        <p>동물 도감</p> */}
       </div>
-      <div style={{ display: 'flex' }}>
+      <DictionarySectionComponentTag>
         <DictionaryDetailComponentTag>
           <p style={{ margin: 0, margin: '30px 0 0 0', lineHeight: '50px' }}>{animalList[detailIndex].name_ko}</p>
           {/* <img src={`/images/${animalList[detailIndex].name}/${animalList[detailIndex].name}.svg`}></img> */}
@@ -53,7 +51,7 @@ const AnimalDictionaryPage = () => {
             <ChildButtonTag2 style={{ margin: '0 0 0 20px' }}>설명</ChildButtonTag2>
           </div>
         </DictionaryDetailComponentTag>
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '10px', margin: '0 0 0 20px' }}>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '10px', marginLeft: '20px'}}>
           {animalList.map((element, index) => {
             return (
               <DictionaryCardComponent key={index} info={element} handleClickDictionaryCardComponent={handleClickDictionaryCardComponent}>
@@ -61,7 +59,7 @@ const AnimalDictionaryPage = () => {
             )
           })}
         </div>
-      </div>
+      </DictionarySectionComponentTag>
     </div>
   )
 }
