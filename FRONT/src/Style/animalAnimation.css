@@ -1,0 +1,217 @@
+@keyframes dog-leftear {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(15deg) translate(-35px, 10px);
+  }
+}
+
+@keyframes dog-rightear {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(-15deg) translate(35px, 10px);
+  }
+}
+
+@keyframes dog-tail {
+  from {
+    transform: rotate(20deg) translate(40px, -20px);
+  }
+  to {
+    transform: rotate(0deg) translate(0px, 0px);
+  }
+}
+
+.dog-body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 3;
+}
+
+.dog-leftear {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: dog-leftear 1s linear forwards infinite alternate;
+  z-index: 2;
+}
+
+.dog-rightear {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: dog-rightear 1s linear forwards infinite alternate;
+  z-index: 2;
+}
+
+.dog-tail {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: dog-tail 1s linear forwards infinite alternate;
+  z-index: 1;
+}
+
+
+@keyframes rabbit-leftear {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(10deg) translate(-10px, -10px);
+  }
+}
+
+@keyframes rabbit-rightear {
+  from {
+    transform: rotate(5deg);
+  }
+  to {
+    transform: rotate(-10deg) translate(10px, 20px);
+  }
+}
+
+@keyframes rabbit-tail {
+  from {
+    transform: rotate(0deg) translate(0px, 0px);
+  }
+  to {
+    transform: rotate(0deg) translate(5px, -10px);
+  }
+}
+
+.rabbit-body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 3;
+}
+
+.rabbit-leftear {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: rabbit-leftear 1s linear forwards infinite alternate;
+  z-index: 2;
+}
+
+.rabbit-rightear {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: rabbit-rightear 1s linear forwards infinite alternate;
+  z-index: 2;
+}
+
+.rabbit-tail {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: rabbit-tail 1s linear forwards infinite alternate;
+  z-index: 1;
+}
+
+
+@keyframes elephant-head {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(-20deg) translate(10px, -10px);
+  }
+}
+
+@keyframes elephant-tail {
+  from {
+    transform: rotate(-10deg) translate(0px, 30px);
+  }
+  to {
+    transform: rotate(0deg) translate(0px, 10px);
+  }
+}
+
+.elephant-body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2;
+}
+
+.elephant-head {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: elephant-head 1s linear forwards infinite alternate;
+  z-index: 3;
+}
+
+.elephant-tail {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: elephant-tail 1s linear forwards infinite alternate;
+  z-index: 1;
+}
+
+
+@keyframes cat-leftwhiskers {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(-10deg) translate(15px, -10px);
+  }
+}
+
+@keyframes cat-rightwhiskers {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(10deg) translate(-10px, 5px);
+  }
+}
+
+@keyframes cat-tail {
+  from {
+    transform: rotate(0deg) translate(10px, -10px);
+  }
+  to {
+    transform: rotate(-15deg) translate(-10px, -20px);
+  }
+}
+
+.cat-body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2;
+}
+
+.cat-leftwhiskers {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: cat-leftwhiskers 1s linear forwards infinite alternate;
+  z-index: 3;
+}
+
+.cat-rightwhiskers {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: cat-rightwhiskers 1s linear forwards infinite alternate;
+  z-index: 3;
+}
+
+.cat-tail {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: cat-tail 1s linear forwards infinite alternate;
+  z-index: 1;
+}

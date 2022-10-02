@@ -1,14 +1,15 @@
 import { useRecoilState } from 'recoil'
-import { signUpTokenState, logInTokenState, userInfoState, profileInfoState } from '../store/atoms'
+import { signUpTokenState, logInTokenState, userInfoState, profileListState } from '../store/atoms'
 import { useNavigate } from  'react-router-dom'
 import axios from 'axios'
+import ManageProfilePage from '../Pages/ManageProfilePage'
 
 
 export function useAuthCallback() {
   const [signUpToken, setSignUpToken] = useRecoilState(signUpTokenState)
   const [logInToken, setLogInToken] = useRecoilState(logInTokenState)
   const [userInfo, setUserInfo] = useRecoilState(userInfoState)
-  const [profileInfo, setProfileInfo] = useRecoilState(profileInfoState)
+  const [profileList, setProfileList] = useRecoilState(profileListState)
   const navigate = useNavigate()
 
   const authCheckCallback = async (email, authNumber) => {
@@ -148,7 +149,7 @@ export function useAuthCallback() {
         console.log('로그인되었습니다.')
         setLogInToken(response.data.token)
         userInfoCallback(response.data.token)
-        profileInfoCallback(response.data.token)
+        profileListCallback(response.data.token)
       }
     })
     .catch(error => {
@@ -200,7 +201,7 @@ export function useAuthCallback() {
     })
   }
 
-  const profileInfoCallback = async (token) => {
+  const profileListCallback = async (token) => {
     axios({
       method: 'get',
       url: '/api/user/lookupAllprofile',
@@ -213,7 +214,7 @@ export function useAuthCallback() {
       if (response.data) {
         console.log(response.data)
         console.log('프로필이 조회되었습니다.')
-        setProfileInfo(response.data['profiles'])
+        setProfileList(response.data['profiles'])
       }
     })
     .catch(error => {
@@ -221,8 +222,7 @@ export function useAuthCallback() {
     })
   }
 
-  const createProfileCallback = async (name, birthday, profilePassword) => {
-    console.log(name, birthday, profilePassword)
+  const createProfileCallback = async (name, birthday, selectedImageIndex, profilePassword) => {
     axios({
       method: 'post',
       url: '/api/user/saveProfile',
@@ -231,7 +231,7 @@ export function useAuthCallback() {
         'Authorization': logInToken,
       },
       data: {
-        profileImage: null,
+        image_num: selectedImageIndex,
         name,
         birthday,
         profile_password: profilePassword,
@@ -240,8 +240,64 @@ export function useAuthCallback() {
     .then(response => {
       if (response.data) {
         console.log(response.data)
-        console.log('프로필이 조회되었습니다.')
-        setProfileInfo(response.data['profiles'])
+        console.log('프로필이 생성되었습니다.')
+        profileListCallback()
+        navigate('/profile')
+      }
+    })
+    .catch(error => {
+      console.log(error.response.data)
+    })
+  }
+
+  const updateProfileCallback = async (beforeName, name, birthday, selectedImageIndex, profilePassword) => {
+    axios({
+      method: 'put',
+      url: '/api/user/updateProfile',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': logInToken,
+      },
+      data: {
+        beforeName,
+        name,
+        birthday,
+        image_num: selectedImageIndex,
+        profile_password: profilePassword,
+      }
+    })
+    .then(response => {
+      if (response.data) {
+        console.log(response.data)
+        console.log('프로필이 수정되었습니다.')
+        profileListCallback()
+        navigate('/profile/manage')
+      }
+    })
+    .catch(error => {
+      console.log(error.response.data)
+    })
+  }
+
+  const deleteProfileCallback = async (name) => {
+    console.log(name)
+    axios({
+      method: 'delete',
+      url: '/api/user/deleteProfile',
+      headers: {
+        'Content-Type': 'multipart/form-data',
+        'Authorization': logInToken,
+      },
+      data: {
+        "name": name,
+      }
+    })
+    .then(response => {
+      if (response.data) {
+        console.log(response.data)
+        console.log('프로필이 삭제되었습니다.')
+        profileListCallback()
+        navigate('/profile/manage')
       }
     })
     .catch(error => {
@@ -273,6 +329,6 @@ export function useAuthCallback() {
   }
 
   return { authCheckCallback, authEmailCallback, signUpCallback, userInfoCallback,
-    editAccountCallback, logInCallback, logOutCallback, deleteUserCallback, profileInfoCallback,
-    createProfileCallback, findPasswordCallback }
+    editAccountCallback, logInCallback, logOutCallback, deleteUserCallback, profileListCallback,
+    createProfileCallback, updateProfileCallback, deleteProfileCallback, findPasswordCallback }
 }
