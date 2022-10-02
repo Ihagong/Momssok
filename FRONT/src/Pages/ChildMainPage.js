@@ -35,6 +35,10 @@ function ChildMainPage() {
     navigate('/letter')
   }
 
+  const handleClickPromiseButton = () => {
+    navigate('/promise')
+  }
+
   const handleClickAnimalDictionaryButton = () => {
     getAllDictionaryCallback(profileInfo.name)
     console.log(profileInfo.name)
@@ -71,7 +75,7 @@ function ChildMainPage() {
 
         {selectedTab === 1 ?
           <>
-          <ChildSubMenuButtonTag onClick={handleClickCreateLetterButton}>
+          <ChildSubMenuButtonTag onClick={handleClickPromiseButton}>
             <LogoTag src='/icons/stampicon.svg' />
             칭찬 도장
           </ChildSubMenuButtonTag>
