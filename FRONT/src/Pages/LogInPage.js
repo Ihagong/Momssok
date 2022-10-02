@@ -31,13 +31,13 @@ function LogInPage() {
 
   return (
     <LoginPageBody>
-      <section style={{marginRight: "60px", marginTop: "60px"}}>
+      <section style={{marginRight: "60px", marginTop: "40px"}}>
         <JuaBrown style={{fontSize: "80px", marginBottom: "10px"}}>환영합니다!</JuaBrown>
         <JuaBrownLight style={{fontSize: "36px"}}>소중한 우리 아이의 마음 속,</JuaBrownLight>
         <JuaBrownLight style={{fontSize: "36px"}}>오늘은 어떤 그림이 그려졌을까요?</JuaBrownLight>
         <img style={{marginLeft: "40px", marginTop: "80px"}} src='/icons/bear.svg' />
       </section>
-      <section style={{marginLeft: "40px", marginTop: "60px", marginBottom: "10px"}}>
+      <section style={{marginLeft: "40px", marginTop: "40px", marginBottom: "10px"}}>
         <JuaBrown style={{fontSize: "48px"}}>우리 아이 마음 일기장</JuaBrown>
         <div style={{marginBottom: "30px"}}>
           <img src='/icons/heart.svg' />
