@@ -4,11 +4,13 @@ import { useNavigate } from  'react-router-dom'
 
 import { useRecoilState } from 'recoil'
 import { profileState } from '../store/atoms'
+import { useDictionaryCallback } from '../Functions/useDictionaryCallback'
 
 
 function ChildMainPage() {
   const [selectedTab, setSelctedTab] = useState(0)
   const [profileInfo, setProfileInfo] = useRecoilState(profileState)
+  const { getAllDictionaryCallback } = useDictionaryCallback()
 
 
   const navigate = useNavigate()
@@ -31,6 +33,15 @@ function ChildMainPage() {
 
   const handleClickLetterButton = () => {
     navigate('/letter')
+  }
+
+  const handleClickPromiseButton = () => {
+    navigate('/promise')
+  }
+
+  const handleClickAnimalDictionaryButton = () => {
+    getAllDictionaryCallback(profileInfo.name)
+    console.log(profileInfo.name)
   }
 
   return (
@@ -64,7 +75,7 @@ function ChildMainPage() {
 
         {selectedTab === 1 ?
           <>
-          <ChildSubMenuButtonTag onClick={handleClickCreateLetterButton}>
+          <ChildSubMenuButtonTag onClick={handleClickPromiseButton}>
             <LogoTag src='/icons/stampicon.svg' />
             칭찬 도장
           </ChildSubMenuButtonTag>
@@ -89,7 +100,7 @@ function ChildMainPage() {
 
         {selectedTab === 3 ?
           <>
-            <ChildSubMenuButtonTag onClick={handleClickCreatePaintingButton}>
+            <ChildSubMenuButtonTag onClick={handleClickAnimalDictionaryButton}>
               <LogoTag src='/icons/bookicon.svg' />
               동물 도감
             </ChildSubMenuButtonTag>

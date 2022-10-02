@@ -9,6 +9,11 @@ body {
   height: 100%;
   background-repeat: no-repeat;
   background-attachment: fixed;
+  -webkit-tap-highlight-color: transparent;
+}
+
+*:focus {
+  outline: none;
 }
 
 code {

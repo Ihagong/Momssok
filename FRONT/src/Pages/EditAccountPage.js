@@ -46,7 +46,7 @@ function EditAccountPage() {
 
   return (
     <LoginPageBody>
-      <section style={{marginLeft: "30px", marginTop: "60px"}}>
+      <section style={{marginLeft: "30px", marginTop: "40px"}}>
         <JuaBrown style={{fontSize: "80px"}}>
           <GugiBrown style={{marginRight: "20px"}}>맘쏙</GugiBrown>
           회원수정
@@ -56,7 +56,7 @@ function EditAccountPage() {
         <img style={{marginLeft: "40px", marginTop: "80px"}} src='/icons/mom.svg' />
       </section>
 
-      <section style={{marginLeft: "60px", marginTop: "60px"}}>
+      <section style={{marginLeft: "60px", marginTop: "40px"}}>
         <div style={{ display: 'flex', flexDirection: 'column' }}>
           <InputTag1 type='text' placeholder='이름' value={username} onChange={(e) => {setUsername(e.target.value)}}/>
           <InputTag1 type='email' placeholder='이메일' value={email}  disabled onChange={(e) => {setEmail(e.target.value)}}/>

@@ -5,7 +5,7 @@ import { dictionaryPaintingState } from '../../store/atoms'
 
 const CanvasContext = React.createContext()
 
-export const CanvasProvider = ({ children, loadedPainting, textures, offset, gesture, strokeColorIndex, strokeTextureIndex, strokeLineWidthIndex, isCamOn, width, height, partIndex }) => {
+export const CanvasProvider = ({ children, loadedPainting, textures, offset, gesture, strokeColorIndex, strokeTextureIndex, strokeLineWidthIndex, isCamOn, width, height, partIndex, animal, isDone }) => {
   const [dictionaryPaintingList, setDictionaryPaintingList] = useRecoilState(dictionaryPaintingState)
   const [isDrawing, setIsDrawing] = useState(false)
   const [imageIndex, setImageIndex] = useState(0)
@@ -48,7 +48,7 @@ export const CanvasProvider = ({ children, loadedPainting, textures, offset, ges
     if (partIndex) {
       addPart()
     }
-  }, [partIndex])
+  }, [partIndex, isDone])
   
   const strokeColor = [
     '#121212', '#F88484', '#EB2C37', '#EB8C35', '#FEED01', '#94C120', '#0C8E36',
@@ -101,14 +101,14 @@ export const CanvasProvider = ({ children, loadedPainting, textures, offset, ges
   }
 
   const draw = ({ nativeEvent }) => {
-    if (!isDrawing) {
+    if (!isDrawing || isDone) {
       return
     }
     const { offsetX, offsetY } = nativeEvent
     const lineWidth = contextRef.current.lineWidth
     if (strokeTextureIndex === 1 || strokeTextureIndex === 2) {
       // x시작 좌표, y 시작 좌표, 가로 크기, 세로 크기, 그림 x 위치, 그림 y 위치, 그림 가로 크기, 그림 세로 크기
-      contextRef.current.drawImage(textures[strokeTextureIndex-1][strokeColorIndex], 0, 0, 1100, 550, offsetX-(lineWidth/4), offsetY-(lineWidth/4), lineWidth*6, lineWidth*3)
+      contextRef.current.drawImage(textures[strokeTextureIndex-1][strokeColorIndex], 0, 0, 1100, 550, offsetX-(lineWidth/4)-10, offsetY-(lineWidth/4)-15, lineWidth*6, lineWidth*3)
     } else if (strokeTextureIndex === 4) {
       contextRef.current.clearRect(offsetX-(lineWidth/4), offsetY-(lineWidth/4), lineWidth, lineWidth)
     } else {
@@ -118,14 +118,14 @@ export const CanvasProvider = ({ children, loadedPainting, textures, offset, ges
   }
 
   const motionDraw = () => {
-    if (!isDrawing) {
+    if (!isDrawing || isDone) {
       return
     }
     const { offsetX, offsetY } = offset
     const lineWidth = contextRef.current.lineWidth
     if (strokeTextureIndex === 1 || strokeTextureIndex === 2) {
       // x시작 좌표, y 시작 좌표, 가로 크기, 세로 크기, 그림 x 위치, 그림 y 위치, 그림 가로 크기, 그림 세로 크기
-      contextRef.current.drawImage(textures[strokeTextureIndex-1][strokeColorIndex], 0, 0, 1100, 550, offsetX-(lineWidth/4), offsetY-(lineWidth/4), lineWidth*6, lineWidth*3)
+      contextRef.current.drawImage(textures[strokeTextureIndex-1][strokeColorIndex], 0, 0, 1100, 550, offsetX-(lineWidth/4)-10, offsetY-(lineWidth/4)-15, lineWidth*6, lineWidth*3)
     } else if (strokeTextureIndex === 4) {
       contextRef.current.clearRect(offsetX-(lineWidth/4), offsetY-(lineWidth/4), lineWidth, lineWidth)
     } else {
@@ -138,7 +138,9 @@ export const CanvasProvider = ({ children, loadedPainting, textures, offset, ges
     const canvas = canvasRef.current
     const context = canvas.getContext('2d')
     context.clearRect(0, 0, canvas.width, canvas.height)
-    context.drawImage(loadedPainting, 0, 0, 2200, 1100, 0, 0, 1100, 550)
+    if (loadedPainting) {
+      context.drawImage(loadedPainting, 0, 0, 2200, 1100, 0, 0, 1100, 550)
+    }
   }
 
   const changeLineWidth = (lineWidth) => {
@@ -171,12 +173,11 @@ export const CanvasProvider = ({ children, loadedPainting, textures, offset, ges
     setImgSrcs(prev => [...prev, imgSrc])
   }
 
-  const order = ['tail', 'body', 'head']
   const addPart = () => {
     const canvas = canvasRef.current
     const image = new Image()
     image.src = canvas.toDataURL()
-    const part = order[imageIndex]
+    const part = animal.parts[imageIndex].name
     setImageIndex(imageIndex+1)
     const imageInfo = {
       image,
@@ -185,6 +186,7 @@ export const CanvasProvider = ({ children, loadedPainting, textures, offset, ges
     }
     setDictionaryPaintingList(prev => [...prev, imageInfo])
     clearCanvas()
+    console.log('add', animal.parts[imageIndex].name)
   }
 
   return (
