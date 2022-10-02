@@ -1394,8 +1394,5 @@ export const DiarySectionButtonTag = styled.div`
 // Dictionary Page
 
 export const DictionarySectionComponentTag = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
   margin-top: 20px;
 `

@@ -36,7 +36,7 @@ const AnimalDictionaryPage = () => {
   }
   
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', height: '500px' }}>
+    <div style={{ display: 'flex', flexDirection: 'column' }}>
       <div style={{ display: 'flex', marginTop: '-10px' }}>
         <LetterPageHeader>
           <div style={{display: "flex", alignItems: "center", marginLeft: "10px" }}>
@@ -44,32 +44,35 @@ const AnimalDictionaryPage = () => {
             <BrownText100>동물도감</BrownText100>
           </div>
         </LetterPageHeader>
-
       </div>
       <DictionarySectionComponentTag>
-        <DictionaryDetailComponentTag style={{ width: openDescription ? '1040px' : null }}>
-          <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', width: '520px' }}>
-            <p style={{ margin: 0, margin: '30px 0 0 0', lineHeight: '50px' }}>{animalList[detailIndex].name_ko}</p>
-            {/* <img src={`/images/${animalList[detailIndex].name}/${animalList[detailIndex].name}.svg`}></img> */}
-            <DictionaryDetailImageComponent name={animalList[detailIndex].name} />
-            <div style={{ display: 'flex' }}>
-              <ChildButtonTag4 style={{ width: '200px' }} onClick={() => handleClickCreateDictionaryButton(animalList[detailIndex])}>그리기</ChildButtonTag4>
-              <ChildButtonTag2 style={{ width: '200px', margin: '0 0 0 20px' }} onClick={() => handleClickOpenDescription(animalList[detailIndex])}>{ openDescription ? '목록' : '설명'}</ChildButtonTag2>
+        <div style={{ display: 'flex' }}>
+          <DictionaryDetailComponentTag style={{ width: openDescription ? '1024px' : null }}>
+            <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', width: '520px' }}>
+              <p style={{ margin: '30px 0 0 0', lineHeight: '50px' }}>{animalList[detailIndex].name_ko}</p>
+              {/* <img src={`/images/${animalList[detailIndex].name}/${animalList[detailIndex].name}.svg`}></img> */}
+              <DictionaryDetailImageComponent name={animalList[detailIndex].name} />
+              <div style={{ display: 'flex' }}>
+                <ChildButtonTag4 style={{ width: '200px' }} onClick={() => handleClickCreateDictionaryButton(animalList[detailIndex])}>그리기</ChildButtonTag4>
+                <ChildButtonTag2 style={{ width: '200px', margin: '0 0 0 20px' }} onClick={() => handleClickOpenDescription(animalList[detailIndex])}>{ openDescription ? '목록' : '설명'}</ChildButtonTag2>
+              </div>
             </div>
-          </div>
+            { openDescription ? 
+              <div style={{ display: 'flex', alignItems: 'center', fontSize: '48px' }}>
+                오랫동안 사람과 함께 살아 온 동물!<br/>
+                어린 개를 ‘강아지’라고도 해요.<br/>
+                냄새를 잘 맡고 충성심이 강해서 우리에게<br/>
+                도움을 많이 준답니다. 하지만 조심하세요!<br/>
+                늑대와 조상이 같아서 이빨이 뾰족해요.
+              </div> : null }
+          </DictionaryDetailComponentTag>
           { openDescription ? 
-            <div style={{ display: 'flex', alignItems: 'center', fontSize: '48px' }}>
-              오랫동안 사람과 함께 살아 온 동물!<br/>
-              어린 개를 ‘강아지’라고도 해요.<br/>
-              냄새를 잘 맡고 충성심이 강해서 우리에게<br/>
-              도움을 많이 준답니다. 하지만 조심하세요!<br/>
-              늑대와 조상이 같아서 이빨이 뾰족해요.
-            </div> : null }
-        </DictionaryDetailComponentTag>
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '20px', margin: openDescription ? '0 0 0 20px' : '0 76px 0 20px' }}>
-          {animalList.map((element, index) => {
-            return <DictionaryCardComponent key={index} info={element} handleClickDictionaryCardComponent={handleClickDictionaryCardComponent} openDescription={openDescription}/>
-          })}
+            null :
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '20px', margin: '10px 20px 0 20px' }}>
+              {animalList.map((element, index) => {
+                return <DictionaryCardComponent key={index} info={element} handleClickDictionaryCardComponent={handleClickDictionaryCardComponent} openDescription={openDescription}/>
+              })}
+            </div> }
         </div>
       </DictionarySectionComponentTag>
     </div>
