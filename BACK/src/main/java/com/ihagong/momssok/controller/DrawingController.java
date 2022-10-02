@@ -5,11 +5,11 @@ import com.ihagong.momssok.model.dto.DrawingDto;
 import com.ihagong.momssok.model.dto.DrawingOutDto;
 import com.ihagong.momssok.model.dto.testImageDto;
 import com.ihagong.momssok.service.DrawingService;
-import com.ihagong.momssok.service.DrawingServiceImpl;
 import com.ihagong.momssok.service.TestService;
 import lombok.RequiredArgsConstructor;
 import org.apache.commons.io.FileUtils;
 import org.apache.tomcat.util.http.fileupload.IOUtils;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.ByteArrayResource;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -43,23 +43,27 @@ public class DrawingController {
 
         try {
             String email= SecurityContextHolder.getContext().getAuthentication().getName();  //user의 email을 꺼낸다
-            String email_name = email + "_" + name;
+            if(email != null) {
+                String email_name = email + "_" + name;
 
-            drawingList = drawingService.lookupAllDrawing(email_name);
+                drawingList = drawingService.lookupAllDrawing(email_name);
 
-            for(DrawingDto item: drawingList){
-                String painting = drawingService.getDrawing(item.getDrawing_id());  //이미지를 가져온다
-                System.out.println(painting);
+                for(DrawingDto item: drawingList){
+                    String painting = drawingService.getDrawing(item.getDrawing_id());  //이미지를 가져온다
+                    System.out.println(painting);
 
-                byte[] file = FileUtils.readFileToByteArray(new File(painting));  //bytearray로 변환
-                String base64 = "date:image/png;base64," + Base64.getEncoder().encodeToString(file);  //base64로 인코딩
-                item.setDrawing_base64(base64);
-            }
+                    byte[] file = FileUtils.readFileToByteArray(new File(painting));  //bytearray로 변환
+                    String base64 = "date:image/png;base64," + Base64.getEncoder().encodeToString(file);  //base64로 인코딩
+                    item.setDrawing_base64(base64);
+                }
 
-            if(drawingList != null){
-                result.put("status", success);
+                if(drawingList != null){
+                    result.put("status", success);
+                }else{
+                    result.put("status", fail);
+                }
             }else{
-                result.put("status", fail);
+                result.put("status", error);
             }
         } catch (Exception e) {
             result.put("status", error);
@@ -110,12 +114,12 @@ public class DrawingController {
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyyMMdd");
         String fileName = simpleDateFormat.format(new Date());  //파일명
 
-        //저장할 파일 경로(resources 폴더 만들고 실행)
-        String path = "C:\\Users\\multicampus\\Desktop\\resources\\";
+        //저장할 파일 경로
+        String path = ".\\images\\";
 
         UUID uuid = UUID.randomUUID();  //파일명 중복 방지용 식별자
         String filePath = path + fileName + "_" + uuid + ".png";
-//        File test = new File("C:\\Users\\multicampus\\Desktop\\resources\\20220930_5727f8fb-700c-42ad-9507-362538cdc352.png");
+//        File test = new File("C:\\Users\\multicampus\\Desktop\\20220930_5727f8fb-700c-42ad-9507-362538cdc352.png");
 
         try {
 
@@ -203,7 +207,7 @@ public class DrawingController {
             String fileName = simpleDateFormat.format(new Date());  //파일명
 
             //저장할 파일 경로
-            String path = "C:\\Users\\multicampus\\Desktop\\resources\\";
+            String path = ".\\images\\";
 
             UUID uuid = UUID.randomUUID();  //파일명 중복 방지용 식별자
             String filePath = path + fileName + "_" + uuid + ".png";
