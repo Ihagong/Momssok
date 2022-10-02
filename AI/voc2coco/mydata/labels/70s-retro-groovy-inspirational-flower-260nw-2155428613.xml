@@ -1,0 +1,26 @@
+<annotation>
+	<folder>dataset</folder>
+	<filename>70s-retro-groovy-inspirational-flower-260nw-2155428613.jpg</filename>
+	<path>C:\Users\ssafy\shutterscrape\dataset\70s-retro-groovy-inspirational-flower-260nw-2155428613.jpg</path>
+	<source>
+		<database>Unknown</database>
+	</source>
+	<size>
+		<width>260</width>
+		<height>280</height>
+		<depth>3</depth>
+	</size>
+	<segmented>0</segmented>
+	<object>
+		<name>flower</name>
+		<pose>Unspecified</pose>
+		<truncated>0</truncated>
+		<difficult>0</difficult>
+		<bndbox>
+			<xmin>72</xmin>
+			<ymin>74</ymin>
+			<xmax>186</xmax>
+			<ymax>187</ymax>
+		</bndbox>
+	</object>
+</annotation>

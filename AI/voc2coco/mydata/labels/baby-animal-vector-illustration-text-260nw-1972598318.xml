@@ -1,0 +1,26 @@
+<annotation>
+	<folder>animals</folder>
+	<filename>baby-animal-vector-illustration-text-260nw-1972598318.jpg</filename>
+	<path>C:\Users\82106\Downloads\animals\animals\baby-animal-vector-illustration-text-260nw-1972598318.jpg</path>
+	<source>
+		<database>Unknown</database>
+	</source>
+	<size>
+		<width>260</width>
+		<height>280</height>
+		<depth>3</depth>
+	</size>
+	<segmented>0</segmented>
+	<object>
+		<name>animal</name>
+		<pose>Unspecified</pose>
+		<truncated>0</truncated>
+		<difficult>0</difficult>
+		<bndbox>
+			<xmin>48</xmin>
+			<ymin>83</ymin>
+			<xmax>204</xmax>
+			<ymax>204</ymax>
+		</bndbox>
+	</object>
+</annotation>

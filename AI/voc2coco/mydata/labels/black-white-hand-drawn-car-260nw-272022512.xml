@@ -1,0 +1,26 @@
+<annotation>
+	<folder>car</folder>
+	<filename>black-white-hand-drawn-car-260nw-272022512.jpg</filename>
+	<path>C:\Users\ssafy\shutterscrape\car\black-white-hand-drawn-car-260nw-272022512.jpg</path>
+	<source>
+		<database>Unknown</database>
+	</source>
+	<size>
+		<width>260</width>
+		<height>280</height>
+		<depth>1</depth>
+	</size>
+	<segmented>0</segmented>
+	<object>
+		<name>car</name>
+		<pose>Unspecified</pose>
+		<truncated>0</truncated>
+		<difficult>0</difficult>
+		<bndbox>
+			<xmin>26</xmin>
+			<ymin>84</ymin>
+			<xmax>239</xmax>
+			<ymax>189</ymax>
+		</bndbox>
+	</object>
+</annotation>

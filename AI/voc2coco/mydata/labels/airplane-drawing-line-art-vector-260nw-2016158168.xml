@@ -1,0 +1,26 @@
+<annotation>
+	<folder>sky</folder>
+	<filename>airplane-drawing-line-art-vector-260nw-2016158168.jpg</filename>
+	<path>C:\Users\ssafy\shutterscrape\sky\airplane-drawing-line-art-vector-260nw-2016158168.jpg</path>
+	<source>
+		<database>Unknown</database>
+	</source>
+	<size>
+		<width>433</width>
+		<height>280</height>
+		<depth>3</depth>
+	</size>
+	<segmented>0</segmented>
+	<object>
+		<name>airplane</name>
+		<pose>Unspecified</pose>
+		<truncated>0</truncated>
+		<difficult>0</difficult>
+		<bndbox>
+			<xmin>91</xmin>
+			<ymin>20</ymin>
+			<xmax>358</xmax>
+			<ymax>243</ymax>
+		</bndbox>
+	</object>
+</annotation>

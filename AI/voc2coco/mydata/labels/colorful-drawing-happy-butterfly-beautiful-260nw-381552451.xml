@@ -1,0 +1,26 @@
+<annotation>
+	<folder>total_data</folder>
+	<filename>colorful-drawing-happy-butterfly-beautiful-260nw-381552451.jpg</filename>
+	<path>C:\Users\ssafy\shutterscrape\total_data\colorful-drawing-happy-butterfly-beautiful-260nw-381552451.jpg</path>
+	<source>
+		<database>Unknown</database>
+	</source>
+	<size>
+		<width>390</width>
+		<height>280</height>
+		<depth>3</depth>
+	</size>
+	<segmented>0</segmented>
+	<object>
+		<name>flower</name>
+		<pose>Unspecified</pose>
+		<truncated>0</truncated>
+		<difficult>0</difficult>
+		<bndbox>
+			<xmin>230</xmin>
+			<ymin>32</ymin>
+			<xmax>341</xmax>
+			<ymax>240</ymax>
+		</bndbox>
+	</object>
+</annotation>

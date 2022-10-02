@@ -1,0 +1,26 @@
+<annotation>
+	<folder>person1</folder>
+	<filename>felt-pen-childlike-drawing-vehicle-260nw-213615694.jpg</filename>
+	<path>C:\Users\ssafy\shutterscrape\person1\felt-pen-childlike-drawing-vehicle-260nw-213615694.jpg</path>
+	<source>
+		<database>Unknown</database>
+	</source>
+	<size>
+		<width>370</width>
+		<height>280</height>
+		<depth>3</depth>
+	</size>
+	<segmented>0</segmented>
+	<object>
+		<name>car</name>
+		<pose>Unspecified</pose>
+		<truncated>0</truncated>
+		<difficult>0</difficult>
+		<bndbox>
+			<xmin>66</xmin>
+			<ymin>35</ymin>
+			<xmax>335</xmax>
+			<ymax>194</ymax>
+		</bndbox>
+	</object>
+</annotation>

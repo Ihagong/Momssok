@@ -1,0 +1,26 @@
+<annotation>
+	<folder>car</folder>
+	<filename>auto-icon-car-toy-service-260nw-1840995721.jpg</filename>
+	<path>C:\Users\ssafy\shutterscrape\car\auto-icon-car-toy-service-260nw-1840995721.jpg</path>
+	<source>
+		<database>Unknown</database>
+	</source>
+	<size>
+		<width>260</width>
+		<height>280</height>
+		<depth>3</depth>
+	</size>
+	<segmented>0</segmented>
+	<object>
+		<name>car</name>
+		<pose>Unspecified</pose>
+		<truncated>0</truncated>
+		<difficult>0</difficult>
+		<bndbox>
+			<xmin>53</xmin>
+			<ymin>81</ymin>
+			<xmax>206</xmax>
+			<ymax>178</ymax>
+		</bndbox>
+	</object>
+</annotation>
