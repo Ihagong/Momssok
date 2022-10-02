@@ -731,7 +731,7 @@ export const PromiseTodoItemDoneTag = styled.p`
 
 export const PaintingToolModalComponentTag = styled.div`
   position: absolute;
-  top: 270px;
+  top: 285px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -791,7 +791,7 @@ export const ModalBackgroundTag = styled.div`
 
 export const ColorPickerModalComponentTag = styled.div`
   position: absolute;
-  top: 342px;
+  top: 357px;
   align-items: center;
   padding: 4px;
   background-color: #FFE400;
