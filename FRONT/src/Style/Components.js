@@ -864,14 +864,14 @@ export const DictionaryDetailComponentTag = styled.div`
   align-items: center;
   background-color: var(--White-Block);
   border: 1px solid var(--Beige-Stroke);
-  border-radius: 30px;
-  width: 550px;
-  height: 560px;
+  border-radius: 20px;
+  width: 520px;
+  height: 520px;
   color: var(--Brown-Text);
   font-family: 'Dongle', sans-serif;
   font-size: 60px;
   img {
-    height: 380px;
+    height: 350px;
   }
 `
 
