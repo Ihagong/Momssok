@@ -1,30 +1,41 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 
 import { useRecoilState } from 'recoil'
-import { totalLetterListState } from '../store/atoms'
+import { totalLetterListState, profileState } from '../store/atoms'
+import { useLetterCallback } from '../Functions/useLetterCallback'
 
 import "../App.css"
 import LetterListComponent from '../Components/LetterListComponent'
-import { LetterPageHeader, BrownText100, LightButton120, BrownLightButton150 } from '../Style/Components'
+import { ChildProfileTag, LetterPageHeader, BrownText100, LightButton120, BrownLightButton150 } from '../Style/Components'
+
 
 const LetterPage = () => {
   const navigate = useNavigate()
   const [letterList, setLetterList] = useRecoilState(totalLetterListState)
+  const [profileInfo, setProfileInfo] = useRecoilState(profileState)
+  const { letterInfoCallback } = useLetterCallback()
 
-  const filterList = letterList.filter((it) => it.receiver === "찬석이")
+  const handleClickChildProfile = () => {
+    navigate('/profile')
+  }
 
+  useEffect(() => {
+    letterInfoCallback(profileInfo.name)
+  }, [])
 
   return (
     <div className='LetterPageHome'>
       
       <LetterPageHeader>
-        <LightButton120 onClick={() => navigate("/child")}>닫기</LightButton120>
-        <BrownLightButton150 onClick={() => navigate("/letter/create")}>새 편지</BrownLightButton150>
-        <BrownText100>편지 읽기</BrownText100>
-
+        <div style={{display: "flex", alignItems: "center", marginLeft: "10px" }}>
+          <LightButton120 onClick={() => navigate("/child")}>닫기</LightButton120>
+          <BrownLightButton150 onClick={() => navigate("/letter/create")}>새 편지</BrownLightButton150>
+          <BrownText100>편지 읽기</BrownText100>
+        </div>
+        <ChildProfileTag style={{marginTop: "30px", marginRight: "40px"}} onClick={handleClickChildProfile}><img src={`/images/profileImage_${profileInfo.image_num}.svg`} />{profileInfo.name}</ChildProfileTag>
       </LetterPageHeader>
-      <LetterListComponent letterList={filterList} />
+      <LetterListComponent letterList={letterList} />
     </div>
 
   )

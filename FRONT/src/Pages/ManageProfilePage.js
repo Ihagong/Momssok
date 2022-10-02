@@ -1,47 +1,73 @@
-import React, { useEffect } from 'react'
-import { ButtonTag3 } from '../Style/Components'
-import { useNavigate } from  'react-router-dom'
+import React, { useEffect, useState } from 'react'
+import { useNavigate, useLocation } from  'react-router-dom'
 import { ChildProfileComponent } from '../Components/ChildProfileComponent'
 import { CreateProfileComponent } from '../Components/CreateProfileComponent'
 import { useRecoilState } from 'recoil'
-import { profileInfoState } from '../store/atoms'
+import { profileListState } from '../store/atoms'
 import { useAuthCallback } from '../Functions/useAuthCallback'
+import { ProfileFooter, ProfileBlock, ProfileTitle, JuaBrown, JuaOrange, ButtonTag3, ButtonTag4 } from '../Style/Components'
 
 
-function ProfilePage() {
-  const [profileInfo, setProfileInfo] = useRecoilState(profileInfoState)
+function ManageProfilePage() {
+  const { state } = useLocation()
+  const [profileList, setProfileList] = useRecoilState(profileListState)
+  const [isEditProfile, setIsEditProfile] = useState(false)
   const navigate = useNavigate()
   
-  const { logOutCallback, profileInfoCallback } = useAuthCallback()
+  const { logOutCallback, profileListCallback } = useAuthCallback()
 
   const handleClickManageProfileButton = () => {
-    // navigate('/')
+    setIsEditProfile(!isEditProfile)
+  }
+
+  const handleClickPrevPage = () => {
+    navigate('/profile')
   }
 
   const handleClickEditAccountButton = () => {
     navigate('/account')
   }
 
+  const handleClickChildProfile = (info) => {
+    if (isEditProfile) {
+      console.log(info)
+      navigate('/profile/edit', { state: info })
+    } else {
+      navigate('/parent')
+    }
+  }
+
   useEffect(() => {
-    if (profileInfo.length === 0) {
-      profileInfoCallback()
+    if (profileList.length === 0) {
+      profileListCallback()
     }
   }, [])
 
   return (
-    <>
-      <h3>프로필을 선택 또는 등록해주세요.</h3>
-      <h4>우리 아이마다 개별적인 관리와 분석 결과를 제공합니다.</h4>
-      <div style={{ display: 'flex' }}>
-        {profileInfo.map((info, index) => (
-          <ChildProfileComponent key={index} info={info} />
-        ))}
-        <CreateProfileComponent />
-      </div>
-      <ButtonTag3 style={{ width: '400px' }} onClick={handleClickManageProfileButton}>프로필 수정 및 삭제</ButtonTag3>
-      <ButtonTag3 onClick={handleClickEditAccountButton}>회원 수정</ButtonTag3>
-    </>
+    <div>
+      <ProfileTitle>
+        <JuaBrown style={{fontSize: "55px"}}>프로필을 선택 또는 등록해주세요.</JuaBrown>
+        <JuaOrange style={{fontSize: "48px"}}>우리 아이마다 개별적인 관리와 분석 결과를 제공합니다.</JuaOrange>
+      </ProfileTitle>
+
+      <ProfileBlock>
+        { profileList?.map((info, index) => {if (!info.is_parent) {
+          return <ChildProfileComponent key={index} info={info} handleClickChildProfile={handleClickChildProfile} />
+        }})}
+        { profileList.length < 5 ?
+          <CreateProfileComponent />
+          : null }
+      </ProfileBlock>
+
+      <ProfileFooter>
+        <ButtonTag3 style={{ width: '200px', marginLeft:"10px", marginRight:"10px"}} onClick={handleClickPrevPage}>이전</ButtonTag3>
+        {isEditProfile ?
+          <ButtonTag3 style={{ width: '260px', marginLeft:"10px", marginRight:"10px" }} onClick={handleClickManageProfileButton} >수정 완료</ButtonTag3>
+          : <ButtonTag4 style={{ boxShadow: "0px 5px 5px #E6E6E6", backgroundColor: "var(--Brown-Text)", width: '260px', marginLeft:"10px", marginRight:"10px" }} onClick={handleClickManageProfileButton}>프로필 수정</ButtonTag4>}
+        <ButtonTag4 style={{ marginLeft:"10px", marginRight:"10px", boxShadow: "0px 5px 10px rgba(255, 96, 41, 0.4)" }} onClick={handleClickEditAccountButton}>회원 수정</ButtonTag4>
+      </ProfileFooter>
+    </div>
   );
 }
 
-export default ProfilePage
+export default ManageProfilePage
