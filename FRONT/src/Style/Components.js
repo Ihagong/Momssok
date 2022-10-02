@@ -588,7 +588,7 @@ export const PaintingCardTag = styled.div`
   color: var(--Brown-Text);
   background-color: var(--White-Block);
   box-shadow: 0px 5px 5px #E6E6E6;
-
+  margin: 0;
   border-radius: 30px;
   width: 200px;
   height: 200px;
