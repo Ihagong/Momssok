@@ -43,28 +43,24 @@ public class DrawingController {
 
         try {
             String email= SecurityContextHolder.getContext().getAuthentication().getName();  //user의 email을 꺼낸다
-            if(email != null) {
-                String email_name = email + "_" + name;
+            String email_name = email + "_" + name;
 
-                drawingList = drawingService.lookupAllDrawing(email_name);
+            drawingList = drawingService.lookupAllDrawing(email_name);
 
-                for(DrawingDto item: drawingList){
-                    String painting = drawingService.getDrawing(item.getDrawing_id());  //이미지를 가져온다
-                    System.out.println(painting);
+            for(DrawingDto item: drawingList){
+                String painting = drawingService.getDrawing(item.getDrawing_id());  //이미지를 가져온다
 
-                    byte[] file = FileUtils.readFileToByteArray(new File(painting));  //bytearray로 변환
-                    String base64 = "date:image/png;base64," + Base64.getEncoder().encodeToString(file);  //base64로 인코딩
-                    item.setDrawing_base64(base64);
-                }
-
-                if(drawingList != null){
-                    result.put("status", success);
-                }else{
-                    result.put("status", fail);
-                }
-            }else{
-                result.put("status", error);
+                byte[] file = FileUtils.readFileToByteArray(new File(painting));  //bytearray로 변환
+                String base64 = "date:image/png;base64," + Base64.getEncoder().encodeToString(file);  //base64로 인코딩
+                item.setDrawing_base64(base64);
             }
+
+            if(drawingList != null){
+                result.put("status", success);
+            }else{
+                result.put("status", fail);
+            }
+
         } catch (Exception e) {
             result.put("status", error);
             result.put("message", e.toString());
