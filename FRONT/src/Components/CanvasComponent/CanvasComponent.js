@@ -4,7 +4,7 @@ import '../../CSS/drawing.css'
 import { PaintingCanvasTag } from '../../Style/Components'
 
 
-export function CanvasComponent() {
+export function CanvasComponent({ width }) {
   const {
     canvasRef,
     prepareCanvas,
@@ -48,7 +48,8 @@ export function CanvasComponent() {
         onPointerMove={draw}
         ref={canvasRef}
       />
-      <PaintingCanvasTag style={{ touchAction: 'none', position: 'absolute', zIndex: -3, width: '500px', height: '550px' }} />
+      {/* <PaintingCanvasTag style={{ touchAction: 'none', position: 'absolute', zIndex: -3, width: '500px', height: '550px' }} /> */}
+      <PaintingCanvasTag style={{ touchAction: 'none', position: 'absolute', zIndex: -3, width: `${width}px`, height: '550px' }} />
     </>
   );
 }
