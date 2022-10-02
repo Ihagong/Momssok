@@ -201,7 +201,9 @@ function CreatePaintingPage(props) {
           changeStrokeTexture={changeStrokeTexture} changeStrokeLineWidthIndex={changeStrokeLineWidthIndex} onClick={() => setModalOpen(false)} />
         <ColorPickerModalComponent modalOpen={colorPickerModalOpen} setColorPickerModalOpen={setColorPickerModalOpen} offset={offset} gesture={gesture}
           strokeColorIndex={strokeColorIndex} changeStrokeColor={changeStrokeColor} onClick={() => setModalOpen(false)} />
-        <CanvasComponent />
+        <div style={{ display: 'flex' }}>
+          <CanvasComponent width={1100} />
+        </div>
         <div style={{ display: 'flex' }}>
           {/* <ChangeStrokeStyleButton />
           <ClearCanvasButton />
