@@ -26,7 +26,7 @@ export function PromiseModalComponent({ promiseItem, setModalOpen }) {
   }
   
   return (
-    <ModalBackgroundTag onClick={onCloseModal}>
+    <ModalBackgroundTag style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }} onClick={onCloseModal}>
       <PromiseModalComponentTag>
         {promiseItem?.todoList ?
           (promiseItem.todoList.map((todoItem) => (

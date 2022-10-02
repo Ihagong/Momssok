@@ -786,7 +786,7 @@ export const ModalBackgroundTag = styled.div`
   left: 0;
   align-items: center;
   width: 100%;
-  height: 200%;
+  height: 100%;
   background-color: #05050560;
   z-index: 10;
 `
