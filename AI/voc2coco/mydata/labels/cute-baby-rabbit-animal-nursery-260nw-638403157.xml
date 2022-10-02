@@ -1,0 +1,26 @@
+<annotation>
+	<folder>animals</folder>
+	<filename>cute-baby-rabbit-animal-nursery-260nw-638403157.jpg</filename>
+	<path>C:\Users\82106\Downloads\animals\animals\cute-baby-rabbit-animal-nursery-260nw-638403157.jpg</path>
+	<source>
+		<database>Unknown</database>
+	</source>
+	<size>
+		<width>357</width>
+		<height>280</height>
+		<depth>3</depth>
+	</size>
+	<segmented>0</segmented>
+	<object>
+		<name>animal</name>
+		<pose>Unspecified</pose>
+		<truncated>0</truncated>
+		<difficult>0</difficult>
+		<bndbox>
+			<xmin>139</xmin>
+			<ymin>78</ymin>
+			<xmax>213</xmax>
+			<ymax>225</ymax>
+		</bndbox>
+	</object>
+</annotation>

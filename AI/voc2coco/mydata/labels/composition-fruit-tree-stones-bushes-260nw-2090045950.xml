@@ -1,0 +1,26 @@
+<annotation>
+	<folder>sky</folder>
+	<filename>composition-fruit-tree-stones-bushes-260nw-2090045950.jpg</filename>
+	<path>C:\Users\ssafy\shutterscrape\sky\composition-fruit-tree-stones-bushes-260nw-2090045950.jpg</path>
+	<source>
+		<database>Unknown</database>
+	</source>
+	<size>
+		<width>259</width>
+		<height>280</height>
+		<depth>3</depth>
+	</size>
+	<segmented>0</segmented>
+	<object>
+		<name>tree</name>
+		<pose>Unspecified</pose>
+		<truncated>1</truncated>
+		<difficult>0</difficult>
+		<bndbox>
+			<xmin>64</xmin>
+			<ymin>1</ymin>
+			<xmax>201</xmax>
+			<ymax>206</ymax>
+		</bndbox>
+	</object>
+</annotation>

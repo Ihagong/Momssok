@@ -1,0 +1,26 @@
+<annotation>
+	<folder>animals</folder>
+	<filename>easy-coloring-drawings-animals-little-260nw-401218726.jpg</filename>
+	<path>C:\Users\82106\Downloads\animals\animals\easy-coloring-drawings-animals-little-260nw-401218726.jpg</path>
+	<source>
+		<database>Unknown</database>
+	</source>
+	<size>
+		<width>260</width>
+		<height>280</height>
+		<depth>1</depth>
+	</size>
+	<segmented>0</segmented>
+	<object>
+		<name>animal</name>
+		<pose>Unspecified</pose>
+		<truncated>0</truncated>
+		<difficult>0</difficult>
+		<bndbox>
+			<xmin>20</xmin>
+			<ymin>45</ymin>
+			<xmax>243</xmax>
+			<ymax>214</ymax>
+		</bndbox>
+	</object>
+</annotation>

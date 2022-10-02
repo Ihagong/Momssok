@@ -1,0 +1,11 @@
+tokenizers
+transformers
+attrdict
+uvicorn
+numpy
+fastapi
+torch
+pillow
+matplotlib
+torchvision
+python-multipart

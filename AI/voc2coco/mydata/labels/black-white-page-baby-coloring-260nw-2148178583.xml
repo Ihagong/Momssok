@@ -1,0 +1,26 @@
+<annotation>
+	<folder>total_data</folder>
+	<filename>black-white-page-baby-coloring-260nw-2148178583.jpg</filename>
+	<path>C:\Users\ssafy\shutterscrape\total_data\black-white-page-baby-coloring-260nw-2148178583.jpg</path>
+	<source>
+		<database>Unknown</database>
+	</source>
+	<size>
+		<width>260</width>
+		<height>280</height>
+		<depth>3</depth>
+	</size>
+	<segmented>0</segmented>
+	<object>
+		<name>fish</name>
+		<pose>Unspecified</pose>
+		<truncated>0</truncated>
+		<difficult>0</difficult>
+		<bndbox>
+			<xmin>72</xmin>
+			<ymin>30</ymin>
+			<xmax>250</xmax>
+			<ymax>147</ymax>
+		</bndbox>
+	</object>
+</annotation>

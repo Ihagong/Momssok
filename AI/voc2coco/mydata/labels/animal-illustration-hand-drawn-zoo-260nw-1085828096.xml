@@ -1,0 +1,26 @@
+<annotation>
+	<folder>animals</folder>
+	<filename>animal-illustration-hand-drawn-zoo-260nw-1085828096.jpg</filename>
+	<path>C:\Users\82106\Downloads\animals\animals\animal-illustration-hand-drawn-zoo-260nw-1085828096.jpg</path>
+	<source>
+		<database>Unknown</database>
+	</source>
+	<size>
+		<width>221</width>
+		<height>280</height>
+		<depth>3</depth>
+	</size>
+	<segmented>0</segmented>
+	<object>
+		<name>animal</name>
+		<pose>Unspecified</pose>
+		<truncated>0</truncated>
+		<difficult>0</difficult>
+		<bndbox>
+			<xmin>39</xmin>
+			<ymin>50</ymin>
+			<xmax>202</xmax>
+			<ymax>154</ymax>
+		</bndbox>
+	</object>
+</annotation>

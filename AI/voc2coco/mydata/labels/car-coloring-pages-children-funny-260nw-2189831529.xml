@@ -1,0 +1,26 @@
+<annotation>
+	<folder>car</folder>
+	<filename>car-coloring-pages-children-funny-260nw-2189831529.jpg</filename>
+	<path>C:\Users\ssafy\shutterscrape\car\car-coloring-pages-children-funny-260nw-2189831529.jpg</path>
+	<source>
+		<database>Unknown</database>
+	</source>
+	<size>
+		<width>260</width>
+		<height>280</height>
+		<depth>1</depth>
+	</size>
+	<segmented>0</segmented>
+	<object>
+		<name>car</name>
+		<pose>Unspecified</pose>
+		<truncated>0</truncated>
+		<difficult>0</difficult>
+		<bndbox>
+			<xmin>23</xmin>
+			<ymin>52</ymin>
+			<xmax>235</xmax>
+			<ymax>206</ymax>
+		</bndbox>
+	</object>
+</annotation>

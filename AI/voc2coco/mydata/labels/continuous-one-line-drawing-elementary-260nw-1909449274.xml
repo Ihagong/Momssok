@@ -1,0 +1,26 @@
+<annotation>
+	<folder>total_data</folder>
+	<filename>continuous-one-line-drawing-elementary-260nw-1909449274.jpg</filename>
+	<path>C:\Users\ssafy\shutterscrape\total_data\continuous-one-line-drawing-elementary-260nw-1909449274.jpg</path>
+	<source>
+		<database>Unknown</database>
+	</source>
+	<size>
+		<width>390</width>
+		<height>280</height>
+		<depth>1</depth>
+	</size>
+	<segmented>0</segmented>
+	<object>
+		<name>building</name>
+		<pose>Unspecified</pose>
+		<truncated>0</truncated>
+		<difficult>0</difficult>
+		<bndbox>
+			<xmin>78</xmin>
+			<ymin>45</ymin>
+			<xmax>307</xmax>
+			<ymax>216</ymax>
+		</bndbox>
+	</object>
+</annotation>

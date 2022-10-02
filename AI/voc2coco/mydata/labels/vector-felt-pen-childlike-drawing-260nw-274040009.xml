@@ -1,0 +1,26 @@
+<annotation>
+	<folder>person1</folder>
+	<filename>vector-felt-pen-childlike-drawing-260nw-274040009.jpg</filename>
+	<path>C:\Users\multicampus\Downloads\특화프로젝트\person1\person1\vector-felt-pen-childlike-drawing-260nw-274040009.jpg</path>
+	<source>
+		<database>Unknown</database>
+	</source>
+	<size>
+		<width>269</width>
+		<height>280</height>
+		<depth>3</depth>
+	</size>
+	<segmented>0</segmented>
+	<object>
+		<name>fruit</name>
+		<pose>Unspecified</pose>
+		<truncated>0</truncated>
+		<difficult>0</difficult>
+		<bndbox>
+			<xmin>46</xmin>
+			<ymin>37</ymin>
+			<xmax>230</xmax>
+			<ymax>227</ymax>
+		</bndbox>
+	</object>
+</annotation>

@@ -1,0 +1,26 @@
+<annotation>
+	<folder>animals</folder>
+	<filename>cute-squirrel-cartoon-animal-character-260nw-1697301583.jpg</filename>
+	<path>C:\Users\82106\Downloads\animals\animals\cute-squirrel-cartoon-animal-character-260nw-1697301583.jpg</path>
+	<source>
+		<database>Unknown</database>
+	</source>
+	<size>
+		<width>260</width>
+		<height>280</height>
+		<depth>3</depth>
+	</size>
+	<segmented>0</segmented>
+	<object>
+		<name>animal</name>
+		<pose>Unspecified</pose>
+		<truncated>0</truncated>
+		<difficult>0</difficult>
+		<bndbox>
+			<xmin>62</xmin>
+			<ymin>54</ymin>
+			<xmax>215</xmax>
+			<ymax>195</ymax>
+		</bndbox>
+	</object>
+</annotation>

@@ -1,0 +1,26 @@
+<annotation>
+	<folder>total_data</folder>
+	<filename>drawing-heart-on-white-260nw-1124565071.jpg</filename>
+	<path>C:\Users\ssafy\shutterscrape\total_data\drawing-heart-on-white-260nw-1124565071.jpg</path>
+	<source>
+		<database>Unknown</database>
+	</source>
+	<size>
+		<width>267</width>
+		<height>280</height>
+		<depth>3</depth>
+	</size>
+	<segmented>0</segmented>
+	<object>
+		<name>heart</name>
+		<pose>Unspecified</pose>
+		<truncated>0</truncated>
+		<difficult>0</difficult>
+		<bndbox>
+			<xmin>32</xmin>
+			<ymin>45</ymin>
+			<xmax>236</xmax>
+			<ymax>235</ymax>
+		</bndbox>
+	</object>
+</annotation>
