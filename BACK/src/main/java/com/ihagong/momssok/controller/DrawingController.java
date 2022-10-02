@@ -115,11 +115,7 @@ public class DrawingController {
         String fileName = simpleDateFormat.format(new Date());  //파일명
 
         //저장할 파일 경로
-<<<<<<< HEAD
-        String path = "/var/lib/docker/volumes/volume1/_data/";
-=======
-        String path = "/var/lib/tmp/";
->>>>>>> f685d2d2237a002c4ac52b67a6dda2ef977c83d0
+        String path = ".\\images\\";
 
         UUID uuid = UUID.randomUUID();  //파일명 중복 방지용 식별자
         String filePath = path + fileName + "_" + uuid + ".png";
@@ -211,11 +207,7 @@ public class DrawingController {
             String fileName = simpleDateFormat.format(new Date());  //파일명
 
             //저장할 파일 경로
-<<<<<<< HEAD
-            String path = "/var/lib/docker/volumes/volume1/_data/";
-=======
-            String path = "/var/lib/tmp/";
->>>>>>> f685d2d2237a002c4ac52b67a6dda2ef977c83d0
+            String path = ".\\images\\";
 
             UUID uuid = UUID.randomUUID();  //파일명 중복 방지용 식별자
             String filePath = path + fileName + "_" + uuid + ".png";
