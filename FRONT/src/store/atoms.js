@@ -111,3 +111,9 @@ export const animalDictionaryState = atom({
   default: [],
   effects_UNSTABLE: [persistAtom]
 })
+
+export const loadedPaintingListState = atom({
+  key: 'loadedPaintingListState',
+  default: [],
+  effects_UNSTABLE: [persistAtom]
+})
