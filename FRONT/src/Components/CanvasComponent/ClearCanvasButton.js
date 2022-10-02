@@ -1,10 +1,10 @@
 import React from 'react'
 import { useCanvas } from './CanvasContext'
-import { ChildButtonTag1 } from '../../Style/Components'
+import { PaintingToolTag } from '../../Style/Components'
 
 
 export const ClearCanvasButton = () => {
   const { clearCanvas } = useCanvas()
 
-  return <ChildButtonTag1 style={{ width: '200px' }} onClick={clearCanvas}>원래대로</ChildButtonTag1>
+  return <PaintingToolTag onClick={clearCanvas}><img src='/icons/refreshicon.svg'></img></PaintingToolTag>
 }

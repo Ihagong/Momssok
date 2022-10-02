@@ -45,7 +45,7 @@ export function ColorPickerModalComponent({ modalOpen, setColorPickerModalOpen, 
         } else {
           setColorPickerModalOpen(false)
         }
-      } else if (!(offsetY >= 546 && offsetY <= 710 && offsetX >= 260 && offsetX <= 400)) { // 아이콘 재배치 후 수정 필요
+      } else if (!(offsetY >= 546 && offsetY <= 700 && offsetX >= 240 && offsetX <= 360)) { // 아이콘 재배치 후 수정 필요
         setColorPickerModalOpen(false)
       }
     }

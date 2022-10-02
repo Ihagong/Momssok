@@ -108,10 +108,11 @@ export const ChildButtonTag2 = styled.button`
   height: 70px;
   color: white;
   background-color: var(--Brown-LightText);
+  box-shadow: 0px 5px 5px #E6E6E6;
   border-radius: 20px;
   border: 0;
   font-family: 'Dongle', sans-serif;
-  font-size: 64px;
+  font-size: 60px;
   cursor: pointer;
   user-select: auto;
   z-index: 4;
@@ -140,12 +141,13 @@ export const ChildButtonTag4 = styled.button`
   align-items: center;
   width: 230px;
   height: 70px;
+  box-shadow: 0px 5px 5px #E6E6E6;
   color: var(--Brown-LightText);
   background-color: var(--Beige-BG);
   border-radius: 20px;
   border: 0;
   font-family: 'Dongle', sans-serif;
-  font-size: 64px;
+  font-size: 60px;
   cursor: pointer;
   user-select: auto;
   z-index: 4;
@@ -281,6 +283,13 @@ export const ChildMenuTabTag = styled.div`
     width: 110px;
     height: 110px;
   }
+  :hover {
+    background-color: var(--Beige-Stroke);
+    transition: 0.3s;
+  }
+  :active {
+    transform: scale( 0.95 );
+  }
 `
 
 export const ChildMenuSelectedTabTag = styled.div`
@@ -335,6 +344,9 @@ export const ChildSubMenuButtonTag = styled.div`
   user-select: auto;
   img {
     height: 180px;
+  }
+  :hover {
+    transform: scale( 1.05 );
   }
 `
 
@@ -721,7 +733,7 @@ export const PromiseTodoItemDoneTag = styled.p`
 
 export const PaintingToolModalComponentTag = styled.div`
   position: absolute;
-  top: 270px;
+  top: 285px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -774,14 +786,14 @@ export const ModalBackgroundTag = styled.div`
   left: 0;
   align-items: center;
   width: 100%;
-  height: 200%;
+  height: 100%;
   background-color: #05050560;
-  z-index: 1;
+  z-index: 10;
 `
 
 export const ColorPickerModalComponentTag = styled.div`
   position: absolute;
-  top: 342px;
+  top: 357px;
   align-items: center;
   padding: 4px;
   background-color: #FFE400;
@@ -830,12 +842,13 @@ export const DictionaryCardComponentTag = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-color: var(--White-Block);
+  background-color: var(--Beige-Block);
   border: 1px solid var(--Beige-Stroke);
-  border-radius: 30px;
+  border-radius: 20px;
   width: 200px;
   height: 200px;
   padding: 20px;
+  margin: 10px;
   color: var(--Brown-Text);
   font-family: 'Dongle', sans-serif;
   font-size: 60px;
@@ -851,15 +864,14 @@ export const DictionaryDetailComponentTag = styled.div`
   align-items: center;
   background-color: var(--White-Block);
   border: 1px solid var(--Beige-Stroke);
-  border-radius: 30px;
-  width: 550px;
-  height: 600px;
-  padding: 20px;
+  border-radius: 20px;
+  width: 520px;
+  height: 520px;
   color: var(--Brown-Text);
   font-family: 'Dongle', sans-serif;
   font-size: 60px;
   img {
-    height: 400px;
+    height: 350px;
   }
 `
 
@@ -1050,7 +1062,7 @@ export const EditorBody = styled.div`
   box-shadow: 0px 5px 5px #E6E6E6;
 
   width: 700px;
-  height: 740px;
+  height: 700px;
   margin-top: 20px;
 
   font-family: 'Dongle', sans-serif;
@@ -1114,7 +1126,7 @@ export const LetterContentDiv = styled.div`
   border: 1px solid #C5BEB6;
 
   width: 600px;
-  height: 400px;
+  height: 370px;
   padding-left: 20px;
   padding-right: 20px;
 
@@ -1132,7 +1144,7 @@ export const LetterContentTextArea = styled.textarea`
   border: 1px solid #C5BEB6;
 
   width: 600px;
-  height: 400px;
+  height: 370px;
   padding-left: 20px;
   padding-right: 20px;
 
@@ -1274,7 +1286,7 @@ export const GugiBrown = styled.span`
 
 export const ProfileTitle = styled.section`
   text-align: center;
-  margin-top: 50px;
+  margin-top: 25px;
   margin-bottom: 50px;
 `
 
@@ -1340,7 +1352,7 @@ export const ParentInfo = styled.section`
 export const DiaryContent = styled.section`
   display: flex;
   justify-content: center;
-  margin-top: 50px;
+  margin-top: 30px;
 `
 
 export const DiaryBlock = styled.div`
@@ -1380,4 +1392,13 @@ export const DiarySectionButtonTag = styled.div`
     width: 100px;
     margin-bottom: 5px;
   }
+`
+
+// Dictionary Page
+
+export const DictionarySectionComponentTag = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
 `
