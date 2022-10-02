@@ -1,4 +1,6 @@
 import React, { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
+
 import { CanvasComponent } from '../Components/CanvasComponent/CanvasComponent'
 // import { ClearCanvasButton } from '../Components/CanvasComponent/ClearCanvasButton'
 // import { ChangeStrokeStyleButton } from '../Components/CanvasComponent/ChangeStrokeStyleButton'
@@ -8,7 +10,7 @@ import { SaveCanvasButton } from '../Components/CanvasComponent/SaveCanvasButton
 import { CanvasProvider } from '../Components/CanvasComponent/CanvasContext'
 import { PaintingToolModalComponent } from '../Components/CanvasComponent/PaintingToolModalComponent'
 import { ColorPickerModalComponent } from '../Components/CanvasComponent/ColorPickerModalComponent'
-import { LetterButtonBack, LetterButtonGo, PaintingToolTag, ChildButtonTag1, ChildButtonTag2, PointerTag } from '../Style/Components'
+import { LetterButtonBack, LetterButtonGo, PaintingToolTag, PointerTag } from '../Style/Components'
 import { MotionDetectionComponent } from '../Components/CanvasComponent/MotionDetectionComponent'
 import { ClearCanvasButton } from '../Components/CanvasComponent/ClearCanvasButton'
 
@@ -111,6 +113,8 @@ const textures = [
 ]
 
 function CreatePaintingPage(props) {
+  const navigate = useNavigate()
+
   // console.log(loadedPaintingSrc)
   const [paintingToolModalOpen, setPaintingToolModalOpen] = useState(false)
   const [colorPickerModalOpen, setColorPickerModalOpen] = useState(false)
@@ -124,6 +128,7 @@ function CreatePaintingPage(props) {
   // const [selectedToolIndex, setSelectedToolIndex] = useState(0)
 
   const handleClickCloseButton = () => {
+    navigate('/painting/load')
   }
 
   const handleClickSaveButton = () => {
