@@ -108,10 +108,11 @@ export const ChildButtonTag2 = styled.button`
   height: 70px;
   color: white;
   background-color: var(--Brown-LightText);
+  box-shadow: 0px 5px 5px #E6E6E6;
   border-radius: 20px;
   border: 0;
   font-family: 'Dongle', sans-serif;
-  font-size: 64px;
+  font-size: 60px;
   cursor: pointer;
   user-select: auto;
   z-index: 4;
@@ -140,12 +141,13 @@ export const ChildButtonTag4 = styled.button`
   align-items: center;
   width: 230px;
   height: 70px;
+  box-shadow: 0px 5px 5px #E6E6E6;
   color: var(--Brown-LightText);
   background-color: var(--Beige-BG);
   border-radius: 20px;
   border: 0;
   font-family: 'Dongle', sans-serif;
-  font-size: 64px;
+  font-size: 60px;
   cursor: pointer;
   user-select: auto;
   z-index: 4;
@@ -830,12 +832,13 @@ export const DictionaryCardComponentTag = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-color: var(--White-Block);
+  background-color: var(--Beige-Block);
   border: 1px solid var(--Beige-Stroke);
-  border-radius: 30px;
+  border-radius: 20px;
   width: 200px;
   height: 200px;
   padding: 20px;
+  margin: 10px;
   color: var(--Brown-Text);
   font-family: 'Dongle', sans-serif;
   font-size: 60px;
@@ -1049,7 +1052,7 @@ export const EditorBody = styled.div`
   box-shadow: 0px 5px 5px #E6E6E6;
 
   width: 700px;
-  height: 740px;
+  height: 700px;
   margin-top: 20px;
 
   font-family: 'Dongle', sans-serif;
@@ -1113,7 +1116,7 @@ export const LetterContentDiv = styled.div`
   border: 1px solid #C5BEB6;
 
   width: 600px;
-  height: 400px;
+  height: 370px;
   padding-left: 20px;
   padding-right: 20px;
 
@@ -1131,7 +1134,7 @@ export const LetterContentTextArea = styled.textarea`
   border: 1px solid #C5BEB6;
 
   width: 600px;
-  height: 400px;
+  height: 370px;
   padding-left: 20px;
   padding-right: 20px;
 
@@ -1273,7 +1276,7 @@ export const GugiBrown = styled.span`
 
 export const ProfileTitle = styled.section`
   text-align: center;
-  margin-top: 50px;
+  margin-top: 25px;
   margin-bottom: 50px;
 `
 
@@ -1339,7 +1342,7 @@ export const ParentInfo = styled.section`
 export const DiaryContent = styled.section`
   display: flex;
   justify-content: center;
-  margin-top: 50px;
+  margin-top: 30px;
 `
 
 export const DiaryBlock = styled.div`
@@ -1379,4 +1382,13 @@ export const DiarySectionButtonTag = styled.div`
     width: 100px;
     margin-bottom: 5px;
   }
+`
+
+// Dictionary Page
+
+export const DictionarySectionComponentTag = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
 `
