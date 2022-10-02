@@ -1,23 +1,30 @@
 import React from "react"
 import { useNavigate } from "react-router-dom"
 
-import { LetterItem, LetterItemContent, LetterItemAuthor } from "../Style/Components"
+import { LetterItemTitle, LetterItem, LetterItemContent, LetterItemAuthor } from "../Style/Components"
 import { getStringDate } from "../util/date"
 
 
-const LetterItemComponent = ({ letterId, title, author, date }) => {
+const LetterItemComponent = ({ letter_id, date, author, check, title }) => {
   const navigate = useNavigate()
 
-  const strDate = getStringDate(new Date(parseInt(date)))
+  const strDate = getStringDate(new Date(date))
+
 
   const goDetail = () => {
-    navigate(`/letter/${letterId}`)
+    navigate(`/letter/${letter_id}`)
   };
 
   return (
-    <LetterItem>
+    <LetterItem style={{backgroundColor: check === 0 ? "#FDFDF5" : "#F5F5F5"}}>  
       <LetterItemContent onClick={goDetail}>
-        <div>{title.slice(0, 25)}</div>
+        <LetterItemTitle>
+          {check === 0 ? 
+            <img src='/icons/letteroff.svg' />
+            : <img src='/icons/letteron.svg' />
+          } 
+          <span style={{marginLeft: "20px"}}>{title.slice(0, 25)}</span>
+        </LetterItemTitle>
         <div>
           <LetterItemAuthor>{author}</LetterItemAuthor>
           <div style={{fontSize:"32px"}}>{strDate}</div>

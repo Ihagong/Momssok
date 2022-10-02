@@ -2,54 +2,41 @@ import { useEffect, useRef, useState } from "react"
 import { useNavigate } from "react-router-dom"
 
 import { useRecoilState } from 'recoil'
-import { totalLetterListState, LetterIdState } from '../store/atoms'
-
+import { profileState, profileListState } from '../store/atoms'
+import { useLetterCallback } from '../Functions/useLetterCallback'
 
 import { LogoTag, EditorBody, LetterTitleBody, LetterTitleDiv, LetterTitleInput, LetterContentBody, LetterContentDiv, LetterContentTextArea, LetterEditorComponentBody, LetterButton, LetterButtonBack, LetterButtonGo, LetterButtonDel } from "../Style/Components"
 import { getStringDate } from "../util/date"
 
-const LetterEditorComponent = ({ isDetail, originData }) => {
+const LetterEditorComponent = ({ isDetail, letterItem }) => {
   const navigate = useNavigate()
 
-  const [letterList, setLetterList] = useRecoilState(totalLetterListState)
-  const [letterId, setLetterId] = useRecoilState(LetterIdState)
+  const [profileInfo, setProfileInfo] = useRecoilState(profileState)
+  const [profileList, setProfileList] = useRecoilState(profileListState)
 
-  const receiverRef = useRef()
+  const { letterSendCallback, letterRemoveCallback } = useLetterCallback()
+
   const titleRef = useRef()
   const contentRef = useRef()
 
-
+  const [author, setAuthor] = useState("")
   const [receiver, setReceiver] = useState("")
   const [title, setTitle] = useState("")
   const [content, setContent] = useState("")
   const [date, setDate] = useState("")
 
+
   // CREATE
   const onCreate = (receiver, title, content) => {
-    setLetterList([
-      {
-        letterId: letterId,
-        date: new Date().getTime(),
-        author: "다은이",
-        receiver,
-        title,
-        content,
-      }, ...letterList
-    ])
-    setLetterId(letterId + 1)
-
+    letterSendCallback(profileInfo.name, receiver, title, content)
   }
   // REMOVE
   const onRemove = (targetId) => {
-    setLetterList(letterList.filter((it) => it.letterId !== targetId))
+    letterRemoveCallback(targetId)
   }
 
 
   const handleSubmit = () => {
-    if (receiver.length < 1) {
-      receiverRef.current.focus()
-      return
-    } 
     if (title.length < 1) {
       titleRef.current.focus()
       return
@@ -59,7 +46,6 @@ const LetterEditorComponent = ({ isDetail, originData }) => {
       return
     } {
       if (!isDetail) {
-        setLetterId(letterId + 1)
         onCreate(receiver, title, content)
       } else {
         navigate("/letter/create", { replace: true })
@@ -71,19 +57,26 @@ const LetterEditorComponent = ({ isDetail, originData }) => {
 
   const handleRemove = () => {
     if (window.confirm("정말 삭제하시겠습니까?")) {
-      onRemove(originData.letterId)
+      onRemove(letterItem.letter_id)
       navigate("/letter", { replace: true })
     }
   }
 
+  const handleClickRadioButton = (e) => {
+    setReceiver(e.target.value)
+  }
+
   useEffect(() => {
+
     if (isDetail) {
-      setReceiver(originData.receiver);
-      setTitle(originData.title);
-      setContent(originData.content);
-      setDate(getStringDate(new Date(parseInt(originData.date))))
+      setAuthor(letterItem.author)
+      setReceiver(letterItem.receiver);
+      setTitle(letterItem.title);
+      setContent(letterItem.content);
+      setDate(getStringDate(new Date(letterItem.date)))
     }
-  }, [isDetail, originData]);
+  }, [isDetail, letterItem]);
+
   
   return (
     <LetterEditorComponentBody>
@@ -94,12 +87,25 @@ const LetterEditorComponent = ({ isDetail, originData }) => {
       <EditorBody>
         <LetterTitleBody>
           <div>{isDetail ? "시간 : " : "누가 : "}</div>
-          <LetterTitleDiv>{isDetail ? date : "다은이"}</LetterTitleDiv>
+          <LetterTitleDiv>{isDetail ? date : profileInfo.name}</LetterTitleDiv>
         </LetterTitleBody>
 
         <LetterTitleBody>
-          <div>누구 : </div>
-          {isDetail ? <LetterTitleDiv>{receiver}</LetterTitleDiv> : <LetterTitleInput ref={receiverRef} value={receiver} onChange={(e) => setReceiver(e.target.value)} />}
+          <div>{isDetail ? "누가 : " : "누구 : "}</div>
+          {isDetail ? <LetterTitleDiv>{author}</LetterTitleDiv> : 
+          <LetterTitleDiv>
+            {profileList.filter((it) => it.name !== profileInfo.name).map((it, idx) => (
+              <label key={idx} style={{marginRight: "10px"}}>
+                <input
+                  type="radio"
+                  value={it.name}
+                  checked={receiver === `${it.name}`}
+                  onChange= {handleClickRadioButton} />
+                <span> {it.name}</span>
+              </label>
+            ))}
+          </LetterTitleDiv>
+          }
         </LetterTitleBody>
 
         <LetterTitleBody>

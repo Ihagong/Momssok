@@ -1,6 +1,6 @@
 import React, { useState } from "react"
 
-import { OrangeButton250, LightButton250 } from "../Style/Components"
+import { OrangeButton250, LightButton250, LetterEmpty } from "../Style/Components"
 import LetterItemComponent from "./LetterItemComponent"
 
 const LetterListComponent = ({ letterList }) => {
@@ -19,9 +19,9 @@ const LetterListComponent = ({ letterList }) => {
   const getProcessedLetterList = () => {
     const compare = (a, b) => {
       if (sortType === "latest") {
-        return parseInt(b.date) - parseInt(a.date);
+        return parseInt(new Date(b.date).getTime()) - parseInt(new Date(a.date).getTime());
       } else {
-        return parseInt(a.date) - parseInt(b.date);
+        return parseInt(new Date(a.date).getTime()) - parseInt(new Date(b.date).getTime());
       }
     }
 
@@ -42,11 +42,14 @@ const LetterListComponent = ({ letterList }) => {
         <OrangeButton250 onClick={oldestType}>오래된 순</OrangeButton250>
         </div>
       } 
-      <div>
-        {getProcessedLetterList().map((it) => (
-          <LetterItemComponent key={it.letterId} {...it} />
-        ))}
-      </div>
+      { letterList.length === 0 ? 
+        <LetterEmpty>편지함에 편지가 없습니다.</LetterEmpty> :
+        <div>
+          {getProcessedLetterList().map((it) => (
+            <LetterItemComponent key={it.letter_id} {...it} />
+          ))}
+        </div>
+      }
     </div>
   )
 }
