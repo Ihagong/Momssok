@@ -5,6 +5,7 @@ import * as cam from '@mediapipe/camera_utils'
 import Webcam from 'react-webcam'
 import { WebCamTag } from '../../Style/Components'
 
+
 export function MotionDetectionComponent({ canvasWidth, canvasHeight, setOffset, setGesture, setIsCamOn, handleSelectTool }) {
   const canvasRef = useRef(null)
 
@@ -21,7 +22,7 @@ export function MotionDetectionComponent({ canvasWidth, canvasHeight, setOffset,
     // Set canvas width
     camCanvasRef.current.width = videoWidth
     camCanvasRef.current.height = videoHeight
-
+    
     const canvasElement = camCanvasRef.current
     const canvasCtx = canvasElement.getContext('2d')
     
@@ -91,8 +92,8 @@ export function MotionDetectionComponent({ canvasWidth, canvasHeight, setOffset,
         onFrame: async () => {
           await hands.send({ image: webcamRef.current.video })
         },
-        width: 640,
-        height: 480,
+        width: 960,
+        height: 780,
       })
       camera.start()
     }
@@ -100,7 +101,7 @@ export function MotionDetectionComponent({ canvasWidth, canvasHeight, setOffset,
 
   return (
     <>
-      <WebCamTag style={{ marginTop: "10px" }} onClick={() => setIsCamOn(false)}>
+      <WebCamTag onClick={() => setIsCamOn(false)}>
         <Webcam
           ref={webcamRef}
           mirrored={true}
@@ -120,8 +121,8 @@ export function MotionDetectionComponent({ canvasWidth, canvasHeight, setOffset,
           style={{
             textAlign: 'center',
             zindex: 9,
-            width: 170,
-            height: 140,
+            width: 160,
+            height: 130,
             borderRadius: '10px',
             transform: 'scaleX(-1)',
           }}

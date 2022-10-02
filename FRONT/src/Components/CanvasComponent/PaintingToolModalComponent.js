@@ -39,7 +39,7 @@ export function PaintingToolModalComponent({ modalOpen, setPaintingToolModalOpen
         } else {
           setPaintingToolModalOpen(false)
         }
-      } else if (!(offsetY >= 540 && offsetY <= 710 && offsetX >= 60 && offsetX < 200)) { // 아이콘 재배치 후 수정 필요
+      } else if (!(offsetY >= 540 && offsetY <= 700 && offsetX >= 30 && offsetX < 160)) { // 아이콘 재배치 후 수정 필요
         setPaintingToolModalOpen(false)
       }
     }
