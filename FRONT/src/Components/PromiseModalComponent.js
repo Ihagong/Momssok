@@ -3,13 +3,14 @@ import { PromiseModalComponentTag, ModalBackgroundTag } from '../Style/Component
 import { ChildButtonTag2 } from '../Style/Components'
 import { PromiseTodoItemComponent } from './PromiseTodoItemComponent'
 import { useRecoilState } from 'recoil'
-import { profileState } from '../store/atoms'
+import { profileState, promiseItemsState } from '../store/atoms'
 import { usePromiseCallback } from '../Functions/usePromiseCallback'
 
 
-export function PromiseModalComponent({ promiseItem, setModalOpen }) {
-  const [profile, setProfile] = useRecoilState(profileState)
-  const { donePromiseCallback } = usePromiseCallback()
+export function PromiseModalComponent({ promiseItemId, promiseItem, setModalOpen }) {
+  const [profileInfo, setProfileInfo] = useRecoilState(profileState)
+  const [promiseItems, setPromiseItems] = useRecoilState(promiseItemsState)
+  const { savePromiseCallback, donePromiseCallback } = usePromiseCallback()
   const [newTodo, setNewTodo] = useState('');
 
   const onCloseModal = (e) => {
@@ -17,25 +18,46 @@ export function PromiseModalComponent({ promiseItem, setModalOpen }) {
       setModalOpen(false)
     }
   }
-
+  console.log(promiseItems)
+  
   const handleClickAddTodoButton = () => {
+    console.log('here!', promiseItem)
+    console.log(promiseItems, promiseItems.length, promiseItemId)
+    if (!newTodo) {
+      console.log('할일을 입력해주세요.')
+    } else if (promiseItems.length == promiseItemId) {
+      const newItems = [...promiseItems, { todoList: [{ todo: newTodo }]}]
+      setPromiseItems(newItems)
+      // savePromiseCallback(profileInfo.name, newItems)
+    } else {
+      let newItems = [...promiseItems]
+      newItems = newItems.map((newItem, index) => {
+        if (index === promiseItemId) {
+          return [{ todoList : [...newItem.todoList, { todo: newTodo }]} ]
+        } else {
+          return [newItem]
+        }
+      })
+      setPromiseItems(newItems)
+      // savePromiseCallback(profileInfo.name, newItems)
+    }
   }
 
   const handleClickDonePromiseButton = () => {
-    donePromiseCallback(profile.name, promiseItem.id)
+    donePromiseCallback(profileInfo.name, promiseItem.id)
   }
   
   return (
     <ModalBackgroundTag style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }} onClick={onCloseModal}>
       <PromiseModalComponentTag>
-        {promiseItem?.todoList ?
-          (promiseItem.todoList.map((todoItem) => (
-            <PromiseTodoItemComponent key={todoItem.id} todoItem={todoItem} promiseItemId={promiseItem.id} name={profile.name}>
+        {promiseItem.todoList ?
+          (promiseItem.todoList.map((todoItem, index) => (
+            <PromiseTodoItemComponent key={index} todoItem={todoItem} name={profileInfo.name}>
             </PromiseTodoItemComponent>
           )))
         :
           <>약속이 없습니다.</> }
-        {/* { profile.is_parent ? */}
+        {/* { profileInfo.is_parent ? */}
           <div style={{ display: 'flex' }}>
             <input value={newTodo} onChange={(e) => setNewTodo(e.target.value)} />
             <button onClick={handleClickAddTodoButton}>추가</button>
