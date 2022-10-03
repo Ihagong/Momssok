@@ -3,16 +3,21 @@ import { useNavigate, useLocation } from  'react-router-dom'
 
 import { ParentInfo, ParentTitle, ProfileBlock, JuaBrown, JuaBrownLight, LogoTag, EditProfileButtonTag, ParentMenuButtonTag } from '../Style/Components'
 
+import { useRecoilState } from 'recoil'
+import { profileState } from '../store/atoms'
 
 function ParentMainPage() {
+  const [profileInfo, setProfileInfo] = useRecoilState(profileState)
   const navigate = useNavigate()
-  const { state } = useLocation()
+  // const { state } = useLocation()
 
-  const [name, useName] = useState(state.name)
-  const [imageNum, setImageNum] = useState(parseInt(state.image_num))
-  const [age, setAge] = useState(new Date().getFullYear() - new Date(state.birthday).getFullYear() + 1)
+  // const [name, useName] = useState(state.name)
+  // const [imageNum, setImageNum] = useState(parseInt(state.image_num))
+  const [age, setAge] = useState(new Date().getFullYear() - new Date(profileInfo.birthday).getFullYear() + 1)
+  
 
   const handleClickReportButton = () => {
+    navigate('/report')
   }
 
   const handleClickRecordButton = () => {
@@ -33,9 +38,9 @@ function ParentMainPage() {
   return (
     <div>
       <ParentTitle>
-        <img style={{ width: "130px", height: "130px" }} src={`/images/profileImage_${imageNum}.svg`} />
+        <img style={{ width: "130px", height: "130px" }} src={`/images/profileImage_${profileInfo.image_num}.svg`} />
         <ParentInfo>
-          <JuaBrown style={{ fontSize: "50px" }}>{name}
+          <JuaBrown style={{ fontSize: "50px" }}>{profileInfo.name}
             <span style={{ fontSize: "50px", color: "gray"}}> | </span>
             {age}세
           </JuaBrown>
