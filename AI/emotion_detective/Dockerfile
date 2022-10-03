@@ -14,6 +14,8 @@ RUN pip install fastapi
 RUN pip install torch
 RUN pip install gluonnlp
 RUN pip install mxnet
+RUN pip install sentencepiece
+RUN pip install tqdm 
 #RUN pip install -r requirements.txt
 
 CMD uvicorn --host=0.0.0.0 --port 8004 fastApi2:app
