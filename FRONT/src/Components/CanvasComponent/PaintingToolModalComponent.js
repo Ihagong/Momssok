@@ -70,19 +70,19 @@ export function PaintingToolModalComponent({ modalOpen, setPaintingToolModalOpen
             <div style={{ display: 'flex' }}>
               <PaintingToolButtonTag style={{ backgroundColor: toolIndex === 0 ? '#00000010' : null,
                 outline: toolIndex === 0 ? '6px solid #FF005C' : null  }} onClick={() => {handleClickToolButton(0)}}>
-                <img src='/icons/paintingTool_pen.png' /></PaintingToolButtonTag>
+                <img src='/icons/paintingTool_0.png' /></PaintingToolButtonTag>
               <PaintingToolButtonTag style={{ backgroundColor: toolIndex === 1 ? '#00000010' : null,
                 outline: toolIndex === 1 ? '6px solid #FF005C' : null  }} onClick={() => {handleClickToolButton(1)}}>
-                <img src='/icons/paintingTool_crayon.png' /></PaintingToolButtonTag>
+                <img src='/icons/paintingTool_1.png' /></PaintingToolButtonTag>
               <PaintingToolButtonTag style={{ backgroundColor: toolIndex === 2 ? '#00000010' : null,
                 outline: toolIndex === 2 ? '6px solid #FF005C' : null  }} onClick={() => {handleClickToolButton(2)}}>
-                <img src='/icons/paintingTool_pencil.png' /></PaintingToolButtonTag>
+                <img src='/icons/paintingTool_2.png' /></PaintingToolButtonTag>
               <PaintingToolButtonTag style={{ backgroundColor: toolIndex === 3 ? '#00000010' : null,
                 outline: toolIndex === 3 ? '6px solid #FF005C' : null  }} onClick={() => {handleClickToolButton(3)}}>
-                <img src='/icons/paintingTool_brush.png' /></PaintingToolButtonTag>
+                <img src='/icons/paintingTool_3.png' /></PaintingToolButtonTag>
               <PaintingToolButtonTag style={{ backgroundColor: toolIndex === 4 ? '#00000010' : null,
                 outline: toolIndex === 4 ? '6px solid #FF005C' : null  }} onClick={() => {handleClickToolButton(4)}}>
-                <img src='/icons/paintingTool_eraser.png' /></PaintingToolButtonTag>
+                <img src='/icons/paintingTool_4.png' /></PaintingToolButtonTag>
             </div>
             <div style={{ display: 'flex', backgroundColor: 'var(--Brown-LightText)', borderRadius: '20px' }}>
               <StrokeWidthButtonTag style={{ backgroundColor: lineWidthIndex === 0 ? '#00000010' : null,
