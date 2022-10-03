@@ -583,28 +583,26 @@ export const PaintingToolTag = styled.div`
 export const PaintingCardTag = styled.div`
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: start;
   align-items: center;
-  color: var(--Brown-Text);
+  color: var(--Brown-LightText);
   background-color: var(--White-Block);
   box-shadow: 0px 5px 5px #E6E6E6;
-  margin: 0;
-  border-radius: 30px;
-  width: 200px;
+  border-radius: 20px;
+  width: 240px;
   height: 200px;
-  margin-left: 30px;
-  margin-right: 30px;
+  margin-top: 30px;
   font-family: 'Jua', sans-serif;
-  font-size: 28px;
   cursor: pointer;
   img {
     height: 100px;
   }
 `
 
-export const PaintingCardDateStyleTag = styled.p`
+export const PaintingCardDateStyleTag = styled.div`
   font-size: 26px;
-  margin: 0;
+  margin-top: 15px;
+  margin-bottom: 15px;
 `
 
 export const PaintingCardTagStyleTag = styled.p`

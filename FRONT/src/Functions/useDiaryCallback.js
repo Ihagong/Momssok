@@ -1,34 +1,36 @@
 import { useRecoilState } from 'recoil'
-import { logInTokenState, loadedPaintingListState } from '../store/atoms'
+import { totalDiaryListState, logInTokenState } from '../store/atoms'
 import { useNavigate } from  'react-router-dom'
 import axios from 'axios'
 
 
 export function usePaintingCallback() {
   const [logInToken, setLogInToken] = useRecoilState(logInTokenState)
-  const [loadedPaintingList, setLoadedPaintingList] = useRecoilState(loadedPaintingListState)
+  const [loadedDiaryList, setLoadedDiaryList] = useRecoilState(totalDiaryListState)
   
   const navigate = useNavigate()
 
-  const savePaintingCallback = async (imageURL, name) => {
+  const saveDiaryCallback = async (drawing_id, title, content, weather, date) => {
     axios({
       method: 'post',
-      url: '/api/user/saveDrawing',
+      url: '/api/user/saveDiary',
       headers: {
         'Content-Type': 'application/json',
         'Authorization': logInToken,
       },
       data: {
-        drawing_base64: imageURL,
-        name,
+        'drawing_id': drawing_id,
+        'title': title,
+        'content': content,
+        'weather': weather,
+        'date': date
       }
     })
     .then(response => {
       if (response.data) {
         console.log(response.data)
-        console.log(imageURL)
-        console.log('그림이 저장되었습니다.')
-        navigate(-1)
+        console.log('일기가 저장되었습니다.')
+        navigate('/diary')
       }
     })
     .catch(error => {
@@ -36,25 +38,28 @@ export function usePaintingCallback() {
     })
   }
 
-  const updatePaintingCallback = async (id, name, imageURL) => {
+  const updateDiaryCallback = async (diary_id, name, drawing_id, title, content, weather) => {
     axios({
       method: 'put',
-      url: '/api/user/updateDrawing',
+      url: '/api/user/updateDiary',
       headers: {
         'Content-Type': 'application/json',
         'Authorization': logInToken,
       },
       data: {
-        drawing_id: id,
-        name,
-        drawing_base64: imageURL,
+        'id': diary_id,
+        'name': name,
+        'drawing_id': drawing_id,
+        'title': title,
+        'content': content,
+        'weather': weather
       }
     })
     .then(response => {
       if (response.data) {
         console.log(response.data)
-        console.log('그림이 수정되었습니다.')
-        navigate(-1)
+        console.log('일기가 수정되었습니다.')
+        navigate('/diary')
       }
     })
     .catch(error => {
@@ -62,23 +67,23 @@ export function usePaintingCallback() {
     })
   }
 
-  const paintingRemoveCallback = async (drawing_id, name) => {
+  const diaryRemoveCallback = async (diary_id, name) => {
     axios({
         method: 'delete',
-        url: '/api/letter/deleteDrawing',
+        url: '/api/letter/deleteDiary',
         headers: {
         'Content-Type': 'application/json',
         'Authorization': logInToken,
         },
         params: {
-        "drawing_id": drawing_id,
+        "id": diary_id,
         "name": name
         }
     })
     .then(response => {
         if (response.data) {
         console.log(response.data)
-        console.log('해당 그림이 삭제되었습니다.')
+        console.log('해당 일기가 삭제되었습니다.')
         }
     })
     .catch(error => {
@@ -86,24 +91,23 @@ export function usePaintingCallback() {
     })
   }
 
-
-  const getAllPaintingCallback = async (name) => {
+  const getAllDiaryCallback = async (name) => {
     axios({
       method: 'get',
-      url: '/api/user/searchDrawing',
+      url: '/api/user/searchDiaryGallery',
       headers: {
         'Content-Type': 'application/json',
         'Authorization': logInToken,
       },
       params: {
-        name,
+        'name': name,
       }
     })
     .then(response => {
       if (response.data) {
         console.log(response.data)
-        console.log('그림이 조회되었습니다.')
-        setLoadedPaintingList(response.data.data)
+        console.log('일기가 조회되었습니다.')
+        setLoadedDiaryList(response.data.data)
       }
     })
     .catch(error => {
@@ -111,5 +115,5 @@ export function usePaintingCallback() {
     })
   }
 
-  return { savePaintingCallback, updatePaintingCallback, paintingRemoveCallback, getAllPaintingCallback }
+  return { saveDiaryCallback, updateDiaryCallback, getAllDiaryCallback, diaryRemoveCallback }
 }

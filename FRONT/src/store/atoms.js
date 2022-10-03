@@ -117,3 +117,15 @@ export const loadedPaintingListState = atom({
   default: [],
   effects_UNSTABLE: [persistAtom]
 })
+
+export const totalDiaryListState = atom({
+  key: 'totalDiaryListState',
+  default: [],
+  effects_UNSTABLE: [persistAtom]
+})
+
+export const diaryItemState = atom({
+  key: 'diaryItemState',
+  default: {},
+  effects_UNSTABLE: [persistAtom]
+})
