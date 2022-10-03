@@ -122,7 +122,7 @@ export function MotionDetectionComponent({ canvasWidth, canvasHeight, setOffset,
             textAlign: 'center',
             zindex: 9,
             width: 160,
-            height: 10,
+            height: 130,
             borderRadius: '10px',
             transform: 'scaleX(-1)',
           }}
