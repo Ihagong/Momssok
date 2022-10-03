@@ -1,9 +1,9 @@
 import React from 'react'
-import { PaintingCardTag, PaintingCardDateStyleTag, PaintingCardTagStyleTag } from '../Style/Components'
+import { PaintingCardTag, PaintingCardDateStyleTag } from '../Style/Components'
 
 
 export function PaintingCardComponent({ info }) {
-  console.log("info :", info)
+  console.log("info.drawing_base64 :", info)
 
   return (
     <PaintingCardTag>
