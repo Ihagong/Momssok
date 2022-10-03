@@ -23,15 +23,26 @@ export function usePromiseCallback() {
       if (response.data) {
         console.log(response.data)
         console.log('약속이 조회되었습니다.')
-        setPromiseItems(response.data.promiseItems)
+        // setPromiseItems(response.data.promiseItems)
+        const promiseItems = response.data.promiseItems.map(( promiseItem ) => {
+          // return { todoList: promiseItem.todoList.map((todo) => ({ todo: todo.todo }))}
+          return { todoList: promiseItem.todoList.map((todoList) => {
+            return {todo: todoList.todo}
+          }) }
+        })
+        // console.log(promiseItems, response.data.promiseItems)
+        setPromiseItems(promiseItems)
       }
     })
     .catch(error => {
       console.log(error.response.data)
+      setPromiseItems([])
     })
   }
 
   const savePromiseCallback = async (name, promiseItems) => {
+    console.log(name)
+    console.log(promiseItems)
     axios({
       method: 'post',
       url: '/api/promise/savePromise',
@@ -40,14 +51,14 @@ export function usePromiseCallback() {
         'Authorization': logInToken,
       },
       body: {
-        name,
+        name: '이싸피',
         promiseItems,
       }
     })
     .then(response => {
       if (response.data) {
         console.log(response.data)
-        console.log('약속이 조회되었습니다.')
+        console.log('약속이 저장되었습니다.')
       }
     })
     .catch(error => {
@@ -126,5 +137,5 @@ export function usePromiseCallback() {
     })
   }
   
-  return { getAllPromiseCallback, doneTodoCallback, donePromiseCallback }
+  return { getAllPromiseCallback, savePromiseCallback, doneTodoCallback, donePromiseCallback }
 }
