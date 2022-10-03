@@ -658,27 +658,29 @@ export const CalendarDateTag = styled.div`
   }
 `
 
-export const PromiseItemTag1 = styled.div`
+export const PromiseItemTag = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
   width: 160px;
   height: 120px;
   background-color: var(--Beige-Light);
   border-radius: 30px;
   border: 0;
   transform: rotate(8deg);
-  cursor: pointer;
   user-select: auto;
 `
 
-export const PromiseItemTag2 = styled.div`
-  width: 160px;
-  height: 120px;
-  background-color: var(--Beige-Light);
-  border-radius: 30px;
-  border: 0;
-  transform: rotate(-6deg);
-  cursor: pointer;
-  user-select: auto;
-`
+// export const PromiseItemTag2 = styled.div`
+//   width: 160px;
+//   height: 120px;
+//   background-color: var(--Beige-Light);
+//   border-radius: 30px;
+//   border: 0;
+//   transform: rotate(-6deg);
+//   cursor: pointer;
+//   user-select: auto;
+// `
 
 export const PromiseBoardTag = styled.div`
   display: grid;
