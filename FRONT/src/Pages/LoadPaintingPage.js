@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom'
 import { usePaintingCallback } from '../Functions/usePaintingCallback'
 
 import { useRecoilState } from 'recoil'
-import { loadedPaintingState, profileState, loadedPaintingListState } from '../store/atoms'
+import { loadedPaintingInfoState, profileState, loadedPaintingListState } from '../store/atoms'
 
 import { OrangeButton250, LightButton250, LetterPageHeader, BrownText100, LightButton120, BrownLightButton150, ChildProfileTag, ChildButtonTag1, ChildButtonTag3, ChildButtonTag4, PaintingCardTag } from '../Style/Components'
 import { PaintingCardComponent } from '../Components/PaintingCardComponent'
@@ -12,7 +12,7 @@ import { PaintingCardComponent } from '../Components/PaintingCardComponent'
 function LoadPaintingPage() {
   const { getAllPaintingCallback } = usePaintingCallback()
   const navigate = useNavigate();
-  const [loadedPaintingSrc, setLoadedPaintingSrc] = useRecoilState(loadedPaintingState)
+  const [loadedPaintingInfo, setLoadedPaintingInfo] = useRecoilState(loadedPaintingInfoState)
   const [loadedPaintingList, setLoadedPaintingList] = useRecoilState(loadedPaintingListState)
   const [profileInfo, setProfileInfo] = useRecoilState(profileState)
   
@@ -22,34 +22,35 @@ function LoadPaintingPage() {
     getAllPaintingCallback(profileInfo.name)
   }, [])
 
-  const handleChangeFile = (e) => {
-    e.preventDefault()
-    const formData = new FormData()
-    formData.append('painting', e.target.files[0])
-    const reader = new FileReader()
-    reader.readAsDataURL(e.target.files[0])
+  // const handleChangeFile = (e) => {
+  //   e.preventDefault()
+  //   const formData = new FormData()
+  //   formData.append('painting', e.target.files[0])
+  //   const reader = new FileReader()
+  //   reader.readAsDataURL(e.target.files[0])
     
-    return new Promise((resolve) => {
-      reader.onload = () => {
-        setLoadedPaintingSrc(reader.result)
-        resolve()
+  //   return new Promise((resolve) => {
+  //     reader.onload = () => {
+  //       setLoadedPaintingSrc(reader.result)
+  //       resolve()
         
-        navigate('/painting/create')
-      }
-    })
-  }
+  //       navigate('/painting/create')
+  //     }
+  //   })
+  // }
 
   const handleClickChildProfile = () => {
     navigate('/profile')
   }
 
   const handleClickCreatePaintingButton = () => {
-    setLoadedPaintingSrc('')
+    setLoadedPaintingInfo({})
     navigate('/painting/create')
   }
 
   const handleClickLoadPaintingButton = (info) => {
-    setLoadedPaintingSrc(info)
+    setLoadedPaintingInfo({ id: info.drawing_id, imageURL: 'data'+info.drawing_base64.substring(4) })
+    console.log(loadedPaintingInfo)
     navigate('/painting/create')
   }
 
@@ -101,8 +102,8 @@ function LoadPaintingPage() {
       </div>
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 3fr)', marginLeft: "50px" }}>
         <PaintingCardTag style={{justifyContent: "center"}} onClick={handleClickCreatePaintingButton}><img src='/icons/plus_brown.svg' /></PaintingCardTag>
-        {getProcessedPaintingList().map((info) => (
-          <div key={info.drawing_id} onClick={handleClickLoadPaintingButton}>
+        {loadedPaintingList.map((info) => (
+          <div key={info.drawing_id} onClick={() => handleClickLoadPaintingButton(info)}>
             <PaintingCardComponent info={info} />
           </div>
         ))}

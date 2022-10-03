@@ -113,10 +113,9 @@ const textures = [
     pencilWhite, pencilGray, pencilBrown, pencilApricot, pencilPurple, pencilBlue, pencilSkyBlue],
 ]
 
-function CreatePaintingPage(props) {
+function CreatePaintingPage() {
   const navigate = useNavigate()
 
-  // console.log(loadedPaintingSrc)
   const [paintingToolModalOpen, setPaintingToolModalOpen] = useState(false)
   const [colorPickerModalOpen, setColorPickerModalOpen] = useState(false)
   const [modalOpen, setModalOpen] = useState(false)
@@ -197,7 +196,7 @@ function CreatePaintingPage(props) {
     <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', marginTop: "15px" }}>
       { gesture !== 'defaultGesture' ? <PointerTag style={{ left: offset.offsetX+(window.innerWidth-1100)/2-40, top: offset.offsetY+15, zIndex: 20 }}
         src= { gesture === 'indexGesture' ? '/icons/pointer.png' : gesture === 'palmGesture' ? '/icons/backhand.png' : `/icons/paintingTool_${strokeTextureIndex}.png` } /> : null}
-      <CanvasProvider loadedPainting={props.loadedPainting} textures={textures} isCamOn={isCamOn} offset={offset} gesture={gesture}
+      <CanvasProvider textures={textures} isCamOn={isCamOn} offset={offset} gesture={gesture}
         strokeColorIndex={strokeColorIndex} strokeTextureIndex={strokeTextureIndex} strokeLineWidthIndex={strokeLineWidthIndex} width={1100} height={550}>
         <PaintingToolModalComponent modalOpen={paintingToolModalOpen} setPaintingToolModalOpen={setPaintingToolModalOpen} motionTextureIndex={strokeTextureIndex} offset={offset} gesture={gesture}
           changeStrokeTexture={changeStrokeTexture} changeStrokeLineWidthIndex={changeStrokeLineWidthIndex} onClick={() => setModalOpen(false)} />
