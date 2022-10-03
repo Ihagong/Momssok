@@ -33,7 +33,7 @@ function ManageProfilePage() {
       console.log(info)
       navigate('/profile/edit', { state: info })
     } else {
-      navigate('/parent')
+      navigate('/parent', { state: info })
     }
   }
 

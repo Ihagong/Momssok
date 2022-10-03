@@ -13,10 +13,10 @@ function LoadPaintingPage() {
   const { getAllPaintingCallback } = usePaintingCallback()
   const navigate = useNavigate();
   const [loadedPaintingSrc, setLoadedPaintingSrc] = useRecoilState(loadedPaintingState)
-  const [profileInfo, setProfileInfo] = useRecoilState(profileState)
   const [loadedPaintingList, setLoadedPaintingList] = useRecoilState(loadedPaintingListState)
+  const [profileInfo, setProfileInfo] = useRecoilState(profileState)
   
-  const [sortOrder, setSortOrder] = useState(0)
+  const [sortType, setSortType] = useState("latest")
 
   useEffect(() => {
     getAllPaintingCallback(profileInfo.name)
@@ -48,36 +48,60 @@ function LoadPaintingPage() {
     navigate('/painting/create')
   }
 
-  const handleClickLoadPaintingButton = () => {
-    setLoadedPaintingSrc('/images/MyPainting.png')
+  const handleClickLoadPaintingButton = (info) => {
+    setLoadedPaintingSrc(info)
     navigate('/painting/create')
   }
+
+  const latestType = () => {
+    setSortType("latest")
+  }
+
+  const oldestType = () => {
+    setSortType("oldest")
+  }
+
+  const getProcessedPaintingList = () => {
+    const compare = (a, b) => {
+      if (sortType === "latest") {
+        return parseInt(new Date(b.modified_date).getTime()) - parseInt(new Date(a.modified_date).getTime());
+      } else {
+        return parseInt(new Date(a.modified_date).getTime()) - parseInt(new Date(b.modified_date).getTime());
+      }
+    }
+
+    const copyList = JSON.parse(JSON.stringify(loadedPaintingList))
+    const sortedList = copyList.sort(compare)
+    return sortedList
+  }
+
+
 
   return (
     <div className='LetterPageHome'>
       <LetterPageHeader>
-        <div style={{ display: "flex", alignItems: "center", marginLeft: "30px" }}>
+        <div style={{ display: "flex", alignItems: "center", marginLeft: "30px", marginTop: "-50px"  }}>
           <LightButton120 onClick={() => navigate("/child")}>닫기</LightButton120>
           <BrownText100>그림 그리기</BrownText100>
         </div>
-          <ChildProfileTag style={{marginTop: "30px", marginRight: "40px"}} onClick={handleClickChildProfile}><img src={`/images/profileImage_${profileInfo.image_num}.svg`} />{profileInfo.name}</ChildProfileTag>
+          <ChildProfileTag style={{marginTop: "20px", marginRight: "40px"}} onClick={handleClickChildProfile}><img src={`/images/profileImage_${profileInfo.image_num}.svg`} />{profileInfo.name}</ChildProfileTag>
       </LetterPageHeader>
 
-      <div style={{ display: 'flex', marginTop: "-20px" }}>
-        { sortOrder === 0 ?
+      <div style={{ display: 'flex', marginTop: "-40px" }}>
+        { sortType === "latest" ?
           <OrangeButton250 style={{marginLeft: "70px"}}>최신순</OrangeButton250>
         :
-          <LightButton250 style={{marginLeft: "70px"}} onClick={() => setSortOrder(0)}>최신순</LightButton250>
+          <LightButton250 style={{marginLeft: "70px"}} onClick={latestType}>최신순</LightButton250>
         }
-        { sortOrder === 1 ?
+        { sortType === "oldest" ?
           <OrangeButton250>오래된순</OrangeButton250>
         :
-          <LightButton250 onClick={() => setSortOrder(1)}>오래된순</LightButton250>
+          <LightButton250 onClick={oldestType}>오래된순</LightButton250>
         }
       </div>
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 3fr)', marginTop: "40px", marginLeft: "50px" }}>
-        <PaintingCardTag onClick={handleClickCreatePaintingButton}><img src='/icons/plus_brown.svg' /></PaintingCardTag>
-        {loadedPaintingList.map((info) => (
+      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 3fr)', marginLeft: "50px" }}>
+        <PaintingCardTag style={{justifyContent: "center"}} onClick={handleClickCreatePaintingButton}><img src='/icons/plus_brown.svg' /></PaintingCardTag>
+        {getProcessedPaintingList().map((info) => (
           <div key={info.drawing_id} onClick={handleClickLoadPaintingButton}>
             <PaintingCardComponent info={info} />
           </div>
