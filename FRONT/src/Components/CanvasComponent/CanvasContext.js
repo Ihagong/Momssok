@@ -1,14 +1,15 @@
 import React, { useContext, useRef, useState, useEffect } from 'react'
 import { useRecoilState } from 'recoil'
-import { profileState, dictionaryPaintingState } from '../../store/atoms'
+import { profileState, dictionaryPaintingState, loadedPaintingInfoState } from '../../store/atoms'
 import { usePaintingCallback } from '../../Functions/usePaintingCallback'
 
 
 const CanvasContext = React.createContext()
 
-export const CanvasProvider = ({ children, loadedPainting, textures, offset, gesture, strokeColorIndex, strokeTextureIndex, strokeLineWidthIndex, isCamOn, width, height, partIndex, animal, isDone }) => {
+export const CanvasProvider = ({ children, textures, offset, gesture, strokeColorIndex, strokeTextureIndex, strokeLineWidthIndex, isCamOn, width, height, partIndex, animal, isDone }) => {
   const { savePaintingCallback, updatePaintingCallback } = usePaintingCallback()
   const [dictionaryPaintingList, setDictionaryPaintingList] = useRecoilState(dictionaryPaintingState)
+  const [loadedPaintingInfo, setLoadedPaintingInfo] = useRecoilState(loadedPaintingInfoState)
   const [isDrawing, setIsDrawing] = useState(false)
   const [isMotionDrawing, setIsMotionDrawing] = useState(false)
   const [imageIndex, setImageIndex] = useState(0)
@@ -16,6 +17,9 @@ export const CanvasProvider = ({ children, loadedPainting, textures, offset, ges
   const canvasRef = useRef(null)
   const contextRef = useRef(null)
   const [profileInfo, setProfileInfo] = useRecoilState(profileState)
+  
+  const loadedPainting = new Image()
+  loadedPainting.src = loadedPaintingInfo.imageURL
 
   useEffect(() => {
     const canvas = canvasRef.current
@@ -177,8 +181,8 @@ export const CanvasProvider = ({ children, loadedPainting, textures, offset, ges
     const imageURL = canvas.toDataURL()
     console.log(loadedPainting)
 
-    if (false) {
-      updatePaintingCallback('id', profileInfo.name, imageURL)
+    if (loadedPaintingInfo?.id) {
+      updatePaintingCallback(loadedPaintingInfo?.id, profileInfo.name, imageURL)
     } else {
       savePaintingCallback(imageURL, profileInfo.name)
     }
