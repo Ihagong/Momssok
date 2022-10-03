@@ -10,6 +10,7 @@ export const CanvasProvider = ({ children, loadedPainting, textures, offset, ges
   const { savePaintingCallback, updatePaintingCallback } = usePaintingCallback()
   const [dictionaryPaintingList, setDictionaryPaintingList] = useRecoilState(dictionaryPaintingState)
   const [isDrawing, setIsDrawing] = useState(false)
+  const [isMotionDrawing, setIsMotionDrawing] = useState(false)
   const [imageIndex, setImageIndex] = useState(0)
   const [imgSrcs, setImgSrcs] = useState([])
   const canvasRef = useRef(null)
@@ -28,6 +29,16 @@ export const CanvasProvider = ({ children, loadedPainting, textures, offset, ges
     context.lineWidth = strokeLineWidth[strokeLineWidthIndex]
   }, [strokeLineWidthIndex])
 
+  useEffect(() => {
+    const offsetX = offset.offsetX
+    const offsetY = offset.offsetY
+    if (gesture === 'indexGesture') {
+      if (offsetY >= 600 && offsetY <= 670 && offsetX >= 480 && offsetX < 550) {
+        clearCanvas()
+      }
+    }
+  }, [offset, gesture])
+  
   useEffect(() => {
     if (gesture === 'fistGesture') {
       startMotionDrawing()
@@ -90,7 +101,7 @@ export const CanvasProvider = ({ children, loadedPainting, textures, offset, ges
     const { offsetX, offsetY } = offset
     contextRef.current.beginPath()
     contextRef.current.moveTo(offsetX, offsetY)
-    setIsDrawing(true)
+    setIsMotionDrawing(true)
   }
 
   const finishDrawing = () => {
@@ -100,7 +111,7 @@ export const CanvasProvider = ({ children, loadedPainting, textures, offset, ges
 
   const finishMotionDrawing = () => {
     contextRef.current.closePath()
-    setIsDrawing(false)
+    setIsMotionDrawing(false)
   }
 
   const draw = ({ nativeEvent }) => {
@@ -121,7 +132,7 @@ export const CanvasProvider = ({ children, loadedPainting, textures, offset, ges
   }
 
   const motionDraw = () => {
-    if (!isDrawing || isDone) {
+    if (!isMotionDrawing || isDone) {
       return
     }
     const { offsetX, offsetY } = offset

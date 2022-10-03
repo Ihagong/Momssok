@@ -76,9 +76,9 @@ export function MotionDetectionComponent({ canvasWidth, canvasHeight, setOffset,
     }})
 
     hands.setOptions({
-      maxNumHands: 2,
+      maxNumHands: 1,
       modelComplexity: 1,
-      minDetectionConfidence: 0.5,
+      minDetectionConfidence: 0.8,
       minTrackingConfidence: 0.5
     })
 
