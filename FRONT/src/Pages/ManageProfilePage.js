@@ -3,7 +3,7 @@ import { useNavigate, useLocation } from  'react-router-dom'
 import { ChildProfileComponent } from '../Components/ChildProfileComponent'
 import { CreateProfileComponent } from '../Components/CreateProfileComponent'
 import { useRecoilState } from 'recoil'
-import { profileListState } from '../store/atoms'
+import { profileListState, profileState } from '../store/atoms'
 import { useAuthCallback } from '../Functions/useAuthCallback'
 import { ProfileFooter, ProfileBlock, ProfileTitle, JuaBrown, JuaOrange, ButtonTag3, ButtonTag4 } from '../Style/Components'
 
@@ -13,6 +13,7 @@ function ManageProfilePage() {
   const [profileList, setProfileList] = useRecoilState(profileListState)
   const [isEditProfile, setIsEditProfile] = useState(false)
   const navigate = useNavigate()
+  const [profileInfo, setProfileInfo] = useRecoilState(profileState)
   
   const { logOutCallback, profileListCallback } = useAuthCallback()
 
@@ -29,11 +30,13 @@ function ManageProfilePage() {
   }
 
   const handleClickChildProfile = (info) => {
+    console.log(info)
+    setProfileInfo(info)
+
     if (isEditProfile) {
-      console.log(info)
       navigate('/profile/edit', { state: info })
     } else {
-      navigate('/parent', { state: info })
+      navigate('/parent')
     }
   }
 
