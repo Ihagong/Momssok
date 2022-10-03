@@ -23,11 +23,15 @@ import CreateLetterPage from './Pages/CreateLetterPage'
 import LetterDetailPage from './Pages/LetterDetailPage'
 import FindPasswordPage from './Pages/FindPasswordPage'
 <<<<<<< HEAD
+<<<<<<< HEAD
 import AnimalDictionaryPage from './Pages/AnimalDictionaryPage'
 import CreateDictionaryPaintingPage from './Pages/CreateDictionaryPaintingPage'
 =======
 import ReportPage from './Pages/ReportPage'
 >>>>>>> bc337e9 ([S07P22D203-580|FRONT] 진단 리포트 페이지 구현 - 진단 리포트 페이지 생성)
+=======
+import ReportPage from './Pages/ReportPage'
+>>>>>>> bc337e9a9c1a41a5eb7bfb2cb39c2d1c958b4da8
 
 import { useRecoilState } from 'recoil'
 import { loadedPaintingState, logInTokenState } from './store/atoms'
@@ -68,11 +72,15 @@ function App() {
         <Route exact path='/letter/:letterId' element={ <LetterDetailPage /> } />
         <Route exact path='/findpassword' element={ <FindPasswordPage /> } />
 <<<<<<< HEAD
+<<<<<<< HEAD
         <Route exact path='/dictionary' element={ <AnimalDictionaryPage /> } />
         <Route exact path='/dictionary/create/:detailId' element={ <CreateDictionaryPaintingPage /> } />
 =======
         <Route exact path='/report' element={ <ReportPage /> } />
 >>>>>>> bc337e9 ([S07P22D203-580|FRONT] 진단 리포트 페이지 구현 - 진단 리포트 페이지 생성)
+=======
+        <Route exact path='/report' element={ <ReportPage /> } />
+>>>>>>> bc337e9a9c1a41a5eb7bfb2cb39c2d1c958b4da8
       </Routes>
     </Router>
   );
