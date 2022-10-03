@@ -4,7 +4,9 @@ import { PaintingCardTag, PaintingCardDateStyleTag, PaintingCardTagStyleTag } fr
 
 export function PaintingCardComponent({ info }) {
   // console.log("info :", 'data'+info.drawing_base64.substring(4))
-
+  let tagList = info.tag?.split(' ')
+  tagList?.splice(-1, 1)
+  
   return (
     <PaintingCardTag>
       <PaintingCardDateStyleTag>
@@ -12,10 +14,10 @@ export function PaintingCardComponent({ info }) {
       </PaintingCardDateStyleTag>
       <img src={ 'data'+info.drawing_base64.substring(4) } />
       <div style={{ display: 'flex', marginTop: "10px"}}>
-        {info.tag}
-      {/* {info.tags.map((tag, index) => (
+        {/* {info.tag} */}
+      { info.tag ? tagList.map((tag, index) => (
         <PaintingCardTagStyleTag key={index}>#{tag}</PaintingCardTagStyleTag>
-      ))} */}
+      )) : '' }
       </div>
     </PaintingCardTag>
   )
