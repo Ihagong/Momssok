@@ -2,6 +2,7 @@ package com.ihagong.momssok.controller;
 
 import com.ihagong.momssok.model.dto.PromiseInnerItemDto;
 import com.ihagong.momssok.model.dto.PromiseInputDto;
+import com.ihagong.momssok.model.dto.PromiseInputTestDto;
 import com.ihagong.momssok.model.dto.PromiseItemDto;
 import com.ihagong.momssok.service.PromiseService;
 import lombok.RequiredArgsConstructor;
@@ -25,11 +26,12 @@ public class PromiseController {
     private final PromiseService promiseService;
     private final ObjectMapper objectMapper;
     @RequestMapping(value = "/promise/savePromise", method = RequestMethod.POST)
-    public ResponseEntity<?> savePromise(@RequestBody(required = false) PromiseInputDto promise) throws IOException {
+    public ResponseEntity<?> savePromise(@RequestBody PromiseInputTestDto promise) throws IOException {
         if(promise.getName()!=null)
             System.out.println(promise.getName());
         else
             System.out.println("name null");
+        /*
         if(promise.getPromiseItems()!=null) {
             for (PromiseItemDto item : promise.getPromiseItems()) {
                 for (PromiseInnerItemDto inner : item.getTodoList())
@@ -37,7 +39,7 @@ public class PromiseController {
             }
         }
         else
-            System.out.println("body null");
+            System.out.println("body null");*/
         /*
         Map<Boolean,Object> result = promiseService.savePromise(promise);
 
