@@ -16,14 +16,15 @@ def predict(predict_sentence):
         segment_ids = segment_ids.long()
 
         valid_length = valid_length
-        print(label)
         label = label.long()
         out = model(token_ids, valid_length, segment_ids)
+        scores = 1 / (1 + np.exp(-out.detach().numpy()))
+        scores = scores[0]
+        sum_scores = sum(scores)
         test_eval = []
         for i in out:
             logits = i
             logits = logits.detach().numpy()
-            print(logits)
             if np.argmax(logits) == 0:
                 test_eval.append("분노")
             elif np.argmax(logits) == 1:
@@ -34,36 +35,11 @@ def predict(predict_sentence):
                 test_eval.append("행복")
             elif np.argmax(logits) == 4:
                 test_eval.append("슬픔")
-        # min_logits = min(logits)
-        # if min_logits < 0:
-        #     for q in range(len(logits)):
-        #         logits[q] += abs(min_logits)
-        # total = sum(logits)
-        # emotions_scores = []
-        # for w in range(len(logits)):
-        #     emotions_scores.append(round(((logits[w] / total) * 100), 2))
-        minus_emotion = 0
-        plus_idx = []
-        for emo in range(len(logits)):
-            if logits[emo] <0:
-                minus_emotion +=logits[emo]
-                logits[emo] = 0
-            else:
-                plus_idx.append(emo)
 
-        print(logits)
-        print(minus_emotion)
-        for idx in plus_idx:
-            logits[idx] = logits[idx]+abs(minus_emotion)
-        sum_logits = sum(logits)
-        for idx in plus_idx:
-            logits[idx] = (logits[idx]/sum_logits) * 100
+        for i in range(len(scores)):
+            scores[i] = round((scores[i]/sum_scores) * 100, 2)
 
-
-
-
-    # return emotions_scores, test_eval[0]
-    return logits, test_eval[0]
+    return scores, test_eval[0]
 
 
 
