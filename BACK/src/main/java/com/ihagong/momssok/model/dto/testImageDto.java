@@ -9,6 +9,7 @@ import java.util.List;
 @Getter
 @Setter
 public class testImageDto {
+    private int drawing_id;
     private String imageBase64;
     private String name;
     private MultipartFile multipartFile;
