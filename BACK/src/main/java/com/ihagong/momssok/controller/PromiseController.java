@@ -1,9 +1,6 @@
 package com.ihagong.momssok.controller;
 
-import com.ihagong.momssok.model.dto.PromiseInnerItemDto;
-import com.ihagong.momssok.model.dto.PromiseInputDto;
-import com.ihagong.momssok.model.dto.PromiseInputTestDto;
-import com.ihagong.momssok.model.dto.PromiseItemDto;
+import com.ihagong.momssok.model.dto.*;
 import com.ihagong.momssok.service.PromiseService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -16,6 +13,8 @@ import org.springframework.web.util.ContentCachingRequestWrapper;
 
 import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -25,49 +24,41 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 public class PromiseController {
     private final PromiseService promiseService;
     private final ObjectMapper objectMapper;
+
     @RequestMapping(value = "/promise/savePromise", method = RequestMethod.POST)
-    public ResponseEntity<?> savePromise(@RequestBody PromiseInputTestDto promise) throws IOException {
-        if(promise.getName()!=null)
-            System.out.println(promise.getName());
-        else
-            System.out.println("name null");
-        /*
-        if(promise.getPromiseItems()!=null) {
-            for (PromiseItemDto item : promise.getPromiseItems()) {
-                for (PromiseInnerItemDto inner : item.getTodoList())
-                    System.out.println(inner.getTodo());
-            }
-        }
-        else
-            System.out.println("body null");*/
-        /*
+    public ResponseEntity<?> savePromise(@RequestBody PromiseInputDto promise) throws IOException {
+
         Map<Boolean,Object> result = promiseService.savePromise(promise);
 
         if(result.get(true)!=null)
             return new ResponseEntity<>(result.get(true), HttpStatus.OK);
         else
             return new ResponseEntity<>(result.get(false), HttpStatus.BAD_REQUEST);
-*/
-        return new ResponseEntity<>("test", HttpStatus.OK);
+
 
     }
-    /*
-    @RequestMapping(value = "/promise/savePromise2", method = RequestMethod.POST)
-    public ResponseEntity<?> savePromise2(@RequestParam String name,@RequestParam PromiseInputDto todo) throws IOException {
-        System.out.println(promise.getName());
-        for (PromiseItemDto item:promise.getPromiseItems()){
-            for (PromiseInnerItemDto inner:item.getTodoList())
-                System.out.println(inner.getTodo());
-        }
-        Map<Boolean,Object> result = promiseService.savePromise(promise);
 
+    @RequestMapping(value = "/promise/savePromise2", method = RequestMethod.POST)
+    public ResponseEntity<?> savePromise2(@RequestParam String name,@RequestParam List<String> inputs) throws IOException {
+        List<PromiseInputItemDto> todoList=new ArrayList<>();
+
+        for(String input:inputs){
+            String[] input_split=input.split("&");
+            PromiseInputItemDto dto=new PromiseInputItemDto();
+            dto.setIndex1(input_split[0]);
+            dto.setIndex2(input_split[1]);
+            dto.setTodo(input_split[2]);
+            dto.setGift(input_split[3]);
+            todoList.add(dto);
+        }
+        Map<Boolean,Object> result = promiseService.savePromise2(name,todoList);
         if(result.get(true)!=null)
             return new ResponseEntity<>(result.get(true), HttpStatus.OK);
         else
             return new ResponseEntity<>(result.get(false), HttpStatus.BAD_REQUEST);
 
 
-    }*/
+    }
     @RequestMapping(value = "/promise/lookupAllPromise", method = RequestMethod.GET)
     public ResponseEntity<?> lookupAllPromise(@RequestParam String name) throws IOException, ClassNotFoundException {
 
