@@ -1,7 +1,9 @@
 package com.ihagong.momssok.controller;
 
+import com.ihagong.momssok.model.dto.DrawingDto;
 import com.ihagong.momssok.model.dto.ReportDto;
 import com.ihagong.momssok.model.dto.ReportInputDto;
+import com.ihagong.momssok.service.DrawingService;
 import com.ihagong.momssok.service.ReportService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -20,6 +22,7 @@ public class ReportController {
     private final String fail = "FAIL";
     private final String error = "ERROR";
     private final ReportService reportService;
+    private final DrawingService drawingService;
 
     @PostMapping("/daily")
     public Map<String, Object> dailyEmotion(@RequestBody ReportInputDto reportInput){
@@ -123,30 +126,35 @@ public class ReportController {
     }
 
 
-//    @GetMapping("/word")
-//    public Map<String, Object> wordCloud(@RequestParam int drawing_id){
-//        Map<String, Object> result = new HashMap<>();
-//
-//        try {
-//            DrawingDto drawing = reportService.lookupDrawing(drawing_id);
-//
-//            String painting = reportService.getDrawing(drawing_id);  //이미지를 가져온다
-//
-//            byte[] file = FileUtils.readFileToByteArray(new File(painting));  //bytearray로 변환
-//            String base64 = "date:image/png;base64," + Base64.getEncoder().encodeToString(file);  //base64로 인코딩
-//            drawing.setDrawing_base64(base64);
-//
-//            if(drawing != null){
-//                result.put("statue", success);
-//                result.put("data", drawing);
-//            }else{
-//                result.put("status", fail);
-//            }
-//        } catch (Exception e) {
-//            result.put("status", error);
-//            result.put("message", e.toString());
-//        }
-//
-//        return result;
-//    }
+    @GetMapping("/word")
+    public Map<String, Object> wordCloud(@RequestParam String name){
+        Map<String, Object> result = new HashMap<>();
+        List<DrawingDto> drawingList = new ArrayList<>();
+        StringBuffer tag = new StringBuffer();
+
+        try {
+            String email= SecurityContextHolder.getContext().getAuthentication().getName();
+            String email_name = email + "_" + name;
+
+            drawingList = drawingService.lookupAllDrawing(email_name);
+
+            if(drawingList != null){
+
+                for(DrawingDto drawing:drawingList){
+                    String t = drawing.getTag();
+                    tag.append(t);
+                }
+
+                result.put("statue", success);
+                result.put("data", tag.toString());
+            }else{
+                result.put("status", fail);
+            }
+        } catch (Exception e) {
+            result.put("status", error);
+            result.put("message", e.toString());
+        }
+
+        return result;
+    }
 }
