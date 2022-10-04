@@ -25,7 +25,7 @@ public class DiaryController {
     private final DiaryService diaryService;
     private final TestService testService;
 
-    @GetMapping("/searchDiaryCalendar")
+    @PostMapping("/searchDiaryCalendar")
     public Map<String, Object> lookupDiaryCalender(  //'2022-09-21 05:29:35' 년월이 일치하는 일기의 emotion을 모두 가져온다
             @RequestBody DiaryDayDto diary){  //date("2022-09"), name을 받는다
         Map<String, Object> result = new HashMap<>();
@@ -53,7 +53,7 @@ public class DiaryController {
 
     }
 
-    @GetMapping("/searchDiaryGallery")
+    @PostMapping("/searchDiaryGallery")
     public Map<String, Object> lookupDiaryGallery(@RequestBody DiaryDayDto diary){
         Map<String, Object> result = new HashMap<>();
         List<DiaryDto> diaryList = new ArrayList<>();
