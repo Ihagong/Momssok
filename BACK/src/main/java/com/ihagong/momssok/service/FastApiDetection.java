@@ -80,8 +80,14 @@ public class FastApiDetection {
 
         DrawingTagDto drawing = new DrawingTagDto();
         drawing.setTag(tag.toString());
-        String name = dto.getName();
-        drawing.setDrawing_id(drawingMapper.getImageId(name));
+
+        if (dto.getDrawing_id() != 0) {
+            drawing.setDrawing_id(dto.getDrawing_id());
+        }else{
+            String name = dto.getName();
+            drawing.setDrawing_id(drawingMapper.getImageId(name));
+        }
+
         int result = drawingMapper.saveTag(drawing);
         if(result == 1){
             System.out.println("태그 저장 완료");
