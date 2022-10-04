@@ -1,10 +1,10 @@
 
 FROM python:3.9
 
-WORKDIR /app/
+WORKDIR /app2/
 
-COPY ./fastApi2.py /app/
-COPY ./ /app/
+COPY ./fastApi2.py /app2/
+COPY ./ /app2/
 
 RUN pip install -r requirements.txt
 
