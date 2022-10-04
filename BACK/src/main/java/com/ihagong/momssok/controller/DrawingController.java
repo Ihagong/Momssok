@@ -1,9 +1,6 @@
 package com.ihagong.momssok.controller;
 
-import com.ihagong.momssok.model.dto.DrawingApiDto;
-import com.ihagong.momssok.model.dto.DrawingDto;
-import com.ihagong.momssok.model.dto.DrawingOutDto;
-import com.ihagong.momssok.model.dto.testImageDto;
+import com.ihagong.momssok.model.dto.*;
 import com.ihagong.momssok.service.DrawingService;
 import com.ihagong.momssok.service.TestService;
 import lombok.RequiredArgsConstructor;
@@ -136,9 +133,13 @@ public class DrawingController {
                 drawing.setImage_path(filePath);
                 int res = drawingService.saveDrawing(drawing);  //이미지 저장
                 if (res == 1) {
-                    result.put("status", success);
+                    DrawingInputDto drawingInputDto = new DrawingInputDto();
                     int id = drawingService.getImageId(name);
-                    result.put("data", id);
+                    drawingInputDto.setDrawing_id(id);
+                    drawingInputDto.setDrawing_base64(drawing.getDrawing_base64());
+
+                    result.put("status", success);
+                    result.put("data", drawingInputDto);
 
                     testImageDto dto = new testImageDto();
                     dto.setImageBase64(base64Source);
