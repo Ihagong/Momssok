@@ -7,8 +7,9 @@ import java.io.Serializable;
 
 @Getter
 @Setter
-public class PromiseInnerItemDto  implements Serializable{
-    private int id;
+public class PromiseInputItemDto{
+    private String index1;
+    private String index2;
     private String todo;
-    private int done;
+    private String gift;
 }
