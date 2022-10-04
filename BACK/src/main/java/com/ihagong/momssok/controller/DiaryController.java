@@ -71,7 +71,7 @@ public class DiaryController {
                     String painting = drawingService.getDrawing(item.getDrawing_id());  //이미지를 가져온다
 
                     byte[] file = FileUtils.readFileToByteArray(new File(painting));  //bytearray로 변환
-                    String base64 = "date:image/png;base64," + Base64.getEncoder().encodeToString(file);  //base64로 인코딩
+                    String base64 = "data:image/png;base64," + Base64.getEncoder().encodeToString(file);  //base64로 인코딩
                     item.setDrawing_base64(base64);
                 }
                 result.put("status", success);
