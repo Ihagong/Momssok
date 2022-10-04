@@ -186,6 +186,9 @@ public class PromiseService {
                 for(PromiseInnerItemDto inner:item.getTodoList()){
                     if(item.getId()==index.charAt(0)-'0'&&inner.getId()==index.charAt(2)-'0'){
                         inner.setTodo(new_todo);
+                        if(gift!=null){
+                            item.setGift(gift);
+                        }
                         updated=true;
                         break loop;
                     }
@@ -199,6 +202,9 @@ public class PromiseService {
                         inner.setId(index.charAt(2)-'0');
                         inner.setTodo(new_todo);
                         inner.setDone(0);
+                        if(gift!=null) {
+                            dto.setGift(gift);
+                        }
                         dto.getTodoList().add(inner);
                         exist=true;
                         updated=true;
@@ -231,7 +237,7 @@ public class PromiseService {
         promise.setPromise_list(serializedItems);
         if(promiseMapper.updatePromise(promise)==1&&updated){
             resultBody.put("message", "업데이트 완료");
-            result.put(false, resultBody);
+            result.put(true, resultBody);
             return result;
 
         }
