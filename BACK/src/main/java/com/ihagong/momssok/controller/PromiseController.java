@@ -43,7 +43,7 @@ public class PromiseController {
         List<PromiseInputItemDto> todoList=new ArrayList<>();
 
         for(String input:inputs){
-            String[] input_split=input.split("&");
+            String[] input_split=input.split("%^&");
             PromiseInputItemDto dto=new PromiseInputItemDto();
             dto.setIndex1(input_split[0]);
             dto.setIndex2(input_split[1]);
