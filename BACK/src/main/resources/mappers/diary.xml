@@ -36,12 +36,12 @@
     <select id="getId" parameterType="String" resultType="int">
         SELECT id FROM diary
         WHERE email_name = #{email_name}
-        ORDER BY `date` DESC LIMIT 1
+        ORDER BY `date` DESC, id DESC LIMIT 1
     </select>
 
     <update id="saveEmotion" parameterType="emotionDto">
-        UPDATE diary, drawing_id
-        SET emotion = #{emotion}, drawing_id = #{drawing_id}
+        UPDATE diary
+        SET emotion = #{emotion}
         WHERE id = #{id}
     </update>
 

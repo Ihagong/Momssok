@@ -9,10 +9,10 @@
     </select>
 
     <select id="lookupWeekly" parameterType="ReportInputDto" resultType="ReportDto">
-        SELECT DATEPART(WEEK, '%Y-%m-%d'), d.emotion, d.date
+        SELECT d.emotion, d.date
         FROM diary d
         WHERE email_name = #{email_name}
-        GROUP BY DATEPART(WEEK, '%Y-%m-%d')
+          AND DATE(d.date) BETWEEN #{startDate} AND #{finishDate}
     </select>
 
     <select id="lookupMontly" parameterType="ReportInputDto" resultType="ReportDto">

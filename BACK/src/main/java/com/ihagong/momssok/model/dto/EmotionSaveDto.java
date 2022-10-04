@@ -6,6 +6,6 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 public class EmotionSaveDto {
+    private int id;
     private String content;
-    private int diary_id;
 }
