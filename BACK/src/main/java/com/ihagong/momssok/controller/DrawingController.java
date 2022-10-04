@@ -219,6 +219,13 @@ public class DrawingController {
                 drawing.setImage_path(filePath);
                 int res = drawingService.updateDrawing(drawing);  //수정하려는 사용자가 현재 사용자와 일치한지 확인
                 if(res == 1){
+                    int id = drawingService.getImageId(name);
+                    result.put("data", id);
+
+                    testImageDto dto = new testImageDto();
+                    dto.setImageBase64(base64Source);
+                    dto.setName(name);
+                    testService.ApiTestDetection(dto);
                     result.put("status", success);
                 }else{
                     result.put("status", fail);
