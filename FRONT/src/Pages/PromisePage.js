@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { BrownText100, LightButton120, LetterPageHeader, ChildProfileTag, PromiseBoardTag, PromiseItemTag } from '../Style/Components'
 import { PromiseModalComponent } from '../Components/PromiseModalComponent'
 import { useRecoilState } from 'recoil'
-import { profileState, promiseItemsState } from '../store/atoms'
+import { parentActiveState, profileState, promiseItemsState } from '../store/atoms'
 import { usePromiseCallback } from '../Functions/usePromiseCallback'
 import { useNavigate } from 'react-router'
 
@@ -10,8 +10,12 @@ import { useNavigate } from 'react-router'
 function PromisePage() {
   const [profileInfo, setProfileInfo] = useRecoilState(profileState)
   const [promiseItems, setPromiseItems] = useRecoilState(promiseItemsState)
-  const [modalOpen, setModalOpen] = useState(false);
-  const [promiseItem, setPromiseItem] = useState({});
+  const [parentActive, setParentActive] = useRecoilState(parentActiveState)
+  const [modalOpen, setModalOpen] = useState(false)
+  const [promiseBoard, setPromiseBoard] = useState([])
+  const [promiseItem, setPromiseItem] = useState({})
+  const [doneList, setDoneList] = useState([])
+
   const { getAllPromiseCallback } = usePromiseCallback()
   const navigate = useNavigate()
 
@@ -30,7 +34,7 @@ function PromisePage() {
   // }
 
   const handleClickPromiseItem = (id) => {
-    setPromiseItem(promiseItems[id])
+    setPromiseItem(promiseItems[id-1])
     setModalOpen(true)
     setPromiseItemId(id)
     // setModalOpen(true)
@@ -44,40 +48,28 @@ function PromisePage() {
     navigate('/profile')
   }
 
+  const length = (promiseItems.length < 15 ? promiseItems.length+1 : 15)
+
+
 {/* <PaintingToolModalComponent modalOpen={paintingToolModalOpen} setPaintingToolModalOpen={setPaintingToolModalOpen} motionTextureIndex={strokeTextureIndex} offset={offset} gesture={gesture}
           changeStrokeTexture={changeStrokeTexture} changeStrokeLineWidthIndex={changeStrokeLineWidthIndex} onClick={() => setModalOpen(false)} /> */}
           // transform: rotate(8deg);
-  const promiseBoard = () => {
-    const result = []
-    const length = (promiseItems.length < 15 ? promiseItems.length+1 : 15)
-    for (let i = 0; i < 15; i++) {
-      result.push(
-        <PromiseItemTag style={{ backgroundColor: i < length ? null : 'var(--Beige-Stroke)',
-          cursor: i < length ? 'pointer' : 'default',
-          transform: i%2 ? 'rotate(8deg)' : 'rotate(-6deg)' }}
-          key={i} onClick={() => i < length ? handleClickPromiseItem(i) : null}>
-          { i === length-1 ? <img style={{ width: '50px', height: '50px' }} src='/icons/plus_brown.svg'></img> : null }
-        </PromiseItemTag>
-      )
-      // if (i%2) {
-      //   result.push(
-      //     <PromiseItemTag style={{ backgroundColor: i < length ? null : 'var(--Beige-Stroke)', cursor: i < length ? 'pointer' : 'default' }} key={i} onClick={() => i < length ? handleClickPromiseItem(i) : null}>
-      //       { i === length-1 ?
-      //         <img style={{ width: '50px', height: '50px' }} src='/icons/plus_brown.svg'></img>
-      //         : null }
-      //     </PromiseItemTag>
-      //   )
-      // } else {
-      //   result.push(
-      //     <PromiseItemTag style={{ backgroundColor: i < length ? null : 'var(--Beige-Stroke)', cursor: i < length ? 'pointer' : 'default' }}  key={i} onClick={() => i < length ? handleClickPromiseItem(i) : null}>
-      //       { i === length-1 ?
-      //         <img style={{ width: '50px', height: '50px' }} src='/icons/plus_brown.svg'></img>
-      //         : null }
-      //     </PromiseItemTag>
-      //   )
-      }
-    return result
-  }
+  // const promiseBoard = () => {
+  //   const result = []
+  //   const length = (promiseItems.length < 15 ? promiseItems.length+1 : 15)
+  //   for (let i = 0; i < 15; i++) {
+  //     result.push(
+  //       <PromiseItemTag style={{ backgroundColor: i < length ? null : 'var(--Beige-Stroke)',
+  //         cursor: i < length ? 'pointer' : 'default',
+  //         transform: i%2 ? 'rotate(8deg)' : 'rotate(-6deg)' }}
+  //         key={i} onClick={() => i < length ? handleClickPromiseItem(i+1) : null}>
+  //         { promiseItems[i]?.done ? <img style={{ width: '80px', height: '80px' }} src='/icons/logo.svg'></img> : null }
+  //         { i === length-1 ? <img style={{ width: '50px', height: '50px' }} src='/icons/plus_brown.svg'></img> : null }
+  //       </PromiseItemTag>
+  //     )
+  //   }
+  //   return result
+  // }
 
   return (
     <>
@@ -99,7 +91,17 @@ function PromisePage() {
         </LetterPageHeader>
         <div style={{ display: 'flex', marginTop: "30px" }}>
           <PromiseBoardTag>
-            { promiseBoard() }
+            {[...Array(15)].map((_, i) => {
+              return (
+                <PromiseItemTag style={{ backgroundColor: (i < length-1 || (i == length-1 && parentActive)) ? null : 'var(--Beige-Stroke)',
+                  cursor: (i < length-1 || (i == length-1 && parentActive)) ? 'pointer' : 'default',
+                  transform: i%2 ? 'rotate(8deg)' : 'rotate(-6deg)' }}
+                  key={i} onClick={() => (i < length-1 || (i == length-1 && parentActive)) ? handleClickPromiseItem(i+1) : null}>
+                  { promiseItems[i]?.done ? <img style={{ width: '80px', height: '80px' }} src='/icons/logo.svg'></img> : null }
+                  { (parentActive && i === length-1) ? <img style={{ width: '50px', height: '50px' }} src='/icons/plus_brown.svg'></img> : null }
+                </PromiseItemTag>
+              )
+            })}
           </PromiseBoardTag>
         </div>
       </div>
