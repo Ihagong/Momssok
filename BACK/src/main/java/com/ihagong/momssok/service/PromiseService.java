@@ -222,6 +222,7 @@ public class PromiseService {
                     promiseItem.setDone(0);
                     items.add(promiseItem);
                     updated=true;
+
                 }
 
 
