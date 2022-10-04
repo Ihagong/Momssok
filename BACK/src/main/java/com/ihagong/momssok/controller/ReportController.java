@@ -94,8 +94,8 @@ public class ReportController {
     }
 
 
-    @GetMapping("/montly")
-    public Map<String, Object> montlyEmotion(@RequestBody ReportInputDto reportInput){
+    @PostMapping("/monthly")
+    public Map<String, Object> monthlyEmotion(@RequestBody ReportInputDto reportInput){
 
         Map<String, Object> result = new HashMap<>();
         List<ReportDto> reportList = new ArrayList<>();
@@ -106,7 +106,7 @@ public class ReportController {
             String email_name = email + "_" + name;
             reportInput.setEmail_name(email_name);
 
-            reportList = reportService.lookupMontly(reportInput);
+            reportList = reportService.lookupMonthly(reportInput);
 
             if(reportList != null){
                 result.put("statue", success);
