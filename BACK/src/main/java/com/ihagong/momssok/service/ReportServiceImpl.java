@@ -27,7 +27,7 @@ public class ReportServiceImpl implements ReportService{
     }
 
     @Override
-    public List<ReportDto> lookupMontly(ReportInputDto reportInput) throws Exception {
-        return reportMapper.lookupMontly(reportInput);
+    public List<ReportDto> lookupMonthly(ReportInputDto reportInput) throws Exception {
+        return reportMapper.lookupMonthly(reportInput);
     }
 }
