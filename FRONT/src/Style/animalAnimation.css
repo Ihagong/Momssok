@@ -3,7 +3,7 @@
     transform: rotate(0deg);
   }
   to {
-    transform: rotate(15deg) translate(-35px, 10px);
+    transform: rotate(15deg) translate(-30px, 10px);
   }
 }
 
@@ -12,7 +12,7 @@
     transform: rotate(0deg);
   }
   to {
-    transform: rotate(-15deg) translate(35px, 10px);
+    transform: rotate(-15deg) translate(30px, 10px);
   }
 }
 

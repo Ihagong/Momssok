@@ -583,28 +583,26 @@ export const PaintingToolTag = styled.div`
 export const PaintingCardTag = styled.div`
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: start;
   align-items: center;
-  color: var(--Brown-Text);
+  color: var(--Brown-LightText);
   background-color: var(--White-Block);
   box-shadow: 0px 5px 5px #E6E6E6;
-
-  border-radius: 30px;
-  width: 200px;
+  border-radius: 20px;
+  width: 240px;
   height: 200px;
-  margin-left: 30px;
-  margin-right: 30px;
+  margin-top: 30px;
   font-family: 'Jua', sans-serif;
-  font-size: 28px;
   cursor: pointer;
   img {
     height: 100px;
   }
 `
 
-export const PaintingCardDateStyleTag = styled.p`
+export const PaintingCardDateStyleTag = styled.div`
   font-size: 26px;
-  margin: 0;
+  margin-top: 15px;
+  margin-bottom: 15px;
 `
 
 export const PaintingCardTagStyleTag = styled.p`
@@ -660,27 +658,29 @@ export const CalendarDateTag = styled.div`
   }
 `
 
-export const PromiseItemTag1 = styled.div`
+export const PromiseItemTag = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
   width: 160px;
   height: 120px;
   background-color: var(--Beige-Light);
   border-radius: 30px;
   border: 0;
   transform: rotate(8deg);
-  cursor: pointer;
   user-select: auto;
 `
 
-export const PromiseItemTag2 = styled.div`
-  width: 160px;
-  height: 120px;
-  background-color: var(--Beige-Light);
-  border-radius: 30px;
-  border: 0;
-  transform: rotate(-6deg);
-  cursor: pointer;
-  user-select: auto;
-`
+// export const PromiseItemTag2 = styled.div`
+//   width: 160px;
+//   height: 120px;
+//   background-color: var(--Beige-Light);
+//   border-radius: 30px;
+//   border: 0;
+//   transform: rotate(-6deg);
+//   cursor: pointer;
+//   user-select: auto;
+// `
 
 export const PromiseBoardTag = styled.div`
   display: grid;
@@ -847,8 +847,7 @@ export const DictionaryCardComponentTag = styled.div`
   border-radius: 20px;
   width: 200px;
   height: 200px;
-  padding: 20px;
-  margin: 10px;
+  padding: 10px;
   color: var(--Brown-Text);
   font-family: 'Dongle', sans-serif;
   font-size: 60px;
@@ -860,8 +859,6 @@ export const DictionaryCardComponentTag = styled.div`
 
 export const DictionaryDetailComponentTag = styled.div`
   display: flex;
-  flex-direction: column;
-  align-items: center;
   background-color: var(--White-Block);
   border: 1px solid var(--Beige-Stroke);
   border-radius: 20px;
@@ -1397,8 +1394,5 @@ export const DiarySectionButtonTag = styled.div`
 // Dictionary Page
 
 export const DictionarySectionComponentTag = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
   margin-top: 20px;
 `

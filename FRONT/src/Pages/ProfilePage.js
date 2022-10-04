@@ -3,13 +3,14 @@ import { ProfileEditFooter, ProfileChildren, ProfileFooter, ProfileBlock, Profil
 import { useNavigate } from  'react-router-dom'
 import { ChildProfileComponent } from '../Components/ChildProfileComponent'
 import { useRecoilState } from 'recoil'
-import { profileListState, profileState } from '../store/atoms'
+import { profileListState, profileState, parentActiveState } from '../store/atoms'
 import { useAuthCallback } from '../Functions/useAuthCallback'
 
 
 function ProfilePage() {
   const [profileList, setProfileList] = useRecoilState(profileListState)
   const [profile, setProfile] = useRecoilState(profileState)
+  const [parentActive, setParentActive] = useRecoilState(parentActiveState)
   const navigate = useNavigate()
   
   const { logOutCallback, profileListCallback } = useAuthCallback()
@@ -26,11 +27,13 @@ function ProfilePage() {
       }
     })
     setProfile(parentProfile)
+    setParentActive(true)
     navigate('/profile/manage')
   }
 
   const handleClickChildProfile = (info) => {
     setProfile(info)
+    setParentActive(false)
     navigate('/child')
   }
 

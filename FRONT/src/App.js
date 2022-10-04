@@ -24,17 +24,14 @@ import LetterDetailPage from './Pages/LetterDetailPage'
 import FindPasswordPage from './Pages/FindPasswordPage'
 import AnimalDictionaryPage from './Pages/AnimalDictionaryPage'
 import CreateDictionaryPaintingPage from './Pages/CreateDictionaryPaintingPage'
+import ReportPage from './Pages/ReportPage'
 
 import { useRecoilState } from 'recoil'
-import { loadedPaintingState, logInTokenState } from './store/atoms'
-
-const loadedPainting = new Image()
+import { logInTokenState } from './store/atoms'
 
 
 function App() {
   const [logInToken, setLogInToken] = useRecoilState(logInTokenState)
-  const [loadedPaintingSrc, setLoadedPaintingSrc] = useRecoilState(loadedPaintingState)
-  loadedPainting.src = loadedPaintingSrc
 
 
   return (
@@ -49,7 +46,7 @@ function App() {
         <Route exact path='/profile/create' element={ <CreateProfilePage /> } />
         <Route exact path='/profile/edit' element={ <EditProfilePage /> } />
         <Route exact path='/child' element={ <ChildMainPage /> } />
-        <Route exact path='/painting/create' element={ <CreatePaintingPage loadedPainting={loadedPainting} /> } />
+        <Route exact path='/painting/create' element={ <CreatePaintingPage /> } />
         <Route exact path='/painting/load' element={ <LoadPaintingPage /> } />
         <Route exact path='/painting/:paintingId/edit' element={ <EditPaintingPage /> } />
         <Route exact path='/diary/create' element={ <CreateDiaryPage /> } />
@@ -65,6 +62,7 @@ function App() {
         <Route exact path='/findpassword' element={ <FindPasswordPage /> } />
         <Route exact path='/dictionary' element={ <AnimalDictionaryPage /> } />
         <Route exact path='/dictionary/create/:detailId' element={ <CreateDictionaryPaintingPage /> } />
+        <Route exact path='/report' element={ <ReportPage /> } />
       </Routes>
     </Router>
   );
