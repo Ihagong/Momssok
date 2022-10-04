@@ -351,6 +351,7 @@ export const ChildSubMenuButtonTag = styled.div`
 `
 
 export const LogoTag = styled.img`
+  cursor: pointer;
   width: 160px;
 `
 

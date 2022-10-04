@@ -24,14 +24,7 @@ function PromisePage() {
     getAllPromiseCallback(profileInfo.name)
   }, [])
 
-  // const [modalOpen, setModalOpen] = useRecoilState(modalOpenState)
   const [promiseItemId, setPromiseItemId] = useState(0)
-
-  // const handleClickModalClose = () => {
-  //   setModalOpen(false)
-  //   // setPaintingToolModalOpen(false)
-  //   // setColorPickerModalOpen(false)
-  // }
 
   const handleClickPromiseItem = (id) => {
     setPromiseItem(promiseItems[id-1])
@@ -49,27 +42,6 @@ function PromisePage() {
   }
 
   const length = (promiseItems.length < 15 ? promiseItems.length+1 : 15)
-
-
-{/* <PaintingToolModalComponent modalOpen={paintingToolModalOpen} setPaintingToolModalOpen={setPaintingToolModalOpen} motionTextureIndex={strokeTextureIndex} offset={offset} gesture={gesture}
-          changeStrokeTexture={changeStrokeTexture} changeStrokeLineWidthIndex={changeStrokeLineWidthIndex} onClick={() => setModalOpen(false)} /> */}
-          // transform: rotate(8deg);
-  // const promiseBoard = () => {
-  //   const result = []
-  //   const length = (promiseItems.length < 15 ? promiseItems.length+1 : 15)
-  //   for (let i = 0; i < 15; i++) {
-  //     result.push(
-  //       <PromiseItemTag style={{ backgroundColor: i < length ? null : 'var(--Beige-Stroke)',
-  //         cursor: i < length ? 'pointer' : 'default',
-  //         transform: i%2 ? 'rotate(8deg)' : 'rotate(-6deg)' }}
-  //         key={i} onClick={() => i < length ? handleClickPromiseItem(i+1) : null}>
-  //         { promiseItems[i]?.done ? <img style={{ width: '80px', height: '80px' }} src='/icons/logo.svg'></img> : null }
-  //         { i === length-1 ? <img style={{ width: '50px', height: '50px' }} src='/icons/plus_brown.svg'></img> : null }
-  //       </PromiseItemTag>
-  //     )
-  //   }
-  //   return result
-  // }
 
   return (
     <>
@@ -93,11 +65,11 @@ function PromisePage() {
           <PromiseBoardTag>
             {[...Array(15)].map((_, i) => {
               return (
-                <PromiseItemTag style={{ backgroundColor: (i < length-1 || (i == length-1 && parentActive)) ? null : 'var(--Beige-Stroke)',
-                  cursor: (i < length-1 || (i == length-1 && parentActive)) ? 'pointer' : 'default',
+                <PromiseItemTag style={{ backgroundColor: (i < length-1 || (i === length-1 && parentActive)) ? null : 'var(--Beige-Stroke)',
+                  cursor: (i < length-1 || (i === length-1 && parentActive)) ? 'pointer' : 'default',
                   transform: i%2 ? 'rotate(8deg)' : 'rotate(-6deg)' }}
-                  key={i} onClick={() => (i < length-1 || (i == length-1 && parentActive)) ? handleClickPromiseItem(i+1) : null}>
-                  { promiseItems[i]?.done ? <img style={{ width: '80px', height: '80px' }} src='/icons/logo.svg'></img> : null }
+                  key={i} onClick={() => (i < length-1 || (i === length-1 && parentActive)) ? handleClickPromiseItem(i+1) : null}>
+                  { promiseItems[i]?.done ? <img style={{ width: '80px', height: '80px' }} src='/icons/stamp.png'></img> : null }
                   { (parentActive && i === length-1) ? <img style={{ width: '50px', height: '50px' }} src='/icons/plus_brown.svg'></img> : null }
                 </PromiseItemTag>
               )
