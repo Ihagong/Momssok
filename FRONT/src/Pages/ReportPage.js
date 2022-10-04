@@ -1,16 +1,22 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useNavigate, useLocation } from  'react-router-dom'
 import { ParentInfo, ParentTitle, ProfileBlock, JuaBrown, JuaBrownLight, LogoTag, EditProfileButtonTag, LightButton250, OrangeButton250 } from '../Style/Components'
 
 import { useRecoilState } from 'recoil'
 import { profileState, parentActiveState } from '../store/atoms'
+import { useReportCallback } from '../Functions/useReportCallback'
 
 
 function ReportPage() {
   const [profileInfo, setProfileInfo] = useRecoilState(profileState)
   const [parentActive, setParentActive] = useRecoilState(parentActiveState)
+  const { getDailyEmotionCallback } = useReportCallback()
   const [age, setAge] = useState(new Date().getFullYear() - new Date(profileInfo.birthday).getFullYear() + 1)
   const [selectedTab, setSelectedTab] = useState(0)
+
+  useEffect(() => {
+    getDailyEmotionCallback(profileInfo.name, '2022-10-04')
+  }, [])
   
   const handleClickParentButton = () => {
   }
