@@ -84,10 +84,10 @@ public class PromiseController {
     }
 
     @RequestMapping(value = "/promise/updatePromise", method = RequestMethod.PUT)
-    public ResponseEntity<?> updatePromise(@RequestParam String name,@RequestParam String index,@RequestParam String newTodo) throws IOException, ClassNotFoundException {
+    public ResponseEntity<?> updatePromise(@RequestParam String name,@RequestParam String index,@RequestParam String newTodo,@RequestParam(required = false) String gift) throws IOException, ClassNotFoundException {
 
 
-        Map<Boolean,Object> result = promiseService.updatePromise(name,index,newTodo);
+        Map<Boolean,Object> result = promiseService.updatePromise(name,index,newTodo,gift);
 
         if(result.get(true)!=null)
             return new ResponseEntity<>(result.get(true), HttpStatus.OK);
