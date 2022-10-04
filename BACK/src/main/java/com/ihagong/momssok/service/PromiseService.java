@@ -159,7 +159,7 @@ public class PromiseService {
         result.put(true, resultBody);
         return result;
     }
-    public Map<Boolean,Object> updatePromise(String name,String index,String new_todo) throws IOException, ClassNotFoundException {
+    public Map<Boolean,Object> updatePromise(String name,String index,String new_todo,String gift) throws IOException, ClassNotFoundException {
         Map<Boolean, Object> result = new HashMap<>();
         Map<String, Object> resultBody = new HashMap<>();
         String email = SecurityContextHolder.getContext().getAuthentication().getName();
@@ -191,6 +191,39 @@ public class PromiseService {
                     }
                 }
             }
+        if(updated==false){
+                boolean exist=false;
+                for(PromiseItemDto dto:items){
+                    if(dto.getId()==index.charAt(0)-'0'){
+                        PromiseInnerItemDto inner=new PromiseInnerItemDto();
+                        inner.setId(index.charAt(2)-'0');
+                        inner.setTodo(new_todo);
+                        inner.setDone(0);
+                        dto.getTodoList().add(inner);
+                        exist=true;
+                        updated=true;
+                        break;
+                    }
+
+                }
+                if(exist==false){
+                    PromiseItemDto promiseItem=new PromiseItemDto();
+                    promiseItem.setId(index.charAt(0)-'0');
+                    List<PromiseInnerItemDto> todoList = new ArrayList<>();
+                    PromiseInnerItemDto inner=new PromiseInnerItemDto();
+                    inner.setId(index.charAt(2)-'0');
+                    inner.setTodo(new_todo);
+                    inner.setDone(0);
+                    todoList.add(inner);
+                    promiseItem.setTodoList(todoList);
+                    promiseItem.setGift(gift);
+                    promiseItem.setDone(0);
+                    items.add(promiseItem);
+                    updated=true;
+                }
+
+
+        }
         ByteArrayOutputStream baos= new ByteArrayOutputStream();
         ObjectOutputStream oos = new ObjectOutputStream(baos);
         oos.writeObject(items);
