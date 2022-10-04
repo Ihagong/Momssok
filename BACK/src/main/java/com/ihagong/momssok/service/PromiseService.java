@@ -163,12 +163,8 @@ public class PromiseService {
         Map<Boolean, Object> result = new HashMap<>();
         Map<String, Object> resultBody = new HashMap<>();
         String email = SecurityContextHolder.getContext().getAuthentication().getName();
-        if((index.length()==3&&(!Character.isDigit(index.charAt(0))||index.charAt(1)!='-'||!Character.isDigit(index.charAt(2)))) ||
-                index.length()==1&&!Character.isDigit(index.charAt(0)) || index.length()!=3){
-            resultBody.put("message", "index 입력 오류");
-            result.put(false, resultBody);
-            return result;
-        }
+        String index2[]=index.split("-");
+
             PromiseDBDto promise = promiseMapper.selectPromise(email+"_"+name);
             if(promise==null){
                 resultBody.put("message", "진행중인 약속이 없습니다.");
@@ -184,7 +180,7 @@ public class PromiseService {
             boolean updated=false;
             loop:for(PromiseItemDto item:items){
                 for(PromiseInnerItemDto inner:item.getTodoList()){
-                    if(item.getId()==index.charAt(0)-'0'&&inner.getId()==index.charAt(2)-'0'){
+                    if(item.getId()==Integer.parseInt(index2[0])&&inner.getId()==Integer.parseInt(index2[1])){
                         inner.setTodo(new_todo);
                         if(gift!=null){
                             item.setGift(gift);
@@ -197,9 +193,9 @@ public class PromiseService {
         if(updated==false){
                 boolean exist=false;
                 for(PromiseItemDto dto:items){
-                    if(dto.getId()==index.charAt(0)-'0'){
+                    if(dto.getId()==Integer.parseInt(index2[0])){
                         PromiseInnerItemDto inner=new PromiseInnerItemDto();
-                        inner.setId(index.charAt(2)-'0');
+                        inner.setId(Integer.parseInt(index2[1]));
                         inner.setTodo(new_todo);
                         inner.setDone(0);
                         if(gift!=null) {
@@ -214,10 +210,10 @@ public class PromiseService {
                 }
                 if(exist==false){
                     PromiseItemDto promiseItem=new PromiseItemDto();
-                    promiseItem.setId(index.charAt(0)-'0');
+                    promiseItem.setId(Integer.parseInt(index2[0]));
                     List<PromiseInnerItemDto> todoList = new ArrayList<>();
                     PromiseInnerItemDto inner=new PromiseInnerItemDto();
-                    inner.setId(index.charAt(2)-'0');
+                    inner.setId(Integer.parseInt(index2[1]));
                     inner.setTodo(new_todo);
                     inner.setDone(0);
                     todoList.add(inner);
@@ -226,6 +222,7 @@ public class PromiseService {
                     promiseItem.setDone(0);
                     items.add(promiseItem);
                     updated=true;
+
                 }
 
 
