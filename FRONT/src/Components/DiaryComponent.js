@@ -32,10 +32,14 @@ export function DiaryComponent() {
   const [profileInfo, setProfileInfo] = useRecoilState(profileState)
 
 
-  // // CREATE
-  // const onCreate = (name, drawing_id, title, content, weather, date) => {
-  //   // saveDiaryCallback(drawing_id, title, content, weather, date)
-  // }
+  useEffect(() => {
+
+    setTitle(diaryTemp.title)
+    setContent(diaryTemp.content)
+    setWeatherIndex(diaryTemp.weatherIndex)
+    setDate(diaryTemp.date)
+    
+  }, [diaryIsEdit])
 
   const handleInputContent = (input) => {
     if (input.length <= 44) {
@@ -45,11 +49,23 @@ export function DiaryComponent() {
 
   const handleClickCreatePaintingButton = () => {
     setDiaryIsEdit(true)
+    setDiaryTemp({
+      'date': date,
+      'weatherIndex': weatherIndex,
+      'title': title,
+      'content': content
+    })
     navigate('/painting/create')
   }
 
   const handleClickLoadPaintingButton = () => {
     setDiaryIsEdit(true)
+    setDiaryTemp({
+      'date': date,
+      'weatherIndex': weatherIndex,
+      'title': title,
+      'content': content
+    })
     navigate('/painting/load')
   }
 
@@ -61,6 +77,12 @@ export function DiaryComponent() {
   const handleClickCloseButton = () => {
     setDiaryIsEdit(false)
     setDiaryIsDetail(false)
+    setDiaryTemp({
+      'date': new Date().toLocaleDateString().replace('. ', '-').replace('. ', '-').replace('.', ''),
+      'weatherIndex': 0,
+      'title': "",
+      'content': ""
+    })
     navigate('/diary')
   }
 
@@ -74,10 +96,15 @@ export function DiaryComponent() {
       return
     } 
     setDiaryIsEdit(false)
-    console.log(profileInfo.name, loadedPaintingInfo.id, title, content, weatherList[weatherIndex], date)
+    setDiaryTemp({
+      'date': new Date().toLocaleDateString().replace('. ', '-').replace('. ', '-').replace('.', ''),
+      'weatherIndex': 0,
+      'title': "",
+      'content': ""
+    })
     saveDiaryCallback({
       'name': profileInfo.name, 
-      'drawing_id': loadedPaintingInfo.id, 
+      'drawing_id': loadedPaintingInfo.drawing_id, 
       'title': title, 
       'content': content, 
       'weather': weatherList[weatherIndex], 
@@ -142,7 +169,7 @@ export function DiaryComponent() {
         </div>
         { diaryIsEdit ? 
           <DiaryPaintingTag>
-            <img src={loadedPaintingInfo} />
+            <img style={{ width: "550px", height: "280px" }} src={ loadedPaintingInfo.drawing_base64 } />
           </DiaryPaintingTag>
           : 
           <DiaryPaintingTag>

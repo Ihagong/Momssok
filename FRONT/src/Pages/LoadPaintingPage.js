@@ -59,7 +59,7 @@ function LoadPaintingPage() {
   }
 
   const handleClickLoadPaintingButton = (info) => {
-    setLoadedPaintingInfo({ id: info.drawing_id, imageURL: 'data'+info.drawing_base64.substring(4) })
+    setLoadedPaintingInfo({ drawing_id: info.drawing_id, drawing_base64: info.drawing_base64 })
     if ( diaryIsEdit === true ) {
       navigate('/diary/create') 
     } else {

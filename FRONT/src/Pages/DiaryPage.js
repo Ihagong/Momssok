@@ -42,7 +42,12 @@ function DiaryPage() {
 
   const handleClickCreateDiaryButton = () => {
     setDiaryIsEdit(false)
-    // setDiaryTemp({})
+    setDiaryTemp({
+      'date': new Date().toLocaleDateString().replace('. ', '-').replace('. ', '-').replace('.', ''),
+      'weatherIndex': 0,
+      'title': "",
+      'content': ""
+    })
     navigate('/diary/create')
   }
 

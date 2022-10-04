@@ -179,7 +179,6 @@ export const CanvasProvider = ({ children, textures, offset, gesture, strokeColo
   const savePainting = () => {
     const canvas = canvasRef.current
     const imageURL = canvas.toDataURL()
-    console.log(loadedPainting)
 
     if (loadedPaintingInfo?.id) {
       updatePaintingCallback(loadedPaintingInfo?.id, profileInfo.name, imageURL)
