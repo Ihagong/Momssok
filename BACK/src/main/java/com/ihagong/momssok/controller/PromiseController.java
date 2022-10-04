@@ -26,7 +26,7 @@ public class PromiseController {
     private final PromiseService promiseService;
     private final ObjectMapper objectMapper;
     @RequestMapping(value = "/promise/savePromise", method = RequestMethod.POST)
-    public ResponseEntity<?> savePromise(@RequestBody(required = false) PromiseInputTestDto promise) throws IOException {
+    public ResponseEntity<?> savePromise(@RequestBody PromiseInputTestDto promise) throws IOException {
         if(promise.getName()!=null)
             System.out.println(promise.getName());
         else
