@@ -26,10 +26,32 @@ public class PromiseController {
     private final ObjectMapper objectMapper;
     @RequestMapping(value = "/promise/savePromise", method = RequestMethod.POST)
     public ResponseEntity<?> savePromise(@RequestBody(required = false) PromiseInputDto promise) throws IOException {
+        if(promise.getName()!=null)
+        System.out.println(promise.getName());
+        if(promise.getPromiseItems()!=null) {
+            for (PromiseItemDto item : promise.getPromiseItems()) {
+                for (PromiseInnerItemDto inner : item.getTodoList())
+                    System.out.println(inner.getTodo());
+            }
+        }
+        /*
+        Map<Boolean,Object> result = promiseService.savePromise(promise);
+
+        if(result.get(true)!=null)
+            return new ResponseEntity<>(result.get(true), HttpStatus.OK);
+        else
+            return new ResponseEntity<>(result.get(false), HttpStatus.BAD_REQUEST);
+*/
+        return new ResponseEntity<>("test", HttpStatus.OK);
+
+    }
+    /*
+    @RequestMapping(value = "/promise/savePromise2", method = RequestMethod.POST)
+    public ResponseEntity<?> savePromise2(@RequestParam String name,@RequestParam PromiseInputDto todo) throws IOException {
         System.out.println(promise.getName());
         for (PromiseItemDto item:promise.getPromiseItems()){
             for (PromiseInnerItemDto inner:item.getTodoList())
-            System.out.println(inner.getTodo());
+                System.out.println(inner.getTodo());
         }
         Map<Boolean,Object> result = promiseService.savePromise(promise);
 
@@ -39,8 +61,7 @@ public class PromiseController {
             return new ResponseEntity<>(result.get(false), HttpStatus.BAD_REQUEST);
 
 
-    }
-
+    }*/
     @RequestMapping(value = "/promise/lookupAllPromise", method = RequestMethod.GET)
     public ResponseEntity<?> lookupAllPromise(@RequestParam String name) throws IOException, ClassNotFoundException {
 
