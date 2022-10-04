@@ -40,8 +40,8 @@
     </select>
 
     <update id="saveEmotion" parameterType="emotionDto">
-        UPDATE diary
-        SET emotion = #{emotion}
+        UPDATE diary, drawing_id
+        SET emotion = #{emotion}, drawing_id = #{drawing_id}
         WHERE id = #{id}
     </update>
 
