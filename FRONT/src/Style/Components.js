@@ -887,7 +887,21 @@ export const PaintingGuideTag = styled.div`
   }
 `
 
-
+export const AlertModalComponentTag = styled.div`
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 500px;
+  height: 300px;
+  font-family: 'Jua', sans-serif;
+  font-size: 36px;
+  color: var(--Brown-Text);
+  background-color: var(--Beige-Light);
+  border-radius: 30px;
+  z-index: 1;
+`
 
 
 
