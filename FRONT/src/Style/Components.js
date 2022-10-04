@@ -601,14 +601,14 @@ export const PaintingCardTag = styled.div`
 
 export const PaintingCardDateStyleTag = styled.div`
   font-size: 26px;
-  margin-top: 15px;
-  margin-bottom: 15px;
+  margin-top: 10px;
+  margin-bottom: 10px;
 `
 
-export const PaintingCardTagStyleTag = styled.p`
+export const PaintingCardTagStyleTag = styled.div`
   font-family: 'Dongle', sans-serif;
-  font-size: 24px;
-  margin: 0 3px;
+  font-size: 26px;
+  margin-right: 10px;
 `
 
 export const CalendarTag = styled.div`
@@ -1361,9 +1361,14 @@ export const ParentInfo = styled.section`
 // DiaryPage
 
 export const DiaryContent = styled.section`
-  display: flex;
+  display: grid;
+  grid-template-columns: repeat(3, 3fr);
+  align-items: center;
   justify-content: center;
-  margin-top: 30px;
+  margin-top: 20px;
+  margin-left: 40px;
+  padding-left: 20px;
+  padding-right: 20px;
 `
 
 export const DiaryBlock = styled.div`
@@ -1377,8 +1382,7 @@ export const DiaryBlock = styled.div`
   width: 330px;
   height: 450px;
   border-radius: 30px;
-  margin-left: 20px;
-  margin-right: 20px;
+  margin-bottom: 40px;
   cursor: pointer;
 `
 

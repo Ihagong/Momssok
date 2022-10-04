@@ -4,13 +4,13 @@ import { useNavigate } from  'react-router-dom'
 import axios from 'axios'
 
 
-export function usePaintingCallback() {
+export function useDiaryCallback() {
   const [logInToken, setLogInToken] = useRecoilState(logInTokenState)
   const [loadedDiaryList, setLoadedDiaryList] = useRecoilState(totalDiaryListState)
   
   const navigate = useNavigate()
 
-  const saveDiaryCallback = async (drawing_id, title, content, weather, date) => {
+  const saveDiaryCallback = async ({name, drawing_id, title, content, weather, date}) => {
     axios({
       method: 'post',
       url: '/api/user/saveDiary',
@@ -19,6 +19,7 @@ export function usePaintingCallback() {
         'Authorization': logInToken,
       },
       data: {
+        'name': name,
         'drawing_id': drawing_id,
         'title': title,
         'content': content,
@@ -93,14 +94,14 @@ export function usePaintingCallback() {
 
   const getAllDiaryCallback = async (name) => {
     axios({
-      method: 'get',
+      method: 'post',
       url: '/api/user/searchDiaryGallery',
       headers: {
         'Content-Type': 'application/json',
         'Authorization': logInToken,
       },
-      params: {
-        'name': name,
+      data: {
+        'name': name
       }
     })
     .then(response => {
