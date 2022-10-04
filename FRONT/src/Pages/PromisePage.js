@@ -65,7 +65,7 @@ function PromisePage() {
           <PromiseBoardTag>
             {[...Array(15)].map((_, i) => {
               return (
-                <PromiseItemTag style={{ backgroundColor: (i < length-1 || (i === length-1 && parentActive)) ? null : 'var(--Beige-Stroke)',
+                <PromiseItemTag style={{ backgroundColor: (i < length-1 || (i === length-1 && parentActive)) ? null : '#C5BEB660',
                   cursor: (i < length-1 || (i === length-1 && parentActive)) ? 'pointer' : 'default',
                   transform: i%2 ? 'rotate(8deg)' : 'rotate(-6deg)' }}
                   key={i} onClick={() => (i < length-1 || (i === length-1 && parentActive)) ? handleClickPromiseItem(i+1) : null}>

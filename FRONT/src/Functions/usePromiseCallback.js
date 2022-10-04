@@ -62,7 +62,31 @@ export function usePromiseCallback() {
     })
   }
 
+  const updatePromiseCallback = async (name, params) => {
+    console.log(`name=${name}` + params)
+    axios({
+      method: 'put',
+      url: '/api/promise/updatePromise?' + `name=${name}` + params, //'&inputs=1%261%26레이아웃 잡기1%26선물1',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': logInToken,
+      },
+    })
+    .then(response => {
+      if (response.data) {
+        console.log(response.data)
+        console.log('약속이 업데이트 되었습니다.')
+        getAllPromiseCallback(name)
+      }
+    })
+    .catch(error => {
+      console.log(error.response.data)
+      // getAllPromiseCallback(name)
+    })
+  }
+
   const doneTodoCallback = async (name, promiseItemId, todoItemId) => {
+    console.log('index', `${promiseItemId}-${todoItemId}`)
     axios({
       method: 'put',
       url: '/api/promise/donePromise',
@@ -78,35 +102,12 @@ export function usePromiseCallback() {
     .then(response => {
       if (response.data) {
         console.log(response.data)
-
-        // const newItems = [...promiseItems]
-        // newItems[promiseItemId-1] = {
-        //   ...newItems[promiseItemId-1],
-        //   todoList: newItems[promiseItemId-1]['todoList'].map((todoItem) =>
-        //     todoItem.id === todoItemId
-        //     ? {...todoItem, done: !todoItem.done}
-        //     : todoItem
-        //   )
-        // }
-        // setPromiseItems(newItems)
-
         console.log('약속이 완료되었습니다.')
-        // getAllPromiseCallback(name)
+        getAllPromiseCallback(name)
       }
     })
     .catch(error => {
       console.log(error.response.data)
-
-      // const newItems = [...promiseItems]
-      // newItems[promiseItemId-1] = {
-      //   ...newItems[promiseItemId-1],
-      //   todoList: newItems[promiseItemId-1]['todoList'].map((todoItem) =>
-      //     todoItem.id === todoItemId
-      //     ? {...todoItem, done: !todoItem.done}
-      //     : todoItem
-      //   )
-      // }
-      // setPromiseItems(newItems)
     })
   }
 
@@ -135,5 +136,5 @@ export function usePromiseCallback() {
     })
   }
   
-  return { getAllPromiseCallback, savePromiseCallback, doneTodoCallback, donePromiseCallback }
+  return { getAllPromiseCallback, savePromiseCallback, updatePromiseCallback, doneTodoCallback, donePromiseCallback }
 }
