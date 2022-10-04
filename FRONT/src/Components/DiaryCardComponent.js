@@ -10,7 +10,7 @@ export function DiaryCardComponent({ info }) {
         <div><img src='/icons/happy.svg' /></div>
       </section>
       <section style={{ marginTop: "20px"}}>
-        <img style={{height: "250px", width: "330px"}} src={ info.drawing_base64 } />
+        <img style={{height: "250px", width: "300px"}} src={ info.drawing_base64 } />
       </section>
       <section style={{ textAlign: "center"}}>
         <JuaBrown style={{fontSize: "30px", marginTop: "20px"}}>{info.title}</JuaBrown>
