@@ -2,15 +2,15 @@ package com.ihagong.momssok.controller;
 
 import com.ihagong.momssok.model.dto.*;
 import com.ihagong.momssok.service.DiaryService;
+import com.ihagong.momssok.service.DrawingService;
 import com.ihagong.momssok.service.TestService;
 import lombok.RequiredArgsConstructor;
+import org.apache.commons.io.FileUtils;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.io.File;
+import java.util.*;
 
 @RestController
 @RequestMapping("/user")
@@ -23,6 +23,7 @@ public class DiaryController {
     private final String error = "ERROR";
 
     private final DiaryService diaryService;
+    private final DrawingService drawingService;
     private final TestService testService;
 
     @PostMapping("/searchDiaryCalendar")
@@ -66,6 +67,13 @@ public class DiaryController {
             diaryList = diaryService.lookupGallery(diary);
 
             if(diaryList != null){
+                for(DiaryDto item: diaryList){
+                    String painting = drawingService.getDrawing(item.getDrawing_id());  //이미지를 가져온다
+
+                    byte[] file = FileUtils.readFileToByteArray(new File(painting));  //bytearray로 변환
+                    String base64 = "date:image/png;base64," + Base64.getEncoder().encodeToString(file);  //base64로 인코딩
+                    item.setDrawing_base64(base64);
+                }
                 result.put("status", success);
             }else{
                 result.put("status", fail);
