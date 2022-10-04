@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { BrownText100, LightButton120, LetterPageHeader, ChildProfileTag, PromiseBoardTag, PromiseItemTag1, PromiseItemTag2 } from '../Style/Components'
+import { BrownText100, LightButton120, LetterPageHeader, ChildProfileTag, PromiseBoardTag, PromiseItemTag } from '../Style/Components'
 import { PromiseModalComponent } from '../Components/PromiseModalComponent'
 import { useRecoilState } from 'recoil'
 import { profileState, promiseItemsState } from '../store/atoms'
@@ -21,7 +21,7 @@ function PromisePage() {
   }, [])
 
   // const [modalOpen, setModalOpen] = useRecoilState(modalOpenState)
-  const [promiseId, setPromiseId] = useState(0)
+  const [promiseItemId, setPromiseItemId] = useState(0)
 
   // const handleClickModalClose = () => {
   //   setModalOpen(false)
@@ -32,7 +32,7 @@ function PromisePage() {
   const handleClickPromiseItem = (id) => {
     setPromiseItem(promiseItems[id])
     setModalOpen(true)
-    // setPromiseId(id)
+    setPromiseItemId(id)
     // setModalOpen(true)
   }
 
@@ -46,22 +46,43 @@ function PromisePage() {
 
 {/* <PaintingToolModalComponent modalOpen={paintingToolModalOpen} setPaintingToolModalOpen={setPaintingToolModalOpen} motionTextureIndex={strokeTextureIndex} offset={offset} gesture={gesture}
           changeStrokeTexture={changeStrokeTexture} changeStrokeLineWidthIndex={changeStrokeLineWidthIndex} onClick={() => setModalOpen(false)} /> */}
+          // transform: rotate(8deg);
   const promiseBoard = () => {
     const result = []
+    const length = (promiseItems.length < 15 ? promiseItems.length+1 : 15)
     for (let i = 0; i < 15; i++) {
-      if (i%2) {
-        result.push(<PromiseItemTag1 key={i} onClick={() => handleClickPromiseItem(i)}></PromiseItemTag1>)
-      } else {
-        result.push(<PromiseItemTag2 key={i} onClick={() => handleClickPromiseItem(i)}></PromiseItemTag2>)
+      result.push(
+        <PromiseItemTag style={{ backgroundColor: i < length ? null : 'var(--Beige-Stroke)',
+          cursor: i < length ? 'pointer' : 'default',
+          transform: i%2 ? 'rotate(8deg)' : 'rotate(-6deg)' }}
+          key={i} onClick={() => i < length ? handleClickPromiseItem(i) : null}>
+          { i === length-1 ? <img style={{ width: '50px', height: '50px' }} src='/icons/plus_brown.svg'></img> : null }
+        </PromiseItemTag>
+      )
+      // if (i%2) {
+      //   result.push(
+      //     <PromiseItemTag style={{ backgroundColor: i < length ? null : 'var(--Beige-Stroke)', cursor: i < length ? 'pointer' : 'default' }} key={i} onClick={() => i < length ? handleClickPromiseItem(i) : null}>
+      //       { i === length-1 ?
+      //         <img style={{ width: '50px', height: '50px' }} src='/icons/plus_brown.svg'></img>
+      //         : null }
+      //     </PromiseItemTag>
+      //   )
+      // } else {
+      //   result.push(
+      //     <PromiseItemTag style={{ backgroundColor: i < length ? null : 'var(--Beige-Stroke)', cursor: i < length ? 'pointer' : 'default' }}  key={i} onClick={() => i < length ? handleClickPromiseItem(i) : null}>
+      //       { i === length-1 ?
+      //         <img style={{ width: '50px', height: '50px' }} src='/icons/plus_brown.svg'></img>
+      //         : null }
+      //     </PromiseItemTag>
+      //   )
       }
-    }
     return result
   }
 
   return (
     <>
       <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
-        { modalOpen ? <PromiseModalComponent promiseItem={promiseItem} setModalOpen={setModalOpen} /> : null }
+        { modalOpen ? <PromiseModalComponent promiseItemId={promiseItemId} promiseItem={promiseItem} setModalOpen={setModalOpen} /> : null }
         <LetterPageHeader>
           <div style={{ display: "flex", alignItems: "center", marginLeft: "10px" }}>
             <div style={{ display: "flex", alignItems: "center", marginTop: "-40px"}}>
@@ -78,7 +99,7 @@ function PromisePage() {
         </LetterPageHeader>
         <div style={{ display: 'flex', marginTop: "30px" }}>
           <PromiseBoardTag>
-            {promiseBoard()}
+            { promiseBoard() }
           </PromiseBoardTag>
         </div>
       </div>
