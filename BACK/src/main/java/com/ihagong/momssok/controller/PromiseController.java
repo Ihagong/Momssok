@@ -43,13 +43,23 @@ public class PromiseController {
         List<PromiseInputItemDto> todoList=new ArrayList<>();
 
         for(String input:inputs){
-            String[] input_split=input.split("&^%");
+            String[] input_split=input.split("&");
             PromiseInputItemDto dto=new PromiseInputItemDto();
             dto.setIndex1(input_split[0]);
             dto.setIndex2(input_split[1]);
-            dto.setTodo(input_split[2]);
-            dto.setGift(input_split[3]);
+            String s2="";
+            for(int i=0;i<input_split.length;i++){
+                if(i>=2&&i<input_split.length-1){
+                    s2+=input_split[i];
+                }
+            }
+            dto.setTodo(s2);
+            dto.setGift(input_split[input_split.length-1]);
             todoList.add(dto);
+            System.out.println(dto.getIndex1());
+            System.out.println(dto.getIndex2());
+            System.out.println(dto.getTodo());
+            System.out.println(dto.getGift());
         }
         Map<Boolean,Object> result = promiseService.savePromise2(name,todoList);
         if(result.get(true)!=null)
