@@ -51,7 +51,7 @@ public class FastApiEmotion {
         emotionDto dto = new emotionDto();
         dto.setPercent(percent);
         dto.setScore(score);
-        dto.setId(saveDto.getDiary_id());
+        dto.setId(saveDto.getId());
         emotionList(dto);
 
 
