@@ -23,10 +23,15 @@ public class PromiseService {
         String email = SecurityContextHolder.getContext().getAuthentication().getName();
         Map<Boolean, Object> result = new HashMap<>();
         Map<String, Object> resultBody = new HashMap<>();
-
+        if(promise.getPromiseItems()==null){
+            resultBody.put("message", "promiseItems 입력 오류");
+            result.put(false, resultBody);
+            return result;
+        }
         if(promiseMapper.selectPromise(email+"_"+promise.getName())!=null){
             promiseMapper.deletePromise(email+"_"+promise.getName());
         }
+
         int index=1;
         for(PromiseItemDto item:promise.getPromiseItems()){
             item.setDone(0);
