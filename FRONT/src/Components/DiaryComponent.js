@@ -74,7 +74,7 @@ export function DiaryComponent() {
       return
     } 
     setDiaryIsEdit(false)
-    console.log(profileInfo.name, loadedPaintingInfo.id, title, content, weatherList[weatherIndex], date)
+    // console.log(profileInfo.name, loadedPaintingInfo.id, title, content, weatherList[weatherIndex], date)
     saveDiaryCallback({
       'name': profileInfo.name, 
       'drawing_id': loadedPaintingInfo.id, 
