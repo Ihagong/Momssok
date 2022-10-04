@@ -70,12 +70,12 @@ const LetterEditorComponent = ({ isDetail, letterItem }) => {
 
     if (isDetail) {
       setAuthor(letterItem.author)
-      setReceiver(letterItem.receiver);
-      setTitle(letterItem.title);
-      setContent(letterItem.content);
+      setReceiver(letterItem.receiver)
+      setTitle(letterItem.title)
+      setContent(letterItem.content)
       setDate(getStringDate(new Date(letterItem.date)))
     }
-  }, [isDetail, letterItem]);
+  }, [isDetail, letterItem])
 
   
   return (
