@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ihagong.momssok.mapper.ReportMapper">
+    <select id="lookupDaily" parameterType="ReportInputDto" resultType="ReportDto">
+        SELECT d.emotion, d.date
+        FROM diary d
+        WHERE email_name = #{email_name} AND d.date LIKE(CONCAT(#{date}, "%"))
+    </select>
+
+    <select id="lookupWeekly" parameterType="ReportInputDto" resultType="ReportDto">
+        SELECT DATEPART(WEEK, '%Y-%m-%d'), d.emotion, d.date
+        FROM diary d
+        WHERE email_name = #{email_name}
+        GROUP BY DATEPART(WEEK, '%Y-%m-%d')
+    </select>
+
+    <select id="lookupMontly" parameterType="ReportInputDto" resultType="ReportDto">
+        SELECT d.emotion, d.date
+        FROM diary d
+        WHERE email_name = #{email_name} AND d.date LIKE(CONCAT(#{date}, "%"))
+    </select>
+</mapper>
