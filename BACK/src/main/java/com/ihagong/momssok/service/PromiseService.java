@@ -1,10 +1,7 @@
 package com.ihagong.momssok.service;
 
 import com.ihagong.momssok.mapper.PromiseMapper;
-import com.ihagong.momssok.model.dto.PromiseDBDto;
-import com.ihagong.momssok.model.dto.PromiseInnerItemDto;
-import com.ihagong.momssok.model.dto.PromiseInputDto;
-import com.ihagong.momssok.model.dto.PromiseItemDto;
+import com.ihagong.momssok.model.dto.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
@@ -70,7 +67,77 @@ public class PromiseService {
         }
 
     }
+    public Map<Boolean,Object> savePromise2(String name,List<PromiseInputItemDto> items) throws IOException {
+        String email = SecurityContextHolder.getContext().getAuthentication().getName();
+        Map<Boolean, Object> result = new HashMap<>();
+        Map<String, Object> resultBody = new HashMap<>();
+        if(promiseMapper.selectPromise(email+"_"+name)!=null){
+            promiseMapper.deletePromise(email+"_"+name);
+        }
+        List<PromiseItemDto> promiseItems = new ArrayList<>();
+        for(PromiseInputItemDto item:items){
 
+                boolean exist=false;
+                for(PromiseItemDto dto:promiseItems){
+                    if(dto.getId()==Integer.parseInt(item.getIndex1())){
+                        PromiseInnerItemDto inner=new PromiseInnerItemDto();
+                        inner.setId(Integer.parseInt(item.getIndex2()));
+                        inner.setTodo(item.getTodo());
+                        inner.setDone(0);
+                        dto.getTodoList().add(inner);
+                        exist=true;
+                        break;
+                    }
+
+                }
+                if(exist==false){
+                    PromiseItemDto promiseItem=new PromiseItemDto();
+                    promiseItem.setId(Integer.parseInt(item.getIndex1()));
+                    List<PromiseInnerItemDto> todoList = new ArrayList<>();
+                    PromiseInnerItemDto inner=new PromiseInnerItemDto();
+                    inner.setId(Integer.parseInt(item.getIndex2()));
+                    inner.setTodo(item.getTodo());
+                    inner.setDone(0);
+                    todoList.add(inner);
+                    promiseItem.setTodoList(todoList);
+                    promiseItem.setGift(item.getGift());
+                    promiseItem.setDone(0);
+                    promiseItems.add(promiseItem);
+                }
+
+        }
+
+
+
+
+
+        PromiseDBDto dto = new PromiseDBDto();
+        dto.setEmail_name(email+"_"+name);
+        byte[] serializedItems;
+        ByteArrayOutputStream baos= new ByteArrayOutputStream();
+        ObjectOutputStream oos = new ObjectOutputStream(baos);
+        oos.writeObject(promiseItems);
+        serializedItems = baos.toByteArray();
+        dto.setPromise_list(serializedItems);
+        dto.setPromise_completed(false);
+        dto.setGift_completed(false);
+        if(promiseMapper.checkPromise(email+"_"+name)>=1){
+            resultBody.put("message", "이미 진행 중인 약속 로드맵이 있습니다.");
+            result.put(false, resultBody);
+            return result;
+        }
+        if(promiseMapper.savePromise(dto)==1){
+            resultBody.put("message", "약속 저장 완료");
+            result.put(true, resultBody);
+            return result;
+        }
+        else{
+            resultBody.put("message", "약속 저장 실패");
+            result.put(false, resultBody);
+            return result;
+        }
+
+    }
     public Map<Boolean,Object> lookupAllPromise(String name) throws IOException, ClassNotFoundException {
         String email = SecurityContextHolder.getContext().getAuthentication().getName();
         Map<Boolean, Object> result = new HashMap<>();
