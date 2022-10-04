@@ -27,13 +27,17 @@ public class PromiseController {
     @RequestMapping(value = "/promise/savePromise", method = RequestMethod.POST)
     public ResponseEntity<?> savePromise(@RequestBody(required = false) PromiseInputDto promise) throws IOException {
         if(promise.getName()!=null)
-        System.out.println(promise.getName());
+            System.out.println(promise.getName());
+        else
+            System.out.println("name null");
         if(promise.getPromiseItems()!=null) {
             for (PromiseItemDto item : promise.getPromiseItems()) {
                 for (PromiseInnerItemDto inner : item.getTodoList())
                     System.out.println(inner.getTodo());
             }
         }
+        else
+            System.out.println("body null");
         /*
         Map<Boolean,Object> result = promiseService.savePromise(promise);
 
