@@ -121,9 +121,12 @@ public class DiaryController {
                 result.put("status", success);
                 int diary_id = diaryService.getId(email_name);
                 EmotionSaveDto saveDto = new EmotionSaveDto();
-                saveDto.setDiary_id(diary_id);
+                saveDto.setId(diary_id);
                 saveDto.setContent(diary.getContent());
                 testService.ApiTestEmotion(saveDto);
+
+                diary.setId(diary_id);
+//                diary.setEmotion(); //일기 아이디에서 뽑아오자
                 result.put("data", diary);
             }else{
                 result.put("status", fail);
