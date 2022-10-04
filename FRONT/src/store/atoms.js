@@ -34,9 +34,9 @@ export const diaryContentState = atom({
   effects_UNSTABLE: [persistAtom]
 })
 
-export const loadedPaintingState = atom({
-  key: 'loadedPaintingState',
-  default: '',
+export const loadedPaintingInfoState = atom({
+  key: 'loadedPaintingInfoState',
+  default: {},
   effects_UNSTABLE: [persistAtom]
 })
 
@@ -109,5 +109,29 @@ export const promiseItemsState = atom({
 export const animalDictionaryState = atom({
   key: 'animalDictionaryState',
   default: [],
+  effects_UNSTABLE: [persistAtom]
+})
+
+export const loadedPaintingListState = atom({
+  key: 'loadedPaintingListState',
+  default: [],
+  effects_UNSTABLE: [persistAtom]
+})
+
+export const totalDiaryListState = atom({
+  key: 'totalDiaryListState',
+  default: [],
+  effects_UNSTABLE: [persistAtom]
+})
+
+export const diaryItemState = atom({
+  key: 'diaryItemState',
+  default: {},
+  effects_UNSTABLE: [persistAtom]
+})
+
+export const parentActiveState = atom({
+  key: 'parentActiveState',
+  default: {},
   effects_UNSTABLE: [persistAtom]
 })

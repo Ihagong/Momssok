@@ -34,14 +34,20 @@ async def upload_photo(file: UploadFile):
     with open("temp.png", "wb") as fp:
         fp.write(contents)
     im = Image.open('./temp.png')
+    # 가로세로 픽셀사이즈 load
     x, y = im.size
     px = im.load()
-
+    """
+    배경이 (0,0,0,0)이면 RGB로 convert했을 때
+    검은색으로 보이기 때문에
+    보다 높은 정확도를 위해 흰색으로 변경해줌
+    """
     for i in range(0, x):
         for j in range(0, y):
             if px[i, j][3] == 0:
                 px[i, j] = (255, 255, 255, 255)
     im.save('temp2.png')
+    # 태그를 받아옴
     result = test.faster_rcnn("temp2.png")
 
     return result

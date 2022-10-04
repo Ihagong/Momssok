@@ -1,17 +1,25 @@
 import React, { useContext, useRef, useState, useEffect } from 'react'
 import { useRecoilState } from 'recoil'
-import { dictionaryPaintingState } from '../../store/atoms'
+import { profileState, dictionaryPaintingState, loadedPaintingInfoState } from '../../store/atoms'
+import { usePaintingCallback } from '../../Functions/usePaintingCallback'
 
 
 const CanvasContext = React.createContext()
 
-export const CanvasProvider = ({ children, loadedPainting, textures, offset, gesture, strokeColorIndex, strokeTextureIndex, strokeLineWidthIndex, isCamOn, width, height, partIndex, animal, isDone }) => {
+export const CanvasProvider = ({ children, textures, offset, gesture, strokeColorIndex, strokeTextureIndex, strokeLineWidthIndex, isCamOn, width, height, partIndex, animal, isDone }) => {
+  const { savePaintingCallback, updatePaintingCallback } = usePaintingCallback()
   const [dictionaryPaintingList, setDictionaryPaintingList] = useRecoilState(dictionaryPaintingState)
+  const [loadedPaintingInfo, setLoadedPaintingInfo] = useRecoilState(loadedPaintingInfoState)
   const [isDrawing, setIsDrawing] = useState(false)
+  const [isMotionDrawing, setIsMotionDrawing] = useState(false)
   const [imageIndex, setImageIndex] = useState(0)
   const [imgSrcs, setImgSrcs] = useState([])
   const canvasRef = useRef(null)
   const contextRef = useRef(null)
+  const [profileInfo, setProfileInfo] = useRecoilState(profileState)
+  
+  const loadedPainting = new Image()
+  loadedPainting.src = loadedPaintingInfo.imageURL
 
   useEffect(() => {
     const canvas = canvasRef.current
@@ -25,6 +33,16 @@ export const CanvasProvider = ({ children, loadedPainting, textures, offset, ges
     context.lineWidth = strokeLineWidth[strokeLineWidthIndex]
   }, [strokeLineWidthIndex])
 
+  useEffect(() => {
+    const offsetX = offset.offsetX
+    const offsetY = offset.offsetY
+    if (gesture === 'indexGesture') {
+      if (offsetY >= 600 && offsetY <= 670 && offsetX >= 480 && offsetX < 550) {
+        clearCanvas()
+      }
+    }
+  }, [offset, gesture])
+  
   useEffect(() => {
     if (gesture === 'fistGesture') {
       startMotionDrawing()
@@ -87,7 +105,7 @@ export const CanvasProvider = ({ children, loadedPainting, textures, offset, ges
     const { offsetX, offsetY } = offset
     contextRef.current.beginPath()
     contextRef.current.moveTo(offsetX, offsetY)
-    setIsDrawing(true)
+    setIsMotionDrawing(true)
   }
 
   const finishDrawing = () => {
@@ -97,7 +115,7 @@ export const CanvasProvider = ({ children, loadedPainting, textures, offset, ges
 
   const finishMotionDrawing = () => {
     contextRef.current.closePath()
-    setIsDrawing(false)
+    setIsMotionDrawing(false)
   }
 
   const draw = ({ nativeEvent }) => {
@@ -118,7 +136,7 @@ export const CanvasProvider = ({ children, loadedPainting, textures, offset, ges
   }
 
   const motionDraw = () => {
-    if (!isDrawing || isDone) {
+    if (!isMotionDrawing || isDone) {
       return
     }
     const { offsetX, offsetY } = offset
@@ -156,6 +174,18 @@ export const CanvasProvider = ({ children, loadedPainting, textures, offset, ges
     link.href = image
     link.download = 'MyPainting'
     link.click()
+  }
+  
+  const savePainting = () => {
+    const canvas = canvasRef.current
+    const imageURL = canvas.toDataURL()
+    console.log(loadedPainting)
+
+    if (loadedPaintingInfo?.id) {
+      updatePaintingCallback(loadedPaintingInfo?.id, profileInfo.name, imageURL)
+    } else {
+      savePaintingCallback(imageURL, profileInfo.name)
+    }
   }
 
   const addObject = () => {
@@ -199,6 +229,7 @@ export const CanvasProvider = ({ children, loadedPainting, textures, offset, ges
         finishDrawing,
         clearCanvas,
         saveCanvas,
+        savePainting,
         addObject,
         changeLineWidth,
         draw,

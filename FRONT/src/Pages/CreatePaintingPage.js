@@ -5,6 +5,7 @@ import { CanvasComponent } from '../Components/CanvasComponent/CanvasComponent'
 // import { ClearCanvasButton } from '../Components/CanvasComponent/ClearCanvasButton'
 // import { ChangeStrokeStyleButton } from '../Components/CanvasComponent/ChangeStrokeStyleButton'
 import { SaveCanvasButton } from '../Components/CanvasComponent/SaveCanvasButton'
+import { SavePaintingButton } from '../Components/CanvasComponent/SavePaintingButton'
 // import { AddObjectButton } from '../Components/CanvasComponent/addObjectButton'
 // import { ChangeLineWidthBar } from '../Components/CanvasComponent/ChangeLineWidthBar'
 import { CanvasProvider } from '../Components/CanvasComponent/CanvasContext'
@@ -112,10 +113,9 @@ const textures = [
     pencilWhite, pencilGray, pencilBrown, pencilApricot, pencilPurple, pencilBlue, pencilSkyBlue],
 ]
 
-function CreatePaintingPage(props) {
+function CreatePaintingPage() {
   const navigate = useNavigate()
 
-  // console.log(loadedPaintingSrc)
   const [paintingToolModalOpen, setPaintingToolModalOpen] = useState(false)
   const [colorPickerModalOpen, setColorPickerModalOpen] = useState(false)
   const [modalOpen, setModalOpen] = useState(false)
@@ -125,13 +125,9 @@ function CreatePaintingPage(props) {
   const [isCamOn, setIsCamOn] = useState(false)
   const [offset, setOffset] = useState({offsetX: 0, offsetY: 0})
   const [gesture, setGesture] = useState('defaultGesture')
-  // const [selectedToolIndex, setSelectedToolIndex] = useState(0)
 
   const handleClickCloseButton = () => {
     navigate('/painting/load')
-  }
-
-  const handleClickSaveButton = () => {
   }
 
   const handleClickPaintingToolButton = () => {
@@ -199,8 +195,8 @@ function CreatePaintingPage(props) {
   return (
     <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', marginTop: "15px" }}>
       { gesture !== 'defaultGesture' ? <PointerTag style={{ left: offset.offsetX+(window.innerWidth-1100)/2-40, top: offset.offsetY+15, zIndex: 20 }}
-        src= { gesture === 'indexGesture' ? '/icons/pointer.png' : gesture === 'palmGesture' ? '/icons/backhand.png' : '/icons/paintingTool_brush.png' } /> : null}
-      <CanvasProvider loadedPainting={props.loadedPainting} textures={textures} isCamOn={isCamOn} offset={offset} gesture={gesture}
+        src= { gesture === 'indexGesture' ? '/icons/pointer.png' : gesture === 'palmGesture' ? '/icons/backhand.png' : `/icons/paintingTool_${strokeTextureIndex}.png` } /> : null}
+      <CanvasProvider textures={textures} isCamOn={isCamOn} offset={offset} gesture={gesture}
         strokeColorIndex={strokeColorIndex} strokeTextureIndex={strokeTextureIndex} strokeLineWidthIndex={strokeLineWidthIndex} width={1100} height={550}>
         <PaintingToolModalComponent modalOpen={paintingToolModalOpen} setPaintingToolModalOpen={setPaintingToolModalOpen} motionTextureIndex={strokeTextureIndex} offset={offset} gesture={gesture}
           changeStrokeTexture={changeStrokeTexture} changeStrokeLineWidthIndex={changeStrokeLineWidthIndex} onClick={() => setModalOpen(false)} />
@@ -222,7 +218,8 @@ function CreatePaintingPage(props) {
               : <PaintingToolTag onClick={() => setIsCamOn(true)}><img src='/icons/videoicon.svg'></img></PaintingToolTag> }
             <div style={{ display: 'flex', flexDirection: 'column' }}>
               <LetterButtonBack style={{marginTop: "0px", marginLeft: "0px", height: "60px", fontSize: '55px' }} onClick={handleClickCloseButton}>닫기</LetterButtonBack>
-              <LetterButtonGo style={{marginTop: "10px", marginLeft: "0px", height: "60px", fontSize: '55px' }} onClick={handleClickSaveButton}>저장</LetterButtonGo>
+              {/* <LetterButtonGo style={{marginTop: "10px", marginLeft: "0px", height: "60px", fontSize: '55px' }} onClick={handleClickSaveButton}>저장</LetterButtonGo> */}
+              <SavePaintingButton />
             </div>
           </div>
         </div>
