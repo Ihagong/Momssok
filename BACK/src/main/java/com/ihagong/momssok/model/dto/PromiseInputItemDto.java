@@ -12,4 +12,5 @@ public class PromiseInputItemDto{
     private String index2;
     private String todo;
     private String gift;
+    private String done;
 }
