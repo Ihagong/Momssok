@@ -7,6 +7,8 @@ app = FastAPI()
 def read_item(item_id: str):
     A, B = predict(item_id)
     A.tolist()
+    print(type(A))
+    print(type(B))
     return {
         "angry": round(A[0],2),
         "Surprised": round(A[1],2),
