@@ -39,7 +39,7 @@ export function useDiaryCallback() {
     })
   }
 
-  const updateDiaryCallback = async (diary_id, name, drawing_id, title, content, weather) => {
+  const updateDiaryCallback = async (id, name, drawing_id, title, content, weather) => {
     axios({
       method: 'put',
       url: '/api/user/updateDiary',
@@ -48,7 +48,7 @@ export function useDiaryCallback() {
         'Authorization': logInToken,
       },
       data: {
-        'id': diary_id,
+        'id': id,
         'name': name,
         'drawing_id': drawing_id,
         'title': title,
@@ -68,16 +68,17 @@ export function useDiaryCallback() {
     })
   }
 
-  const diaryRemoveCallback = async (diary_id, name) => {
+  const diaryRemoveCallback = async ( {id, name} ) => {
+    console.log(id, name)
     axios({
-        method: 'delete',
+        method: 'put',
         url: '/api/letter/deleteDiary',
         headers: {
         'Content-Type': 'application/json',
         'Authorization': logInToken,
         },
         params: {
-        "id": diary_id,
+        "id": id,
         "name": name
         }
     })
