@@ -52,21 +52,29 @@ def faster_rcnn():
                                                                    representation_size=4096)
     box_predictor = torchvision.models.detection.faster_rcnn.FastRCNNPredictor(4096,
                                                                                23)  # features(입력 차원) 4096, class 22개 + 배경 1개
-
+    # roi head 있으면 num_class = None으로 함
     model = torchvision.models.detection.FasterRCNN(backbone, num_classes=None,
+                                                    # 이미지 min max 사이즈(리사이징)
                                                     min_size=600, max_size=1000,
+                                                    # 앵커박스 생성
                                                     rpn_anchor_generator=anchor_generator,
+                                                    # nms이전 박스생성 개수
                                                     rpn_pre_nms_top_n_train=6000, rpn_pre_nms_top_n_test=6000,
+                                                    # nms이후 박스생성 개수
                                                     rpn_post_nms_top_n_train=2000, rpn_post_nms_top_n_test=300,
                                                     rpn_nms_thresh=0.7, rpn_fg_iou_thresh=0.7, rpn_bg_iou_thresh=0.3,
+                                                    # 이미지당 배치사이즈,
                                                     rpn_batch_size_per_image=256, rpn_positive_fraction=0.5,
                                                     box_roi_pool=roi_pooler, box_head=box_head,
                                                     box_predictor=box_predictor,
+                                                    # 박스 검출 threshhold
                                                     box_score_thresh=0.5, box_nms_thresh=0.5,
                                                     box_detections_per_img=300,
+                                                    # - foreground threshold: 0.5
+                                                    # - background threshold: 0.5
                                                     box_fg_iou_thresh=0.5, box_bg_iou_thresh=0.5,
                                                     box_batch_size_per_image=128, box_positive_fraction=0.25
                                                     )
     model.to(device)
-    # roi head 있으면 num_class = None으로 함
+
     return model
