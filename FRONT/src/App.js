@@ -21,7 +21,6 @@ import PromisePage from './Pages/PromisePage'
 import LetterPage from './Pages/LetterPage'
 import CreateLetterPage from './Pages/CreateLetterPage'
 import LetterDetailPage from './Pages/LetterDetailPage'
-import FindPasswordPage from './Pages/FindPasswordPage'
 import AnimalDictionaryPage from './Pages/AnimalDictionaryPage'
 import CreateDictionaryPaintingPage from './Pages/CreateDictionaryPaintingPage'
 import ReportPage from './Pages/ReportPage'
@@ -61,7 +60,6 @@ function App() {
         <Route exact path='/letter' element={ <LetterPage /> } />
         <Route exact path='/letter/create' element={ <CreateLetterPage /> } />
         <Route exact path='/letter/:letterId' element={ <LetterDetailPage /> } />
-        <Route exact path='/findpassword' element={ <FindPasswordPage /> } />
         <Route exact path='/dictionary' element={ <AnimalDictionaryPage /> } />
         <Route exact path='/dictionary/create/:detailId' element={ <CreateDictionaryPaintingPage /> } />
         <Route exact path='/report' element={ <ReportPage /> } />
