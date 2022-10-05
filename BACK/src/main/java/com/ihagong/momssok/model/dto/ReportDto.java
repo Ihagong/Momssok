@@ -8,4 +8,5 @@ import lombok.NoArgsConstructor;
 public class ReportDto {
     private String date;
     private String emotion;
+    private String emotion_all;
 }
