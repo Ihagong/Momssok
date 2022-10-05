@@ -1,9 +1,22 @@
 import React, { useState } from 'react'
-import { CalendarTag, ChildButtonTag1, ChildButtonTag3, ChildProfileTag } from '../Style/Components'
+import { useNavigate } from 'react-router-dom'
+
+import { useRecoilState } from 'recoil'
+import { profileState } from '../store/atoms'
+
+import { LetterButtonGo, CalendarTag, DongleLightBrown, ChildProfileTag, LetterPageHeader, BrownText100, LightButton120 } from '../Style/Components'
 import { CalendarDateComponent } from '../Components/CalendarDateComponent'
 
 
 function CalendarPage() {
+  const navigate = useNavigate()
+
+  const [profileInfo, setProfileInfo] = useRecoilState(profileState)
+
+  const handleClickChildProfile = () => {
+    navigate('/profile')
+  }
+
   const date = new Date()
   const utc = date.getTime() + (date.getTimezoneOffset()*60*1000)
   const kstGap = 9*60*60*1000
@@ -80,34 +93,38 @@ function CalendarPage() {
     }
   }
 
+//   <div style={{ display: 'flex', justifyContent: 'center' }}>
+//   <p>{currentYear}년 {currentMonth}월</p>
+// </div>
+
   return (
-    <>
-      <div style={{ display: 'flex', flexDirection: 'column' }}>
-        <div style={{ display: 'flex' }}>
-          <ChildButtonTag1 style={{ width: '120px' }}>닫기</ChildButtonTag1>
-          <h3>그림 그리기</h3>
-          <ChildProfileTag ChildProfileTag><img src='/icons/boy.svg' />아이 이름</ChildProfileTag>
+    <div style={{ display: 'flex', flexDirection: 'column' }}>
+
+      <LetterPageHeader>
+        <div style={{display: "flex", flexDirection: 'column', justifyContent: "center", marginTop: "30px", marginLeft: "-20px" }}>
+          <BrownText100 style={{ fontSize: "84px"}}>표정 달력</BrownText100>
+          <DongleLightBrown style={{ fontSize: "50px", fontWeight: "bold", textAlign: "center"}}>{currentYear}년 {currentMonth}월</DongleLightBrown>
         </div>
-        <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-          <ChildButtonTag1 style={{ width: '150px', fontSize: '50px' }} onClick={handleClickPrevMonth}>이전달</ChildButtonTag1>
-          <div>
-            <div style={{ display: 'flex', justifyContent: 'center' }}>
-              <p>{currentYear}년 {currentMonth}월</p>
-            </div>
-            <CalendarTag style={{ gridTemplateColumns: 'repeat(7, 1fr)' }}>
-              {Days.map((day, index) => (
-                <div key={index} style={{ color: index === 0 ? '#EB2B2B' : null }}>{day}</div>
-              ))}
-              {prevMonthDates()} {currentMonthDates()} {nextMonthDates()}
-            </CalendarTag>
-          </div>
-          <ChildButtonTag1 style={{ width: '150px', fontSize: '50px' }} onClick={handleClickNextMonth}>다음달</ChildButtonTag1>
+        <ChildProfileTag style={{marginTop: "30px", zIndex: "1" }} onClick={handleClickChildProfile}><img src={`/images/profileImage_${profileInfo.image_num}.svg`} />{profileInfo.name}</ChildProfileTag>
+      </LetterPageHeader>
+
+      <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', marginTop: "-180px"}}>
+        <LightButton120 style={{ width: '140px', marginRight: "50px"}} onClick={handleClickPrevMonth}>이전달</LightButton120>
+        <div>
+          <CalendarTag style={{ gridTemplateColumns: 'repeat(7, 1fr)' }}>
+            {Days.map((day, index) => (
+              <div key={index} style={{ color: index === 0 ? '#EB2B2B' : null }}>{day}</div>
+            ))}
+            {prevMonthDates()} {currentMonthDates()} {nextMonthDates()}
+          </CalendarTag>
         </div>
-        <ChildButtonTag3 style={{ width: '130px', height: '130px', padding: '10px 0 0 0'}}>
-          {'일기'}{<br />}{'쓰기'}
-        </ChildButtonTag3>
+        <LightButton120 style={{ width: '140px', marginLeft: "50px"}} onClick={handleClickNextMonth}>다음달</LightButton120>
       </div>
-    </>
+      <div style={{ display: "flex", justifyContent: "end"}}>
+        <LetterButtonGo style={{ width: "150px", marginTop: "-90px" }} onClick={() => navigate('/child')}>닫기</LetterButtonGo>
+      </div>
+    </div>
+
   );
 }
 

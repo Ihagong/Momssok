@@ -1365,6 +1365,12 @@ export const JuaOrange = styled.span`
   white-space: nowrap;
 `
 
+export const DongleLightBrown = styled.span`
+  font-family: 'Dongle', sans-serif;
+  color: var(--Orange-Text);
+  white-space: nowrap;
+`
+
 export const ProfileBlock = styled.section`
   display: flex;
   justify-content: center;
@@ -1471,4 +1477,42 @@ export const DiarySectionButtonTag = styled.div`
 
 export const DictionarySectionComponentTag = styled.div`
   margin-top: 20px;
+`
+
+// User Page
+
+export const LightButtonNormal = styled.button`
+  background-color: var(--Beige-Light);
+  box-shadow: 0px 5px 5px #E6E6E6;
+  cursor: pointer;
+  border: none;
+  width: 300px;
+  height: 80px;
+  margin-right: 20px;
+  border-radius: 20px;
+  margin-left: 30px;
+
+  font-family: 'Jua', sans-serif;
+  font-size: 48px;
+  font-weight: normal;
+  color: var(--Brown-Text);
+  white-space: nowrap;
+`
+
+export const BrownButtonNormal = styled.button`
+  background-color: var(--Brown-LightText);
+  box-shadow: 0px 5px 5px #E6E6E6;
+  cursor: pointer;
+  border: none;
+  width: 300px;
+  height: 80px;
+  margin-right: 20px;
+  border-radius: 20px;
+  margin-left: 30px;
+
+  font-family: 'Jua', sans-serif;
+  font-size: 48px;
+  font-weight: normal;
+  color: var(--White-Block);
+  white-space: nowrap;
 `
