@@ -783,20 +783,22 @@ export const PromiseTodoItemTag = styled.p`
   justify-content: center;
   align-items: center;
   font-family: 'Dongle', sans-serif;
-  font-size: 60px;
+  font-weight: normal;
+  font-size: 42px;
   margin: 0;
-  color: var(--Brown-Text);
+  color: var(--Brown-LightText);
   cursor: pointer;
   user-select: auto;
 `
 
-export const PromiseTodoItemDoneTag = styled.p`
+export const PromiseTodoItemDoneTag = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   font-family: 'Dongle', sans-serif;
-  font-size: 60px;
+  font-size: 42px;
+  font-weight: normal;
   margin: 0;
   text-decoration: line-through;
   color: var(--Brown-Stroke);
@@ -951,6 +953,7 @@ export const PaintingGuideTag = styled.div`
   align-items: center;
   width: 500px;
   height: 550px;
+  margin-left: 50px;
   color: var(--Brown-Text);
   font-family: 'Dongle', sans-serif;
   font-size: 60px;
@@ -1324,7 +1327,7 @@ export const LetterButtonBack = styled.button`
 
   font-family: 'Dongle', sans-serif;
   font-size: 60px;
-  font-weight: bold;
+  font-weight: normal;
   color: var(--Brown-Text);
   white-space: nowrap;
 `
@@ -1347,7 +1350,7 @@ export const LetterButtonGo = styled.button`
 
   font-family: 'Dongle', sans-serif;
   font-size: 60px;
-  font-weight: bold;
+  font-weight: normal;
   color: var(--White-Block);
   white-space: nowrap;
 `
@@ -1371,7 +1374,7 @@ export const LetterButtonDel = styled.button`
 
   font-family: 'Dongle', sans-serif;
   font-size: 60px;
-  font-weight: bold;
+  font-weight: normal;
   color: var(--White-Block);
   white-space: nowrap;
 `
@@ -1437,9 +1440,15 @@ export const JuaOrange = styled.span`
   white-space: nowrap;
 `
 
-export const DongleLightBrown = styled.span`
+export const DongleBrown = styled.div`
   font-family: 'Dongle', sans-serif;
-  color: var(--Orange-Text);
+  color: var(--Brown-Text);
+  white-space: nowrap;
+`
+
+export const DongleLightBrown = styled.div`
+  font-family: 'Dongle', sans-serif;
+  color: var(--Brown-LightText);
   white-space: nowrap;
 `
 
@@ -1587,4 +1596,68 @@ export const BrownButtonNormal = styled.button`
   font-weight: normal;
   color: var(--White-Block);
   white-space: nowrap;
+`
+
+// KidsSong Page
+
+export const LightButton230 = styled.button`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  background-color: var(--Beige-Light);
+  opacity:0.9;
+  box-shadow: 0px 5px 5px #0000001A;
+  cursor: pointer;
+  border: none;
+  width: 230px;
+  height: 70px;
+  margin-bottom: 20px;
+
+  border-radius: 20px;
+
+  font-family: 'Dongle', sans-serif;
+  font-size: 48px;
+  font-weight: bold;
+  color: var(--Brown-Text);
+  white-space: nowrap;
+`
+
+export const OrangeButton230 = styled.button`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  background-color: var(--Orange-Button);
+  opacity:0.9;
+  box-shadow: 0px 5px 5px #0000001A;
+  cursor: pointer;
+  border: none;
+  width: 235px;
+  height: 75px;
+  margin-bottom: 20px;
+
+  border-radius: 20px;
+
+  font-family: 'Dongle', sans-serif;
+  font-size: 48px;
+  font-weight: bold;
+  color: var(--White-Block);
+  white-space: nowrap;
+`
+
+export const KidsSongVidoBackground = styled.section`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  background-color: black;
+  border-radius: 10px;
+  box-shadow: 0px 5px 5px #0000001A;
+
+  width: 880px;
+  height: 505px;
+  /* padding-left: 20px;
+  padding-right: 20px; */
+  z-index: -1;
 `

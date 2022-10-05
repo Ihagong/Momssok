@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from "react"
 import { useNavigate } from "react-router-dom"
 
 import { useRecoilState } from 'recoil'
-import { profileState, profileListState } from '../store/atoms'
+import { parentInfoState, parentActiveState, profileState, profileListState } from '../store/atoms'
 import { useLetterCallback } from '../Functions/useLetterCallback'
 
 import { LogoTag, EditorBody, LetterTitleBody, LetterTitleDiv, LetterTitleInput, LetterContentBody, LetterContentDiv, LetterContentTextArea, LetterEditorComponentBody, LetterButton, LetterButtonBack, LetterButtonGo, LetterButtonDel } from "../Style/Components"
@@ -13,6 +13,8 @@ const LetterEditorComponent = ({ isDetail, letterItem }) => {
 
   const [profileInfo, setProfileInfo] = useRecoilState(profileState)
   const [profileList, setProfileList] = useRecoilState(profileListState)
+  const [parentInfo, setParentInfo] = useRecoilState(parentInfoState)
+  const [parentActive, setParentActive] = useRecoilState(parentActiveState)
 
   const { letterSendCallback, letterRemoveCallback } = useLetterCallback()
 
@@ -94,7 +96,7 @@ const LetterEditorComponent = ({ isDetail, letterItem }) => {
           <div>{isDetail ? "누가 : " : "누구 : "}</div>
           {isDetail ? <LetterTitleDiv>{author}</LetterTitleDiv> : 
           <LetterTitleDiv>
-            {profileList.filter((it) => it.name !== profileInfo.name).map((it, idx) => (
+            { profileList.filter((it) => it.name !== profileInfo.name ).map((it, idx) => (
               <label key={idx} style={{marginRight: "10px"}}>
                 <input
                   type="radio"
