@@ -183,7 +183,7 @@ export const CanvasProvider = ({ children, textures, offset, gesture, strokeColo
     const canvas = canvasRef.current
     const imageURL = canvas.toDataURL()
 
-    if (loadedPaintingInfo?.drawing_id) {
+    if (drawingIsDetail === true) {
       setDrawingIsDetail(false)
       updatePaintingCallback(loadedPaintingInfo?.drawing_id, profileInfo.name, imageURL)
     } else {
