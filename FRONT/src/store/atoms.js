@@ -138,7 +138,7 @@ export const diaryItemState = atom({
 
 export const parentActiveState = atom({
   key: 'parentActiveState',
-  default: {},
+  default: false,
   effects_UNSTABLE: [persistAtom]
 })
 
