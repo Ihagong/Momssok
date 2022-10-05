@@ -351,6 +351,7 @@ export const ChildSubMenuButtonTag = styled.div`
 `
 
 export const LogoTag = styled.img`
+  cursor: pointer;
   width: 160px;
 `
 
@@ -601,14 +602,14 @@ export const PaintingCardTag = styled.div`
 
 export const PaintingCardDateStyleTag = styled.div`
   font-size: 26px;
-  margin-top: 15px;
-  margin-bottom: 15px;
+  margin-top: 10px;
+  margin-bottom: 10px;
 `
 
-export const PaintingCardTagStyleTag = styled.p`
+export const PaintingCardTagStyleTag = styled.div`
   font-family: 'Dongle', sans-serif;
-  font-size: 24px;
-  margin: 0 3px;
+  font-size: 26px;
+  margin-right: 10px;
 `
 
 export const CalendarTag = styled.div`
@@ -727,7 +728,6 @@ export const PromiseTodoItemDoneTag = styled.p`
   margin: 0;
   text-decoration: line-through;
   color: var(--Brown-Stroke);
-  cursor: pointer;
   user-select: auto;
 `
 
@@ -887,7 +887,79 @@ export const PaintingGuideTag = styled.div`
   }
 `
 
+export const AlertModalComponentTag = styled.div`
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 500px;
+  height: 300px;
+  font-family: 'Jua', sans-serif;
+  font-size: 36px;
+  color: var(--Brown-Text);
+  background-color: var(--Beige-Light);
+  border-radius: 30px;
+  z-index: 1;
+`
 
+export const EmotionReportTag = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0 0 0 0;
+  width: 1000px;
+  height: 460px;
+  font-family: 'Jua', sans-serif;
+  font-size: 30px;
+  color: var(--Brown-Text);
+  background-color: var(--Beige-Light);
+  border-radius: 0 0 30px 30px;
+  z-index: 1;
+`
+
+export const ReportSelectedTabTag = styled.button`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  /* background-color: var(--Orange-Button); */
+  background-color: var(--Beige-Light);
+  opacity:0.9;
+  box-shadow: 0px 5px 5px #E6E6E6;
+  cursor: pointer;
+  border: none;
+  width: 250px;
+  height: 60px;
+  border-radius: 20px 20px 0 0;
+
+  font-family: 'Jua', sans-serif;
+  font-weight: 500;
+  font-size: 36px;
+  color: var(--Brown-Text);
+  white-space: nowrap;
+`
+
+export const ReportTabTag = styled.button`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  background-color: var(--Beige-Stroke);
+  opacity:0.9;
+  box-shadow: 0px 5px 5px #E6E6E6;
+  cursor: pointer;
+  border: none;
+  width: 250px;
+  height: 60px;
+  border-radius: 20px 20px 0 0;
+
+  font-family: 'Jua', sans-serif;
+  font-weight: 500;
+  font-size: 36px;
+  color: var(--Brown-Text);
+  white-space: nowrap;
+`
 
 
 
@@ -1347,9 +1419,14 @@ export const ParentInfo = styled.section`
 // DiaryPage
 
 export const DiaryContent = styled.section`
-  display: flex;
+  display: grid;
+  grid-template-columns: repeat(3, 3fr);
+  align-items: center;
   justify-content: center;
-  margin-top: 30px;
+  margin-top: 20px;
+  margin-left: 40px;
+  padding-left: 20px;
+  padding-right: 20px;
 `
 
 export const DiaryBlock = styled.div`
@@ -1363,8 +1440,7 @@ export const DiaryBlock = styled.div`
   width: 330px;
   height: 450px;
   border-radius: 30px;
-  margin-left: 20px;
-  margin-right: 20px;
+  margin-bottom: 40px;
   cursor: pointer;
 `
 

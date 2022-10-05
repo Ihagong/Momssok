@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom'
 import { usePaintingCallback } from '../Functions/usePaintingCallback'
 
 import { useRecoilState } from 'recoil'
-import { loadedPaintingInfoState, profileState, loadedPaintingListState } from '../store/atoms'
+import { drawingDetailState, diaryEditState, loadedPaintingInfoState, profileState, loadedPaintingListState } from '../store/atoms'
 
 import { OrangeButton250, LightButton250, LetterPageHeader, BrownText100, LightButton120, BrownLightButton150, ChildProfileTag, ChildButtonTag1, ChildButtonTag3, ChildButtonTag4, PaintingCardTag } from '../Style/Components'
 import { PaintingCardComponent } from '../Components/PaintingCardComponent'
@@ -15,7 +15,9 @@ function LoadPaintingPage() {
   const [loadedPaintingInfo, setLoadedPaintingInfo] = useRecoilState(loadedPaintingInfoState)
   const [loadedPaintingList, setLoadedPaintingList] = useRecoilState(loadedPaintingListState)
   const [profileInfo, setProfileInfo] = useRecoilState(profileState)
-  
+  const [diaryIsEdit, setDiaryIsEdit] = useRecoilState(diaryEditState)
+  const [drawingIsDetail, setDrawingIsDetail] = useRecoilState(drawingDetailState)
+
   const [sortType, setSortType] = useState("latest")
 
   useEffect(() => {
@@ -43,15 +45,28 @@ function LoadPaintingPage() {
     navigate('/profile')
   }
 
+  const handleClickCloseButton = () => {
+    if (diaryIsEdit === false) {
+      navigate('/child')
+    } else {
+      setDiaryIsEdit(false)
+      navigate('/diary/create') 
+    }
+  }
+
   const handleClickCreatePaintingButton = () => {
     setLoadedPaintingInfo({})
     navigate('/painting/create')
   }
 
   const handleClickLoadPaintingButton = (info) => {
-    setLoadedPaintingInfo({ id: info.drawing_id, imageURL: 'data'+info.drawing_base64.substring(4) })
-    console.log(loadedPaintingInfo)
-    navigate('/painting/create')
+    setLoadedPaintingInfo({ drawing_id: info.drawing_id, drawing_base64: info.drawing_base64 })
+    if ( diaryIsEdit === true ) {
+      navigate('/diary/create') 
+    } else {
+      setDrawingIsDetail(true)
+      navigate('/painting/create')
+    }
   }
 
   const latestType = () => {
@@ -82,7 +97,7 @@ function LoadPaintingPage() {
     <div className='LetterPageHome'>
       <LetterPageHeader>
         <div style={{ display: "flex", alignItems: "center", marginLeft: "30px", marginTop: "-50px"  }}>
-          <LightButton120 onClick={() => navigate("/child")}>닫기</LightButton120>
+          <LightButton120 onClick={handleClickCloseButton}>닫기</LightButton120>
           <BrownText100>그림 그리기</BrownText100>
         </div>
           <ChildProfileTag style={{marginTop: "20px", marginRight: "40px"}} onClick={handleClickChildProfile}><img src={`/images/profileImage_${profileInfo.image_num}.svg`} />{profileInfo.name}</ChildProfileTag>
@@ -102,7 +117,7 @@ function LoadPaintingPage() {
       </div>
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 3fr)', marginLeft: "50px" }}>
         <PaintingCardTag style={{justifyContent: "center"}} onClick={handleClickCreatePaintingButton}><img src='/icons/plus_brown.svg' /></PaintingCardTag>
-        {loadedPaintingList.map((info) => (
+        {getProcessedPaintingList().map((info) => (
           <div key={info.drawing_id} onClick={() => handleClickLoadPaintingButton(info)}>
             <PaintingCardComponent info={info} />
           </div>

@@ -3,13 +3,14 @@ import { LogoTag, ChildMenuTag, ChildMenuTabTag, ChildMenuSelectedTabTag, ChildS
 import { useNavigate } from  'react-router-dom'
 
 import { useRecoilState } from 'recoil'
-import { profileState } from '../store/atoms'
+import { diaryEditState, profileState } from '../store/atoms'
 import { useDictionaryCallback } from '../Functions/useDictionaryCallback'
 
 
 function ChildMainPage() {
   const [selectedTab, setSelctedTab] = useState(0)
   const [profileInfo, setProfileInfo] = useRecoilState(profileState)
+  const [diaryIsEdit, setDiaryIsEdit] = useRecoilState(diaryEditState)
   const { getAllDictionaryCallback } = useDictionaryCallback()
 
 
@@ -20,6 +21,7 @@ function ChildMainPage() {
   }
 
   const handleClickCreatePaintingButton = () => {
+    setDiaryIsEdit(false)
     navigate('/painting/load')
   }
 

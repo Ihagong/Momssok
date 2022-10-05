@@ -30,7 +30,7 @@ function ManageProfilePage() {
   }
 
   const handleClickChildProfile = (info) => {
-    console.log(info)
+    console.log("info :", info)
     setProfileInfo(info)
 
     if (isEditProfile) {
