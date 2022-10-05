@@ -4,6 +4,8 @@ import { useNavigate } from  'react-router-dom'
 import { useAuthCallback } from '../Functions/useAuthCallback'
 import { AlertModalComponent } from '../Components/AlertModalComponent'
 
+import { FindPasswordModalComponent } from '../Components/FindPasswordModalComponent'
+
 
 function LogInPage() {
   const [email, setEmail] = useState('')
@@ -32,7 +34,7 @@ function LogInPage() {
   }
 
   const handleClickFindPassword = () => {
-    navigate('/findpassword')
+    setModalOpen(true)
   }
 
   return (

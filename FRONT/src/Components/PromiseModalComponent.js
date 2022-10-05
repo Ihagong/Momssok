@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { PromiseModalComponentTag, ModalBackgroundTag } from '../Style/Components'
-import { ChildButtonTag2 } from '../Style/Components'
+import { ChildButtonTag2, PromiseModalComponentTag, ModalBackgroundTag } from '../Style/Components'
 import { PromiseTodoItemComponent } from './PromiseTodoItemComponent'
 import { useRecoilState } from 'recoil'
 import { profileState, promiseItemsState, parentActiveState } from '../store/atoms'
