@@ -88,6 +88,12 @@ export const letterItemState = atom({
   effects_UNSTABLE: [persistAtom]
 })
 
+export const letterVideoURLState = atom({
+  key: 'letterVideoURLState',
+  default: {},
+  effects_UNSTABLE: [persistAtom]
+})
+
 export const profileState = atom({
   key: 'profileState',
   default: {},

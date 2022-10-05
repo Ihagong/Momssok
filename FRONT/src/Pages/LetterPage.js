@@ -2,7 +2,7 @@ import React, { useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 
 import { useRecoilState } from 'recoil'
-import { totalLetterListState, profileState, parentActiveState } from '../store/atoms'
+import { totalLetterListState, profileState, parentActiveState, userInfoState } from '../store/atoms'
 import { useLetterCallback } from '../Functions/useLetterCallback'
 
 import "../App.css"
@@ -15,6 +15,7 @@ const LetterPage = () => {
   const [letterList, setLetterList] = useRecoilState(totalLetterListState)
   const [parentActive, setParentActive] = useRecoilState(parentActiveState)
   const [profileInfo, setProfileInfo] = useRecoilState(profileState)
+  const [userInfo, setUserInfo] = useRecoilState(userInfoState)
   const { letterInfoCallback } = useLetterCallback()
 
   const handleClickChildProfile = () => {
@@ -22,7 +23,7 @@ const LetterPage = () => {
   }
 
   useEffect(() => {
-    letterInfoCallback(profileInfo.name)
+    letterInfoCallback(parentActive ? userInfo.username : profileInfo.name)
   }, [])
 
   const handleClickCloseButton = () => {

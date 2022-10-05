@@ -1257,7 +1257,9 @@ export const LetterTitleInput = styled.input`
 
 export const LetterContentBody = styled.section`
   display: flex;
+  flex-direction: column;
   justify-content: center;
+  align-items: center;
   margin-top: 20px;
 `
 
@@ -1294,6 +1296,7 @@ export const LetterContentTextArea = styled.textarea`
   font-weight: bold;
   color: var(--Brown-LightText);
   white-space: normal;
+  resize: none;
 `
 
 export const LetterEditorComponentBody = styled.div`

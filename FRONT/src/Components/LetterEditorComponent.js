@@ -1,34 +1,42 @@
-import { useEffect, useRef, useState } from "react"
-import { useNavigate } from "react-router-dom"
+import React, { useEffect, useRef, useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 
 import { useRecoilState } from 'recoil'
-import { profileState, profileListState } from '../store/atoms'
+import { profileState, profileListState, letterVideoURLState } from '../store/atoms'
 import { useLetterCallback } from '../Functions/useLetterCallback'
+import { VideoCaptureComponent } from '../Components/VideoCaptureComponent'
 
-import { LogoTag, EditorBody, LetterTitleBody, LetterTitleDiv, LetterTitleInput, LetterContentBody, LetterContentDiv, LetterContentTextArea, LetterEditorComponentBody, LetterButton, LetterButtonBack, LetterButtonGo, LetterButtonDel } from "../Style/Components"
-import { getStringDate } from "../util/date"
+import { LogoTag, EditorBody, LetterTitleBody, LetterTitleDiv, LetterTitleInput, LetterContentBody, LetterContentDiv, LetterContentTextArea, LetterEditorComponentBody, LetterButton, LetterButtonBack, LetterButtonGo, LetterButtonDel } from '../Style/Components'
+import { getStringDate } from '../util/date'
+
 
 const LetterEditorComponent = ({ isDetail, letterItem }) => {
   const navigate = useNavigate()
 
   const [profileInfo, setProfileInfo] = useRecoilState(profileState)
   const [profileList, setProfileList] = useRecoilState(profileListState)
+  const [letterVideoURL, setLetterVideoURL] = useRecoilState(letterVideoURLState)
 
-  const { letterSendCallback, letterRemoveCallback } = useLetterCallback()
+  const { letterSendCallback, letterRemoveCallback, getLetterVideoFileCallback } = useLetterCallback()
 
   const titleRef = useRef()
   const contentRef = useRef()
 
-  const [author, setAuthor] = useState("")
-  const [receiver, setReceiver] = useState("")
-  const [title, setTitle] = useState("")
-  const [content, setContent] = useState("")
-  const [date, setDate] = useState("")
+  const [author, setAuthor] = useState('')
+  const [receiver, setReceiver] = useState('')
+  const [title, setTitle] = useState('')
+  const [content, setContent] = useState('')
+  const [date, setDate] = useState('')
 
+  const [videoFile, setVideoFile] = useState(null)
+
+  useEffect(() => {
+    console.log(videoFile)
+  }, [videoFile])
 
   // CREATE
   const onCreate = (receiver, title, content) => {
-    letterSendCallback(profileInfo.name, receiver, title, content)
+    letterSendCallback(videoFile, profileInfo.name, receiver, title, content)
   }
   // REMOVE
   const onRemove = (targetId) => {
@@ -48,17 +56,17 @@ const LetterEditorComponent = ({ isDetail, letterItem }) => {
       if (!isDetail) {
         onCreate(receiver, title, content)
       } else {
-        navigate("/letter/create", { replace: true })
+        navigate('/letter/create', { replace: true })
         return
       }
     }
-    navigate("/letter", { replace: true })
+    navigate('/letter', { replace: true })
   }
 
   const handleRemove = () => {
-    if (window.confirm("정말 삭제하시겠습니까?")) {
+    if (window.confirm('정말 삭제하시겠습니까?')) {
       onRemove(letterItem.letter_id)
-      navigate("/letter", { replace: true })
+      navigate('/letter', { replace: true })
     }
   }
 
@@ -77,27 +85,32 @@ const LetterEditorComponent = ({ isDetail, letterItem }) => {
     }
   }, [isDetail, letterItem])
 
+  useEffect(() => {
+    if (letterItem?.letter_id) {
+      getLetterVideoFileCallback(letterItem?.letter_id)
+    }
+  }, [])
   
   return (
     <LetterEditorComponentBody>
-      <div style={{marginRight: "20px", marginTop: "20px"}}>
+      <div style={{marginRight: '20px', marginTop: '20px'}}>
         <LogoTag src='/icons/logo.svg' />
       </div>
 
       <EditorBody>
         <LetterTitleBody>
-          <div>{isDetail ? "시간 : " : "누가 : "}</div>
+          <div>{isDetail ? '시간 : ' : '누가 : '}</div>
           <LetterTitleDiv>{isDetail ? date : profileInfo.name}</LetterTitleDiv>
         </LetterTitleBody>
 
         <LetterTitleBody>
-          <div>{isDetail ? "누가 : " : "누구 : "}</div>
+          <div>{isDetail ? '누가 : ' : '누구 : '}</div>
           {isDetail ? <LetterTitleDiv>{author}</LetterTitleDiv> : 
           <LetterTitleDiv>
             {profileList.filter((it) => it.name !== profileInfo.name).map((it, idx) => (
-              <label key={idx} style={{marginRight: "10px"}}>
+              <label key={idx} style={{marginRight: '10px'}}>
                 <input
-                  type="radio"
+                  type='radio'
                   value={it.name}
                   checked={receiver === `${it.name}`}
                   onChange= {handleClickRadioButton} />
@@ -110,8 +123,13 @@ const LetterEditorComponent = ({ isDetail, letterItem }) => {
 
         <LetterTitleBody>
           <div>제목 : </div>
-          {isDetail ? <LetterTitleDiv>{title}</LetterTitleDiv> : <LetterTitleInput ref={titleRef} value={title} onChange={(e) => setTitle(e.target.value)} />}
+          { isDetail ? <LetterTitleDiv>{title}</LetterTitleDiv> : <LetterTitleInput ref={titleRef} value={title} onChange={(e) => setTitle(e.target.value)} /> }
         </LetterTitleBody>
+        
+          { isDetail ? <video style={{ width: '200px' }} src={letterVideoURL} type='video/webm' controls={true} />
+          : <div style={{ display: 'flex', justifyContent: 'center' }}>
+            <VideoCaptureComponent setVideoFile={setVideoFile} />
+          </div> }
 
         <LetterContentBody>
           {isDetail ? <LetterContentDiv>{content}</LetterContentDiv> :
@@ -127,7 +145,7 @@ const LetterEditorComponent = ({ isDetail, letterItem }) => {
       <section>
         <LetterButton>
           <LetterButtonBack onClick={() => navigate(-1)}>닫기</LetterButtonBack>
-          <LetterButtonGo onClick={handleSubmit}>{isDetail ? "답장하기" : "보내기"}</LetterButtonGo>
+          <LetterButtonGo onClick={handleSubmit}>{isDetail ? '답장하기' : '보내기'}</LetterButtonGo>
           {isDetail && <LetterButtonDel onClick={handleRemove}>삭제하기</LetterButtonDel>}
         </LetterButton>
       </section>
