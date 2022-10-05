@@ -903,6 +903,64 @@ export const AlertModalComponentTag = styled.div`
   z-index: 1;
 `
 
+export const EmotionReportTag = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0 0 0 0;
+  width: 1000px;
+  height: 460px;
+  font-family: 'Jua', sans-serif;
+  font-size: 30px;
+  color: var(--Brown-Text);
+  background-color: var(--Beige-Light);
+  border-radius: 0 0 30px 30px;
+  z-index: 1;
+`
+
+export const ReportSelectedTabTag = styled.button`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  /* background-color: var(--Orange-Button); */
+  background-color: var(--Beige-Light);
+  opacity:0.9;
+  box-shadow: 0px 5px 5px #E6E6E6;
+  cursor: pointer;
+  border: none;
+  width: 250px;
+  height: 60px;
+  border-radius: 20px 20px 0 0;
+
+  font-family: 'Jua', sans-serif;
+  font-weight: 500;
+  font-size: 36px;
+  color: var(--Brown-Text);
+  white-space: nowrap;
+`
+
+export const ReportTabTag = styled.button`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  background-color: var(--Beige-Stroke);
+  opacity:0.9;
+  box-shadow: 0px 5px 5px #E6E6E6;
+  cursor: pointer;
+  border: none;
+  width: 250px;
+  height: 60px;
+  border-radius: 20px 20px 0 0;
+
+  font-family: 'Jua', sans-serif;
+  font-weight: 500;
+  font-size: 36px;
+  color: var(--Brown-Text);
+  white-space: nowrap;
+`
+
 
 
 
