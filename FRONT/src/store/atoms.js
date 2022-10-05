@@ -135,3 +135,27 @@ export const parentActiveState = atom({
   default: {},
   effects_UNSTABLE: [persistAtom]
 })
+
+export const diaryTempState = atom({
+  key: 'diaryTempState',
+  default: {},
+  effects_UNSTABLE: [persistAtom]
+})
+
+export const diaryEditState = atom({
+  key: 'diaryEditState',
+  default: false,
+  effects_UNSTABLE: [persistAtom]
+})
+
+export const diaryDetailState = atom({
+  key: 'diaryDetailState',
+  default: false,
+  effects_UNSTABLE: [persistAtom]
+})
+
+export const drawingDetailState = atom({
+  key: 'drawingDetailState',
+  default: false,
+  effects_UNSTABLE: [persistAtom]
+})

@@ -12,7 +12,7 @@ export function useAuthCallback() {
   const [profileList, setProfileList] = useRecoilState(profileListState)
   const navigate = useNavigate()
 
-  const authCheckCallback = async (email, authNumber) => {
+  const authCheckCallback = async (email, authNumber, setModalContent, setModalOpen) => {
     axios({
       method: 'post',
       url: '/api/user/emailCertification',
@@ -26,18 +26,19 @@ export function useAuthCallback() {
     })
     .then(response => {
       if (response.data) {
-        console.log(response.data)
-        console.log('인증되었습니다.')
+        setModalContent('인증되었습니다.')
+        setModalOpen(true)
         setSignUpToken(response.data.token)
       }
     })
     .catch(error => {
-      console.log(error.response.data)
+      setModalContent(error.response.data?.Messege ? error.response.data?.Messege : '오류가 발생했습니다.')
+      setModalOpen(true)
       setSignUpToken('')
     })
   }
 
-  const authEmailCallback = async (email) => {
+  const authEmailCallback = async (email, setModalContent, setModalOpen) => {
     axios({
       method: 'post',
       url: '/api/user/emailInput',
@@ -50,16 +51,17 @@ export function useAuthCallback() {
     })
     .then(response => {
       if (response.data) {
-        console.log(response.data)
-        console.log('인증 메일을 보냈습니다.')
+        setModalContent('인증 메일을 보냈습니다.')
+        setModalOpen(true)
       }
     })
     .catch(error => {
-      console.log(error.response.data)
+      setModalContent(error.response.data?.Messege ? error.response.data?.Messege : '오류가 발생했습니다.')
+      setModalOpen(true)
     })
   }
   
-  const signUpCallback = async (email, password, username) => {
+  const signUpCallback = async (email, password, username, setModalContent, setModalOpen) => {
     axios({
       method: 'post',
       url: '/api/user/signUp',
@@ -75,13 +77,11 @@ export function useAuthCallback() {
     })
     .then(response => {
       if (response.data) {
-        console.log(response.data)
-        console.log('회원가입에 성공했습니다.')
         navigate('/login')
       }
     })
     .catch(error => {
-      console.log(error.response.data)
+      setModalContent(error.response.data?.Messege ? error.response.data?.Messege : '오류가 발생했습니다.')
     })
   }
 

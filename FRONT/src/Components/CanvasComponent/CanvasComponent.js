@@ -1,10 +1,18 @@
 import React, { useEffect } from 'react'
+import { useRecoilState } from 'recoil'
+import { drawingDetailState, loadedPaintingInfoState } from '../../store/atoms'
+
 import { useCanvas } from './CanvasContext'
 import '../../CSS/drawing.css'
 import { PaintingCanvasTag } from '../../Style/Components'
 
 
 export function CanvasComponent({ width }) {
+  const [drawingIsDetail, setDrawingIsDetail] = useRecoilState(drawingDetailState)
+  const [loadedPaintingInfo, setLoadedPaintingInfo] = useRecoilState(loadedPaintingInfoState)
+
+  console.log(loadedPaintingInfo, drawingIsDetail)
+
   const {
     canvasRef,
     prepareCanvas,

@@ -1,5 +1,5 @@
 import { useRecoilState } from 'recoil'
-import { logInTokenState, loadedPaintingListState } from '../store/atoms'
+import { diaryEditState, logInTokenState, loadedPaintingInfoState, loadedPaintingListState } from '../store/atoms'
 import { useNavigate } from  'react-router-dom'
 import axios from 'axios'
 
@@ -7,6 +7,9 @@ import axios from 'axios'
 export function usePaintingCallback() {
   const [logInToken, setLogInToken] = useRecoilState(logInTokenState)
   const [loadedPaintingList, setLoadedPaintingList] = useRecoilState(loadedPaintingListState)
+  const [loadedPaintingItem, setLoadedPaintingItem] = useRecoilState(loadedPaintingInfoState)
+  const [diaryIsEdit, setDiaryIsEdit] = useRecoilState(diaryEditState)
+
   
   const navigate = useNavigate()
 
@@ -26,9 +29,14 @@ export function usePaintingCallback() {
     .then(response => {
       if (response.data) {
         console.log(response.data)
-        console.log(imageURL)
         console.log('그림이 저장되었습니다.')
-        navigate(-1)
+        if (diaryIsEdit === true) {
+          setLoadedPaintingItem(response.data.data)
+          navigate('/diary/create')
+        } else {
+          setDiaryIsEdit(false)
+          navigate('/painting/load')
+        }
       }
     })
     .catch(error => {

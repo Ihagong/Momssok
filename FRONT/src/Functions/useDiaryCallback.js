@@ -4,13 +4,13 @@ import { useNavigate } from  'react-router-dom'
 import axios from 'axios'
 
 
-export function usePaintingCallback() {
+export function useDiaryCallback() {
   const [logInToken, setLogInToken] = useRecoilState(logInTokenState)
   const [loadedDiaryList, setLoadedDiaryList] = useRecoilState(totalDiaryListState)
   
   const navigate = useNavigate()
 
-  const saveDiaryCallback = async (drawing_id, title, content, weather, date) => {
+  const saveDiaryCallback = async ({name, drawing_id, title, content, weather, date}) => {
     axios({
       method: 'post',
       url: '/api/user/saveDiary',
@@ -19,6 +19,7 @@ export function usePaintingCallback() {
         'Authorization': logInToken,
       },
       data: {
+        'name': name,
         'drawing_id': drawing_id,
         'title': title,
         'content': content,
@@ -38,7 +39,8 @@ export function usePaintingCallback() {
     })
   }
 
-  const updateDiaryCallback = async (diary_id, name, drawing_id, title, content, weather) => {
+  const updateDiaryCallback = async ({id, name, drawing_id, title, content, weather}) => {
+    console.log(id, name, drawing_id, title, content, weather)
     axios({
       method: 'put',
       url: '/api/user/updateDiary',
@@ -47,7 +49,7 @@ export function usePaintingCallback() {
         'Authorization': logInToken,
       },
       data: {
-        'id': diary_id,
+        'id': id,
         'name': name,
         'drawing_id': drawing_id,
         'title': title,
@@ -67,16 +69,16 @@ export function usePaintingCallback() {
     })
   }
 
-  const diaryRemoveCallback = async (diary_id, name) => {
+  const diaryRemoveCallback = async ( {id, name} ) => {
     axios({
-        method: 'delete',
-        url: '/api/letter/deleteDiary',
+        method: 'put',
+        url: '/api/user/deleteDiary',
         headers: {
         'Content-Type': 'application/json',
         'Authorization': logInToken,
         },
-        params: {
-        "id": diary_id,
+        data: {
+        "id": id,
         "name": name
         }
     })
@@ -93,14 +95,14 @@ export function usePaintingCallback() {
 
   const getAllDiaryCallback = async (name) => {
     axios({
-      method: 'get',
+      method: 'post',
       url: '/api/user/searchDiaryGallery',
       headers: {
         'Content-Type': 'application/json',
         'Authorization': logInToken,
       },
-      params: {
-        'name': name,
+      data: {
+        'name': name
       }
     })
     .then(response => {
