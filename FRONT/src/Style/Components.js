@@ -42,6 +42,13 @@ export const ButtonTag1 = styled.button`
   font-size: 36px;
   cursor: pointer;
   user-select: auto;
+  :hover {
+    transition: 0.5s;
+    filter: brightness(90%);
+  }
+  :active {
+    transform: scale(0.95);
+  }
 `
 
 export const ButtonTag2 = styled.button`
@@ -51,10 +58,18 @@ export const ButtonTag2 = styled.button`
   background-color: var(--Brown-Text);
   border-radius: 20px;
   border: 0;
+  box-shadow: 0px 5px 5px #0000001A;
   font-family: 'Jua', sans-serif;
   font-size: 28px;
   cursor: pointer;
   user-select: auto;
+  :hover {
+    transition: 0.5s;
+    filter: brightness(90%);
+  }
+  :active {
+    transform: scale(0.95);
+  }
 `
 
 export const ButtonTag3 = styled.button`
@@ -63,12 +78,19 @@ export const ButtonTag3 = styled.button`
   color: var(--Brown-Text);
   background-color: var(--Beige-Light);
   border-radius: 20px;
-  border: none;
-  box-shadow: 0px 5px 5px #E6E6E6;
+  border: 0;
+  box-shadow: 0px 5px 5px #0000001A;
   font-family: 'Jua', sans-serif;
   font-size: 40px;
   cursor: pointer;
   user-select: auto;
+  :hover {
+    transition: 0.5s;
+    filter: brightness(90%);
+  }
+  :active {
+    transform: scale(0.95);
+  }
 `
 
 export const ButtonTag4 = styled.button`
@@ -78,10 +100,18 @@ export const ButtonTag4 = styled.button`
   background-color: #FF6029CC;
   border-radius: 20px;
   border: 0;
+  box-shadow: 0px 5px 5px #0000001A;
   font-family: 'Jua', sans-serif;
   font-size: 40px;
   cursor: pointer;
   user-select: auto;
+  :hover {
+    transition: 0.5s;
+    filter: brightness(90%);
+  }
+  :active {
+    transform: scale(0.95);
+  }
 `
 
 export const ChildButtonTag1 = styled.button`
@@ -98,6 +128,13 @@ export const ChildButtonTag1 = styled.button`
   font-size: 64px;
   cursor: pointer;
   user-select: auto;
+  :hover {
+    transition: 0.5s;
+    filter: brightness(90%);
+  }
+  :active {
+    transform: scale(0.95);
+  }
 `
 
 export const ChildButtonTag2 = styled.button`
@@ -108,7 +145,7 @@ export const ChildButtonTag2 = styled.button`
   height: 70px;
   color: white;
   background-color: var(--Brown-LightText);
-  box-shadow: 0px 5px 5px #E6E6E6;
+  box-shadow: 0px 5px 5px #0000001A;
   border-radius: 20px;
   border: 0;
   font-family: 'Dongle', sans-serif;
@@ -116,6 +153,13 @@ export const ChildButtonTag2 = styled.button`
   cursor: pointer;
   user-select: auto;
   z-index: 4;
+  :hover {
+    transition: 0.5s;
+    filter: brightness(90%);
+  }
+  :active {
+    transform: scale(0.95);
+  }
 `
 
 export const ChildButtonTag3 = styled.button`
@@ -133,6 +177,13 @@ export const ChildButtonTag3 = styled.button`
   line-height: 60px;
   cursor: pointer;
   user-select: auto;
+  :hover {
+    transition: 0.5s;
+    filter: brightness(90%);
+  }
+  :active {
+    transform: scale(0.95);
+  }
 `
 
 export const ChildButtonTag4 = styled.button`
@@ -141,7 +192,7 @@ export const ChildButtonTag4 = styled.button`
   align-items: center;
   width: 230px;
   height: 70px;
-  box-shadow: 0px 5px 5px #E6E6E6;
+  box-shadow: 0px 5px 5px #0000001A;
   color: var(--Brown-LightText);
   background-color: var(--Beige-BG);
   border-radius: 20px;
@@ -151,6 +202,13 @@ export const ChildButtonTag4 = styled.button`
   cursor: pointer;
   user-select: auto;
   z-index: 4;
+  :hover {
+    transition: 0.5s;
+    filter: brightness(90%);
+  }
+  :active {
+    transform: scale(0.95);
+  }
 `
 
 export const ChildButtonTag5 = styled.button`
@@ -164,6 +222,13 @@ export const ChildButtonTag5 = styled.button`
   font-size: 28px;
   cursor: pointer;
   user-select: auto;
+  :hover {
+    transition: 0.5s;
+    filter: brightness(90%);
+  }
+  :active {
+    transform: scale(0.95);
+  }
 `
 
 export const AddProfileButtonTag = styled.button`
@@ -182,6 +247,13 @@ export const AddProfileButtonTag = styled.button`
     height: 70px;
   }
   user-select: auto;
+  :hover {
+    transition: 0.5s;
+    filter: brightness(90%);
+  }
+  :active {
+    transform: scale(0.95);
+  }
 `
 
 export const AddProfileTextTag = styled.p`
@@ -274,7 +346,7 @@ export const ChildMenuTabTag = styled.div`
   font-weight: bold;
   border-radius: 30px;
   background-color: var(--Beige-Light);
-  box-shadow: 0px 5px 5px #E6E6E6;
+  box-shadow: 0px 5px 5px #0000001A;
   align-items: center;
   justify-content: center;
   cursor: pointer;
@@ -284,11 +356,11 @@ export const ChildMenuTabTag = styled.div`
     height: 110px;
   }
   :hover {
-    background-color: var(--Beige-Stroke);
-    transition: 0.3s;
+    transition: 0.5s;
+    filter: brightness(90%);
   }
   :active {
-    transform: scale( 0.95 );
+    transform: scale(0.95);
   }
 `
 
@@ -306,7 +378,7 @@ export const ChildMenuSelectedTabTag = styled.div`
   font-size: 60px;
   border-radius: 30px;
   background-color: #FF6029CC;
-  box-shadow: 0px 5px 5px #E6E6E6;
+  box-shadow: 0px 5px 5px #0000001A;
   align-items: center;
   justify-content: center;
   cursor: pointer;
@@ -337,7 +409,7 @@ export const ChildSubMenuButtonTag = styled.div`
   font-weight: bold;
   border-radius: 50px;
   background-color: var(--Beige-Light);
-  box-shadow: 0px 5px 5px #E6E6E6;
+  box-shadow: 0px 5px 5px #0000001A;
   align-items: center;
   justify-content: center;
   cursor: pointer;
@@ -380,7 +452,7 @@ export const DiaryComponentTag = styled.div`
   background-color: var(--White-Block);
   border-radius: 30px;
   border: 1px solid #C5BEB6;
-  box-shadow: 0px 5px 5px #E6E6E6;
+  box-shadow: 0px 5px 5px #0000001A;
 
   width: 700px;
   margin-top: 20px;
@@ -547,7 +619,7 @@ export const ParentMenuButtonTag = styled.div`
   height: 330px;
   font-size: 20px;
   border-radius: 30px;
-  box-shadow: 0px 5px 5px #E6E6E6;
+  box-shadow: 0px 5px 5px #0000001A;
   padding: 5px;
   margin-left: 20px;
   margin-right: 20px;
@@ -588,7 +660,7 @@ export const PaintingCardTag = styled.div`
   align-items: center;
   color: var(--Brown-LightText);
   background-color: var(--White-Block);
-  box-shadow: 0px 5px 5px #E6E6E6;
+  box-shadow: 0px 5px 5px #0000001A;
   border-radius: 20px;
   width: 240px;
   height: 200px;
@@ -926,7 +998,7 @@ export const ReportSelectedTabTag = styled.button`
   /* background-color: var(--Orange-Button); */
   background-color: var(--Beige-Light);
   opacity:0.9;
-  box-shadow: 0px 5px 5px #E6E6E6;
+  box-shadow: 0px 5px 5px #0000001A;
   cursor: pointer;
   border: none;
   width: 250px;
@@ -947,7 +1019,7 @@ export const ReportTabTag = styled.button`
 
   background-color: var(--Beige-Stroke);
   opacity:0.9;
-  box-shadow: 0px 5px 5px #E6E6E6;
+  box-shadow: 0px 5px 5px #0000001A;
   cursor: pointer;
   border: none;
   width: 250px;
@@ -1016,7 +1088,7 @@ export const LightButton120 = styled.button`
   align-items: center;
 
   background-color: var(--Beige-Light);
-  box-shadow: 0px 5px 5px #E6E6E6;
+  box-shadow: 0px 5px 5px #0000001A;
   cursor: pointer;
   border: none;
   width: 120px;
@@ -1036,7 +1108,7 @@ export const BrownLightButton150 = styled.button`
   align-items: center;
 
   background-color: var(--Brown-LightText);
-  box-shadow: 0px 5px 5px #E6E6E6;
+  box-shadow: 0px 5px 5px #0000001A;
   cursor: pointer;
   border: none;
   width: 150px;
@@ -1058,7 +1130,7 @@ export const OrangeButton250 = styled.button`
 
   background-color: var(--Orange-Button);
   opacity:0.9;
-  box-shadow: 0px 5px 5px #E6E6E6;
+  box-shadow: 0px 5px 5px #0000001A;
   cursor: pointer;
   border: none;
   width: 250px;
@@ -1080,7 +1152,7 @@ export const LightButton250 = styled.button`
 
   background-color: var(--Beige-Light);
   opacity:0.9;
-  box-shadow: 0px 5px 5px #E6E6E6;
+  box-shadow: 0px 5px 5px #0000001A;
   cursor: pointer;
   border: none;
   width: 250px;
@@ -1096,7 +1168,7 @@ export const LightButton250 = styled.button`
 `
 
 export const LetterItem = styled.div`
-  box-shadow: 0px 5px 5px #E6E6E6;
+  box-shadow: 0px 5px 5px #0000001A;
   width: 1090px;
   height: 100px;
   border-radius: 20px;
@@ -1128,7 +1200,7 @@ export const EditorBody = styled.div`
   background-color: var(--White-Block);
   border-radius: 30px;
   border: 1px solid #C5BEB6;
-  box-shadow: 0px 5px 5px #E6E6E6;
+  box-shadow: 0px 5px 5px #0000001A;
 
   width: 700px;
   height: 700px;
@@ -1240,7 +1312,7 @@ export const LetterButtonBack = styled.button`
   align-items: center;
 
   background-color: var(--Beige-Light);
-  box-shadow: 0px 5px 5px #E6E6E6;
+  box-shadow: 0px 5px 5px #0000001A;
   cursor: pointer;
   border: none;
   width: 200px;
@@ -1263,7 +1335,7 @@ export const LetterButtonGo = styled.button`
   align-items: center;
 
   background-color: var(--Brown-LightText);
-  box-shadow: 0px 5px 5px #E6E6E6;
+  box-shadow: 0px 5px 5px #0000001A;
   cursor: pointer;
   border: none;
   width: 200px;
@@ -1287,7 +1359,7 @@ export const LetterButtonDel = styled.button`
 
   background-color: var(--Orange-Button);
   opacity: 0.8;
-  box-shadow: 0px 5px 5px #E6E6E6;
+  box-shadow: 0px 5px 5px #0000001A;
   cursor: pointer;
   border: none;
   width: 200px;
@@ -1442,7 +1514,7 @@ export const DiaryBlock = styled.div`
   align-items: center;
 
   background-color: #FDFDF5;
-  box-shadow: 0px 5px 5px #E6E6E6;
+  box-shadow: 0px 5px 5px #0000001A;
   width: 330px;
   height: 450px;
   border-radius: 30px;
@@ -1463,7 +1535,7 @@ export const DiarySectionButtonTag = styled.div`
   font-weight: bold;
   border-radius: 20px;
   background-color: var(--Beige-Light);
-  box-shadow: 0px 5px 5px #E6E6E6;
+  box-shadow: 0px 5px 5px #0000001A;
   cursor: pointer;
   user-select: auto;
   img {

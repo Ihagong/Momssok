@@ -33,7 +33,11 @@ function PromisePage() {
   }
 
   const handleClickCloseButton = () => {
-    navigate('/child')
+    if (parentActive) {
+      navigate('/parent')
+    } else {
+      navigate('/child')
+    }
   }
 
   const handleClickChildProfile = () => {

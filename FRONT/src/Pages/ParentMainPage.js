@@ -38,7 +38,7 @@ function ParentMainPage() {
   return (
     <div>
       <ParentTitle>
-        <img style={{ width: "130px", height: "130px" }} src={`/images/profileImage_${profileInfo.image_num}.svg`} />
+        <img onClick={() => navigate('/profile/manage')} style={{ width: "130px", height: "130px", cursor: 'pointer' }} src={`/images/profileImage_${profileInfo.image_num}.svg`} />
         <ParentInfo>
           <JuaBrown style={{ fontSize: "50px" }}>{profileInfo.name}
             <span style={{ fontSize: "50px", color: "gray"}}> | </span>
