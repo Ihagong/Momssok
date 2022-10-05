@@ -2,20 +2,20 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.ihagong.momssok.mapper.UsageMapper">
-    <update id="updateLastAccess" parameterType="com.ihagong.momssok.model.dto.UsageDto" >
+    <update id="updateLastAccess" parameterType="com.ihagong.momssok.model.dto.UsageDBDto" >
         UPDATE profile set last_access=#{date} where email_name=#{email_name};
     </update>
-    <select id="searchUsageTime" parameterType="com.ihagong.momssok.model.dto.UsageDto" resultType="int">
-        SELECT usage_time FROM `usage` WHERE email_name=#{email_name} and date=#{date};
+    <select id="searchUsageDBDto" parameterType="com.ihagong.momssok.model.dto.UsageDBDto" resultType="com.ihagong.momssok.model.dto.UsageDBDto">
+        SELECT * FROM `usage` WHERE email_name=#{email_name} and date=#{date};
     </select>
-    <select id="checkUsageTimeExist" parameterType="com.ihagong.momssok.model.dto.UsageDto" resultType="int">
+    <select id="checkUsageTimeExist" parameterType="com.ihagong.momssok.model.dto.UsageDBDto" resultType="int">
         SELECT count(*) FROM `usage` WHERE email_name=#{email_name} and date=#{date};
     </select>
-    <insert id="registUsageTime" parameterType="com.ihagong.momssok.model.dto.UsageDto" >
-        INSERT INTO `usage`(email_name,date,usage_time)
-        values (#{email_name},#{date},#{usage_time});
+    <insert id="registUsageTime" parameterType="com.ihagong.momssok.model.dto.UsageDBDto" >
+        INSERT INTO `usage`(email_name,date,total_usage_time,usageTimesList)
+        values (#{email_name},#{date},#{total_usage_time},#{usageTimesList});
     </insert>
-    <update id="updateUsageTime" parameterType="com.ihagong.momssok.model.dto.UsageDto" >
-        UPDATE `usage` set usage_time=#{usage_time} WHERE email_name=#{email_name} and date=#{date};
+    <update id="updateUsageTime" parameterType="com.ihagong.momssok.model.dto.UsageDBDto" >
+        UPDATE `usage` set total_usage_time=#{total_usage_time},usageTimesList=#{usageTimesList} WHERE email_name=#{email_name} and date=#{date};
     </update>
 </mapper>
