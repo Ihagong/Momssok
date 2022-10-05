@@ -1411,7 +1411,6 @@ export const JuaBrown = styled.div`
 export const JuaBrownLight = styled.div`
   font-family: 'Jua', sans-serif;
   color: var(--Brown-LightText);
-  white-space: nowrap;
 `
 
 export const GugiPink = styled.span`
