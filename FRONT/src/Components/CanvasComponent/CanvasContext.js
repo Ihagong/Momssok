@@ -92,7 +92,7 @@ export const CanvasProvider = ({ children, textures, offset, gesture, strokeColo
     context.lineWidth = strokeLineWidth[strokeLineWidthIndex]
     contextRef.current = context
     
-    if (loadedPainting) {
+    if (loadedPainting && !animal) {
       context.drawImage(loadedPainting, 0, 0, 2200, 1100, 0, 0, 1100, 550)
     }
   }
