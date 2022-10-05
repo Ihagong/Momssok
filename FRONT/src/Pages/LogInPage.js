@@ -3,10 +3,13 @@ import { LoginPageBody, GugiPink, JuaBrown, JuaBrownLight, FindPasswordTag, Sign
 import { useNavigate } from  'react-router-dom'
 import { useAuthCallback } from '../Functions/useAuthCallback'
 
+import { FindPasswordModalComponent } from '../Components/FindPasswordModalComponent'
+
 
 function LogInPage() {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
+  const [modalOpen, setModalOpen] = useState(false)
   const navigate = useNavigate()
 
   const { logInCallback } = useAuthCallback()
@@ -26,11 +29,12 @@ function LogInPage() {
   }
 
   const handleClickFindPassword = () => {
-    navigate('/findpassword')
+    setModalOpen(true)
   }
 
   return (
     <LoginPageBody>
+      { modalOpen ? <FindPasswordModalComponent setModalOpen={setModalOpen} /> : null }
       <section style={{marginRight: "60px", marginTop: "40px"}}>
         <JuaBrown style={{fontSize: "80px", marginBottom: "10px"}}>환영합니다!</JuaBrown>
         <JuaBrownLight style={{fontSize: "36px"}}>소중한 우리 아이의 마음 속,</JuaBrownLight>
