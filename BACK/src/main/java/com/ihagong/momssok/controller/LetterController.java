@@ -47,7 +47,7 @@ public class LetterController {
         byte[] fileContent = FileUtils.readFileToByteArray(file);
         ByteArrayResource resource=new ByteArrayResource(fileContent);
         return ResponseEntity.ok()
-                .contentType(MediaType.parseMediaType("video/mp4"))
+                .contentType(MediaType.parseMediaType("video/webm"))
                 .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + file.getName() + "\"")
                 .body(resource);
     }
