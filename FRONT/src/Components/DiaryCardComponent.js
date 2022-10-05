@@ -36,6 +36,24 @@ export function DiaryCardComponent({ info }) {
     return result
   }
 
+  const emotionColor = (emotion) => {
+    let result = ''
+    if (emotion === 'happy') {
+      result = '#FFE27D'
+    } else if (emotion === 'sad') {
+      result = '#7DC1FF'
+    } else if (emotion === 'surprised') {
+      result = '#A6EFCC'
+    } else if (emotion === 'angry') {
+      result = '#F8899D'
+    } else if (emotion === 'worry') {
+      result = '#C6A6EF'
+    } else {
+      return null
+    }
+    return result
+  }
+  console.log(info.emotion)
   return (
     <DiaryBlock style={{justifyContent: 'start', justifyContent: 'space-between' }}>
       <section style={{display: 'flex', marginTop: '20px', alignItems: 'end' }}>
