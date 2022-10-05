@@ -108,7 +108,7 @@ function DiaryPage() {
           <div key={key} onClick={() => handleClickLoadDiaryButton(info)}>
             <DiaryCardComponent info={info} />
           </div>
-        ))}     
+        ))}
 
       </DiaryContent>
     </div>
