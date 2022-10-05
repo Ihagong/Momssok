@@ -5,6 +5,7 @@ import { PaintingCardTag, PaintingCardDateStyleTag, PaintingCardTagStyleTag } fr
 export function PaintingCardComponent({ info }) {
   let tagList = info.tag?.split(' ')
   tagList?.splice(-1, 1)
+
   
   return (
     <PaintingCardTag>

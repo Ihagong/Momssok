@@ -53,8 +53,8 @@ function DiaryPage() {
 
   const handleClickLoadDiaryButton = (info) => {
     setDiaryItem(info)
+    console.log(info)
     setDiaryIsDetail(true)
-    console.log(diaryIsDetail)
     navigate(`/diary/${info.id}`)
   }
 

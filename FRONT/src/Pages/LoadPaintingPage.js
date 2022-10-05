@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom'
 import { usePaintingCallback } from '../Functions/usePaintingCallback'
 
 import { useRecoilState } from 'recoil'
-import { diaryEditState, loadedPaintingInfoState, profileState, loadedPaintingListState } from '../store/atoms'
+import { drawingDetailState, diaryEditState, loadedPaintingInfoState, profileState, loadedPaintingListState } from '../store/atoms'
 
 import { OrangeButton250, LightButton250, LetterPageHeader, BrownText100, LightButton120, BrownLightButton150, ChildProfileTag, ChildButtonTag1, ChildButtonTag3, ChildButtonTag4, PaintingCardTag } from '../Style/Components'
 import { PaintingCardComponent } from '../Components/PaintingCardComponent'
@@ -16,6 +16,7 @@ function LoadPaintingPage() {
   const [loadedPaintingList, setLoadedPaintingList] = useRecoilState(loadedPaintingListState)
   const [profileInfo, setProfileInfo] = useRecoilState(profileState)
   const [diaryIsEdit, setDiaryIsEdit] = useRecoilState(diaryEditState)
+  const [drawingIsDetail, setDrawingIsDetail] = useRecoilState(drawingDetailState)
 
   const [sortType, setSortType] = useState("latest")
 
@@ -63,6 +64,7 @@ function LoadPaintingPage() {
     if ( diaryIsEdit === true ) {
       navigate('/diary/create') 
     } else {
+      setDrawingIsDetail(true)
       navigate('/painting/create')
     }
   }
