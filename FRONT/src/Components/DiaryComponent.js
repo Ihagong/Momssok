@@ -124,6 +124,7 @@ export function DiaryComponent() {
 
   const handleClickEditButton = () => {
     setDiaryIsEdit(false)
+    setDiaryIsDetail(false)
     updateDiaryCallback({
       'id': diaryItem.id, 
       'name': profileInfo.name,
@@ -138,6 +139,7 @@ export function DiaryComponent() {
 
   const handleClickRemoveButton = () => {
     setDiaryIsEdit(false)
+    setDiaryIsDetail(false)
 
     if (window.confirm("정말 삭제하시겠습니까?")) {
       diaryRemoveCallback({

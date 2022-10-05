@@ -10,6 +10,10 @@ root.render(
   <React.StrictMode>
     <RecoilRoot>
       <App />
+      <div className="ocean">
+        <div className="wave"></div>
+        <div className="wave"></div>
+      </div>
     </RecoilRoot>
   </React.StrictMode>
 )

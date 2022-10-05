@@ -88,6 +88,12 @@ export const letterItemState = atom({
   effects_UNSTABLE: [persistAtom]
 })
 
+export const letterVideoURLState = atom({
+  key: 'letterVideoURLState',
+  default: {},
+  effects_UNSTABLE: [persistAtom]
+})
+
 export const profileState = atom({
   key: 'profileState',
   default: {},
@@ -132,7 +138,7 @@ export const diaryItemState = atom({
 
 export const parentActiveState = atom({
   key: 'parentActiveState',
-  default: {},
+  default: false,
   effects_UNSTABLE: [persistAtom]
 })
 
@@ -157,5 +163,17 @@ export const diaryDetailState = atom({
 export const drawingDetailState = atom({
   key: 'drawingDetailState',
   default: false,
+  effects_UNSTABLE: [persistAtom]
+})
+
+export const dailyEmotionListState = atom({
+  key: 'dailyEmotionListState',
+  default: {},
+  effects_UNSTABLE: [persistAtom]
+})
+
+export const weeklyEmotionListState = atom({
+  key: 'weeklyEmotionListState',
+  default: {},
   effects_UNSTABLE: [persistAtom]
 })
