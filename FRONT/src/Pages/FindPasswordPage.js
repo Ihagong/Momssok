@@ -16,13 +16,13 @@ function FindPasswordPage() {
   }
 
   return (
-    <>
+    <div>
     <h2>맘쏙 비밀번호 찾기</h2>
     <div style={{ display: 'flex', flexDirection: 'column' }}>
       <InputTag1 type='email' placeholder='이메일' value={email} onChange={(e) => {setEmail(e.target.value)}}/>
       <ButtonTag1 onClick={handleClickFindPasswordButton}>비밀번호 찾기</ButtonTag1>
     </div>
-    </>
+    </div>
   );
 }
 

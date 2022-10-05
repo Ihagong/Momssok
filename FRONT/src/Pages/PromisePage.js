@@ -30,7 +30,6 @@ function PromisePage() {
     setPromiseItem(promiseItems[id-1])
     setModalOpen(true)
     setPromiseItemId(id)
-    // setModalOpen(true)
   }
 
   const handleClickCloseButton = () => {
