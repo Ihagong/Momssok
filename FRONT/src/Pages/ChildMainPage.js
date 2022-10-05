@@ -41,6 +41,14 @@ function ChildMainPage() {
     navigate('/promise')
   }
 
+  const handleClickKidsSongButton = () => {
+    navigate('/song')
+  }
+
+  const handleClickCalendarButton = () => {
+    navigate('/calendar')
+  }
+
   const handleClickAnimalDictionaryButton = () => {
     getAllDictionaryCallback(profileInfo.name)
     console.log(profileInfo.name)
@@ -52,12 +60,12 @@ function ChildMainPage() {
         <LogoTag style={{marginRight: "20px"}} onClick={handleClickChildProfile} src='icons/logo.svg' />
         {selectedTab === 0 ? <ChildMenuSelectedTabTag><img src='icons/Dinosaur.svg' alt='그림' />그림</ChildMenuSelectedTabTag>
           : <ChildMenuTabTag onClick={() => setSelctedTab(0)}><img src='icons/Dinosaur.svg' alt='그림' />그림</ChildMenuTabTag>}
-        {selectedTab === 1 ? <ChildMenuSelectedTabTag><img src='icons/bird.svg' alt='약속' />약속</ChildMenuSelectedTabTag>
-          : <ChildMenuTabTag onClick={() => setSelctedTab(1)}><img src='icons/bird.svg' alt='약속' />약속</ChildMenuTabTag>}
+        {selectedTab === 1 ? <ChildMenuSelectedTabTag><img src='icons/dogicon.svg' alt='활동' />활동</ChildMenuSelectedTabTag>
+          : <ChildMenuTabTag onClick={() => setSelctedTab(1)}><img src='icons/dogicon.svg' alt='활동' />활동</ChildMenuTabTag>}
         {selectedTab === 2 ? <ChildMenuSelectedTabTag><img src='icons/bearicon.svg' alt='편지' />편지</ChildMenuSelectedTabTag>
           : <ChildMenuTabTag onClick={() => setSelctedTab(2)}><img src='icons/bearicon.svg' alt='편지' />편지</ChildMenuTabTag>}
-        {selectedTab === 3 ? <ChildMenuSelectedTabTag><img src='icons/dog.svg' alt='놀이' />놀이</ChildMenuSelectedTabTag>
-          : <ChildMenuTabTag onClick={() => setSelctedTab(3)}><img src='icons/dog.svg' alt='놀이' />놀이</ChildMenuTabTag>}
+        {selectedTab === 3 ? <ChildMenuSelectedTabTag><img src='icons/playicon.svg' alt='놀이' />놀이</ChildMenuSelectedTabTag>
+          : <ChildMenuTabTag onClick={() => setSelctedTab(3)}><img src='icons/playicon.svg' alt='놀이' />놀이</ChildMenuTabTag>}
         <ChildProfileTag style={{marginLeft: "30px"}} onClick={handleClickChildProfile}><img src={`/images/profileImage_${profileInfo.image_num}.svg`} />{profileInfo.name}</ChildProfileTag>
         
       </ChildMenuTag>
@@ -81,9 +89,9 @@ function ChildMainPage() {
             <LogoTag src='/icons/stampicon.svg' />
             칭찬 도장
           </ChildSubMenuButtonTag>
-          <ChildSubMenuButtonTag onClick={handleClickLetterButton}>
-            <LogoTag src='/icons/todoicon.svg' />
-            오늘 할 일
+          <ChildSubMenuButtonTag onClick={handleClickCalendarButton}>
+            <LogoTag src='/icons/calendaricon.svg' />
+            표정 달력
           </ChildSubMenuButtonTag>
         </>
           : null }
@@ -106,7 +114,7 @@ function ChildMainPage() {
               <LogoTag src='/icons/bookicon.svg' />
               동물 도감
             </ChildSubMenuButtonTag>
-            <ChildSubMenuButtonTag onClick={handleClickCreatePaintingButton}>
+            <ChildSubMenuButtonTag onClick={handleClickKidsSongButton}>
               <LogoTag src='/icons/songicon.svg' />
               동요 나라
             </ChildSubMenuButtonTag>
