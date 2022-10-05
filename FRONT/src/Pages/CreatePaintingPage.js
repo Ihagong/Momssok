@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 
 import { useRecoilState } from 'recoil'
-import { diaryEditState } from '../store/atoms'
+import { drawingDetailState, diaryEditState } from '../store/atoms'
 
 import { CanvasComponent } from '../Components/CanvasComponent/CanvasComponent'
 // import { ClearCanvasButton } from '../Components/CanvasComponent/ClearCanvasButton'
@@ -120,6 +120,7 @@ function CreatePaintingPage() {
   const navigate = useNavigate()
 
   const [diaryIsEdit, setDiaryIsEdit] = useRecoilState(diaryEditState)
+  const [drawingIsDetail, setDrawingIsDetail] = useRecoilState(drawingDetailState)
 
 
   const [paintingToolModalOpen, setPaintingToolModalOpen] = useState(false)
@@ -133,6 +134,7 @@ function CreatePaintingPage() {
   const [gesture, setGesture] = useState('defaultGesture')
 
   const handleClickCloseButton = () => {
+    setDrawingIsDetail(false)
     if (diaryIsEdit === false) {
       navigate('/painting/load')
     } else {

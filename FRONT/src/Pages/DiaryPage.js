@@ -42,14 +42,19 @@ function DiaryPage() {
 
   const handleClickCreateDiaryButton = () => {
     setDiaryIsEdit(false)
-    // setDiaryTemp({})
+    setDiaryTemp({
+      'date': new Date().toLocaleDateString().replace('. ', '-').replace('. ', '-').replace('.', ''),
+      'weatherIndex': 0,
+      'title': "",
+      'content': ""
+    })
     navigate('/diary/create')
   }
 
   const handleClickLoadDiaryButton = (info) => {
     setDiaryItem(info)
+    console.log(info)
     setDiaryIsDetail(true)
-    console.log(diaryIsDetail)
     navigate(`/diary/${info.id}`)
   }
 

@@ -4,17 +4,17 @@ import { useNavigate } from  'react-router-dom'
 import { useDiaryCallback } from '../Functions/useDiaryCallback'
 
 import { useRecoilState } from 'recoil'
-import { diaryDetailState, diaryEditState, diaryTempState, loadedPaintingInfoState, profileState } from '../store/atoms'
+import { diaryItemState, diaryDetailState, diaryEditState, diaryTempState, loadedPaintingInfoState, profileState } from '../store/atoms'
 
 
-import { LetterButton, LetterButtonDel,LetterButtonBack, LetterButtonGo, LetterEditorComponentBody, DiarySectionButtonTag, LogoTag, DiaryComponentTag, DiaryInputTag, DiaryContentInputTag, DiaryWeatherBoxTag, DiaryPaintingTag } from '../Style/Components'
+import { LetterButton, LetterButtonDel, LetterButtonBack, LetterButtonGo, LetterEditorComponentBody, DiarySectionButtonTag, LogoTag, DiaryComponentTag, DiaryInputTag, DiaryContentInputTag, DiaryWeatherBoxTag, DiaryPaintingTag } from '../Style/Components'
 
 
 export function DiaryComponent() {
   const navigate = useNavigate()
 
 
-  const { saveDiaryCallback } = useDiaryCallback()
+  const { saveDiaryCallback, updateDiaryCallback, diaryRemoveCallback } = useDiaryCallback()
 
   const titleRef = useRef()
   const contentRef = useRef()
@@ -26,16 +26,30 @@ export function DiaryComponent() {
   const [selectOpen, setSelectOpen] = useState(false)
 
   const [loadedPaintingInfo, setLoadedPaintingInfo] = useRecoilState(loadedPaintingInfoState)
+  const [diaryItem, setDiaryItem] = useRecoilState(diaryItemState)
   const [diaryTemp, setDiaryTemp ] = useRecoilState(diaryTempState)
   const [diaryIsEdit, setDiaryIsEdit] = useRecoilState(diaryEditState)
   const [diaryIsDetail, setDiaryIsDetail ] = useRecoilState(diaryDetailState)
   const [profileInfo, setProfileInfo] = useRecoilState(profileState)
 
 
-  // // CREATE
-  // const onCreate = (name, drawing_id, title, content, weather, date) => {
-  //   // saveDiaryCallback(drawing_id, title, content, weather, date)
-  // }
+  useEffect(() => {
+
+    if (diaryIsDetail === true) {
+
+      setTitle(diaryItem.title)
+      setContent(diaryItem.content)
+      setWeatherIndex(weatherList.indexOf(diaryItem.weather))
+      setDate(diaryItem.date.slice(0, 10)) 
+      return
+    }
+
+    setTitle(diaryTemp.title)
+    setContent(diaryTemp.content)
+    setWeatherIndex(diaryTemp.weatherIndex)
+    setDate(diaryTemp.date)
+    
+  }, [diaryIsEdit, diaryIsDetail])
 
   const handleInputContent = (input) => {
     if (input.length <= 44) {
@@ -45,11 +59,23 @@ export function DiaryComponent() {
 
   const handleClickCreatePaintingButton = () => {
     setDiaryIsEdit(true)
+    setDiaryTemp({
+      'date': date,
+      'weatherIndex': weatherIndex,
+      'title': title,
+      'content': content
+    })
     navigate('/painting/create')
   }
 
   const handleClickLoadPaintingButton = () => {
     setDiaryIsEdit(true)
+    setDiaryTemp({
+      'date': date,
+      'weatherIndex': weatherIndex,
+      'title': title,
+      'content': content
+    })
     navigate('/painting/load')
   }
 
@@ -61,6 +87,12 @@ export function DiaryComponent() {
   const handleClickCloseButton = () => {
     setDiaryIsEdit(false)
     setDiaryIsDetail(false)
+    setDiaryTemp({
+      'date': new Date().toLocaleDateString().replace('. ', '-').replace('. ', '-').replace('.', ''),
+      'weatherIndex': 0,
+      'title': "",
+      'content': ""
+    })
     navigate('/diary')
   }
 
@@ -74,15 +106,43 @@ export function DiaryComponent() {
       return
     } 
     setDiaryIsEdit(false)
-    // console.log(profileInfo.name, loadedPaintingInfo.id, title, content, weatherList[weatherIndex], date)
+    setDiaryTemp({
+      'date': new Date().toLocaleDateString().replace('. ', '-').replace('. ', '-').replace('.', ''),
+      'weatherIndex': 0,
+      'title': "",
+      'content': ""
+    })
     saveDiaryCallback({
       'name': profileInfo.name, 
-      'drawing_id': loadedPaintingInfo.id, 
+      'drawing_id': loadedPaintingInfo.drawing_id, 
       'title': title, 
       'content': content, 
       'weather': weatherList[weatherIndex], 
       'date': date
       })
+  }
+
+  const handleClickEditButton = () => {
+    setDiaryIsEdit(false)
+    updateDiaryCallback({
+      'id': diaryItem.id, 
+      'name': profileInfo.name, 
+      'drawing_id': diaryItem.drawing_id, 
+      'title': title, 
+      'content': content, 
+      'weather': weatherList[weatherIndex] 
+    })
+    navigate('/diary')
+  }
+
+  const handleClickRemoveButton = () => {
+    setDiaryIsEdit(false)
+
+    diaryRemoveCallback({
+      'id': diaryItem.id, 
+      'name': profileInfo.name
+    })
+    navigate('/diary')
   }
 
   const weatherList = ['sun', 'cloud', 'cloudy', 'rain', 'snow']
@@ -123,7 +183,7 @@ export function DiaryComponent() {
           <div style={{ display: 'flex', alignItems: 'center' }}>
             <label htmlFor='weather'>날씨 : </label>
             <DiaryWeatherBoxTag>
-              <button onClick={() => setSelectOpen(!selectOpen)}><img src={`/icons/${weatherList[weatherIndex]}icon.svg`} alt='맑음'></img></button>
+              <button onClick={() => setSelectOpen(!selectOpen)}><img src={`/icons/${weatherList[weatherIndex]}icon.svg`} alt='맑음'></img></button>           
               { selectOpen ?
                 <ul>
                   <li onClick={() => handleClickWeatherBox(0)}><img src='/icons/sunicon.svg' alt='맑음'></img></li>
@@ -138,11 +198,11 @@ export function DiaryComponent() {
         </div>
         <div>
           <label htmlFor='title'>제목 : </label>
-          <DiaryInputTag id='title' ref={titleRef} style={{ width: '480px' }} value={title} onInput={((e) => setTitle(e.target.value))} />
+            <DiaryInputTag id='title' ref={titleRef} style={{ width: '480px' }} value={title} onInput={((e) => setTitle(e.target.value))} />
         </div>
-        { diaryIsEdit ? 
+        { (diaryIsEdit || diaryIsDetail) ? 
           <DiaryPaintingTag>
-            <img src={loadedPaintingInfo} />
+            <img style={{ width: "550px", height: "280px" }} src={ diaryItem.drawing_base64 } />
           </DiaryPaintingTag>
           : 
           <DiaryPaintingTag>
@@ -163,7 +223,7 @@ export function DiaryComponent() {
           <div style={{ position: 'relative', display: 'grid', gridTemplateColumns: 'repeat(11, 3fr)', gridTemplateRows: 'repeat(4, 1fr)', width: '600px', height: '200px',
             backgroundColor: 'var(--Beige-Stroke)', outline: '1px solid var(--Beige-Stroke)', gridGap: '1px', zIndex: 1, borderRadius: '10px'
           }}>
-              <DiaryContentInputTag maxLength={44} ref={contentRef} value={content} onInput={(e) => handleInputContent(e.target.value)} />
+              <DiaryContentInputTag maxLength={44} ref={contentRef} value={content} onInput={(e) => handleInputContent(e.target.value)} />           
               { grid }
           </div>
         </div>
@@ -172,7 +232,11 @@ export function DiaryComponent() {
       <section>
         <LetterButton>
           <LetterButtonBack onClick={handleClickCloseButton}>닫기</LetterButtonBack>
-          <LetterButtonGo onClick={handleClickCreateButton}>저장</LetterButtonGo>
+          { diaryIsDetail ?
+            <LetterButtonGo onClick={handleClickEditButton}>수정</LetterButtonGo>
+          : <LetterButtonGo onClick={handleClickCreateButton}>저장</LetterButtonGo>
+          }
+          {diaryIsDetail && <LetterButtonDel onClick={handleClickRemoveButton}>삭제하기</LetterButtonDel>}
         </LetterButton>
       </section>      
 

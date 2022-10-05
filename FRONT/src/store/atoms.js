@@ -153,3 +153,9 @@ export const diaryDetailState = atom({
   default: false,
   effects_UNSTABLE: [persistAtom]
 })
+
+export const drawingDetailState = atom({
+  key: 'drawingDetailState',
+  default: false,
+  effects_UNSTABLE: [persistAtom]
+})
