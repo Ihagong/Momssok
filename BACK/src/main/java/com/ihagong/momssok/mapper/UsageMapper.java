@@ -9,4 +9,11 @@ import java.util.List;
 public interface UsageMapper {
 
    int updateLastAccess(UsageDto dto);
+
+   int searchUsageTime(UsageDto dto);
+   int checkUsageTimeExist(UsageDto dto);
+
+   int registUsageTime(UsageDto dto);
+
+   int updateUsageTime(UsageDto dto);
 }
