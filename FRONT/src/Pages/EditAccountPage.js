@@ -41,7 +41,7 @@ function EditAccountPage() {
   }
 
   const handleClickDeleteAccount = () => {
-    navigate('/account')
+    navigate('/account/delete')
   }
 
   return (
@@ -77,7 +77,7 @@ function EditAccountPage() {
 
 
     </LoginPageBody>
-  );
+  )
 }
 
 export default EditAccountPage

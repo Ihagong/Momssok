@@ -26,6 +26,7 @@ import AnimalDictionaryPage from './Pages/AnimalDictionaryPage'
 import CreateDictionaryPaintingPage from './Pages/CreateDictionaryPaintingPage'
 import ReportPage from './Pages/ReportPage'
 import KidsSongPage from './Pages/KidsSongPage'
+import DeleteAccountPage from './Pages/DeleteAccountPage'
 
 import { useRecoilState } from 'recoil'
 import { logInTokenState } from './store/atoms'
@@ -65,6 +66,7 @@ function App() {
         <Route exact path='/dictionary/create/:detailId' element={ <CreateDictionaryPaintingPage /> } />
         <Route exact path='/report' element={ <ReportPage /> } />
         <Route exact path='/song' element={ <KidsSongPage /> } />
+        <Route exact path='/account/delete' element={ logInToken ? <DeleteAccountPage /> : <Navigate to='/login' replace /> } />
       </Routes>
     </Router>
   );
