@@ -4,9 +4,11 @@ import { PromiseTodoItemTag, PromiseTodoItemDoneTag } from '../Style/Components'
 import { usePromiseCallback } from '../Functions/usePromiseCallback'
 
 
-export function PromiseTodoItemComponent({ todoItem, promiseItemId, name }) {
+export function PromiseTodoItemComponent({ name, promiseItemId, todoItem }) {
   const { doneTodoCallback } = usePromiseCallback()
   const [isDone, setIsDone] = useState(todoItem.done)
+
+  console.log(todoItem)
 
   // useEffect(() => {
     
@@ -20,7 +22,7 @@ export function PromiseTodoItemComponent({ todoItem, promiseItemId, name }) {
   return (
     <>
       { isDone ?
-        <PromiseTodoItemDoneTag onClick={handleClickTodoItem}>{ todoItem.todo }</PromiseTodoItemDoneTag>
+        <PromiseTodoItemDoneTag>{ todoItem.todo }</PromiseTodoItemDoneTag>
       :
         <PromiseTodoItemTag onClick={handleClickTodoItem}>{ todoItem.todo }</PromiseTodoItemTag>
       }
