@@ -165,3 +165,15 @@ export const drawingDetailState = atom({
   default: false,
   effects_UNSTABLE: [persistAtom]
 })
+
+export const dailyEmotionListState = atom({
+  key: 'dailyEmotionListState',
+  default: {},
+  effects_UNSTABLE: [persistAtom]
+})
+
+export const weeklyEmotionListState = atom({
+  key: 'weeklyEmotionListState',
+  default: {},
+  effects_UNSTABLE: [persistAtom]
+})
