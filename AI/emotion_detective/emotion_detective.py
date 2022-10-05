@@ -45,5 +45,8 @@ def predict(predict_sentence):
 
 
 #
-A, B = predict("오늘은 엄마아빠와 놀이동산 가는 날인데 동생이 갑자기 아파서 병원에 가게되었다.")
-print(A, B)
+# A, B = predict("오늘 친구가 전학을 왔다.\n 그래서 오늘 그 친구 집에 가서 놀았다.")
+# A =A.tolist()
+# print(A, B)
+# print(type(A[0]))
+# print(round(A[1],2))
