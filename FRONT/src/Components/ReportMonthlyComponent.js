@@ -106,7 +106,7 @@ const emotionIcon = ({ cx, cy, midAngle, innerRadius, outerRadius, percent, inde
   }
 }
 
-export function ReportMonthlyComponent() {
+export function ReportMonthlyComponent({ emotionColor, emotionName }) {
   return (
     <EmotionReportTag>
       <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', margin: '0 0 20px 50px' }}>
@@ -122,7 +122,7 @@ export function ReportMonthlyComponent() {
         <div style={{ display: 'flex', justifyContent: 'end', margin: '30px 30px 30px 0', fontSize: '26px' }}>2022.10</div>
         <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', margin: '0 80px 0 0px' }}>
           <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', backgroundColor: '#FFE27D', width: '120px', height: '120px', borderRadius: '40px', margin: '0 0 30px 0' }}>
-            <img style={{ width: '80px' }} src={`icons/happy.svg`}/>
+            <img style={{ width: '80px' }} src={`icons/emotion_happy.svg`}/>
           </div>
           <div>이번 달 아이의 감정 비중은</div><br/>
           <div style={{ fontSize: '40px' }}>"행복"이 높아요.</div><br/>

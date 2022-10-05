@@ -33,6 +33,38 @@ function ReportPage() {
     setSelectedTab(index)
   }
 
+  const emotionColor = (emotion) => {
+    let result = ''
+    if (emotion === '행복') {
+      result = '#FFE27D'
+    } else if (emotion === '슬픔') {
+      result = '#7DC1FF'
+    } else if (emotion === '놀람') {
+      result = '#A6EFCC'
+    } else if (emotion === '불안') {
+      result = '#C6A6EF'
+    } else if (emotion === '분노') {
+      result = '#F8899D'
+    }
+    return result
+  }
+
+  const emotionName = (emotion) => {
+    let result = ''
+    if (emotion === '행복') {
+      result = 'happy'
+    } else if (emotion === '슬픔') {
+      result = 'sad'
+    } else if (emotion === '놀람') {
+      result = 'surprised'
+    } else if (emotion === '불안') {
+      result = 'anxious'
+    } else if (emotion === '분노') {
+      result = 'angry'
+    }
+    return result
+  }
+
   return (
     <>
       <ParentTitle style={{ justifyContent: 'space-between', marginBottom: '20px' }}>
@@ -56,10 +88,10 @@ function ReportPage() {
           { selectedTab === 3 ? <ReportSelectedTabTag onClick={() => handleClickChangeTab(3)}>전체</ReportSelectedTabTag>
             : <ReportTabTag onClick={() => handleClickChangeTab(3)}>전체</ReportTabTag> }
         </div>
-        { selectedTab === 0 ? <ReportDailyComponent /> : null }
-        { selectedTab === 1 ? <ReportWeeklyComponent /> : null }
-        { selectedTab === 2 ? <ReportMonthlyComponent /> : null }
-        { selectedTab === 3 ? <ReportWordCloudComponent /> : null }
+        { selectedTab === 0 ? <ReportDailyComponent emotionColor={emotionColor} emotionName={emotionName} /> : null }
+        { selectedTab === 1 ? <ReportWeeklyComponent emotionColor={emotionColor} emotionName={emotionName} /> : null }
+        { selectedTab === 2 ? <ReportMonthlyComponent emotionColor={emotionColor} emotionName={emotionName} /> : null }
+        { selectedTab === 3 ? <ReportWordCloudComponent emotionColor={emotionColor} emotionName={emotionName} /> : null }
       </div>
     </>
   )
