@@ -230,7 +230,7 @@ function CreatePaintingPage(props) {
                   style={{ position: 'absolute', width: '500px', pointerEvents: 'none', zIndex: -2 }} src={paintingInfo.url}></img>
               })}
             </div>
-            <CanvasComponent style={{ zIndex: '5' }} width={500} /> 
+            <CanvasComponent style={{ zIndex: '5'}} width={500} /> 
             { partIndex < animal.parts.length ?
               <img style={{ position: 'absolute', opacity: '0.1', pointerEvents: 'none', width: '500px' }} src={`/images/${animal.name}/${animal.name}_${animal.parts[partIndex]?.name}.svg`}></img>
               : null }

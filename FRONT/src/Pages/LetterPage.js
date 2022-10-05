@@ -2,7 +2,7 @@ import React, { useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 
 import { useRecoilState } from 'recoil'
-import { totalLetterListState, profileState, parentActiveState } from '../store/atoms'
+import { totalLetterListState, profileState, parentActiveState, parentInfoState } from '../store/atoms'
 import { useLetterCallback } from '../Functions/useLetterCallback'
 
 import "../App.css"
@@ -14,6 +14,7 @@ const LetterPage = () => {
   const navigate = useNavigate()
   const [letterList, setLetterList] = useRecoilState(totalLetterListState)
   const [parentActive, setParentActive] = useRecoilState(parentActiveState)
+  const [parentInfo, setParentInfo] = useRecoilState(parentInfoState)
   const [profileInfo, setProfileInfo] = useRecoilState(profileState)
   const { letterInfoCallback } = useLetterCallback()
 
@@ -22,8 +23,13 @@ const LetterPage = () => {
   }
 
   useEffect(() => {
-    letterInfoCallback(profileInfo.name)
+    if (parentActive === false) {
+      letterInfoCallback(profileInfo.name)
+    } else {
+      letterInfoCallback(parentInfo.name)
+    }
   }, [])
+
 
   const handleClickCloseButton = () => {
     if (parentActive) {
@@ -42,7 +48,10 @@ const LetterPage = () => {
           <BrownLightButton150 onClick={() => navigate("/letter/create")}>새 편지</BrownLightButton150>
           <BrownText100>편지 읽기</BrownText100>
         </div>
-        <ChildProfileTag style={{marginTop: "30px", marginRight: "40px"}} onClick={handleClickChildProfile}><img src={`/images/profileImage_${profileInfo.image_num}.svg`} />{profileInfo.name}</ChildProfileTag>
+        { parentActive ? 
+          <ChildProfileTag style={{marginTop: "30px", marginRight: "40px"}} onClick={handleClickChildProfile}><img src={`/images/parenticon.svg`} />{parentInfo.name}</ChildProfileTag>
+        : <ChildProfileTag style={{marginTop: "30px", marginRight: "40px"}} onClick={handleClickChildProfile}><img src={`/images/profileImage_${profileInfo.image_num}.svg`} />{profileInfo.name}</ChildProfileTag>
+        }
       </LetterPageHeader>
       <LetterListComponent letterList={letterList} />
     </div>

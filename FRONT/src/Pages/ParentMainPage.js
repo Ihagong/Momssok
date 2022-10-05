@@ -1,13 +1,18 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useNavigate, useLocation } from  'react-router-dom'
 
 import { ParentInfo, ParentTitle, ProfileBlock, JuaBrown, JuaBrownLight, LogoTag, EditProfileButtonTag, ParentMenuButtonTag } from '../Style/Components'
 
 import { useRecoilState } from 'recoil'
-import { profileState } from '../store/atoms'
+import { parentActiveState, parentInfoState, profileListState, profileState } from '../store/atoms'
 
 function ParentMainPage() {
   const [profileInfo, setProfileInfo] = useRecoilState(profileState)
+  const [profileList, setProfileList] = useRecoilState(profileListState)
+  const [parentInfo, setParentInfo] = useRecoilState(parentInfoState)
+  const [parentActive, setParentActive] = useRecoilState(parentActiveState)
+
+
   const navigate = useNavigate()
   // const { state } = useLocation()
 
@@ -15,6 +20,11 @@ function ParentMainPage() {
   // const [imageNum, setImageNum] = useState(parseInt(state.image_num))
   const [age, setAge] = useState(new Date().getFullYear() - new Date(profileInfo.birthday).getFullYear() + 1)
   
+
+  useEffect(() => {
+    const info = profileList.filter((it) => it.is_parent === true )
+    setParentInfo(info[0])
+  }, [profileList])
 
   const handleClickReportButton = () => {
     navigate('/report')
@@ -28,6 +38,7 @@ function ParentMainPage() {
   }
 
   const handleClickLetterButton = () => {
+    setParentActive(true)
     navigate('/letter')
   }
 

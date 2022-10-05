@@ -159,3 +159,9 @@ export const drawingDetailState = atom({
   default: false,
   effects_UNSTABLE: [persistAtom]
 })
+
+export const parentInfoState = atom({
+  key: 'parentInfoState',
+  default: {},
+  effects_UNSTABLE: [persistAtom]
+})
