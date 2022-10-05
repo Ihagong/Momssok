@@ -82,6 +82,7 @@ export function useAuthCallback() {
     })
     .catch(error => {
       setModalContent(error.response.data?.Messege ? error.response.data?.Messege : '오류가 발생했습니다.')
+      setModalOpen(true)
     })
   }
 
@@ -131,7 +132,7 @@ export function useAuthCallback() {
     })
   }
 
-  const logInCallback = async (email, password) => {
+  const logInCallback = async (email, password, setModalContent, setModalOpen) => {
     axios({
       method: 'post',
       url: '/api/user/login',
@@ -154,6 +155,8 @@ export function useAuthCallback() {
     })
     .catch(error => {
       console.log(error.response.data)
+      setModalContent(error.response.data?.Messege ? error.response.data?.Messege : '오류가 발생했습니다.')
+      setModalOpen(true)
     })
   }
 
