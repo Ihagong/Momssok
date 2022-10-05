@@ -22,7 +22,7 @@ export const CanvasProvider = ({ children, textures, offset, gesture, strokeColo
   const contextRef = useRef(null)
   
   const loadedPainting = new Image()
-  loadedPainting.src = loadedPaintingInfo.imageURL
+  loadedPainting.src = loadedPaintingInfo.drawing_base64
 
   useEffect(() => {
     const canvas = canvasRef.current
@@ -92,7 +92,7 @@ export const CanvasProvider = ({ children, textures, offset, gesture, strokeColo
     context.lineWidth = strokeLineWidth[strokeLineWidthIndex]
     contextRef.current = context
     
-    if (loadedPainting) {
+    if (loadedPainting && !animal) {
       context.drawImage(loadedPainting, 0, 0, 2200, 1100, 0, 0, 1100, 550)
     }
   }
@@ -183,7 +183,7 @@ export const CanvasProvider = ({ children, textures, offset, gesture, strokeColo
     const canvas = canvasRef.current
     const imageURL = canvas.toDataURL()
 
-    if (loadedPaintingInfo?.drawing_id) {
+    if (drawingIsDetail === true) {
       setDrawingIsDetail(false)
       updatePaintingCallback(loadedPaintingInfo?.drawing_id, profileInfo.name, imageURL)
     } else {

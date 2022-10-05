@@ -10,7 +10,7 @@ export function DiaryCardComponent({ info }) {
     <DiaryBlock style={{justifyContent: "start"}}>
       <section style={{display: "flex", marginTop: "20px", alignItems: "center" }}>
         <JuaBrown style={{fontSize: "28px", marginRight: "10px"}}>{info.date.split(' ')[0].replace('-', '년 ').replace('-', '월 ')}일</JuaBrown>
-        <div><img style={{ width: "70px" }} src={`/icons/emotionImage_1.svg`} /></div>
+        <div><img style={{ width: "70px" }} src={`/icons/emotionImage_3.svg`} /></div>
         {/* <div><img src={`/icons/emotionImage_${ emotionList.indexOf(info.emotion) }.svg`} /></div> */}
       </section>
       <section style={{ marginTop: "10px"}}>

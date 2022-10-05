@@ -22,7 +22,8 @@ export function DiaryComponent() {
   const [title, setTitle] = useState("")
   const [content, setContent] = useState("")
   const [weatherIndex, setWeatherIndex] = useState(0)
-  const [date, setDate] = useState(new Date().toLocaleDateString().replace('. ', '-').replace('. ', '-').replace('.', ''))
+  const dt = new Date()
+  const [date, setDate] = useState(dt.getFullYear()+ '-' + (dt.getMonth()+1).toString().padStart(2,'0') + '-' + dt.getDate().toString().padStart(2,'0'))
   const [selectOpen, setSelectOpen] = useState(false)
 
   const [loadedPaintingInfo, setLoadedPaintingInfo] = useRecoilState(loadedPaintingInfoState)
@@ -32,9 +33,8 @@ export function DiaryComponent() {
   const [diaryIsDetail, setDiaryIsDetail ] = useRecoilState(diaryDetailState)
   const [profileInfo, setProfileInfo] = useRecoilState(profileState)
 
-
   useEffect(() => {
-
+    
     if (diaryIsDetail === true) {
 
       setTitle(diaryItem.title)
@@ -88,7 +88,7 @@ export function DiaryComponent() {
     setDiaryIsEdit(false)
     setDiaryIsDetail(false)
     setDiaryTemp({
-      'date': new Date().toLocaleDateString().replace('. ', '-').replace('. ', '-').replace('.', ''),
+      'date': dt.getFullYear()+ '-' + (dt.getMonth()+1).toString().padStart(2,'0') + '-' + dt.getDate().toString().padStart(2,'0'),
       'weatherIndex': 0,
       'title': "",
       'content': ""
@@ -107,7 +107,7 @@ export function DiaryComponent() {
     } 
     setDiaryIsEdit(false)
     setDiaryTemp({
-      'date': new Date().toLocaleDateString().replace('. ', '-').replace('. ', '-').replace('.', ''),
+      'date': dt.getFullYear()+ '-' + (dt.getMonth()+1).toString().padStart(2,'0') + '-' + dt.getDate().toString().padStart(2,'0'),
       'weatherIndex': 0,
       'title': "",
       'content': ""
@@ -126,8 +126,9 @@ export function DiaryComponent() {
     setDiaryIsEdit(false)
     updateDiaryCallback({
       'id': diaryItem.id, 
-      'name': profileInfo.name, 
-      'drawing_id': diaryItem.drawing_id, 
+      'name': profileInfo.name,
+      'drawing_id': diaryItem.drawing_id,
+      'date': date,
       'title': title, 
       'content': content, 
       'weather': weatherList[weatherIndex] 
@@ -166,7 +167,7 @@ export function DiaryComponent() {
 
   const dateString = () => {
     const dateList = date.split('-')
-    return `${dateList[0]}년 ${Number(dateList[1])}월 ${Number(dateList[2])}일`
+    return `${dateList[0]}년 ${dateList[1]}월 ${dateList[2]}일`
   }
 
   return (
@@ -204,7 +205,7 @@ export function DiaryComponent() {
         </div>
         { (diaryIsEdit || diaryIsDetail) ? 
           <DiaryPaintingTag>
-            <img style={{ width: "550px", height: "280px" }} src={ diaryItem.drawing_base64 } />
+            <img style={{ width: "550px", height: "280px" }} src={ loadedPaintingInfo.drawing_base64 } />
           </DiaryPaintingTag>
           : 
           <DiaryPaintingTag>
