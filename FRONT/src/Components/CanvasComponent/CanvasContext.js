@@ -161,7 +161,7 @@ export const CanvasProvider = ({ children, textures, offset, gesture, strokeColo
     const canvas = canvasRef.current
     const context = canvas.getContext('2d')
     context.clearRect(0, 0, canvas.width, canvas.height)
-    if (loadedPainting) {
+    if (loadedPaintingInfo?.drawing_id) {
       context.drawImage(loadedPainting, 0, 0, 2200, 1100, 0, 0, 1100, 550)
     }
   }
@@ -191,6 +191,8 @@ export const CanvasProvider = ({ children, textures, offset, gesture, strokeColo
     } else {
       savePaintingCallback(imageURL, profileInfo.name)
     }
+    setLoadedPaintingInfo({})
+    loadedPainting = new Image()
   }
 
   const addObject = () => {
