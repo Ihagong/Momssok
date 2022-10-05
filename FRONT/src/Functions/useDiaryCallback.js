@@ -39,8 +39,8 @@ export function useDiaryCallback() {
     })
   }
 
-  const updateDiaryCallback = async ({id, name, drawing_id, title, content, weather}) => {
-    console.log(id, name, drawing_id, title, content, weather)
+  const updateDiaryCallback = async ({id, name, drawing_id, date, title, content, weather}) => {
+    console.log(id, name, drawing_id, date, title, content, weather)
     axios({
       method: 'put',
       url: '/api/user/updateDiary',
@@ -52,6 +52,7 @@ export function useDiaryCallback() {
         'id': id,
         'name': name,
         'drawing_id': drawing_id,
+        'date': date,
         'title': title,
         'content': content,
         'weather': weather

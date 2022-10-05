@@ -11,7 +11,7 @@ export const SavePaintingButton = () => {
 
   return (
     <>
-      { drawingIsDetail ? 
+      { drawingIsDetail === true ? 
         <LetterButtonGo style={{marginTop: "10px", marginLeft: "0px", height: "60px", fontSize: '55px' }} onClick={savePainting}>수정</LetterButtonGo> 
         : <LetterButtonGo style={{marginTop: "10px", marginLeft: "0px", height: "60px", fontSize: '55px' }} onClick={savePainting}>저장</LetterButtonGo> 
       }
