@@ -351,6 +351,7 @@ export const ChildSubMenuButtonTag = styled.div`
 `
 
 export const LogoTag = styled.img`
+  cursor: pointer;
   width: 160px;
 `
 
@@ -727,7 +728,6 @@ export const PromiseTodoItemDoneTag = styled.p`
   margin: 0;
   text-decoration: line-through;
   color: var(--Brown-Stroke);
-  cursor: pointer;
   user-select: auto;
 `
 
