@@ -2,6 +2,8 @@ import React from 'react'
 import { EmotionReportTag } from '../Style/Components'
 
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip } from 'recharts'
+import { useRecoilState } from 'recoil'
+import { weeklyEmotionListState } from '../store/atoms'
 
 
 const data = [
@@ -33,6 +35,42 @@ const data = [
 ]
 
 export function ReportWeeklyComponent() {
+
+  const [weeklyEmotionList, setWeeklyEmotionList] = useRecoilState(weeklyEmotionListState)
+  
+  const weeklyEmotionData = () => {
+    return (
+      [
+        {
+          subject: '행복',
+          '평균': 42,
+          '이번 주': weeklyEmotionList[2][1] ? weeklyEmotionList[2][1] : 0,
+        },
+        {
+          subject: '슬픔',
+          '평균': 23,
+          '이번 주': weeklyEmotionList[3][1] ? weeklyEmotionList[3][1] : 0,
+        },
+        {
+          subject: '놀람',
+          '평균': 30,
+          '이번 주': weeklyEmotionList[5][1] ? weeklyEmotionList[5][1] : 0,
+        },
+        {
+          subject: '불안',
+          '평균': 24,
+          '이번 주': weeklyEmotionList[1][1] ? weeklyEmotionList[1][1] : 0,
+        },
+        {
+          subject: '분노',
+          '평균': 21,
+          '이번 주': weeklyEmotionList[4][1] ? weeklyEmotionList[4][1] : 0,
+        },
+      ]
+    )
+  }
+
+
   const emotionIcon = ({ index, x, y }) => {
     if (index === 0) {
       return (
