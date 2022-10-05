@@ -4,7 +4,7 @@ import { DiaryBlock, JuaBrown, JuaBrownLight } from '../Style/Components'
 
 export function DiaryCardComponent({ info }) {
 
-  const emotionList = ['기쁨', '놀람', '슬픔', '걱정']
+  const emotionList = ['행복', '슬픔', '불안', '분노', '놀람']
 
   return (
     <DiaryBlock style={{justifyContent: "start"}}>
