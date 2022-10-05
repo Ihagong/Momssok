@@ -68,7 +68,7 @@ function CalendarPage() {
   const nextMonthDates = () => {
     const result = []
     for (let i = 1; i < 7-nextDay; i++) {
-      result.push(<CalendarDateComponent key={i} date={i} other={true} emotion={'worry'} />)
+      result.push(<CalendarDateComponent key={i} date={i} other={true} emotion={'anxious'} />)
     }
     return result
   }
@@ -101,15 +101,15 @@ function CalendarPage() {
     <div style={{ display: 'flex', flexDirection: 'column' }}>
 
       <LetterPageHeader>
-        <div style={{display: "flex", flexDirection: 'column', justifyContent: "center", marginTop: "30px", marginLeft: "-20px" }}>
-          <BrownText100 style={{ fontSize: "84px"}}>표정 달력</BrownText100>
-          <DongleLightBrown style={{ fontSize: "50px", fontWeight: "bold", textAlign: "center"}}>{currentYear}년 {currentMonth}월</DongleLightBrown>
+        <div style={{display: 'flex', flexDirection: 'column', justifyContent: 'center', marginTop: '30px', marginLeft: '-20px' }}>
+          <BrownText100 style={{ fontSize: '84px'}}>표정 달력</BrownText100>
+          <DongleLightBrown style={{ fontSize: '50px', fontWeight: 'bold', textAlign: 'center'}}>{currentYear}년 {currentMonth}월</DongleLightBrown>
         </div>
-        <ChildProfileTag style={{marginTop: "30px", zIndex: "1" }} onClick={handleClickChildProfile}><img src={`/images/profileImage_${profileInfo.image_num}.svg`} />{profileInfo.name}</ChildProfileTag>
+        <ChildProfileTag style={{marginTop: '30px', zIndex: '1' }} onClick={handleClickChildProfile}><img src={`/images/profileImage_${profileInfo.image_num}.svg`} />{profileInfo.name}</ChildProfileTag>
       </LetterPageHeader>
 
-      <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', marginTop: "-180px"}}>
-        <LightButton120 style={{ width: '140px', marginRight: "50px"}} onClick={handleClickPrevMonth}>이전달</LightButton120>
+      <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', marginTop: '-180px'}}>
+        <LightButton120 style={{ width: '140px', marginRight: '50px'}} onClick={handleClickPrevMonth}>이전달</LightButton120>
         <div>
           <CalendarTag style={{ gridTemplateColumns: 'repeat(7, 1fr)' }}>
             {Days.map((day, index) => (
@@ -118,10 +118,10 @@ function CalendarPage() {
             {prevMonthDates()} {currentMonthDates()} {nextMonthDates()}
           </CalendarTag>
         </div>
-        <LightButton120 style={{ width: '140px', marginLeft: "50px"}} onClick={handleClickNextMonth}>다음달</LightButton120>
+        <LightButton120 style={{ width: '140px', marginLeft: '50px'}} onClick={handleClickNextMonth}>다음달</LightButton120>
       </div>
-      <div style={{ display: "flex", justifyContent: "end"}}>
-        <LetterButtonGo style={{ width: "150px", marginTop: "-90px" }} onClick={() => navigate('/child')}>닫기</LetterButtonGo>
+      <div style={{ display: 'flex', justifyContent: 'end'}}>
+        <LetterButtonGo style={{ width: '150px', marginTop: '-90px' }} onClick={() => navigate('/child')}>닫기</LetterButtonGo>
       </div>
     </div>
 

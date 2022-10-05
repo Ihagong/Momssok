@@ -33,7 +33,7 @@ const data = [
   },
 ]
 
-export function ReportDailyComponent() {
+export function ReportDailyComponent({ emotionColor, emotionName }) {
 
   const [dailyEmotionList, setDailyEmotionList] = useRecoilState(dailyEmotionListState)
   
@@ -89,8 +89,8 @@ export function ReportDailyComponent() {
       <div>
         <div style={{ display: 'flex', justifyContent: 'end', margin: '30px 30px 30px 0', fontSize: '26px' }}>2022.10.05</div>
         <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', margin: '0 80px 0 0px' }}>
-          <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', backgroundColor: '#FFE27D', width: '120px', height: '120px', borderRadius: '40px', margin: '0 0 30px 0' }}>
-            <img style={{ width: '80px' }} src={`icons/happy.svg`}/>
+          <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', backgroundColor: emotionColor(dailyEmotionList[0]), width: '120px', height: '120px', borderRadius: '40px', margin: '0 0 30px 0' }}>
+            <img style={{ width: '80px' }} src={`/icons/emotion_${emotionName(dailyEmotionList[0])}.svg`}/>
           </div>
           <div>오늘 아이의 가장 높은 감정은</div><br/>
           <div style={{ fontSize: '40px' }}>"{dailyEmotionList[0]}"입니다.</div><br/>
