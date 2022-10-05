@@ -47,10 +47,6 @@ export function CanvasComponent({ width }) {
           position: 'absolute',
         }}>
       </div>
-      { drawingIsDetail ? 
-        <img style={{ width: "1000px" }} src={ loadedPaintingInfo.drawing_base64 } />
-      : <span></span>
-      }
       <PaintingCanvasTag style={{ touchAction: 'none', backgroundColor: 'transparent' }}
         // onMouseDown={startDrawing}
         // onMouseUp={finishDrawing}
