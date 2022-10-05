@@ -6,7 +6,7 @@ app = FastAPI()
 @app.post("/emotion")
 def read_item(item_id: str):
     A, B = predict(item_id)
-    A.tolist()
+    A=A.tolist()
     print(type(A))
     print(type(B))
     return {
