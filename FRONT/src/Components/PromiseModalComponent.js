@@ -21,17 +21,15 @@ export function PromiseModalComponent({ promiseItemId, promiseItem, setModalOpen
   }
   
   const handleClickAddTodoButton = () => {
-    console.log(promiseItems)
+    console.log(promiseItems, promiseGift)
     let params = ''
-    // promiseItems?.forEach((promiseItem) => {
-    //   promiseItem.todoList?.forEach((todoItem) => {
-    //     params += `&inputs=${promiseItem.id}%26${promiseItem.todoList.length+1}%26${todoItem.todo}%26${promiseItem.gift}`
-    //   })
-    // })
-    // params += `&inputs=${promiseItemId}%26${promiseItem?.todoList.length ? promiseItem?.todoList.length+1 : 1}%26${newTodo}%26${promiseGift}`
-    params = `&index=${promiseItemId}-${promiseItem?.todoList.length ? promiseItem?.todoList.length+1 : 1}&newTodo=${newTodo}&gift=${promiseGift}`
-    console.log(params)
-    updatePromiseCallback(profileInfo.name, params)
+    if (promiseItems.length) {
+      params = `&index=${promiseItemId}-${promiseItem?.todoList.length ? promiseItem?.todoList.length+1 : 1}&newTodo=${newTodo}&gift=${promiseGift}`
+      updatePromiseCallback(profileInfo.name, params)
+    } else {
+      params = `&inputs=1%261%26${newTodo}${promiseGift ? '%26'+promiseGift : '%26선물'}`
+      savePromiseCallback(profileInfo.name, params)
+    }
   }
 
   const handleClickAddGiftButton = () => {
@@ -39,7 +37,7 @@ export function PromiseModalComponent({ promiseItemId, promiseItem, setModalOpen
       const params = `&index=${promiseItemId}-${promiseItem?.todoList.length}&newTodo=${promiseItem.todoList[0]?.todo}&gift=${promiseGift}`
       updatePromiseCallback(profileInfo.name, params)
     } else if (newTodo) {
-      const params = `&index=${promiseItemId}-${1}&newTodo=${newTodo}&gift=${promiseGift}`
+      const params = `&index=${promiseItemId}-${1}&newTodo=${newTodo}` + (promiseGift ? `&gift=${promiseGift}` : '')
       updatePromiseCallback(profileInfo.name, params)
     } else {
       console.log('약속을 먼저 입력해주세요.')

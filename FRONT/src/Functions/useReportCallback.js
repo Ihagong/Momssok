@@ -29,6 +29,30 @@ export function useReportCallback() {
       console.log(error.response.data)
     })
   }
+
+  const getWordCloudCallback = async (name) => {
+    console.log(name)
+    axios({
+      method: 'get',
+      url: '/api/parents/word',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': logInToken,
+      },
+      params: {
+        name,
+      }
+    })
+    .then(response => {
+      if (response.data) {
+        console.log(response.data)
+        console.log('태그가 조회되었습니다.')
+      }
+    })
+    .catch(error => {
+      console.log(error.response.data)
+    })
+  }
   
-  return { getDailyEmotionCallback }
+  return { getDailyEmotionCallback, getWordCloudCallback }
 }
