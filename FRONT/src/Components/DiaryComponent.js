@@ -138,11 +138,13 @@ export function DiaryComponent() {
   const handleClickRemoveButton = () => {
     setDiaryIsEdit(false)
 
-    diaryRemoveCallback({
-      'id': diaryItem.id, 
-      'name': profileInfo.name
-    })
-    navigate('/diary')
+    if (window.confirm("정말 삭제하시겠습니까?")) {
+      diaryRemoveCallback({
+        'id': diaryItem.id, 
+        'name': profileInfo.name
+      })
+      navigate('/diary')
+    }
   }
 
   const weatherList = ['sun', 'cloud', 'cloudy', 'rain', 'snow']
