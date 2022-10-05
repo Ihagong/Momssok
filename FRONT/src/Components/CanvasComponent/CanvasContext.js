@@ -22,7 +22,7 @@ export const CanvasProvider = ({ children, textures, offset, gesture, strokeColo
   const contextRef = useRef(null)
   
   const loadedPainting = new Image()
-  loadedPainting.src = loadedPaintingInfo.imageURL
+  loadedPainting.src = loadedPaintingInfo.drawing_base64
 
   useEffect(() => {
     const canvas = canvasRef.current
