@@ -53,7 +53,7 @@
 
     <update id="updateDiary" parameterType="DiarySaveDto">
         UPDATE diary
-        SET drawing_id = #{drawing_id}, title = #{title}, content = #{content}, weather = #{weather}
+        SET drawing_id = #{drawing_id}, title = #{title}, content = #{content}, `date` = #{date}, weather = #{weather}
         WHERE id = #{id} AND email_name = #{email_name}
     </update>
 
