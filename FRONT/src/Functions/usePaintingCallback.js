@@ -28,7 +28,6 @@ export function usePaintingCallback() {
     })
     .then(response => {
       if (response.data) {
-        console.log(response.data)
         console.log('그림이 저장되었습니다.')
         if (diaryIsEdit === true) {
           setLoadedPaintingItem(response.data.data)

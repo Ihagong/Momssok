@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom'
 import { useDiaryCallback } from '../Functions/useDiaryCallback'
 
 import { useRecoilState } from 'recoil'
-import { diaryDetailState, diaryTempState, profileState, totalDiaryListState, diaryItemState, diaryEditState } from '../store/atoms'
+import { loadedPaintingInfoState, diaryDetailState, diaryTempState, profileState, totalDiaryListState, diaryItemState, diaryEditState } from '../store/atoms'
 
 import "../App.css"
 import { OrangeButton250, LightButton250, DiaryBlock, DiaryContent, ChildProfileTag, LetterPageHeader, BrownText100, LightButton120 } from '../Style/Components'
@@ -22,6 +22,8 @@ function DiaryPage() {
   const [diaryIsEdit, setDiaryIsEdit] = useRecoilState(diaryEditState)
   const [diaryIsDetail, setDiaryIsDetail ] = useRecoilState(diaryDetailState)
   const [diaryTemp, setDiaryTemp ] = useRecoilState(diaryTempState)
+  const [loadedPaintingInfo, setLoadedPaintingInfo] = useRecoilState(loadedPaintingInfoState)
+
 
   const latestType = () => {
     setSortType("latest")
@@ -42,8 +44,9 @@ function DiaryPage() {
 
   const handleClickCreateDiaryButton = () => {
     setDiaryIsEdit(false)
+    const dt = new Date()
     setDiaryTemp({
-      'date': new Date().toLocaleDateString().replace('. ', '-').replace('. ', '-').replace('.', ''),
+      'date': dt.getFullYear()+ '-' + (dt.getMonth()+1).toString().padStart(2,'0') + '-' + dt.getDate().toString().padStart(2,'0'),
       'weatherIndex': 0,
       'title': "",
       'content': ""
@@ -52,8 +55,8 @@ function DiaryPage() {
   }
 
   const handleClickLoadDiaryButton = (info) => {
+    setLoadedPaintingInfo({ drawing_id: info.drawing_id, drawing_base64: info.drawing_base64 })
     setDiaryItem(info)
-    console.log(info)
     setDiaryIsDetail(true)
     navigate(`/diary/${info.id}`)
   }
@@ -61,12 +64,11 @@ function DiaryPage() {
   const getProcessedPaintingList = () => {
     const compare = (a, b) => {
       if (sortType === "latest") {
-        return parseInt(new Date(b.date).getTime()) - parseInt(new Date(a.date).getTime());
+        return parseInt(new Date(b.date).getTime()) - parseInt(new Date(a.date).getTime())
       } else {
         return parseInt(new Date(a.date).getTime()) - parseInt(new Date(b.date).getTime());
       }
     }
-
     const copyList = JSON.parse(JSON.stringify(diaryList))
     const sortedList = copyList.sort(compare)
     return sortedList
