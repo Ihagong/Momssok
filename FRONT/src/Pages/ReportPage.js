@@ -15,14 +15,15 @@ import { ReportWordCloudComponent } from '../Components/ReportWordCloudComponent
 function ReportPage() {
   const [profileInfo, setProfileInfo] = useRecoilState(profileState)
   const [parentActive, setParentActive] = useRecoilState(parentActiveState)
-  const { getDailyEmotionCallback } = useReportCallback()
+  const { getDailyEmotionCallback, getWeeklyEmotionCallback } = useReportCallback()
   const [age, setAge] = useState(new Date().getFullYear() - new Date(profileInfo.birthday).getFullYear() + 1)
   const [selectedTab, setSelectedTab] = useState(0)
 
   const navigate = useNavigate()
 
   useEffect(() => {
-    getDailyEmotionCallback(profileInfo.name, '2022-10-05')
+    getDailyEmotionCallback(profileInfo.name, '2022-10-06')
+    getWeeklyEmotionCallback(profileInfo.name, '2022-10-06')
   }, [])
   
   const handleClickParentButton = () => {
