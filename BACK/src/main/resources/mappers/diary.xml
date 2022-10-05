@@ -41,7 +41,7 @@
 
     <update id="saveEmotion" parameterType="emotionDto">
         UPDATE diary
-        SET emotion = #{emotion}
+        SET emotion = #{emotion},emotion_all=#{emotion_all}
         WHERE id = #{id}
     </update>
 
