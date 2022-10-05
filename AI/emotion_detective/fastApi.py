@@ -6,12 +6,13 @@ app = FastAPI()
 @app.post("/emotion")
 def read_item(item_id: str):
     A, B = predict(item_id)
+    A.A.tolist()
     return {
-        "angry": A[0],
-        "Surprised": A[1],
-        "anxious": A[2],
-        "happy": A[3],
-        "sad": A[4],
+        "angry": round(A[0],2),
+        "Surprised": round(A[1],2),
+        "anxious": round(A[2],2),
+        "happy": round(A[3],2),
+        "sad": round(A[4],2),
         "emotion": B,
     }
 #
