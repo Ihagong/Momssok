@@ -13,7 +13,7 @@ export function CalendarDateComponent({ date, emotion, other, isSunday }) {
       result = '#A6EFCC'
     } else if (emotion === 'angry') {
       result = '#F8899D'
-    } else if (emotion === 'worry') {
+    } else if (emotion === 'anxious') {
       result = '#C6A6EF'
     } else {
       return null
@@ -50,7 +50,7 @@ export function CalendarDateComponent({ date, emotion, other, isSunday }) {
         <div style={{ width: '100%', display: 'flex', alignItems: 'start', color: emotionFontColor() }}>
           <p>{ date }</p>
         </div>
-        { emotion !== '' ? <img src={`icons/${emotion}.svg`} /> : null }
+        { emotion !== '' ? <img src={`/icons/emotion_${emotion}.svg`} /> : null }
       </CalendarDateTag>
     </>
   )
