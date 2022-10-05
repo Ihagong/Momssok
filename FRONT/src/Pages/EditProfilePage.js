@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { useNavigate, useLocation } from  'react-router-dom'
 import { useAuthCallback } from '../Functions/useAuthCallback'
 
-import { ProfileEditFooter, ProfileInput, ProfileTitle, JuaBrownLight, JuaBrown, JuaOrange, ProfileListLabelTag, ProfileListInputTag, ButtonTag3, ButtonTag4, ProfileImageTag, ProfileSelectedImageTag } from '../Style/Components'
+import { ProfileEditFooter, ProfileInput, ProfileTitle, JuaBrownLight, JuaBrown, JuaOrange, ProfileListLabelTag, ProfileListInputTag, ButtonTag2, ButtonTag3, ButtonTag4, ProfileImageTag, ProfileSelectedImageTag } from '../Style/Components'
 
 
 function EditProfilePage() {
@@ -84,7 +84,7 @@ function EditProfilePage() {
       <ProfileEditFooter>
         <span>
           <ButtonTag3 onClick={handleClickPrevPage}>이전</ButtonTag3>
-          <ButtonTag4 style={{ backgroundColor: "var(--Brown-Text)", marginLeft: "20px", marginRight: "20px" }} onClick={handleClickDeleteButton}>삭제</ButtonTag4>
+          <ButtonTag2 style={{ fontSize: '40px', width: '230px', marginLeft: "20px", marginRight: "20px" }} onClick={handleClickDeleteButton}>삭제</ButtonTag2>
           <ButtonTag4 onClick={handleClickUpdateProfile}>수정</ButtonTag4>
         </span>
       </ProfileEditFooter>
