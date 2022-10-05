@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 
 import { useRecoilState } from 'recoil'
-import { profileState, profileListState, letterVideoURLState } from '../store/atoms'
+import { profileState, profileListState, letterVideoURLState, parentActiveState, userInfoState } from '../store/atoms'
 import { useLetterCallback } from '../Functions/useLetterCallback'
 import { VideoCaptureComponent } from '../Components/VideoCaptureComponent'
 
@@ -16,7 +16,9 @@ const LetterEditorComponent = ({ isDetail, letterItem }) => {
   const [profileInfo, setProfileInfo] = useRecoilState(profileState)
   const [profileList, setProfileList] = useRecoilState(profileListState)
   const [letterVideoURL, setLetterVideoURL] = useRecoilState(letterVideoURLState)
-
+  const [parentActive, setParentActive] = useRecoilState(parentActiveState)
+  const [userInfo, setUserInfo] = useRecoilState(userInfoState)
+  
   const { letterSendCallback, letterRemoveCallback, getLetterVideoFileCallback } = useLetterCallback()
 
   const titleRef = useRef()
@@ -100,23 +102,27 @@ const LetterEditorComponent = ({ isDetail, letterItem }) => {
       <EditorBody>
         <LetterTitleBody>
           <div>{isDetail ? '시간 : ' : '누가 : '}</div>
-          <LetterTitleDiv>{isDetail ? date : profileInfo.name}</LetterTitleDiv>
+          <LetterTitleDiv>{ isDetail ? date : (parentActive ? userInfo.username : profileInfo.name) }</LetterTitleDiv>
         </LetterTitleBody>
 
         <LetterTitleBody>
           <div>{isDetail ? '누가 : ' : '누구 : '}</div>
           {isDetail ? <LetterTitleDiv>{author}</LetterTitleDiv> : 
           <LetterTitleDiv>
-            {profileList.filter((it) => it.name !== profileInfo.name).map((it, idx) => (
-              <label key={idx} style={{marginRight: '10px'}}>
-                <input
-                  type='radio'
-                  value={it.name}
-                  checked={receiver === `${it.name}`}
-                  onChange= {handleClickRadioButton} />
-                <span> {it.name}</span>
-              </label>
-            ))}
+            { parentActive ?
+              profileList.filter((it) => {return !it.is_parent}).map((it, idx) => (
+                <label key={idx} style={{marginRight: '10px'}}>
+                  <input type='radio' value={it.name} checked={receiver === `${it.name}`} onChange= {handleClickRadioButton} />
+                  <span> {it.name}</span>
+                </label>
+              ))
+              : profileList.filter((it) => {console.log(parentActive); return it.name !== profileInfo.name}).map((it, idx) => (
+                <label key={idx} style={{marginRight: '10px'}}>
+                  <input type='radio' value={it.name} checked={receiver === `${it.name}`} onChange= {handleClickRadioButton} />
+                  <span> {it.name}</span>
+                </label>
+              ))
+            }
           </LetterTitleDiv>
           }
         </LetterTitleBody>
