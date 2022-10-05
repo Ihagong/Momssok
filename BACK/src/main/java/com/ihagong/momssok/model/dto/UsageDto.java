@@ -9,5 +9,6 @@ import java.util.Date;
 @Setter
 public class UsageDto {
    private String email_name;
-   private Date date;
+   private String date;
+   private int usage_time;
 }
