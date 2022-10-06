@@ -31,6 +31,7 @@ const LetterEditorComponent = ({ isDetail, letterItem }) => {
   const [date, setDate] = useState('')
 
   const [videoFile, setVideoFile] = useState(null)
+  const [videoButton, setVideoButton] = useState(0)
 
   useEffect(() => {
     console.log(videoFile)
@@ -76,6 +77,14 @@ const LetterEditorComponent = ({ isDetail, letterItem }) => {
     setReceiver(e.target.value)
   }
 
+  const videoButtonClick = (e) => {
+    if (videoButton === 0) {
+      setVideoButton(1)
+    } else {
+      setVideoButton(0)
+    }
+  }
+
   useEffect(() => {
 
     if (isDetail) {
@@ -116,7 +125,7 @@ const LetterEditorComponent = ({ isDetail, letterItem }) => {
                   <span> {it.name}</span>
                 </label>
               ))
-              : profileList.filter((it) => {console.log(parentActive); return it.name !== profileInfo.name}).map((it, idx) => (
+              : profileList.filter((it) => {return it.name !== profileInfo.name}).map((it, idx) => (
                 <label key={idx} style={{marginRight: '10px'}}>
                   <input type='radio' value={it.name} checked={receiver === `${it.name}`} onChange= {handleClickRadioButton} />
                   <span> {it.name}</span>
@@ -131,21 +140,29 @@ const LetterEditorComponent = ({ isDetail, letterItem }) => {
           <div>제목 : </div>
           { isDetail ? <LetterTitleDiv>{title}</LetterTitleDiv> : <LetterTitleInput ref={titleRef} value={title} onChange={(e) => setTitle(e.target.value)} /> }
         </LetterTitleBody>
-        
-          { isDetail ? <video style={{ width: '200px' }} src={letterVideoURL} type='video/webm' controls={true} />
-          : <div style={{ display: 'flex', justifyContent: 'center' }}>
-            <VideoCaptureComponent setVideoFile={setVideoFile} />
-          </div> }
 
-        <LetterContentBody>
-          {isDetail ? <LetterContentDiv>{content}</LetterContentDiv> :
-            <LetterContentTextArea
-              ref={contentRef}
-              value={content}
-              onChange={(e) => setContent(e.target.value)}
-            />
-          }
-        </LetterContentBody>
+        { videoButton === 0 ?
+          <LetterContentBody>
+            {isDetail ? <LetterContentDiv>{content}</LetterContentDiv> :
+              <LetterContentTextArea
+                ref={contentRef}
+                value={content}
+                onChange={(e) => setContent(e.target.value)}
+              >
+              </LetterContentTextArea>
+            }
+          </LetterContentBody>
+          :
+          <LetterContentBody>
+            <LetterContentDiv>
+              { isDetail ? <video style={{ width: '640px' }} src={letterVideoURL} type='video/webm' controls={true} />
+              : <div style={{ display: 'flex', alignItems: 'center', marginTop: '30px', justifyContent: 'center' }}>
+              <VideoCaptureComponent setVideoFile={setVideoFile} />
+              </div> }
+            </LetterContentDiv>
+          </LetterContentBody>
+        }
+
       </EditorBody>
       
       <section>
@@ -153,6 +170,9 @@ const LetterEditorComponent = ({ isDetail, letterItem }) => {
           <LetterButtonBack onClick={() => navigate(-1)}>닫기</LetterButtonBack>
           <LetterButtonGo onClick={handleSubmit}>{isDetail ? '답장하기' : '보내기'}</LetterButtonGo>
           {isDetail && <LetterButtonDel onClick={handleRemove}>삭제하기</LetterButtonDel>}
+          <div onClick={videoButtonClick}>
+            <img style={{ width: '180px', marginLeft: '40px', marginTop: '20px'}} src="/icons/videoicon.svg" />
+          </div>
         </LetterButton>
       </section>
 

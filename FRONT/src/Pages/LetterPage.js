@@ -19,7 +19,11 @@ const LetterPage = () => {
   const { letterInfoCallback } = useLetterCallback()
 
   const handleClickChildProfile = () => {
-    navigate('/profile')
+    if (parentActive) {
+      navigate('/profile/manage')
+    } else {
+      navigate('/profile')
+    }
   }
 
   useEffect(() => {

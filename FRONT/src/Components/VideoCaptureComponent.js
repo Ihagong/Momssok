@@ -1,6 +1,9 @@
 import React, { useRef, useState, useCallback, useEffect } from 'react'
 import Webcam from 'react-webcam'
 
+import { LetterButtonDel } from '../Style/Components'
+
+
 
 export function VideoCaptureComponent({ setVideoFile }) {
   const webcamRef = useRef(null)
@@ -47,11 +50,14 @@ export function VideoCaptureComponent({ setVideoFile }) {
 
   return (
     <>
-      <Webcam audio={false} ref={webcamRef} style={{ width: 200, transform: 'scaleX(-1)' }} />
       { capturing ?
         <button onClick={handleStopCaptureClick}>녹화 중지</button>
-        : <button onClick={handleStartCaptureClick}>녹화 시작</button> }
-      { recordedChunks.length > 0 ? <video style={{ width: 200 }}src={videoURL} type='video/webm' controls={true} /> : null }
+        : <LetterButtonDel style={{margin: "0"}} onClick={handleStartCaptureClick}>녹화 시작</LetterButtonDel> 
+        }
+      { recordedChunks.length > 0 ? 
+        <video style={{ width: 400 }} src={videoURL} type='video/webm' controls={true} /> 
+      : <Webcam audio={true} ref={webcamRef} style={{ width: 400, transform: 'scaleX(-1)' }} /> 
+      }
     </>
   )
 }

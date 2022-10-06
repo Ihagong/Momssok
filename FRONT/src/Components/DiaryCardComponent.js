@@ -35,16 +35,13 @@ export function DiaryCardComponent({ info }) {
     }
     return result
   }
-  
-  console.log(info.emotion)
+
+  console.log(info.weather)
   return (
     <DiaryBlock style={{justifyContent: 'start', justifyContent: 'space-between' }}>
-      <section style={{display: 'flex', marginTop: '20px', alignItems: 'end' }}>
+      <section style={{display: 'flex', marginTop: '20px', alignItems: 'center' }}>
         <JuaBrown style={{fontSize: '28px', marginRight: '10px'}}>{info.date.split(' ')[0].replace('-', '년 ').replace('-', '월 ')}일</JuaBrown>
-        { emotionName() ? <div style={{ width: '50px', height: '40px', borderRadius: '10px', backgroundColor: emotionColor('happy'), display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-          <img style={{ width: '30px' }} src={`/icons/emotion_${emotionName()}.svg`} />
-        </div> : null }
-        {/* <div><img src={`/icons/emotionImage_${ emotionList.indexOf(info.emotion) }.svg`} /></div> */}
+        <div><img src={`/icons/${info.weather}icon.svg`} /></div>
       </section>
         <section style={{ marginTop: '10px'}}>
           <img style={{height: '150px', width: '300px' }} src={ info.drawing_base64 } />
