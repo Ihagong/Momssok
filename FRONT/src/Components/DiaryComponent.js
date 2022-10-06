@@ -189,7 +189,7 @@ export function DiaryComponent() {
           <div style={{ display: 'flex', alignItems: 'center' }}>
             <label htmlFor='weather'>날씨 : </label>
             <DiaryWeatherBoxTag>
-              <button onClick={() => setSelectOpen(!selectOpen)}><img src={`/icons/${weatherList[weatherIndex]}icon.svg`} alt='맑음'></img></button>           
+              <button onClick={() => setSelectOpen(!selectOpen)}><img src={`/icons/${weatherList[weatherIndex]}icon.svg`}></img></button>           
               { selectOpen ?
                 <ul>
                   <li onClick={() => handleClickWeatherBox(0)}><img src='/icons/sunicon.svg' alt='맑음'></img></li>
