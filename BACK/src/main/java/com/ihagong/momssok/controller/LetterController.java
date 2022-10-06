@@ -24,7 +24,7 @@ public class LetterController {
     private final LetterService letterService;
     @RequestMapping(value = "/letter/sendLetter", method = RequestMethod.POST)
     public ResponseEntity<?> sendLetter(@RequestParam @Nullable MultipartFile videoFile, @RequestParam String author,
-                                        @RequestParam String receiver, @RequestParam String title, @RequestParam String content) throws IOException{
+                                        @RequestParam String receiver, @RequestParam String title, @RequestParam @Nullable String content) throws IOException{
         Map<Boolean,Object> result = letterService.sendLetter(videoFile, author, receiver, title,content);
         if(result.get(true)!=null)
             return new ResponseEntity<>(result.get(true), HttpStatus.OK);

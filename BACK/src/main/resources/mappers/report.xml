@@ -5,7 +5,7 @@
     <select id="lookupDaily" parameterType="ReportInputDto" resultType="ReportDto">
         SELECT d.emotion, d.date,d.emotion_all
         FROM diary d
-        WHERE email_name = #{email_name} AND d.date LIKE(CONCAT(#{date}, "%"))
+        WHERE email_name = #{email_name} AND d.date=#{date}
     </select>
 
     <select id="lookupWeekly" parameterType="ReportInputDto" resultType="ReportDto">
@@ -19,5 +19,11 @@
         SELECT d.emotion, d.date,d.emotion_all
         FROM diary d
         WHERE email_name = #{email_name} AND d.date LIKE(CONCAT(LEFT(#{date}, 7), "%"))
+    </select>
+
+    <select id="lookupAll" parameterType="ReportInputDto" resultType="ReportDto">
+        SELECT d.emotion, d.date,d.emotion_all
+        FROM diary d
+        WHERE email_name = #{email_name}
     </select>
 </mapper>

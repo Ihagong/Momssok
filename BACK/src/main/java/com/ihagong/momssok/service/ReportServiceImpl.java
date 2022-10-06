@@ -30,4 +30,9 @@ public class ReportServiceImpl implements ReportService{
     public List<ReportDto> lookupMonthly(ReportInputDto reportInput) throws Exception {
         return reportMapper.lookupMonthly(reportInput);
     }
+
+    @Override
+    public List<ReportDto> lookupAll(ReportInputDto reportInput) throws Exception {
+        return reportMapper.lookupAll(reportInput);
+    }
 }

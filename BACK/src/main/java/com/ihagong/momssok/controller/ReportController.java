@@ -24,21 +24,54 @@ public class ReportController {
     private final ReportService reportService;
     private final DrawingService drawingService;
 
+
+    public Map<String,Float> emotionPercent(List<ReportDto> reportListAll){
+        Map<String,Float> emotion_avg_percent=new HashMap<>();
+        for(ReportDto dto:reportListAll){
+            String emotionAll=dto.getEmotion_all();
+            String[] emotions=emotionAll.split(", ");
+            for(String emotion:emotions){
+                String[] emotion_percent=emotion.split(":");
+                System.out.println(emotion_percent[0]);
+                System.out.println(emotion_percent[1]);
+                if(emotion_avg_percent.containsKey(emotion_percent[0])){
+                    emotion_avg_percent.put(emotion_percent[0],emotion_avg_percent.get(emotion_percent[0])+Float.parseFloat(emotion_percent[1]));
+                }
+                else{
+                    emotion_avg_percent.put(emotion_percent[0],Float.parseFloat(emotion_percent[1]));
+                }
+            }
+
+        }
+        int sum=0;
+        for(String emotion: emotion_avg_percent.keySet()){
+            sum+=emotion_avg_percent.get(emotion);
+        }
+        for(String emotion: emotion_avg_percent.keySet()){
+            emotion_avg_percent.put(emotion, (float) Math.round(((emotion_avg_percent.get(emotion)/sum*10000)))/100);
+        }
+        return emotion_avg_percent;
+    }
     @PostMapping("/daily")
     public Map<String, Object> dailyEmotion(@RequestBody ReportInputDto reportInput){
         Map<String, Object> result = new HashMap<>();
-
+        List<ReportDto> reportListAll;
         try {
             String email= SecurityContextHolder.getContext().getAuthentication().getName();
             String name = reportInput.getName();
             String email_name = email + "_" + name;
             reportInput.setEmail_name(email_name);
+            reportListAll = reportService.lookupAll(reportInput);
 
+            Map<String,Float> emotion_avg_percent=emotionPercent(reportListAll);
             ReportDto emotion = reportService.lookupDaily(reportInput);
-
+            System.out.println(reportInput);
+            System.out.println(emotion_avg_percent);
+            System.out.println(emotion);
             if(emotion != null){
                 result.put("statue", success);
-                result.put("data", emotion);
+                result.put("today", emotion);
+                result.put("avg", emotion_avg_percent);
             }else{
                 result.put("status", fail);
             }
@@ -55,13 +88,15 @@ public class ReportController {
     public Map<String, Object> weeklyEmotion(@RequestBody ReportInputDto reportInput){
         Map<String, Object> result = new HashMap<>();
         List<ReportDto> reportList = new ArrayList<>();
+        List<ReportDto> reportListAll;
 
         try {
             String email= SecurityContextHolder.getContext().getAuthentication().getName();
             String name = reportInput.getName();
             String email_name = email + "_" + name;
             reportInput.setEmail_name(email_name);
-
+            reportListAll = reportService.lookupAll(reportInput);
+            Map<String,Float> emotion_avg_percent=emotionPercent(reportListAll);
             //현재 날짜 기준 시작과 끝(일요일, 토요일) 값 구하기
             String date = reportInput.getDate();
             String pattern = "yyyy-MM-dd";
@@ -78,13 +113,18 @@ public class ReportController {
             String finishDate = simpleDateFormat.format(calendar.getTime());
             System.out.println(finishDate);  //끝나는 토요일 날짜 출력
 
+
             reportInput.setStartDate(startDate);
             reportInput.setFinishDate(finishDate);
             reportList = reportService.lookupWeekly(reportInput);
+            for(String emotion:emotion_avg_percent.keySet()){
+                emotion_avg_percent.put(emotion,emotion_avg_percent.get(emotion)*7/100);
+            }
 
             if(reportList != null){
                 result.put("statue", success);
-                result.put("data", reportList);
+                result.put("week", reportList);
+                result.put("avg", emotion_avg_percent);
             }else{
                 result.put("status", fail);
             }
@@ -110,10 +150,10 @@ public class ReportController {
             reportInput.setEmail_name(email_name);
 
             reportList = reportService.lookupMonthly(reportInput);
-
+            Map<String,Float> emotion_avg_percent=emotionPercent(reportList);
             if(reportList != null){
                 result.put("statue", success);
-                result.put("data", reportList);
+                result.put("month", emotion_avg_percent);
             }else{
                 result.put("status", fail);
             }
