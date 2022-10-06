@@ -102,7 +102,21 @@ public class ReportController {
             String email_name = email + "_" + name;
             reportInput.setEmail_name(email_name);
             reportListAll = reportService.lookupAll(reportInput);
-            Map<String,Float> emotion_avg_percent=emotionPercent(reportListAll);
+            Map<String,Integer> emotionCount=new HashMap<>();
+            for(ReportDto dto:reportListAll){
+                if(emotionCount.containsKey(dto.getEmotion())){
+                    emotionCount.put(dto.getEmotion(),emotionCount.get(dto.getEmotion())+1);
+                }
+                else {
+                    emotionCount.put(dto.getEmotion(),1);
+                }
+            }
+            Map<String,Float> emotion_avg_percent=new HashMap<>();
+            for (String emotion:emotionCount.keySet()){
+                emotion_avg_percent.put(emotion,  ((float)emotionCount.get(emotion)/(float)reportListAll.size()));
+            }
+
+
             //현재 날짜 기준 시작과 끝(일요일, 토요일) 값 구하기
             String date = reportInput.getDate();
             String pattern = "yyyy-MM-dd";
@@ -133,7 +147,7 @@ public class ReportController {
                 }
             }
             for(String emotion:emotion_avg_percent.keySet()){
-                emotion_avg_percent.put(emotion,emotion_avg_percent.get(emotion)*7/100);
+                emotion_avg_percent.put(emotion,emotion_avg_percent.get(emotion)*7);
             }
 
             if(reportList != null){
@@ -211,8 +225,20 @@ public class ReportController {
             reportInput.setEmail_name(email_name);
 
             reportList = reportService.lookupMonthly(reportInput);
-            System.out.println(reportList);
-            Map<String,Float> emotion_avg_percent=emotionPercent(reportList);
+            Map<String,Integer> emotionCount=new HashMap<>();
+            for(ReportDto dto:reportList){
+                if(emotionCount.containsKey(dto.getEmotion())){
+                    emotionCount.put(dto.getEmotion(),emotionCount.get(dto.getEmotion())+1);
+                }
+                else {
+                    emotionCount.put(dto.getEmotion(),1);
+                }
+            }
+            Map<String,Float> emotion_avg_percent=new HashMap<>();
+            for (String emotion:emotionCount.keySet()){
+                emotion_avg_percent.put(emotion,  ((float)emotionCount.get(emotion)/(float)reportList.size())*100);
+            }
+
             Float max=0F;
             String max_emotion = null;
             for(String emotion:emotion_avg_percent.keySet()){
@@ -237,8 +263,21 @@ public class ReportController {
             }
             System.out.println(reportInput.getDate());
             reportList = reportService.lookupMonthly(reportInput);
-            System.out.println(reportList);
-            Map<String,Float> emotion_avg_percent2=emotionPercent(reportList);
+            Map<String,Integer> emotionCount2=new HashMap<>();
+            for(ReportDto dto:reportList){
+                if(emotionCount2.containsKey(dto.getEmotion())){
+                    emotionCount2.put(dto.getEmotion(),emotionCount2.get(dto.getEmotion())+1);
+                }
+                else {
+                    emotionCount2.put(dto.getEmotion(),1);
+                }
+            }
+            Map<String,Float> emotion_avg_percent2=new HashMap<>();
+            for (String emotion:emotionCount2.keySet()){
+                emotion_avg_percent2.put(emotion,  ((float)emotionCount2.get(emotion)/(float)reportList.size())*100);
+            }
+
+
 
             if (reportList != null) {
                 result.put("statue", success);
