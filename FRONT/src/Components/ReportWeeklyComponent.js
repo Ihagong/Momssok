@@ -2,6 +2,8 @@ import React from 'react'
 import { EmotionReportTag } from '../Style/Components'
 
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip } from 'recharts'
+import { useRecoilState } from 'recoil'
+import { weeklyEmotionListState } from '../store/atoms'
 
 
 const data = [
@@ -32,7 +34,43 @@ const data = [
   },
 ]
 
-export function ReportWeeklyComponent() {
+export function ReportWeeklyComponent({ emotionColor, emotionName }) {
+
+  const [weeklyEmotionList, setWeeklyEmotionList] = useRecoilState(weeklyEmotionListState)
+  
+  const weeklyEmotionData = () => {
+    return (
+      [
+        {
+          subject: '행복',
+          '평균': 42,
+          '이번 주': weeklyEmotionList[2][1] ? weeklyEmotionList[2][1] : 0,
+        },
+        {
+          subject: '슬픔',
+          '평균': 23,
+          '이번 주': weeklyEmotionList[3][1] ? weeklyEmotionList[3][1] : 0,
+        },
+        {
+          subject: '놀람',
+          '평균': 30,
+          '이번 주': weeklyEmotionList[5][1] ? weeklyEmotionList[5][1] : 0,
+        },
+        {
+          subject: '불안',
+          '평균': 24,
+          '이번 주': weeklyEmotionList[1][1] ? weeklyEmotionList[1][1] : 0,
+        },
+        {
+          subject: '분노',
+          '평균': 21,
+          '이번 주': weeklyEmotionList[4][1] ? weeklyEmotionList[4][1] : 0,
+        },
+      ]
+    )
+  }
+
+
   const emotionIcon = ({ index, x, y }) => {
     if (index === 0) {
       return (
@@ -117,8 +155,8 @@ export function ReportWeeklyComponent() {
       <div>
         <div style={{ display: 'flex', justifyContent: 'end', margin: '30px 30px 30px 0', fontSize: '26px' }}>2022.10 첫째 주</div>
         <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', margin: '0 80px 0 0px' }}>
-          <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', backgroundColor: '#A6EFCC', width: '120px', height: '120px', borderRadius: '40px', margin: '0 0 30px 0' }}>
-            <img style={{ width: '80px' }} src={`/icons/surprised.svg`}/>
+          <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', backgroundColor: emotionColor(weeklyEmotionList[0]), width: '120px', height: '120px', borderRadius: '40px', margin: '0 0 30px 0' }}>
+            <img style={{ width: '80px' }} src={`/icons/emotion_${emotionName(weeklyEmotionList[0])}.svg`} />
           </div>
           <div>이번 주 아이는 평소보다</div><br/>
           <div style={{ fontSize: '40px' }}>"놀람"을 느꼈어요.</div><br/>
