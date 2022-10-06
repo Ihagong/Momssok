@@ -5,19 +5,26 @@ import { LetterButtonDel } from '../Style/Components'
 
 
 
-export function VideoCaptureComponent({ setVideoFile }) {
+export function VideoCaptureComponent({ setVideoFile, videoRecord }) {
   const webcamRef = useRef(null)
   const mediaRecorderRef = useRef(null)
   const [capturing, setCapturing] = useState(false)
   const [recordedChunks, setRecordedChunks] = useState([])
   const [videoURL, setVideoURL] = useState('')
+  
 
   useEffect(() => {
     handlePreviewVideoOpen()
   }, [recordedChunks])
 
+  useEffect(() => {
+    console.log(videoRecord)
+
+  }, [videoRecord])
+
   const handleStartCaptureClick = useCallback(() => {
     setCapturing(true)
+    setRecordedChunks([])
     mediaRecorderRef.current = new MediaRecorder(webcamRef.current.stream, {
       mimeType: 'video/webm'
     })
@@ -35,8 +42,8 @@ export function VideoCaptureComponent({ setVideoFile }) {
   }, [setRecordedChunks])
 
   const handleStopCaptureClick = useCallback(() => {
-    mediaRecorderRef.current.stop()
     setCapturing(false)
+    mediaRecorderRef.current.stop()
   }, [mediaRecorderRef, webcamRef, setCapturing])
 
   const handlePreviewVideoOpen = useCallback(() => {
@@ -50,13 +57,14 @@ export function VideoCaptureComponent({ setVideoFile }) {
 
   return (
     <>
-      { capturing ?
-        <button onClick={handleStopCaptureClick}>녹화 중지</button>
-        : <LetterButtonDel style={{margin: "0"}} onClick={handleStartCaptureClick}>녹화 시작</LetterButtonDel> 
-        }
+      {/* { capturing ?
+        <button onClick={handleStopCaptureClick}>중지</button>
+        : 
+        <LetterButtonDel style={{margin: "0"}} onClick={handleStartCaptureClick}>녹화</LetterButtonDel> 
+      } */}
       { recordedChunks.length > 0 ? 
-        <video style={{ width: 400 }} src={videoURL} type='video/webm' controls={true} /> 
-      : <Webcam audio={true} ref={webcamRef} style={{ width: 400, transform: 'scaleX(-1)' }} /> 
+        <video style={{ width: 450 }} src={videoURL} type='video/webm' controls={true} /> 
+      : <Webcam audio={true} ref={webcamRef} style={{ width: 450, transform: 'scaleX(-1)' }} /> 
       }
     </>
   )

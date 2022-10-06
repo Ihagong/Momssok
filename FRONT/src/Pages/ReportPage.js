@@ -27,6 +27,7 @@ function ReportPage() {
   }, [])
   
   const handleClickParentButton = () => {
+    navigate('/profile/manage')
   }
 
   const handleClickChangeTab = (index) => {
@@ -75,18 +76,18 @@ function ReportPage() {
             <JuaBrown style={{ fontSize: '50px' }}>진단 리포트</JuaBrown>
           </ParentInfo>
         </div>
-        <EditProfileButtonTag onClick={handleClickParentButton}>프로필 등록</EditProfileButtonTag>
+        <EditProfileButtonTag onClick={handleClickParentButton}>프로필 변경</EditProfileButtonTag>
       </ParentTitle>
       <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
         <div style={{display: 'flex' }}>
-          { selectedTab === 0 ? <ReportSelectedTabTag onClick={() => handleClickChangeTab(0)}>일별</ReportSelectedTabTag>
-            : <ReportTabTag onClick={() => handleClickChangeTab(0)}>일별</ReportTabTag> }
-          { selectedTab === 1 ? <ReportSelectedTabTag onClick={() => handleClickChangeTab(1)}>주별</ReportSelectedTabTag>
-            : <ReportTabTag onClick={() => handleClickChangeTab(1)}>주별</ReportTabTag> }
-          { selectedTab === 2 ? <ReportSelectedTabTag onClick={() => handleClickChangeTab(2)}>월별</ReportSelectedTabTag>
-            : <ReportTabTag onClick={() => handleClickChangeTab(2)}>월별</ReportTabTag> }
-          { selectedTab === 3 ? <ReportSelectedTabTag onClick={() => handleClickChangeTab(3)}>전체</ReportSelectedTabTag>
-            : <ReportTabTag onClick={() => handleClickChangeTab(3)}>전체</ReportTabTag> }
+          { selectedTab === 0 ? <ReportSelectedTabTag onClick={() => handleClickChangeTab(0)}>오늘</ReportSelectedTabTag>
+            : <ReportTabTag onClick={() => handleClickChangeTab(0)}>오늘</ReportTabTag> }
+          { selectedTab === 1 ? <ReportSelectedTabTag onClick={() => handleClickChangeTab(1)}>이번 주</ReportSelectedTabTag>
+            : <ReportTabTag onClick={() => handleClickChangeTab(1)}>이번 주</ReportTabTag> }
+          { selectedTab === 2 ? <ReportSelectedTabTag onClick={() => handleClickChangeTab(2)}>이번 달</ReportSelectedTabTag>
+            : <ReportTabTag onClick={() => handleClickChangeTab(2)}>이번 달</ReportTabTag> }
+          { selectedTab === 3 ? <ReportSelectedTabTag onClick={() => handleClickChangeTab(3)}>태그</ReportSelectedTabTag>
+            : <ReportTabTag onClick={() => handleClickChangeTab(3)}>태그</ReportTabTag> }
         </div>
         { selectedTab === 0 ? <ReportDailyComponent emotionColor={emotionColor} emotionName={emotionName} /> : null }
         { selectedTab === 1 ? <ReportWeeklyComponent emotionColor={emotionColor} emotionName={emotionName} /> : null }
