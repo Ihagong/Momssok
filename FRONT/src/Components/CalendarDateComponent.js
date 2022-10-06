@@ -5,15 +5,15 @@ import { CalendarDateTag } from '../Style/Components'
 export function CalendarDateComponent({ date, emotion, other, isSunday }) {
   const emotionColor = () => {
     let result = ''
-    if (emotion === 'happy') {
+    if (emotion === '행복') {
       result = '#FFE27D'
-    } else if (emotion === 'sad') {
+    } else if (emotion === '슬픔') {
       result = '#7DC1FF'
-    } else if (emotion === 'surprised') {
+    } else if (emotion === '놀람') {
       result = '#A6EFCC'
-    } else if (emotion === 'angry') {
+    } else if (emotion === '분노') {
       result = '#F8899D'
-    } else if (emotion === 'anxious') {
+    } else if (emotion === '불안') {
       result = '#C6A6EF'
     } else {
       return null
@@ -24,8 +24,24 @@ export function CalendarDateComponent({ date, emotion, other, isSunday }) {
     return result
   }
 
+  const emotionName = (emotion) => {
+    let result = ''
+    if (emotion === '행복') {
+      result = 'happy'
+    } else if (emotion === '슬픔') {
+      result = 'sad'
+    } else if (emotion === '놀람') {
+      result = 'surprised'
+    } else if (emotion === '불안') {
+      result = 'anxious'
+    } else if (emotion === '분노') {
+      result = 'angry'
+    }
+    return result
+  }
+  
   const emotionFontColor = () => {
-    if (emotion === '') {
+    if (!emotion) {
       if (isSunday) {
         if (other) {
           return '#E99C9C'
@@ -43,6 +59,7 @@ export function CalendarDateComponent({ date, emotion, other, isSunday }) {
       return 'white'
     }
   }
+  console.log(emotion)
 
   return (
     <>
@@ -50,7 +67,7 @@ export function CalendarDateComponent({ date, emotion, other, isSunday }) {
         <div style={{ width: '100%', display: 'flex', alignItems: 'start', color: emotionFontColor() }}>
           <p>{ date }</p>
         </div>
-        { emotion !== '' ? <img src={`/icons/emotion_${emotion}.svg`} /> : null }
+        { emotion && emotion !== '' ? <img src={`/icons/emotion_${emotionName(emotion)}.svg`} /> : null }
       </CalendarDateTag>
     </>
   )

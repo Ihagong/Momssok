@@ -1,17 +1,20 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 
 import { useRecoilState } from 'recoil'
-import { profileState } from '../store/atoms'
+import { profileState, calendarEmotionObjectState } from '../store/atoms'
 
 import { LetterButtonGo, CalendarTag, DongleLightBrown, ChildProfileTag, LetterPageHeader, BrownText100, LightButton120 } from '../Style/Components'
 import { CalendarDateComponent } from '../Components/CalendarDateComponent'
+import { useReportCallback } from '../Functions/useReportCallback'
 
 
 function CalendarPage() {
   const navigate = useNavigate()
 
   const [profileInfo, setProfileInfo] = useRecoilState(profileState)
+  const { getMonthlyEmotionListCallback } = useReportCallback()
+  const [calendarEmotionObject, setCalendarEmotionObject] = useRecoilState(calendarEmotionObjectState)
 
   const handleClickChildProfile = () => {
     navigate('/profile')
@@ -39,13 +42,12 @@ function CalendarPage() {
 
   const prevMonthDates = () => {
     const result = []
-    console.log(prevDay, prevDate, nextDate)
     if (prevDay !== 6) {
       for (let i = prevDate - prevDay; i <= prevDate; i++) {
         if (i === prevDate - prevDay) {
-          result.push(<CalendarDateComponent key={i} date={i} other={true} isSunday={true} emotion={'surprised'} />)
+          result.push(<CalendarDateComponent key={i} month={currentMonth-1 >= 1 ? currentMonth-1 : 12} date={i} other={true} isSunday={true} />)
         } else {
-          result.push(<CalendarDateComponent key={i} date={i} other={true} emotion={'angry'} />)
+          result.push(<CalendarDateComponent key={i} month={currentMonth-1 >= 1 ? currentMonth-1 : 12} date={i} other={true} />)
         }
       }
     }
@@ -56,11 +58,10 @@ function CalendarPage() {
     const result = []
     for (let i = 1; i <= nextDate; i++) {
       if ((prevDay+i)%7 === 0) {
-        result.push(<CalendarDateComponent key={i} date={i} isSunday={true} emotion={'sad'} />)
+        result.push(<CalendarDateComponent key={i} month={currentMonth} date={i} isSunday={true} emotion={calendarEmotionObject[i]} />)
       } else {
-        result.push(<CalendarDateComponent key={i} date={i} emotion={'happy'} />)
+        result.push(<CalendarDateComponent key={i} month={currentMonth} date={i} emotion={calendarEmotionObject[i]} />)
       }
-
     }
     return result
   }
@@ -68,10 +69,15 @@ function CalendarPage() {
   const nextMonthDates = () => {
     const result = []
     for (let i = 1; i < 7-nextDay; i++) {
-      result.push(<CalendarDateComponent key={i} date={i} other={true} emotion={'anxious'} />)
+      result.push(<CalendarDateComponent key={i} month={currentMonth+1 <= 12 ? currentMonth+1 : 1} date={i} other={true} />)
     }
     return result
   }
+
+  useEffect(() => {
+    getMonthlyEmotionListCallback(currentYear+'-'+currentMonth, profileInfo.name)
+  }, [currentYear, currentMonth])
+
 
   const handleClickPrevMonth = () => {
     if (currentMonth > 1) {
@@ -92,10 +98,6 @@ function CalendarPage() {
       setCurrentYear(currentYear+1)
     }
   }
-
-//   <div style={{ display: 'flex', justifyContent: 'center' }}>
-//   <p>{currentYear}년 {currentMonth}월</p>
-// </div>
 
   return (
     <div style={{ display: 'flex', flexDirection: 'column' }}>
@@ -124,8 +126,7 @@ function CalendarPage() {
         <LetterButtonGo style={{ width: '150px', marginTop: '-90px' }} onClick={() => navigate('/child')}>닫기</LetterButtonGo>
       </div>
     </div>
-
-  );
+  )
 }
 
 export default CalendarPage
