@@ -141,17 +141,24 @@ function CreatePaintingPage(props) {
   }
 
   const handleClickNextButton = () => {
-    if (partIndex <= order.length) {
+    if (partIndex <= animal.parts.length) {
       setPartIndex(partIndex+1)
+
+      if (partIndex == animal.parts.length-1) {
+        soundPlay(animal.name)
+      }
     }
-    if (partIndex >= order.length) {
+    if (partIndex >= animal.parts.length) {
       setIsDone(true)
-    }
-    if (isDone) {
-      navigate(-1)
+      navigate('/dictionary')
     }
   }
 
+  const soundPlay = (animal) => {
+    let sound = new Audio(`/sounds/sound_${animal}.mp3`)
+    sound.play()
+  }
+  
   const handleClickPaintingToolButton = () => {
     setPaintingToolModalOpen(true)
   }
@@ -178,8 +185,6 @@ function CreatePaintingPage(props) {
   }
 
   const handleSelectTool = (offsetX, offsetY) => {
-    const left = (window.innerWidth-1100)/2
-    const diff = 130
     console.log(offsetX, offsetY)
     
     if (offsetY >= 550 && offsetY <= 700) {
@@ -193,24 +198,6 @@ function CreatePaintingPage(props) {
     }
   }
   
-
-  // const handleSelectTool = (toolIndex) => {
-  //   if (selectedToolIndex !== toolIndex) {
-  //     setSelectedToolIndex(toolIndex)
-  //     if (toolIndex === 0) {
-  //       setPaintingToolModalOpen(true)
-  //     } else if (toolIndex === 1) {
-  //       setColorPickerModalOpen(true)
-  //     }
-  //   }
-
-  
-  // var targetTop = target.getBoundingClientRect().top;
-
-  // var abTop = window.pageYOffset + target.getBoundingClientRect().top;
-
-  // console.log((window.innerWidth-1100)/2, window.innerHeight-200)
-  const order = ['tail', 'body', 'head']
   return (
     <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', marginTop: "15px" }}>
       { gesture !== 'defaultGesture' ? <PointerTag style={{ left: offset.offsetX+420, top: offset.offsetY+15 }}
