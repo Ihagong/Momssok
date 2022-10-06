@@ -1,8 +1,9 @@
 import React, { useEffect, useState, PureComponent } from 'react'
 import { useNavigate, useLocation } from  'react-router-dom'
-import { ParentInfo, ParentTitle, PaintingCardTag, JuaBrown, JuaBrownLight, OrangeButton250, LightButton250, EditProfileButtonTag, ReportSelectedTabTag, ReportTabTag, EmotionReportTag } from '../Style/Components'
+import { ParentInfo, ParentTitle, PaintingCardTag, JuaBrown, JuaBrownLight, OrangeButton250, LightButton250, EditProfileButtonTag, ActiveRecordSelectedTabTag, ActiveRecordTabTag, EmotionReportTag } from '../Style/Components'
 import { PaintingCardComponent } from '../Components/PaintingCardComponent'
 import { ActivityDiaryComponent } from '../Components/ActivityDiaryComponent'
+import { ActivityPaintingComponent } from '../Components/ActivityPaintingComponent'
 
 import { useRecoilState } from 'recoil'
 import { profileState, parentActiveState, loadedPaintingListState, loadedPaintingInfoState, diaryEditState, drawingDetailState } from '../store/atoms'
@@ -90,19 +91,13 @@ function ActivityRecordPage() {
       
       <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
         <div style={{display: 'flex' }}>
-          { selectedTab === 0 ? <ReportSelectedTabTag onClick={() => handleClickChangeTab(0)}>일별</ReportSelectedTabTag>
-            : <ReportTabTag onClick={() => handleClickChangeTab(0)}>일별</ReportTabTag> }
-          { selectedTab === 1 ? <ReportSelectedTabTag onClick={() => handleClickChangeTab(1)}>주별</ReportSelectedTabTag>
-            : <ReportTabTag onClick={() => handleClickChangeTab(1)}>주별</ReportTabTag> }
-          { selectedTab === 2 ? <ReportSelectedTabTag onClick={() => handleClickChangeTab(2)}>월별</ReportSelectedTabTag>
-            : <ReportTabTag onClick={() => handleClickChangeTab(2)}>월별</ReportTabTag> }
-          { selectedTab === 3 ? <ReportSelectedTabTag onClick={() => handleClickChangeTab(3)}>전체</ReportSelectedTabTag>
-            : <ReportTabTag onClick={() => handleClickChangeTab(3)}>전체</ReportTabTag> }
+          { selectedTab === 0 ? <ActiveRecordSelectedTabTag onClick={() => handleClickChangeTab(0)}>그림</ActiveRecordSelectedTabTag>
+            : <ActiveRecordTabTag onClick={() => handleClickChangeTab(0)}>그림</ActiveRecordTabTag> }
+          { selectedTab === 1 ? <ActiveRecordSelectedTabTag style={{ margin: '0 0 0 10px' }} onClick={() => handleClickChangeTab(1)}>그림일기</ActiveRecordSelectedTabTag>
+            : <ActiveRecordTabTag style={{ margin: '0 0 0 10px' }} onClick={() => handleClickChangeTab(1)}>그림일기</ActiveRecordTabTag> }
         </div>
-      
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 3fr)', marginLeft: "50px" }}>
-        <ActivityDiaryComponent />
-      </div>
+        { selectedTab === 0 ? <ActivityPaintingComponent /> : null }
+        { selectedTab === 1 ? <ActivityDiaryComponent /> : null }
       </div>
     </>
   )

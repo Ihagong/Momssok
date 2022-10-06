@@ -106,12 +106,10 @@ export function ActivityDiaryComponent({ info }) {
   }
   
   return (
-    <div>
+    <div className='LetterPageHome'>
       <DiaryContent>
         { getProcessedPaintingList().map((info, key) => (
-          <div key={key} onClick={() => handleClickLoadDiaryButton(info)}>
-            <DiaryCardComponent info={info} />
-          </div>
+          <DiaryCardComponent key={key} isPointer={false} info={info} />
         ))}
       </DiaryContent>
     </div>
