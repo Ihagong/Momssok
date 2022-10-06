@@ -58,6 +58,7 @@ export function DiaryComponent() {
   }
 
   const handleClickCreatePaintingButton = () => {
+    setLoadedPaintingInfo({})
     setDiaryIsEdit(true)
     setDiaryTemp({
       'date': date,
