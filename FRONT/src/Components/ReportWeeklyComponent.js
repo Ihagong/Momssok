@@ -155,8 +155,8 @@ export function ReportWeeklyComponent({ emotionColor, emotionName }) {
       <div>
         <div style={{ display: 'flex', justifyContent: 'end', margin: '30px 30px 30px 0', fontSize: '26px' }}>2022.10 첫째 주</div>
         <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', margin: '0 80px 0 0px' }}>
-          <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', backgroundColor: emotionColor(weeklyEmotionList[0]), width: '120px', height: '120px', borderRadius: '40px', margin: '0 0 30px 0' }}>
-            <img style={{ width: '80px' }} src={`/icons/emotion_${emotionName(weeklyEmotionList[0])}.svg`} />
+        <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', backgroundColor: weeklyEmotionList.length ? emotionColor(weeklyEmotionList[0]) : '#F5F5F5', width: '120px', height: '120px', borderRadius: '40px', margin: '0 0 30px 0' }}>
+            { weeklyEmotionList.length ? <img style={{ width: '80px' }} src={`/icons/emotion_${emotionName(weeklyEmotionList[0])}.svg`}/> : null }
           </div>
           <div>이번 주 아이는 평소보다</div><br/>
           <div style={{ fontSize: '40px' }}>"놀람"을 느꼈어요.</div><br/>

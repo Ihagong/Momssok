@@ -41,9 +41,9 @@ export function DiaryCardComponent({ info }) {
     <DiaryBlock style={{justifyContent: 'start', justifyContent: 'space-between' }}>
       <section style={{display: 'flex', marginTop: '20px', alignItems: 'end' }}>
         <JuaBrown style={{fontSize: '28px', marginRight: '10px'}}>{info.date.split(' ')[0].replace('-', '년 ').replace('-', '월 ')}일</JuaBrown>
-        <div style={{ width: '50px', height: '40px', borderRadius: '10px', backgroundColor: emotionColor('happy'), display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+        { emotionName() ? <div style={{ width: '50px', height: '40px', borderRadius: '10px', backgroundColor: emotionColor('happy'), display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
           <img style={{ width: '30px' }} src={`/icons/emotion_${emotionName()}.svg`} />
-        </div>
+        </div> : null }
         {/* <div><img src={`/icons/emotionImage_${ emotionList.indexOf(info.emotion) }.svg`} /></div> */}
       </section>
         <section style={{ marginTop: '10px'}}>

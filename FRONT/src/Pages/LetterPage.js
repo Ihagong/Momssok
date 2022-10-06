@@ -26,6 +26,7 @@ const LetterPage = () => {
     letterInfoCallback(parentActive ? userInfo.username : profileInfo.name)
   }, [])
 
+
   const handleClickCloseButton = () => {
     if (parentActive) {
       navigate('/parent')
@@ -43,7 +44,10 @@ const LetterPage = () => {
           <BrownLightButton150 onClick={() => navigate("/letter/create")}>새 편지</BrownLightButton150>
           <BrownText100>편지 읽기</BrownText100>
         </div>
-        <ChildProfileTag style={{marginTop: "30px", marginRight: "40px"}} onClick={handleClickChildProfile}><img src={`/images/profileImage_${profileInfo.image_num}.svg`} />{profileInfo.name}</ChildProfileTag>
+        { parentActive ? 
+          <ChildProfileTag style={{marginTop: "30px", marginRight: "40px"}} onClick={handleClickChildProfile}><img src={`/images/parenticon.svg`} />{userInfo.username}</ChildProfileTag>
+        : <ChildProfileTag style={{marginTop: "30px", marginRight: "40px"}} onClick={handleClickChildProfile}><img src={`/images/profileImage_${profileInfo.image_num}.svg`} />{profileInfo.name}</ChildProfileTag>
+        }
       </LetterPageHeader>
       <LetterListComponent letterList={letterList} />
     </div>
