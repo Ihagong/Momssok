@@ -30,7 +30,8 @@ function ParentMainPage() {
     navigate('/report')
   }
 
-  const handleClickRecordButton = () => {
+  const handleClickActivityRecordButton = () => {
+    navigate('/activity')
   }
 
   const handleClickPromiseButton = () => {
@@ -67,7 +68,7 @@ function ParentMainPage() {
           <p>궁금하다면?</p>
           <LogoTag src='icons/report.svg' />
         </ParentMenuButtonTag>
-        <ParentMenuButtonTag onClick={handleClickRecordButton}>
+        <ParentMenuButtonTag onClick={handleClickActivityRecordButton}>
           <h4>활동 내역</h4>
           <p>아이의 활동 내역이</p>
           <p>궁금하다면?</p>

@@ -32,9 +32,9 @@ const LetterEditorComponent = ({ isDetail, letterItem }) => {
 
   const [videoFile, setVideoFile] = useState(null)
   const [videoButton, setVideoButton] = useState(0)
+  const [videoRecord, setVideoRecord] = useState(0)
 
   useEffect(() => {
-    console.log(videoFile)
   }, [videoFile])
 
   // CREATE
@@ -77,9 +77,17 @@ const LetterEditorComponent = ({ isDetail, letterItem }) => {
     setReceiver(e.target.value)
   }
 
-  const videoButtonClick = (e) => {
+  const videoButtonClick = () => {
     if (videoButton === 0) {
       setVideoButton(1)
+    } else {
+      setVideoButton(0)
+    }
+  }
+
+  const videoRecordButton = () => {
+    if (videoRecord === 0) {
+      setVideoRecord(1)
     } else {
       setVideoButton(0)
     }
@@ -104,7 +112,7 @@ const LetterEditorComponent = ({ isDetail, letterItem }) => {
   
   return (
     <LetterEditorComponentBody>
-      <div style={{marginRight: '20px', marginTop: '20px'}}>
+      <div onClick={() => navigate('/child')} style={{marginRight: '20px', marginTop: '20px'}}>
         <LogoTag src='/icons/logo.svg' />
       </div>
 
@@ -155,9 +163,9 @@ const LetterEditorComponent = ({ isDetail, letterItem }) => {
           :
           <LetterContentBody>
             <LetterContentDiv>
-              { isDetail ? <video style={{ width: '640px' }} src={letterVideoURL} type='video/webm' controls={true} />
-              : <div style={{ display: 'flex', alignItems: 'center', marginTop: '30px', justifyContent: 'center' }}>
-              <VideoCaptureComponent setVideoFile={setVideoFile} />
+              { isDetail ? <video style={{ width: '450' }} src={letterVideoURL} type='video/webm' controls={true} />
+              : <div style={{ display: 'flex', alignItems: 'center', marginTop: '15px', justifyContent: 'center' }}>
+              <VideoCaptureComponent videoRecord={videoRecord} setVideoFile={setVideoFile} />
               </div> }
             </LetterContentDiv>
           </LetterContentBody>
@@ -170,8 +178,15 @@ const LetterEditorComponent = ({ isDetail, letterItem }) => {
           <LetterButtonBack onClick={() => navigate(-1)}>닫기</LetterButtonBack>
           <LetterButtonGo onClick={handleSubmit}>{isDetail ? '답장하기' : '보내기'}</LetterButtonGo>
           {isDetail && <LetterButtonDel onClick={handleRemove}>삭제하기</LetterButtonDel>}
+          { videoButton === 1 ? 
+            <LetterButtonDel onClick={videoRecordButton}>녹화</LetterButtonDel>
+            : null
+          }
           <div onClick={videoButtonClick}>
-            <img style={{ width: '180px', marginLeft: '40px', marginTop: '20px'}} src="/icons/videoicon.svg" />
+            { videoButton === 1 ? 
+              <img style={{ width: '180px', marginLeft: '50px', marginTop: '20px'}} src="/icons/iconletter.svg" />
+            : <img style={{ width: '180px', marginLeft: '40px', marginTop: '20px'}} src="/icons/videoicon.svg" />
+            }
           </div>
         </LetterButton>
       </section>

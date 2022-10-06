@@ -1,7 +1,9 @@
-import React, { PureComponent } from 'react'
+import React from 'react'
 import { EmotionReportTag } from '../Style/Components'
 
-import { PieChart, Pie, Sector, Cell, ResponsiveContainer } from 'recharts'
+import { PieChart, Pie, Cell } from 'recharts'
+import { useRecoilState } from 'recoil'
+import { monthlyEmotionObjectState } from '../store/atoms'
 
 const COLORS = ['#FFE27D', '#7DC1FF', '#A6EFCC', '#F8899D', '#C6A6EF']
 
@@ -20,7 +22,7 @@ const emotionIcon = ({ cx, cy, midAngle, innerRadius, outerRadius, percent, inde
   const x = cx + radius * Math.cos(-midAngle * RADIAN)
   const y = cy + radius * Math.sin(-midAngle * RADIAN)
 
-  if (index === 0) {
+  if (index === 0 && percent) {
     return (
       <>
         <svg x={x-26} y={y} width="53" height="30" viewBox="0 0 53 30" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -35,7 +37,7 @@ const emotionIcon = ({ cx, cy, midAngle, innerRadius, outerRadius, percent, inde
         </text>
       </>
     )
-  } else if (index === 1) {
+  } else if (index === 1 && percent) {
     return (
       <>
         <svg x={x-23} y={y} width="47" height="36" viewBox="0 0 47 36" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -52,7 +54,7 @@ const emotionIcon = ({ cx, cy, midAngle, innerRadius, outerRadius, percent, inde
         </text>
       </>
     )
-  } else if (index === 2) {
+  } else if (index === 2 && percent) {
     return (
       <>
         <svg x={x-23} y={y} width="46" height="40" viewBox="0 0 46 40" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -69,7 +71,7 @@ const emotionIcon = ({ cx, cy, midAngle, innerRadius, outerRadius, percent, inde
         </text>
       </>
     )
-  } else if (index === 3) {
+  } else if (index === 3 && percent) {
     return (
       <>
         <svg x={x-20} y={y} width="41" height="35" viewBox="0 0 41 35" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -86,7 +88,7 @@ const emotionIcon = ({ cx, cy, midAngle, innerRadius, outerRadius, percent, inde
         </text>
       </>
     )
-  } else if (index === 4) {
+  } else if (index === 4 && percent) {
     return (
       <>
         <svg x={x-23} y={y} width="46" height="37" viewBox="0 0 46 37" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -107,12 +109,42 @@ const emotionIcon = ({ cx, cy, midAngle, innerRadius, outerRadius, percent, inde
 }
 
 export function ReportMonthlyComponent({ emotionColor, emotionName }) {
+  
+  const [monthlyEmotionObject, setMonthlyEmotionObject] = useRecoilState(monthlyEmotionObjectState)
+
+  const monthlyEmotionData = () => {
+    return (
+      [
+        {
+          name: '행복',
+          value: monthlyEmotionObject.thisMonth['행복'] ? monthlyEmotionObject.thisMonth['행복'] : 0,
+        },
+        {
+          name: '슬픔',
+          value: monthlyEmotionObject.thisMonth['슬픔'] ? monthlyEmotionObject.thisMonth['슬픔'] : 0,
+        },
+        {
+          name: '놀람',
+          value: monthlyEmotionObject.thisMonth['놀람'] ? monthlyEmotionObject.thisMonth['놀람'] : 0,
+        },
+        {
+          name: '불안',
+          value: monthlyEmotionObject.thisMonth['불안'] ? monthlyEmotionObject.thisMonth['불안'] : 0,
+        },
+        {
+          name: '분노',
+          value: monthlyEmotionObject.thisMonth['분노'] ? monthlyEmotionObject.thisMonth['분노'] : 0,
+        },
+      ]
+    )
+  }
+
   return (
     <EmotionReportTag>
       <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', margin: '0 0 20px 50px' }}>
         <PieChart width={400} height={400}>
-          <Pie data={data} cx="50%" cy="50%" labelLine={false} label={emotionIcon} outerRadius={160} fill="#8884d8" dataKey="value">
-            {data.map((entry, index) => (
+          <Pie data={monthlyEmotionData()} cx="50%" cy="50%" labelLine={false} label={emotionIcon} outerRadius={160} fill="#8884d8" dataKey="value">
+            {monthlyEmotionData().map((entry, index) => (
               <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
             ))}
           </Pie>
@@ -121,12 +153,16 @@ export function ReportMonthlyComponent({ emotionColor, emotionName }) {
       <div>
         <div style={{ display: 'flex', justifyContent: 'end', margin: '30px 30px 30px 0', fontSize: '26px' }}>2022.10</div>
         <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', margin: '0 80px 0 0px' }}>
-          <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', backgroundColor: '#FFE27D', width: '120px', height: '120px', borderRadius: '40px', margin: '0 0 30px 0' }}>
-            <img style={{ width: '80px' }} src={`icons/emotion_happy.svg`}/>
+          <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', backgroundColor: emotionColor(monthlyEmotionObject.emotion), width: '120px', height: '120px', borderRadius: '40px', margin: '0 0 30px 0' }}>
+            <img style={{ width: '80px' }} src={`icons/emotion_${emotionName(monthlyEmotionObject.emotion)}.svg`}/>
           </div>
           <div>이번 달 아이의 감정 비중은</div><br/>
-          <div style={{ fontSize: '40px' }}>"행복"이 높아요.</div><br/>
-          <div style={{ fontSize: '26px', color: 'var(--Brown-LightText', margin: '0 0 50px 0' }}>지난달보다 "행복"이 <span style={{ color: '#EA5550' }}>4%p</span> 올랐어요.</div>
+          <div style={{ fontSize: '40px' }}>"{monthlyEmotionObject.emotion}"이 높아요.</div><br/>
+          <div style={{ fontSize: '26px', color: 'var(--Brown-LightText', margin: '0 0 50px 0' }}>
+            지난달보다 "{monthlyEmotionObject.emotion}"이 <span style={{ color: '#EA5550' }}>
+              { monthlyEmotionObject.emotionDiff !== '지난달 해당 감정 없음' ? monthlyEmotionObject.emotionDiff : `${monthlyEmotionObject.mainPercent}%p`}
+            </span> 올랐어요.
+          </div>
         </div>
       </div>
     </EmotionReportTag>

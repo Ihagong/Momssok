@@ -1036,6 +1036,48 @@ export const ReportTabTag = styled.button`
   white-space: nowrap;
 `
 
+export const ActiveRecordSelectedTabTag = styled.button`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  /* background-color: var(--Orange-Button); */
+  background-color: var(--Beige-Light);
+  opacity:0.9;
+  box-shadow: 0px 5px 5px #0000001A;
+  cursor: pointer;
+  border: none;
+  width: 250px;
+  height: 60px;
+  border-radius: 20px;
+
+  font-family: 'Jua', sans-serif;
+  font-weight: 500;
+  font-size: 36px;
+  color: var(--Brown-Text);
+  white-space: nowrap;
+`
+
+export const ActiveRecordTabTag = styled.button`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  background-color: var(--Beige-Stroke);
+  opacity:0.9;
+  box-shadow: 0px 5px 5px #0000001A;
+  cursor: pointer;
+  border: none;
+  width: 250px;
+  height: 60px;
+  border-radius: 20px;
+
+  font-family: 'Jua', sans-serif;
+  font-weight: 500;
+  font-size: 36px;
+  color: var(--Brown-Text);
+  white-space: nowrap;
+`
 
 
 

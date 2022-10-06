@@ -58,8 +58,10 @@ const AnimalDictionaryPage = () => {
               </div>
             </div>
             { openDescription ? 
-              <div style={{ display: 'flex', alignItems: 'center', fontSize: '48px' }}>
-                { animalList[detailIndex].description }
+              <div style={{ display: 'flex', fontSize: '48px', flexDirection: 'column', justifyContent: 'center' }}>
+                { animalList[detailIndex].description.split('<br />').map((sentence, index) => {
+                  return <div key={index}>{sentence}</div>
+                }) }
               </div> : null }
           </DictionaryDetailComponentTag>
           { openDescription ? 

@@ -3,7 +3,7 @@ import { useNavigate, useLocation } from  'react-router-dom'
 import { ParentInfo, ParentTitle, ProfileBlock, JuaBrown, JuaBrownLight, LogoTag, EditProfileButtonTag, ReportSelectedTabTag, ReportTabTag, EmotionReportTag } from '../Style/Components'
 
 import { useRecoilState } from 'recoil'
-import { profileState, parentActiveState } from '../store/atoms'
+import { profileState, parentActiveState, dailyEmotionObjectState } from '../store/atoms'
 import { useReportCallback } from '../Functions/useReportCallback'
 
 import { ReportDailyComponent } from '../Components/ReportDailyComponent'
@@ -15,7 +15,8 @@ import { ReportWordCloudComponent } from '../Components/ReportWordCloudComponent
 function ReportPage() {
   const [profileInfo, setProfileInfo] = useRecoilState(profileState)
   const [parentActive, setParentActive] = useRecoilState(parentActiveState)
-  const { getDailyEmotionCallback, getWeeklyEmotionCallback } = useReportCallback()
+  const [dailyEmotionObject, setDailyEmotionObject] = useRecoilState(dailyEmotionObjectState)
+  const { getDailyEmotionCallback, getWeeklyEmotionCallback, getMonthlyEmotionCallback } = useReportCallback()
   const [age, setAge] = useState(new Date().getFullYear() - new Date(profileInfo.birthday).getFullYear() + 1)
   const [selectedTab, setSelectedTab] = useState(0)
 
@@ -24,9 +25,11 @@ function ReportPage() {
   useEffect(() => {
     getDailyEmotionCallback(profileInfo.name, '2022-10-06')
     getWeeklyEmotionCallback(profileInfo.name, '2022-10-06')
+    getMonthlyEmotionCallback(profileInfo.name, '2022-10-06')
   }, [])
   
   const handleClickParentButton = () => {
+    navigate('/profile/manage')
   }
 
   const handleClickChangeTab = (index) => {
@@ -69,29 +72,33 @@ function ReportPage() {
     <>
       <ParentTitle style={{ justifyContent: 'space-between', marginBottom: '20px' }}>
         <div style={{ display: 'flex' }}>
-          <img onClick={() => navigate('/profile/manage')} style={{ width: "130px", height: "130px", cursor: 'pointer' }} src={`/images/profileImage_${profileInfo.image_num}.svg`} />
+          <img onClick={() => navigate('/parent')} style={{ width: "130px", height: "130px", cursor: 'pointer' }} src={`/images/profileImage_${profileInfo.image_num}.svg`} />
           <ParentInfo>
             <JuaBrownLight style={{ fontSize: '32px' }}>{profileInfo.name}<span style={{ fontSize: '32px', color: 'gray'}}> | </span>{age}세</JuaBrownLight>
             <JuaBrown style={{ fontSize: '50px' }}>진단 리포트</JuaBrown>
           </ParentInfo>
         </div>
-        <EditProfileButtonTag onClick={handleClickParentButton}>프로필 등록</EditProfileButtonTag>
+        <EditProfileButtonTag onClick={handleClickParentButton}>프로필 변경</EditProfileButtonTag>
       </ParentTitle>
       <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
         <div style={{display: 'flex' }}>
-          { selectedTab === 0 ? <ReportSelectedTabTag onClick={() => handleClickChangeTab(0)}>일별</ReportSelectedTabTag>
-            : <ReportTabTag onClick={() => handleClickChangeTab(0)}>일별</ReportTabTag> }
-          { selectedTab === 1 ? <ReportSelectedTabTag onClick={() => handleClickChangeTab(1)}>주별</ReportSelectedTabTag>
-            : <ReportTabTag onClick={() => handleClickChangeTab(1)}>주별</ReportTabTag> }
-          { selectedTab === 2 ? <ReportSelectedTabTag onClick={() => handleClickChangeTab(2)}>월별</ReportSelectedTabTag>
-            : <ReportTabTag onClick={() => handleClickChangeTab(2)}>월별</ReportTabTag> }
-          { selectedTab === 3 ? <ReportSelectedTabTag onClick={() => handleClickChangeTab(3)}>전체</ReportSelectedTabTag>
-            : <ReportTabTag onClick={() => handleClickChangeTab(3)}>전체</ReportTabTag> }
+          { selectedTab === 0 ? <ReportSelectedTabTag onClick={() => handleClickChangeTab(0)}>오늘</ReportSelectedTabTag>
+            : <ReportTabTag onClick={() => handleClickChangeTab(0)}>오늘</ReportTabTag> }
+          { selectedTab === 1 ? <ReportSelectedTabTag onClick={() => handleClickChangeTab(1)}>이번 주</ReportSelectedTabTag>
+            : <ReportTabTag onClick={() => handleClickChangeTab(1)}>이번 주</ReportTabTag> }
+          { selectedTab === 2 ? <ReportSelectedTabTag onClick={() => handleClickChangeTab(2)}>이번 달</ReportSelectedTabTag>
+            : <ReportTabTag onClick={() => handleClickChangeTab(2)}>이번 달</ReportTabTag> }
+          { selectedTab === 3 ? <ReportSelectedTabTag onClick={() => handleClickChangeTab(3)}>태그</ReportSelectedTabTag>
+            : <ReportTabTag onClick={() => handleClickChangeTab(3)}>태그</ReportTabTag> }
         </div>
-        { selectedTab === 0 ? <ReportDailyComponent emotionColor={emotionColor} emotionName={emotionName} /> : null }
-        { selectedTab === 1 ? <ReportWeeklyComponent emotionColor={emotionColor} emotionName={emotionName} /> : null }
-        { selectedTab === 2 ? <ReportMonthlyComponent emotionColor={emotionColor} emotionName={emotionName} /> : null }
-        { selectedTab === 3 ? <ReportWordCloudComponent emotionColor={emotionColor} emotionName={emotionName} /> : null }
+        { dailyEmotionObject ? 
+          <>
+            { selectedTab === 0 ? <ReportDailyComponent emotionColor={emotionColor} emotionName={emotionName} /> : null }
+            { selectedTab === 1 ? <ReportWeeklyComponent emotionColor={emotionColor} emotionName={emotionName} /> : null }
+            { selectedTab === 2 ? <ReportMonthlyComponent emotionColor={emotionColor} emotionName={emotionName} /> : null }
+            { selectedTab === 3 ? <ReportWordCloudComponent emotionColor={emotionColor} emotionName={emotionName} /> : null }
+          </>
+        : <EmotionReportTag style={{ justifyContent: 'center' }}>아직 데이터가 없습니다.</EmotionReportTag> }
       </div>
     </>
   )

@@ -5,12 +5,11 @@ import { useDiaryCallback } from '../Functions/useDiaryCallback'
 import { useRecoilState } from 'recoil'
 import { loadedPaintingInfoState, diaryDetailState, diaryTempState, profileState, totalDiaryListState, diaryItemState, diaryEditState } from '../store/atoms'
 
-import "../App.css"
 import { OrangeButton250, LightButton250, DiaryBlock, DiaryContent, ChildProfileTag, LetterPageHeader, BrownText100, LightButton120 } from '../Style/Components'
 import { DiaryCardComponent } from '../Components/DiaryCardComponent'
 
 
-function DiaryPage() {
+export function ActivityDiaryComponent({ info }) {
   const navigate = useNavigate()
   const { getAllDiaryCallback } = useDiaryCallback()
 
@@ -74,45 +73,45 @@ function DiaryPage() {
     return sortedList
   }
 
+  const emotionColor = (emotion) => {
+    let result = ''
+    if (emotion === '행복') {
+      result = '#FFE27D'
+    } else if (emotion === '슬픔') {
+      result = '#7DC1FF'
+    } else if (emotion === '놀람') {
+      result = '#A6EFCC'
+    } else if (emotion === '불안') {
+      result = '#C6A6EF'
+    } else if (emotion === '분노') {
+      result = '#F8899D'
+    }
+    return result
+  }
 
+  const emotionName = (emotion) => {
+    let result = ''
+    if (emotion === '행복') {
+      result = 'happy'
+    } else if (emotion === '슬픔') {
+      result = 'sad'
+    } else if (emotion === '놀람') {
+      result = 'surprised'
+    } else if (emotion === '불안') {
+      result = 'anxious'
+    } else if (emotion === '분노') {
+      result = 'angry'
+    }
+    return result
+  }
+  
   return (
     <div className='LetterPageHome'>
-      <LetterPageHeader>
-        <div style={{display: "flex", alignItems: "center", marginLeft: "10px", marginTop: "-50px" }}>
-          <LightButton120 onClick={() => navigate("/child")}>닫기</LightButton120>
-          <BrownText100>일기 쓰기</BrownText100>
-        </div>
-        <ChildProfileTag style={{marginTop: "20px", marginRight: "40px"}} onClick={handleClickChildProfile}><img src={`/images/profileImage_${profileInfo.image_num}.svg`} />{profileInfo.name}</ChildProfileTag>
-      </LetterPageHeader>
-
-      <div style={{ display: 'flex', marginTop: "-50px", marginBottom: "25px" }}>
-        { sortType === "latest" ?
-          <OrangeButton250 style={{marginLeft: "70px"}}>최신순</OrangeButton250>
-        :
-          <LightButton250 style={{marginLeft: "70px"}} onClick={latestType}>최신순</LightButton250>
-        }
-        { sortType === "oldest" ?
-          <OrangeButton250>오래된순</OrangeButton250>
-        :
-          <LightButton250 onClick={oldestType}>오래된순</LightButton250>
-        }
-      </div>
-
       <DiaryContent>
-
-        <DiaryBlock onClick={handleClickCreateDiaryButton}>
-          <img style={{width: "100px", height: "100px"}} src='/icons/plus_brown.svg' />
-        </DiaryBlock>
-
         { getProcessedPaintingList().map((info, key) => (
-          <div key={key} onClick={() => handleClickLoadDiaryButton(info)}>
-            <DiaryCardComponent isPointer={true} info={info} />
-          </div>
+          <DiaryCardComponent key={key} isPointer={false} info={info} />
         ))}
-
       </DiaryContent>
     </div>
   )
 }
-
-export default DiaryPage
