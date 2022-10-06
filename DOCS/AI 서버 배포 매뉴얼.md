@@ -226,7 +226,7 @@ sudo docker run -it -d --rm -p 8003:8003 --name detection detection
 
 저장한 이미지를 사용해 도커 컨테이너 생성하여 실행
 기존에 생성되어있던 컨테이너는 제거하고 새로 실행한다.
-emotion_detective로 name을 설정하고 8003포트를 사용한다.
+detection으로 name을 설정하고 8003포트를 사용한다.
 
 ```
 ubuntu@ip-172-26-12-159:~$ docker images
@@ -239,7 +239,7 @@ detection           latest          61cb62f4c7e6   19 hours ago   4.4GB
 
 ```
 
-emotion_detective 도커 이미지가 생성된다.
+detection 도커 이미지가 생성된다.
 
 ```
 docker ps -a
@@ -252,5 +252,5 @@ CONTAINER ID   IMAGE                 COMMAND                  CREATED          S
 3759d630839a   detection             "/bin/sh -c 'uvicorn…"   19 hours ago   Up 19 hours               0.0.0.0:8003->8003/tcp, :::8003->8003/tcp              detection
 
 ```
-emotion_detective 컨테이너가 실행 중이며, uvicorn으로 fastapi 서버가 8004포트에서 동작 중인 것을 확인
+detection 컨테이너가 실행 중이며, uvicorn으로 fastapi 서버가 8003포트에서 동작 중인 것을 확인
 
