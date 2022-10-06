@@ -50,7 +50,6 @@ const AnimalDictionaryPage = () => {
           <DictionaryDetailComponentTag style={{ width: openDescription ? '1024px' : null }}>
             <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', width: '520px' }}>
               <p style={{ margin: '30px 0 0 0', lineHeight: '50px' }}>{animalList[detailIndex].name_ko}</p>
-              {/* <img src={`/images/${animalList[detailIndex].name}/${animalList[detailIndex].name}.svg`}></img> */}
               <DictionaryDetailImageComponent name={animalList[detailIndex].name} />
               <div style={{ display: 'flex' }}>
                 <ChildButtonTag4 style={{ width: '200px' }} onClick={() => handleClickCreateDictionaryButton(animalList[detailIndex])}>그리기</ChildButtonTag4>
