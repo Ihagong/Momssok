@@ -141,13 +141,14 @@ function CreatePaintingPage(props) {
   }
 
   const handleClickNextButton = () => {
-    // console.log(order.length)
     if (partIndex <= order.length) {
       setPartIndex(partIndex+1)
     }
     if (partIndex >= order.length) {
       setIsDone(true)
-      console.log('done!')
+    }
+    if (isDone) {
+      navigate(-1)
     }
   }
 
