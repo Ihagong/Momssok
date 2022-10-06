@@ -3,7 +3,7 @@
 - SSH 연결
 
 ```
-$ ssh -i J7D203T.pem ubuntu@j7d203.p.ssafy.io
+$ ssh -i J7<팀번호>T.pem ubuntu@도메인
 ```
 
 Pem 파일이 있는 폴더에서 다음 명령어 입력 후 yes를 입력하면(초기 접속 시) 접속 완료
@@ -216,7 +216,7 @@ Pem 파일이 있는 폴더에서 다음 명령어 입력 후 yes를 입력하�
 
   Secret token에는 아까 젠킨스 프로젝트를 생성할 때 저장해둔 값을 입력한다.
 
-  Trigger로 `Push events`, `Merge request events` 체크. 대상 Branch는 master로 설정한다.
+  Trigger로 `Push events`, (`Merge request events`) 체크. 대상 Branch는 master로 설정한다.
 
   여기까지 완료했다면 Add Webhook 버튼을 눌러 webhook을 생성하자.
 
@@ -538,93 +538,355 @@ echo "----------created images!----------"
 
 <br/>
 
-따라서 한 개의 Port에서 두 서비스를 구분짓는 부분이 필요하다.
+따라서 한 개의 포트에서 두 서비스를 구분짓는 부분이 필요하다.
 
-Nginx설정은 기존 React와 port가 분리되어 8443 port를 이용해야 접속 가능한 SpringBoot를 80 port를 통해 접속할 수 있도록 변경시켜주는 작업이다.
+Nginx설정은 기존 React와 포트가 분리되어 8443 포트를 이용해야 접속 가능한 SpringBoot를 80 포트를 통해 접속할 수 있도록 변경시켜주는 작업이다.
 
 
 
 - nginx.conf 파일 생성
 
-  ubuntu 계정에서 `cd /jenkins/workspace/momssok_test/front` 명령으로 디렉토리를 이동하자. 이후 `sudo mkdir deploy_conf` 명령어로 디렉토리를 생성하고 `cd deploy_conf`를 이용해 이동한다. `sudo vim nginx.conf` 명령어로 `nginx.conf `파일을 생성하고 편집기로 이동한다.
-
-  <br/>
-
-  nginx.conf 파일
+  ubuntu 계정에서 `cd /jenkins/workspace/momssok/FRONT` 명령으로 디렉토리를 이동하자. 이후 `sudo mkdir nginx` 명령어로 디렉토리를 생성하고 `cd nginx`를 이용해 이동한다. `sudo vim nginx.conf` 명령어로 `nginx.conf `파일을 생성하고 편집기로 이동한다.
 
   ```
-  upstream backend{
-  	ip_hash;
-  	server j7d203.p.ssafy.io:8443;
-  }
+  # /jenkins/workspace/momssok/FRONT/nginx/nginx.conf
   
   server {
       listen 80;
-      listen [::]:80;
-      server_name j7d203.p.ssafy.io;
-  
-      access_log /var/log/nginx/host.access.log main;
   
       location / {
-          root   /usr/share/nginx/html;
-          index  index.html index.htm;
+                  root /usr/share/nginx/html;
+                  index index.html index.htm;
+                  try_files $uri $uri/ /index.html;
       }
+  ```
   
-  	location /api {
-          proxy_pass http://j7d203.p.ssafy.io:8443;
-          proxy_redirect     off;
-          proxy_set_header   Host $host;
-          proxy_set_header   X-Real-IP $remote_addr;
-          proxy_set_header   X-Forwarded-For $proxy_add_x_forwarded_for;
-      }
   
-      #error_page  404              /404.html;
   
-      # redirect server error pages to the static page /50x.html
-      #
-      error_page   500 502 503 504  /50x.html;
-      location = /50x.html {
-          root   /usr/share/nginx/html;
-      }
+  <br/>
   
-      # proxy the PHP scripts to Apache listening on 127.0.0.1:80
-      #
-      #location ~ \.php$ {
-      #    proxy_pass   http://127.0.0.1;
-      #}
+  ```
+  # /etc/nginx/sites-available/default
   
-      # pass the PHP scripts to FastCGI server listening on 127.0.0.1:9000
-      #
-      #location ~ \.php$ {
-      #    root           html;
-      #    fastcgi_pass   127.0.0.1:9000;
-      #    fastcgi_index  index.php;
-      #    fastcgi_param  SCRIPT_FILENAME  /scripts$fastcgi_script_name;
-      #    include        fastcgi_params;
-      #}
+  ##
+  # You should look at the following URL's in order to grasp a solid understanding
+  # of Nginx configuration files in order to fully unleash the power of Nginx.
+  # https://www.nginx.com/resources/wiki/start/
+  # https://www.nginx.com/resources/wiki/start/topics/tutorials/config_pitfalls/
+  # https://wiki.debian.org/Nginx/DirectoryStructure
+  #
+  # In most cases, administrators will remove this file from sites-enabled/ and
+  # leave it as reference inside of sites-available where it will continue to be
+  # updated by the nginx packaging team.
+  #
+  # This file will automatically load configuration files provided by other
+  # applications, such as Drupal or Wordpress. These applications will be made
+  # available underneath a path with that package name, such as /drupal8.
+  #
+  # Please see /usr/share/doc/nginx-doc/examples/ for more detailed examples.
+  ##
   
-      # deny access to .htaccess files, if Apache's document root
-      # concurs with nginx's one
-      #
-      #location ~ /\.ht {
-      #    deny  all;
-      #}
+  # Default server configuration
+  #
+  server {
+          listen 80 default_server;
+          listen [::]:80 default_server;
+  
+          # SSL configuration
+          #
+          # listen 443 ssl default_server;
+          # listen [::]:443 ssl default_server;
+          #
+          # Note: You should disable gzip for SSL traffic.
+          # See: https://bugs.debian.org/773332
+          #
+          # Read up on ssl_ciphers to ensure a secure configuration.
+          # See: https://bugs.debian.org/765782
+          #
+          # Self signed certs generated by the ssl-cert package
+          # Don't use them in a production server!
+          #
+          # include snippets/snakeoil.conf;
+  
+          root /var/www/html;
+  
+          # Add index.php to the list if you are using PHP
+          index index.html index.htm index.nginx-debian.html;
+          server_name _;
+  
+          location / {
+                  proxy_pass http://localhost:3000;
+          }
+          location / {
+                  proxy_pass http://localhost:8443;
+          }
+  
+          # pass PHP scripts to FastCGI server
+          #
+          #location ~ \.php$ {
+          #       include snippets/fastcgi-php.conf;
+          #
+          #       # With php-fpm (or other unix sockets):
+          #       fastcgi_pass unix:/var/run/php/php7.4-fpm.sock;
+          #       # With php-cgi (or other tcp sockets):
+          #       fastcgi_pass 127.0.0.1:9000;
+          #}
+  
+          # deny access to .htaccess files, if Apache's document root
+          # concurs with nginx's one
+          #
+          #location ~ /\.ht {
+          #       deny all;
+          #}
+  }
+  
+  # Virtual Host configuration for example.com
+  #
+  # You can move that to a different file under sites-available/ and symlink that
+  # to sites-enabled/ to enable it.
+  #
+  #server {
+  #       listen 80;
+  #       listen [::]:80;
+  #
+  #       server_name example.com;
+  #
+  #       root /var/www/example.com;
+  #       index index.html;
+  #
+  #       location / {
+  #               try_files $uri $uri/ =404;
+  #       }
+  #}
+  ```
+  
+  ```
+  # /etc/nginx/sites-available/fe.conf
+  
+  server {
+  		listen 80;
+  		
+          location / {
+                  proxy_pass http://localhost:3000;
+          }
+  
+          location /api {
+                  proxy_pass http://localhost:8443;
+          }
   }
   ```
-
-  upstream을 통해서 backend를 로컬 ip:8080 주소와 연결시키고,
-
-  해당 주소를 location /api에 연결시켰습니다.
-
-  기존 리액트 프로젝트는 location /에 연결됩니다.
-
-  결과적으로 공인 ip 주소/api로 요청을 하게 되면 Nginx에서 스프링 서버로 연결을 시켜주게 됩니다.
-
-  Nginx와 스프링 서버 사이의 통신은 로컬에서 이루어지기 때문에 공인 IP를 등록할 필요가 없습니다.
-
-  따라서 가장 처음에 EC2에 접근 허용했던 8080포트를 막아버리면, 외부에서 스프링 서버로는 직접 접속을 못하게 되고, Nginx(80포트)를 통해서만 접속할 수 있게 됩니다.
-
-  `nginx.conf`파일 작성을 마쳤다면 `esc, :wq`를 통해 파일을 저장해준다.
-
-
-
+  
+  ```
+  $ sudo systemctl stop nginx
+  $ sudo systemctl start nginx
+  $ systemctl status nginx.service
+  ```
+  
+  ```
+  # 영상 파일 크기 설정
+  $ client_max_body_size 5M;
+  ```
+  
+  
+  
+  ### https 적용
+  
+  ```
+  # certbot 설치
+  $ sudo apt-get update
+  $ sudo add-apt-repository ppa:certbot/certbot
+  $ sudo apt-get install certbot
+  $ sudo apt-get install python-certbot-nginx
+  ```
+  
+  👉에러
+  
+  ```
+  E: Package 'python-certbot-nginx' has no installation candidate
+  $ sudo apt-get install certbot python3-certbot-nginx
+  ```
+  
+  ```
+  # certbot 실행
+  $ sudo certbot --nginx
+  $ sudo systemctl restart nginx
+  ```
+  
+  ```
+  # /etc/nginx/sites-available/default(https 적용 후)
+  
+  ##
+  # You should look at the following URL's in order to grasp a solid understanding
+  # of Nginx configuration files in order to fully unleash the power of Nginx.
+  # https://www.nginx.com/resources/wiki/start/
+  # https://www.nginx.com/resources/wiki/start/topics/tutorials/config_pitfalls/
+  # https://wiki.debian.org/Nginx/DirectoryStructure
+  #
+  # In most cases, administrators will remove this file from sites-enabled/ and
+  # leave it as reference inside of sites-available where it will continue to be
+  # updated by the nginx packaging team.
+  #
+  # This file will automatically load configuration files provided by other
+  # applications, such as Drupal or Wordpress. These applications will be made
+  # available underneath a path with that package name, such as /drupal8.
+  #
+  # Please see /usr/share/doc/nginx-doc/examples/ for more detailed examples.
+  ##
+  
+  # Default server configuration
+  #
+  server {
+          listen 80 default_server;
+          listen [::]:80 default_server;
+  
+          # SSL configuration
+          #
+          # listen 443 ssl default_server;
+          # listen [::]:443 ssl default_server;
+          #
+          # Note: You should disable gzip for SSL traffic.
+          # See: https://bugs.debian.org/773332
+          #
+          # Read up on ssl_ciphers to ensure a secure configuration.
+          # See: https://bugs.debian.org/765782
+          #
+          # Self signed certs generated by the ssl-cert package
+          # Don't use them in a production server!
+          #
+          # include snippets/snakeoil.conf;
+  
+          root /var/www/html;
+  		# Add index.php to the list if you are using PHP
+          index index.html index.htm index.nginx-debian.html;
+          server_name _;
+  
+          location / {
+                  proxy_pass http://localhost:3000;
+          }
+  
+          location /api {
+                  proxy_pass http://localhost:8443;
+          }
+  
+          # pass PHP scripts to FastCGI server
+          #
+          #location ~ \.php$ {
+          #       include snippets/fastcgi-php.conf;
+          #
+          #       # With php-fpm (or other unix sockets):
+          #       fastcgi_pass unix:/var/run/php/php7.4-fpm.sock;
+          #       # With php-cgi (or other tcp sockets):
+          #       fastcgi_pass 127.0.0.1:9000;
+          #}
+  
+          # deny access to .htaccess files, if Apache's document root
+          # concurs with nginx's one
+          #
+          #location ~ /\.ht {
+          #       deny all;
+          #}
+  }
+  
+  # Virtual Host configuration for example.com
+  #
+  # You can move that to a different file under sites-available/ and symlink that
+  # to sites-enabled/ to enable it.
+  #
+  #server {
+  #       listen 80;
+  #       listen [::]:80;
+  #
+  #       server_name example.com;
+  #
+  #       root /var/www/example.com;
+  #       index index.html;
+  #
+  #       location / {
+  #               try_files $uri $uri/ =404;
+  #       }
+  #}
+  
+  server {
+          listen 80 ;
+          listen [::]:80 ;
+  
+          # SSL configuration
+          #
+          # listen 443 ssl default_server;
+          # listen [::]:443 ssl default_server;
+          #
+          # Note: You should disable gzip for SSL traffic.
+          # See: https://bugs.debian.org/773332
+          #
+          # Read up on ssl_ciphers to ensure a secure configuration.
+          # See: https://bugs.debian.org/765782
+          #
+          # Self signed certs generated by the ssl-cert package
+          # Don't use them in a production server!
+          #
+          # include snippets/snakeoil.conf;
+  
+          root /var/www/html;
+  		# Add index.php to the list if you are using PHP
+          index index.html index.htm index.nginx-debian.html;
+      server_name 도메인; # managed by Certbot
+  
+  
+          location / {
+                  proxy_pass http://localhost:3000;
+          }
+  
+          location /api {
+                  proxy_pass http://localhost:8443;
+          }
+  
+          # pass PHP scripts to FastCGI server
+          #
+          #location ~ \.php$ {
+          #       include snippets/fastcgi-php.conf;
+          #
+          #       # With php-fpm (or other unix sockets):
+          #       fastcgi_pass unix:/var/run/php/php7.4-fpm.sock;
+          #       # With php-cgi (or other tcp sockets):
+          #       fastcgi_pass 127.0.0.1:9000;
+          #}
+  
+          # deny access to .htaccess files, if Apache's document root
+          # concurs with nginx's one
+          #
+          #location ~ /\.ht {
+          #       deny all;
+          #}
+  
+  
+      listen [::]:443 ssl ipv6only=on; # managed by Certbot
+      listen 443 ssl; # managed by Certbot
+      ssl_certificate /etc/letsencrypt/live/도메인/fullchain.pem; # managed by Certbot
+      ssl_certificate_key /etc/letsencrypt/live/도메인/privkey.pem; # managed by Certbot
+      include /etc/letsencrypt/options-ssl-nginx.conf; # managed by Certbot
+      ssl_dhparam /etc/letsencrypt/ssl-dhparams.pem; # managed by Certbot
+  }
+  ```
+  
+  ```
+  # 추가 작성(적용이 된건가?)
+  
+  location /jenkins {
+                  rewrite ^ http://도메인:9090;
+          }
+          
+  server {
+          if ($host = 도메인) {
+                  return 301 https://$host$request_uri;
+          } # managed by Certbot
+  
+  
+          listen 80;
+          listen [::]:80;
+  
+          server_name 도메인;
+          return 404; # managed by Certbot
+  }
+  ```
+  
+  
