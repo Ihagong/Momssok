@@ -3,7 +3,7 @@ import { useNavigate, useLocation } from  'react-router-dom'
 import { ParentInfo, ParentTitle, ProfileBlock, JuaBrown, JuaBrownLight, LogoTag, EditProfileButtonTag, ReportSelectedTabTag, ReportTabTag, EmotionReportTag } from '../Style/Components'
 
 import { useRecoilState } from 'recoil'
-import { profileState, parentActiveState } from '../store/atoms'
+import { profileState, parentActiveState, dailyEmotionObjectState } from '../store/atoms'
 import { useReportCallback } from '../Functions/useReportCallback'
 
 import { ReportDailyComponent } from '../Components/ReportDailyComponent'
@@ -15,7 +15,8 @@ import { ReportWordCloudComponent } from '../Components/ReportWordCloudComponent
 function ReportPage() {
   const [profileInfo, setProfileInfo] = useRecoilState(profileState)
   const [parentActive, setParentActive] = useRecoilState(parentActiveState)
-  const { getDailyEmotionCallback, getWeeklyEmotionCallback } = useReportCallback()
+  const [dailyEmotionObject, setDailyEmotionObject] = useRecoilState(dailyEmotionObjectState)
+  const { getDailyEmotionCallback, getWeeklyEmotionCallback, getMonthlyEmotionCallback } = useReportCallback()
   const [age, setAge] = useState(new Date().getFullYear() - new Date(profileInfo.birthday).getFullYear() + 1)
   const [selectedTab, setSelectedTab] = useState(0)
 
@@ -24,6 +25,7 @@ function ReportPage() {
   useEffect(() => {
     getDailyEmotionCallback(profileInfo.name, '2022-10-06')
     getWeeklyEmotionCallback(profileInfo.name, '2022-10-06')
+    getMonthlyEmotionCallback(profileInfo.name, '2022-10-06')
   }, [])
   
   const handleClickParentButton = () => {
@@ -89,10 +91,14 @@ function ReportPage() {
           { selectedTab === 3 ? <ReportSelectedTabTag onClick={() => handleClickChangeTab(3)}>태그</ReportSelectedTabTag>
             : <ReportTabTag onClick={() => handleClickChangeTab(3)}>태그</ReportTabTag> }
         </div>
-        { selectedTab === 0 ? <ReportDailyComponent emotionColor={emotionColor} emotionName={emotionName} /> : null }
-        { selectedTab === 1 ? <ReportWeeklyComponent emotionColor={emotionColor} emotionName={emotionName} /> : null }
-        { selectedTab === 2 ? <ReportMonthlyComponent emotionColor={emotionColor} emotionName={emotionName} /> : null }
-        { selectedTab === 3 ? <ReportWordCloudComponent emotionColor={emotionColor} emotionName={emotionName} /> : null }
+        { dailyEmotionObject ? 
+          <>
+            { selectedTab === 0 ? <ReportDailyComponent emotionColor={emotionColor} emotionName={emotionName} /> : null }
+            { selectedTab === 1 ? <ReportWeeklyComponent emotionColor={emotionColor} emotionName={emotionName} /> : null }
+            { selectedTab === 2 ? <ReportMonthlyComponent emotionColor={emotionColor} emotionName={emotionName} /> : null }
+            { selectedTab === 3 ? <ReportWordCloudComponent emotionColor={emotionColor} emotionName={emotionName} /> : null }
+          </>
+        : <EmotionReportTag style={{ justifyContent: 'center' }}>아직 데이터가 없습니다.</EmotionReportTag> }
       </div>
     </>
   )

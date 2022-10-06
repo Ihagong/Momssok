@@ -3,7 +3,7 @@ import { EmotionReportTag } from '../Style/Components'
 
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip } from 'recharts'
 import { useRecoilState } from 'recoil'
-import { weeklyEmotionListState } from '../store/atoms'
+import { weeklyEmotionObjectState } from '../store/atoms'
 
 
 const data = [
@@ -36,38 +36,42 @@ const data = [
 
 export function ReportWeeklyComponent({ emotionColor, emotionName }) {
 
-  const [weeklyEmotionList, setWeeklyEmotionList] = useRecoilState(weeklyEmotionListState)
+  const [weeklyEmotionObject, setWeeklyEmotionObject] = useRecoilState(weeklyEmotionObjectState)
   
   const weeklyEmotionData = () => {
     return (
       [
         {
           subject: '행복',
-          '평균': 42,
-          '이번 주': weeklyEmotionList[2][1] ? weeklyEmotionList[2][1] : 0,
+          '평균': weeklyEmotionObject.average?.['행복'],
+          '이번 주': weeklyEmotionObject.thisWeek?.['행복'] ? weeklyEmotionObject.thisWeek?.['행복'] : 0,
         },
         {
           subject: '슬픔',
-          '평균': 23,
-          '이번 주': weeklyEmotionList[3][1] ? weeklyEmotionList[3][1] : 0,
+          '평균': weeklyEmotionObject.average?.['슬픔'],
+          '이번 주': weeklyEmotionObject.thisWeek?.['슬픔'] ? weeklyEmotionObject.thisWeek?.['슬픔'] : 0,
         },
         {
           subject: '놀람',
-          '평균': 30,
-          '이번 주': weeklyEmotionList[5][1] ? weeklyEmotionList[5][1] : 0,
+          '평균': weeklyEmotionObject.average?.['놀람'],
+          '이번 주': weeklyEmotionObject.thisWeek?.['놀람'] ? weeklyEmotionObject.thisWeek?.['놀람'] : 0,
         },
         {
           subject: '불안',
-          '평균': 24,
-          '이번 주': weeklyEmotionList[1][1] ? weeklyEmotionList[1][1] : 0,
+          '평균': weeklyEmotionObject.average?.['불안'],
+          '이번 주': weeklyEmotionObject.thisWeek?.['불안'] ? weeklyEmotionObject.thisWeek?.['불안'] : 0,
         },
         {
           subject: '분노',
-          '평균': 21,
-          '이번 주': weeklyEmotionList[4][1] ? weeklyEmotionList[4][1] : 0,
+          '평균': weeklyEmotionObject.average?.['분노'],
+          '이번 주': weeklyEmotionObject.thisWeek?.['분노'] ? weeklyEmotionObject.thisWeek['분노'] : 0,
         },
       ]
     )
+  }
+
+  const mostFrequentEmotion = (obj) => {
+    return Object.keys(obj).reduce((a, b) => obj[a] > obj[b] ? a : b)
   }
 
 
@@ -137,7 +141,7 @@ export function ReportWeeklyComponent({ emotionColor, emotionName }) {
     <EmotionReportTag>
       <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', margin: '0 0 20px 50px' }}>
       
-        <BarChart width={550} height={300} data={data} margin={{ top: 20, right: 30, left: 20, bottom: 30, }}>
+        <BarChart width={550} height={300} data={weeklyEmotionData()} margin={{ top: 20, right: 30, left: 20, bottom: 30, }}>
           <CartesianGrid strokeDasharray="3 3" />
           <XAxis dataKey="name" stroke='var(--Brown-Stroke)' tick={emotionIcon} />
           <YAxis style={{ fontSize: '24px' }} stroke='var(--Brown-Stroke)' />
@@ -155,11 +159,11 @@ export function ReportWeeklyComponent({ emotionColor, emotionName }) {
       <div>
         <div style={{ display: 'flex', justifyContent: 'end', margin: '30px 30px 30px 0', fontSize: '26px' }}>2022.10 첫째 주</div>
         <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', margin: '0 80px 0 0px' }}>
-        <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', backgroundColor: weeklyEmotionList.length ? emotionColor(weeklyEmotionList[0]) : '#F5F5F5', width: '120px', height: '120px', borderRadius: '40px', margin: '0 0 30px 0' }}>
-            { weeklyEmotionList.length ? <img style={{ width: '80px' }} src={`/icons/emotion_${emotionName(weeklyEmotionList[0])}.svg`}/> : null }
+        <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', backgroundColor: mostFrequentEmotion(weeklyEmotionObject.thisWeek) ? emotionColor(mostFrequentEmotion(weeklyEmotionObject.thisWeek)) : '#F5F5F5', width: '120px', height: '120px', borderRadius: '40px', margin: '0 0 30px 0' }}>
+            { mostFrequentEmotion(weeklyEmotionObject.thisWeek) ? <img style={{ width: '80px' }} src={`/icons/emotion_${emotionName(mostFrequentEmotion(weeklyEmotionObject.thisWeek))}.svg`}/> : null }
           </div>
           <div>이번 주 아이는 평소보다</div><br/>
-          <div style={{ fontSize: '40px' }}>"놀람"을 느꼈어요.</div><br/>
+          <div style={{ fontSize: '40px' }}>"{mostFrequentEmotion(weeklyEmotionObject.thisWeek)}"을 느꼈어요.</div><br/>
           <div style={{ fontSize: '26px', color: 'var(--Brown-LightText', margin: '0 0 50px 0' }}>아이에게 무슨 일이 있었을까요?</div>
         </div>
       </div>
