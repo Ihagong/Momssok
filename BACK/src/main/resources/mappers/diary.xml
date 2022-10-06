@@ -25,7 +25,11 @@
         FROM diary
         WHERE title LIKE(CONCAT("%", #{option}, "%"))
     </select>
-
+    <select id="searchDiaryByDate" parameterType="DiarySaveDto" resultType="DiaryDto">
+        SELECT *
+        FROM diary
+        WHERE email_name = #{email_name} and date=#{date}
+    </select>
     <select id="searchDiaryExist" parameterType="DiarySaveDto" resultType="int">
         SELECT count(*)
         FROM diary
