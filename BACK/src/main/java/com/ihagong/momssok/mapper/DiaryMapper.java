@@ -20,4 +20,6 @@ public interface DiaryMapper {
     DiaryDto lookupDiary(int id) throws SQLException;
     int updateDiary(DiarySaveDto diary) throws SQLException;
     int deleteDiary(DiarySaveDto diary) throws SQLException;
+
+    int searchDiaryExist(DiarySaveDto diary);
 }
