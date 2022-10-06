@@ -14,7 +14,6 @@ const LetterPage = () => {
   const navigate = useNavigate()
   const [letterList, setLetterList] = useRecoilState(totalLetterListState)
   const [parentActive, setParentActive] = useRecoilState(parentActiveState)
-  const [parentInfo, setParentInfo] = useRecoilState(parentInfoState)
   const [profileInfo, setProfileInfo] = useRecoilState(profileState)
   const [userInfo, setUserInfo] = useRecoilState(userInfoState)
   const { letterInfoCallback } = useLetterCallback()
@@ -46,7 +45,7 @@ const LetterPage = () => {
           <BrownText100>편지 읽기</BrownText100>
         </div>
         { parentActive ? 
-          <ChildProfileTag style={{marginTop: "30px", marginRight: "40px"}} onClick={handleClickChildProfile}><img src={`/images/parenticon.svg`} />{parentInfo.name}</ChildProfileTag>
+          <ChildProfileTag style={{marginTop: "30px", marginRight: "40px"}} onClick={handleClickChildProfile}><img src={`/images/parenticon.svg`} />{userInfo.username}</ChildProfileTag>
         : <ChildProfileTag style={{marginTop: "30px", marginRight: "40px"}} onClick={handleClickChildProfile}><img src={`/images/profileImage_${profileInfo.image_num}.svg`} />{profileInfo.name}</ChildProfileTag>
         }
       </LetterPageHeader>

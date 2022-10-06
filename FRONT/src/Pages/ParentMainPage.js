@@ -4,12 +4,12 @@ import { useNavigate, useLocation } from  'react-router-dom'
 import { ParentInfo, ParentTitle, ProfileBlock, JuaBrown, JuaBrownLight, LogoTag, EditProfileButtonTag, ParentMenuButtonTag } from '../Style/Components'
 
 import { useRecoilState } from 'recoil'
-import { parentActiveState, parentInfoState, profileListState, profileState } from '../store/atoms'
+import { parentActiveState, userInfoState, profileListState, profileState } from '../store/atoms'
 
 function ParentMainPage() {
   const [profileInfo, setProfileInfo] = useRecoilState(profileState)
   const [profileList, setProfileList] = useRecoilState(profileListState)
-  const [parentInfo, setParentInfo] = useRecoilState(parentInfoState)
+  const [userInfo, setUserInfo] = useRecoilState(userInfoState)
   const [parentActive, setParentActive] = useRecoilState(parentActiveState)
 
 
@@ -21,10 +21,10 @@ function ParentMainPage() {
   const [age, setAge] = useState(new Date().getFullYear() - new Date(profileInfo.birthday).getFullYear() + 1)
   
 
-  useEffect(() => {
-    const info = profileList.filter((it) => it.is_parent === true )
-    setParentInfo(info[0])
-  }, [profileList])
+  // useEffect(() => {
+  //   const info = profileList.filter((it) => it.is_parent === true )
+  //   setParentInfo(info[0])
+  // }, [profileList])
 
   const handleClickReportButton = () => {
     navigate('/report')
