@@ -46,6 +46,10 @@ public class DiaryServiceImpl implements DiaryService{
     public DiaryDto lookupDiary(int id) throws Exception {
         return diaryMapper.lookupDiary(id);
     }
+    @Override
+    public int searchDiaryExist(DiarySaveDto diary)  {
+        return diaryMapper.searchDiaryExist(diary);
+    }
 
     @Override
     public int updateDiary(DiarySaveDto diary) throws Exception {

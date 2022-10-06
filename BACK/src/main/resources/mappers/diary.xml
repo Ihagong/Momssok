@@ -26,6 +26,11 @@
         WHERE title LIKE(CONCAT("%", #{option}, "%"))
     </select>
 
+    <select id="searchDiaryExist" parameterType="DiarySaveDto" resultType="int">
+        SELECT count(*)
+        FROM diary
+        WHERE email_name = #{email_name} and date=#{date}
+    </select>
     <insert id="saveDiary" parameterType="DiarySaveDto">
         INSERT INTO diary
             (email_name, drawing_id, title, content, weather, `date`, is_deleted_from_child)
