@@ -70,7 +70,7 @@ function ReportPage() {
     <>
       <ParentTitle style={{ justifyContent: 'space-between', marginBottom: '20px' }}>
         <div style={{ display: 'flex' }}>
-          <img onClick={() => navigate('/profile/manage')} style={{ width: "130px", height: "130px", cursor: 'pointer' }} src={`/images/profileImage_${profileInfo.image_num}.svg`} />
+          <img onClick={() => navigate('/parent')} style={{ width: "130px", height: "130px", cursor: 'pointer' }} src={`/images/profileImage_${profileInfo.image_num}.svg`} />
           <ParentInfo>
             <JuaBrownLight style={{ fontSize: '32px' }}>{profileInfo.name}<span style={{ fontSize: '32px', color: 'gray'}}> | </span>{age}세</JuaBrownLight>
             <JuaBrown style={{ fontSize: '50px' }}>진단 리포트</JuaBrown>
