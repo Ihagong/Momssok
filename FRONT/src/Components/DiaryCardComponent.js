@@ -2,43 +2,9 @@ import React from 'react'
 import { DiaryBlock, JuaBrown, JuaBrownLight } from '../Style/Components'
 
 
-export function DiaryCardComponent({ info }) {
-
-  const emotionColor = () => {
-    let result = ''
-    if (info.emotion === '행복') {
-      result = '#FFE27D'
-    } else if (info.emotion === '슬픔') {
-      result = '#7DC1FF'
-    } else if (info.emotion === '놀람') {
-      result = '#A6EFCC'
-    } else if (info.emotion === '불안') {
-      result = '#C6A6EF'
-    } else if (info.emotion === '분노') {
-      result = '#F8899D'
-    }
-    return result
-  }
-
-  const emotionName = () => {
-    let result = ''
-    if (info.emotion === '행복') {
-      result = 'happy'
-    } else if (info.emotion === '슬픔') {
-      result = 'sad'
-    } else if (info.emotion === '놀람') {
-      result = 'surprised'
-    } else if (info.emotion === '불안') {
-      result = 'anxious'
-    } else if (info.emotion === '분노') {
-      result = 'angry'
-    }
-    return result
-  }
-
-  console.log(info.weather)
+export function DiaryCardComponent({ info, isPointer }) {
   return (
-    <DiaryBlock style={{justifyContent: 'start', justifyContent: 'space-between' }}>
+    <DiaryBlock style={{justifyContent: 'start', justifyContent: 'space-between', cursor: isPointer ? 'pointer' : 'default' }}>
       <section style={{display: 'flex', marginTop: '20px', alignItems: 'center' }}>
         <JuaBrown style={{fontSize: '28px', marginRight: '10px'}}>{info.date.split(' ')[0].replace('-', '년 ').replace('-', '월 ')}일</JuaBrown>
         <div><img src={`/icons/${info.weather}icon.svg`} /></div>

@@ -55,7 +55,7 @@ const KidsSongPage = () => {
           <img src={`/icons/boy2promiseicon.svg`} />
         </div>
       </section>
-      <section style={{display: "flex", alignItems: "center", justifyContent: "space-around", marginTop: "50px"}}>
+      <section style={{display: "flex", alignItems: "center", justifyContent: "space-around", marginTop: "30px"}}>
         <section>
           {selectedTab === 0 ? <OrangeButton230>경찰차</OrangeButton230>
           : <LightButton230 onClick={changeSong0Button}>경찰차</LightButton230>}

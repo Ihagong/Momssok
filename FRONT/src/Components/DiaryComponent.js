@@ -175,7 +175,7 @@ export function DiaryComponent() {
 
   return (
     <LetterEditorComponentBody>
-      <div style={{marginRight: "20px", marginTop: "20px"}}>
+      <div onClick={() => navigate('/diary')} style={{marginRight: "20px", marginTop: "20px"}}>
         <LogoTag src='/icons/logo.svg' />
       </div>
 

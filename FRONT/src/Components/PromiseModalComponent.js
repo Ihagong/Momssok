@@ -50,8 +50,8 @@ export function PromiseModalComponent({ promiseItemId, promiseItem, setModalOpen
   
   return (
     <ModalBackgroundTag style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }} onClick={onCloseModal}>
-      <PromiseModalComponentTag>
-        <DongleBrown style={{ fontSize: "54px", fontWeight: "bold" }} >선물</DongleBrown>
+      <PromiseModalComponentTag style={{ justifyContent: 'start'}}>
+        {/* <DongleBrown style={{ fontSize: "54px", fontWeight: "bold" }} >선물</DongleBrown>
         <DongleLightBrown style={{ fontSize: "36px", marginBottom: "10px" }}>{promiseGift ? promiseGift : '선물이 없습니다.'}</ DongleLightBrown>
         {parentActive ?
           <div style={{ display: 'flex' }}>
@@ -59,18 +59,22 @@ export function PromiseModalComponent({ promiseItemId, promiseItem, setModalOpen
             <OrangeButton250 style={{ width: "100px", height: "60px"}} onClick={handleClickAddGiftButton}>추가</OrangeButton250>
           </div> 
         : null 
-        }
-        <DongleBrown style={{ fontSize: "54px", fontWeight: "bold" }} >약속</DongleBrown>
-        {promiseItems[promiseItemId-1]?.todoList ?
-          (promiseItems[promiseItemId-1]?.todoList.map((todoItem, index) => (
-            <PromiseTodoItemComponent key={index} name={profileInfo.name} promiseItemId={promiseItemId} todoItem={todoItem}>
-            </PromiseTodoItemComponent>
-          )))
-        :
-          <DongleLightBrown style={{ fontSize: "36px" }}>약속이 없습니다.</ DongleLightBrown> }
+        } */}
+        <DongleBrown style={{ fontSize: "70px", fontWeight: "bold", marginTop: '20px' }} >약속</DongleBrown>
+        <div style={{ height: '200px', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
+          {promiseItems[promiseItemId-1]?.todoList ?
+            (promiseItems[promiseItemId-1]?.todoList.map((todoItem, index) => (
+              <PromiseTodoItemComponent key={index} name={profileInfo.name} promiseItemId={promiseItemId} todoItem={todoItem}>
+              </PromiseTodoItemComponent>
+            )))
+          :
+            <DongleLightBrown style={{ fontSize: "42px" }}>약속이 없습니다.</ DongleLightBrown> }
+          
+        </div>
+
           {(parentActive && (!promiseItems[promiseItemId-1] || promiseItems[promiseItemId-1]?.todoList.length < 3)) ?
-            <div style={{ display: 'flex' }}>
-              <DiaryInputTag style={{ width: "250px", height: "55px"}} value={newTodo} onChange={(e) => setNewTodo(e.target.value)} />
+            <div style={{ display: 'flex', marginTop: '10px', marginBottom: '10px' }}>
+              <DiaryInputTag style={{ width: "250px", height: "55px" }} value={newTodo} onChange={(e) => setNewTodo(e.target.value)} />
               <OrangeButton250 style={{ width: "100px", height: "60px"}} onClick={handleClickAddTodoButton}>추가</OrangeButton250>
             </div> 
           : null 
