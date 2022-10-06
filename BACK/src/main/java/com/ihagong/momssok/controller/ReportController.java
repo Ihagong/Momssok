@@ -32,8 +32,8 @@ public class ReportController {
             String[] emotions=emotionAll.split(", ");
             for(String emotion:emotions){
                 String[] emotion_percent=emotion.split(":");
-                System.out.println(emotion_percent[0]);
-                System.out.println(emotion_percent[1]);
+                //System.out.println(emotion_percent[0]);
+                //System.out.println(emotion_percent[1]);
                 if(emotion_avg_percent.containsKey(emotion_percent[0])){
                     emotion_avg_percent.put(emotion_percent[0],emotion_avg_percent.get(emotion_percent[0])+Float.parseFloat(emotion_percent[1]));
                 }
@@ -118,13 +118,22 @@ public class ReportController {
             reportInput.setStartDate(startDate);
             reportInput.setFinishDate(finishDate);
             reportList = reportService.lookupWeekly(reportInput);
+            Map<String,Integer> emotion_week=new HashMap<>();
+            for(ReportDto dto:reportList){
+                if(emotion_week.containsKey(dto.getEmotion())){
+                    emotion_week.put(dto.getEmotion(),emotion_week.get(dto.getEmotion())+1);
+                }
+                else{
+                    emotion_week.put(dto.getEmotion(),1);
+                }
+            }
             for(String emotion:emotion_avg_percent.keySet()){
                 emotion_avg_percent.put(emotion,emotion_avg_percent.get(emotion)*7/100);
             }
 
             if(reportList != null){
                 result.put("statue", success);
-                result.put("week", reportList);
+                result.put("this_week", emotion_week);
                 result.put("avg", emotion_avg_percent);
             }else{
                 result.put("status", fail);
@@ -151,11 +160,46 @@ public class ReportController {
             reportInput.setEmail_name(email_name);
 
             reportList = reportService.lookupMonthly(reportInput);
+            System.out.println(reportList);
             Map<String,Float> emotion_avg_percent=emotionPercent(reportList);
-            if(reportList != null){
+            Float max=0F;
+            String max_emotion = null;
+            for(String emotion:emotion_avg_percent.keySet()){
+                if(emotion_avg_percent.get(emotion)>max){
+                    max_emotion=emotion;
+                    max=emotion_avg_percent.get(emotion);
+                }
+            }
+            System.out.println(reportInput.getDate());
+            String[] date = reportInput.getDate().split("-");
+            if(Integer.parseInt(date[1])-1==0)
+                reportInput.setDate(date[0]+"-"+"12-"+date[2]);
+            else{
+                int month=(Integer.parseInt(date[1])-1);
+                if(month<10){
+                    reportInput.setDate(date[0]+"-"+"0"+(Integer.parseInt(date[1])-1)+"-"+date[2]);
+                }
+                else{
+                    reportInput.setDate(date[0]+"-"+(Integer.parseInt(date[1])-1)+"-"+date[2]);
+                }
+
+            }
+            System.out.println(reportInput.getDate());
+            reportList = reportService.lookupMonthly(reportInput);
+            System.out.println(reportList);
+            Map<String,Float> emotion_avg_percent2=emotionPercent(reportList);
+
+            if (reportList != null&&emotion_avg_percent2.keySet().contains(max_emotion)) {
                 result.put("statue", success);
-                result.put("month", emotion_avg_percent);
-            }else{
+                result.put("this_month", emotion_avg_percent);
+                result.put("main_emotion", max_emotion);
+                result.put("main_percent", emotion_avg_percent.get(max_emotion));
+                result.put("last_month", emotion_avg_percent2);
+                if(emotion_avg_percent2.containsKey(max_emotion))
+                    result.put("main_emotion_diff", emotion_avg_percent.get(max_emotion) - emotion_avg_percent2.get(max_emotion));
+                else result.put("main_emotion_diff","지난달 해당 감정 없음");
+            }
+            else{
                 result.put("status", fail);
             }
         } catch (Exception e) {
