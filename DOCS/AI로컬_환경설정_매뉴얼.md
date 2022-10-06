@@ -45,7 +45,7 @@
      - ```python
        import torch
        
-       # True 확인
+       # True 확인 
        torch.cuda.is_available()
        ```
 
