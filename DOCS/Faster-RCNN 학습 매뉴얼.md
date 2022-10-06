@@ -11,7 +11,7 @@
 4. `total_epoch`과 `len_data` 설정
 
    ```
-   total_epoch = 70    # 반복회수 설정
+   total_epoch = 70    # 반복 회수 설정
    len_data = 748 	# 총 데이터 개수
    ```
 
