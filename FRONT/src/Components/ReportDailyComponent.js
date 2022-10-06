@@ -1,8 +1,9 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import { EmotionReportTag } from '../Style/Components'
 
 import { Radar, RadarChart, PolarGrid, PolarAngleAxis, PolarRadiusAxis } from 'recharts'
-
+import { useRecoilState } from 'recoil'
+import { dailyEmotionListState } from '../store/atoms'
 
 const data = [
   {
@@ -32,11 +33,46 @@ const data = [
   },
 ]
 
-export function ReportDailyComponent() {
+export function ReportDailyComponent({ emotionColor, emotionName }) {
+
+  const [dailyEmotionList, setDailyEmotionList] = useRecoilState(dailyEmotionListState)
+  
+  const dailyEmotionData = () => {
+    return (
+      [
+        {
+          subject: '행복',
+          average: 42,
+          date: dailyEmotionList[2][1] ? dailyEmotionList[2][1] : 0,
+        },
+        {
+          subject: '슬픔',
+          average: 23,
+          date: dailyEmotionList[3][1] ? dailyEmotionList[3][1] : 0,
+        },
+        {
+          subject: '놀람',
+          average: 30,
+          date: dailyEmotionList[5][1] ? dailyEmotionList[5][1] : 0,
+        },
+        {
+          subject: '불안',
+          average: 24,
+          date: dailyEmotionList[1][1] ? dailyEmotionList[1][1] : 0,
+        },
+        {
+          subject: '분노',
+          average: 21,
+          date: dailyEmotionList[4][1] ? dailyEmotionList[4][1] : 0,
+        },
+      ]
+    )
+  }
+
   return (
     <EmotionReportTag>
       <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', margin: '0 0 20px 50px' }}>
-        <RadarChart cx={200} cy={200} outerRadius={150} width={400} height={350} data={data} style={{ display: 'flex', justifyContent: 'center', margin: '0 0 0 30px' }} >
+        <RadarChart cx={200} cy={200} outerRadius={150} width={400} height={350} data={dailyEmotionData()} style={{ display: 'flex', justifyContent: 'center', margin: '0 0 0 30px' }} >
           <PolarGrid stroke='var(--Brown-Stroke)' />
           <PolarAngleAxis stroke='var(--Brown-Text)' dataKey='subject' />
           <PolarRadiusAxis style={{ fontSize: '24px' }} stroke='var(--Brown-Stroke)' />
@@ -53,11 +89,11 @@ export function ReportDailyComponent() {
       <div>
         <div style={{ display: 'flex', justifyContent: 'end', margin: '30px 30px 30px 0', fontSize: '26px' }}>2022.10.05</div>
         <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', margin: '0 80px 0 0px' }}>
-          <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', backgroundColor: '#FFE27D', width: '120px', height: '120px', borderRadius: '40px', margin: '0 0 30px 0' }}>
-            <img style={{ width: '80px' }} src={`icons/happy.svg`}/>
+          <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', backgroundColor: emotionColor(dailyEmotionList[0]), width: '120px', height: '120px', borderRadius: '40px', margin: '0 0 30px 0' }}>
+            <img style={{ width: '80px' }} src={`/icons/emotion_${emotionName(dailyEmotionList[0])}.svg`}/>
           </div>
           <div>오늘 아이의 가장 높은 감정은</div><br/>
-          <div style={{ fontSize: '40px' }}>"행복"입니다.</div><br/>
+          <div style={{ fontSize: '40px' }}>"{dailyEmotionList[0]}"입니다.</div><br/>
           <div style={{ fontSize: '26px', color: 'var(--Brown-LightText', margin: '0 0 50px 0' }}>아이에게 고마움을 전해보세요.</div>
         </div>
       </div>
