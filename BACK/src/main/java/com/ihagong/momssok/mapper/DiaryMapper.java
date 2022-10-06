@@ -22,4 +22,6 @@ public interface DiaryMapper {
     int deleteDiary(DiarySaveDto diary) throws SQLException;
 
     int searchDiaryExist(DiarySaveDto diary);
+
+    DiaryDto searchDiaryByDate(DiarySaveDto diary);
 }

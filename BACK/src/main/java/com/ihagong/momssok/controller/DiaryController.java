@@ -120,7 +120,9 @@ public class DiaryController {
                 int res = diaryService.saveDiary(diary);
                 if(res == 1) {
                     result.put("status", success);
-                    int diary_id = diaryService.getId(email_name);
+
+                    DiaryDto dto = diaryService.searchDiaryByDate(diary);
+                    int diary_id=dto.getId();
                     EmotionSaveDto saveDto = new EmotionSaveDto();
                     saveDto.setId(diary_id);
                     saveDto.setContent(diary.getContent());
