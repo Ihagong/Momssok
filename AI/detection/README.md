@@ -26,9 +26,27 @@
 
 ---
 
+### 기술 설명
+
+- RPN + Fast R-CNN = Faster R-CNN
+
+- 과정
+
+  1) region proposal 추출 → 전체 image CNN 연산 → RoI projection, RoI Pooling
+
+  2. classification, bounding box regression
+
+- detection에 쓰인 conv feature을 RPN에서도 공유해서 RoI생성 역시 CNN level에서 수행
+
+
+
 ### 코드 설명
 
 - backbone : 이미지의 피처맵을 뽑는 네트워크
+
+  - VGG16 - faster rcnn 기본 네트워크
+
+  - Resnet50 - 정확성을 높인 네트워크
 
 - CosineAnnealingLR(스케줄러) : 진동하는 방식
 
@@ -58,15 +76,15 @@
 
   - anchor box aspect ratio: (0.5, 1.0, 2.0)
 
-- rpn
+- RPN(Region Proposal Network)
   - VGG16 마지막 차원: 512
-  - anchor box size: (128, 256, 512)
-  - anchor box aspect ratio: (0.5, 1.0, 2.0)
+  - Resnet50 마지막 차원: 2048
   - 이미지 사이즈: 짧은 부분을 400 픽셀로 고정, 긴 부분은 최대 600픽셀
-  - NMS이전 anchor box 개수: 6000
+  - Non Maximum Suppression (NMS) 이전 anchor box 개수: 6000
   - NMS threshold: 0.7
   - NMS이후 anchor box 개수: 2000(train), 300(test)
   - parameter 초기화: 평균0, 표준편차 0.01의 가우스 분포
+
 - fast rcnn
   - RoI pooling layer: MultiScaleRoIAlign
   - RoI pooling size: 7x7
