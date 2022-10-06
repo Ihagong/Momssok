@@ -28,6 +28,21 @@ const KidsSongPage = () => {
     setSelctedTab(2)
     setVideoUrl("https://youtu.be/DZF06J5Ahzw")
   }
+
+  const changeSong3Button = () => {
+    setSelctedTab(3)
+    setVideoUrl("https://youtu.be/O9UO6z-7A0U")
+  }
+
+  const changeSong4Button = () => {
+    setSelctedTab(4)
+    setVideoUrl("https://youtu.be/Bl_PylYAMts")
+  }
+
+  const changeSong5Button = () => {
+    setSelctedTab(5)
+    setVideoUrl("https://youtu.be/rN_IOscJ1ic")
+  }
   
   return (
     <div className='LetterPageHome'>
@@ -47,10 +62,16 @@ const KidsSongPage = () => {
           {selectedTab === 1 ? <OrangeButton230>아기상어</OrangeButton230>
           : <LightButton230 onClick={changeSong1Button}>아기상어</LightButton230>}
           {selectedTab === 2 ? <OrangeButton230>나는야 공룡 요리사</OrangeButton230>
-          : <LightButton230 onClick={changeSong2Button}>나는야 공룡 요리사</LightButton230>}        
+          : <LightButton230 onClick={changeSong2Button}>나는야 공룡 요리사</LightButton230>}
+          {selectedTab === 3 ? <OrangeButton230>바나나차차</OrangeButton230>
+          : <LightButton230 onClick={changeSong3Button}>바나나차차</LightButton230>}
+          {selectedTab === 4 ? <OrangeButton230>정글 붐붐</OrangeButton230>
+          : <LightButton230 onClick={changeSong4Button}>정글 붐붐</LightButton230>}
+          {selectedTab === 5 ? <OrangeButton230>바닷속에는</OrangeButton230>
+          : <LightButton230 onClick={changeSong5Button}>바닷속에는</LightButton230>}   
         </section>
-        <KidsSongVidoBackground>
-          <ReactPlayer 
+        <KidsSongVidoBackground style={{ marginTop: "-10px" }}>
+          <ReactPlayer
             className="player"
             url={videoUrl}
             controls={false}
