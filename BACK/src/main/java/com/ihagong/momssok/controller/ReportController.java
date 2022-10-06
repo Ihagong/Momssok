@@ -211,7 +211,54 @@ public class ReportController {
 
         return result;
     }
+    @PostMapping("/monthlyEmotionList2")
+    public Map<String, Object> monthlyEmotionList2(@RequestBody ReportInputDto reportInput) throws Exception {
 
+        Map<String, Object> result = new HashMap<>();
+        List<ReportDto> reportList = new ArrayList<>();
+        try {
+            String[] date2=reportInput.getDate().split("-");
+            String email= SecurityContextHolder.getContext().getAuthentication().getName();
+            String name = reportInput.getName();
+            String email_name = email + "_" + name;
+            reportInput.setEmail_name(email_name);
+
+            Calendar cal = Calendar.getInstance();
+            cal.set(Integer.parseInt(date2[0]), Integer.parseInt(date2[1])-1, 1);
+
+            LocalDate date = LocalDate.of(Integer.parseInt(date2[0]), Integer.parseInt(date2[1]), 1);
+            System.out.println(date);
+            DayOfWeek dayOfWeek = date.getDayOfWeek();
+            int dayOfWeekNumber = dayOfWeek.getValue();
+            DateFormat df = new SimpleDateFormat("yyyy/MM/dd");
+            Date startdate = df.parse(date2[0]+"/"+date2[1]+"/"+1);
+            Date enddate = df.parse(date2[0]+"/"+date2[1]+"/" +cal.getActualMaximum(Calendar.DAY_OF_MONTH));
+            System.out.println(startdate);
+            System.out.println(enddate);
+            SimpleDateFormat transFormat = new SimpleDateFormat("yyyy-MM-dd");
+            String startdateString = transFormat.format(startdate);
+            String enddateString = transFormat.format(enddate);
+            reportInput.setStartDate(startdateString);
+            reportInput.setFinishDate(enddateString);
+            reportList =reportService.lookupWeekly(reportInput);
+            List<String> emotions=new ArrayList<>();
+            for(ReportDto dto:reportList){
+                emotions.add(dto.getEmotion());
+            }
+
+            result.put("start", startdateString);
+            result.put("end", enddateString);
+            result.put("emotions", reportList);
+
+            result.put("status", success);
+
+        } catch (Exception e) {
+            result.put("status", error);
+            result.put("message", e.toString());
+        }
+
+        return result;
+    }
     @PostMapping("/monthly")
     public Map<String, Object> monthlyEmotion(@RequestBody ReportInputDto reportInput){
 
