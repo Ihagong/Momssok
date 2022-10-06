@@ -106,7 +106,7 @@ function DiaryPage() {
 
         { getProcessedPaintingList().map((info, key) => (
           <div key={key} onClick={() => handleClickLoadDiaryButton(info)}>
-            <DiaryCardComponent info={info} />
+            <DiaryCardComponent isPointer={true} info={info} />
           </div>
         ))}
 
