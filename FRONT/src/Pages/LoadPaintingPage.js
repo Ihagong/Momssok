@@ -18,7 +18,7 @@ function LoadPaintingPage() {
   const [diaryIsEdit, setDiaryIsEdit] = useRecoilState(diaryEditState)
   const [drawingIsDetail, setDrawingIsDetail] = useRecoilState(drawingDetailState)
 
-  const [sortType, setSortType] = useState("latest")
+  const [sortType, setSortType] = useState('latest')
 
   useEffect(() => {
     getAllPaintingCallback(profileInfo.name)
@@ -71,16 +71,16 @@ function LoadPaintingPage() {
   }
 
   const latestType = () => {
-    setSortType("latest")
+    setSortType('latest')
   }
 
   const oldestType = () => {
-    setSortType("oldest")
+    setSortType('oldest')
   }
 
   const getProcessedPaintingList = () => {
     const compare = (a, b) => {
-      if (sortType === "latest") {
+      if (sortType === 'latest') {
         return parseInt(new Date(b.modified_date).getTime()) - parseInt(new Date(a.modified_date).getTime());
       } else {
         return parseInt(new Date(a.modified_date).getTime()) - parseInt(new Date(b.modified_date).getTime());
@@ -97,30 +97,30 @@ function LoadPaintingPage() {
   return (
     <div className='LetterPageHome'>
       <LetterPageHeader>
-        <div style={{ display: "flex", alignItems: "center", marginLeft: "30px", marginTop: "-50px"  }}>
+        <div style={{ display: 'flex', alignItems: 'center', marginLeft: '30px', marginTop: '-50px'  }}>
           <LightButton120 onClick={handleClickCloseButton}>닫기</LightButton120>
           <BrownText100>그림 그리기</BrownText100>
         </div>
-          <ChildProfileTag style={{marginTop: "20px", marginRight: "40px"}} onClick={handleClickChildProfile}><img src={`/images/profileImage_${profileInfo.image_num}.svg`} />{profileInfo.name}</ChildProfileTag>
+          <ChildProfileTag style={{marginTop: '20px', marginRight: '40px'}} onClick={handleClickChildProfile}><img src={`/images/profileImage_${profileInfo.image_num}.svg`} />{profileInfo.name}</ChildProfileTag>
       </LetterPageHeader>
 
-      <div style={{ display: 'flex', marginTop: "-40px" }}>
-        { sortType === "latest" ?
-          <OrangeButton250 style={{marginLeft: "70px"}}>최신순</OrangeButton250>
+      <div style={{ display: 'flex', marginTop: '-40px' }}>
+        { sortType === 'latest' ?
+          <OrangeButton250 style={{marginLeft: '70px'}}>최신순</OrangeButton250>
         :
-          <LightButton250 style={{marginLeft: "70px"}} onClick={latestType}>최신순</LightButton250>
+          <LightButton250 style={{marginLeft: '70px'}} onClick={latestType}>최신순</LightButton250>
         }
-        { sortType === "oldest" ?
+        { sortType === 'oldest' ?
           <OrangeButton250>오래된순</OrangeButton250>
         :
           <LightButton250 onClick={oldestType}>오래된순</LightButton250>
         }
       </div>
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 3fr)', marginLeft: "50px" }}>
-        <PaintingCardTag style={{justifyContent: "center"}} onClick={handleClickCreatePaintingButton}><img src='/icons/plus_brown.svg' /></PaintingCardTag>
+      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 3fr)', marginLeft: '50px' }}>
+        <PaintingCardTag style={{ justifyContent: 'center' }} onClick={handleClickCreatePaintingButton}><img src='/icons/plus_brown.svg' /></PaintingCardTag>
         {getProcessedPaintingList().map((info) => (
           <div key={info.drawing_id} onClick={() => handleClickLoadPaintingButton(info)}>
-            <PaintingCardComponent info={info} />
+            <PaintingCardComponent isPointer={true} info={info} />
           </div>
         ))}
       </div>
