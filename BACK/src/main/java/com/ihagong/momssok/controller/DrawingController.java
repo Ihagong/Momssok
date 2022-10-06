@@ -197,7 +197,6 @@ public class DrawingController {
 
             String base64Source = drawing.getDrawing_base64();
             String base64 = base64Source.split(",")[1];
-            System.out.println(base64);
 
             SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyyMMdd");
             String fileName = simpleDateFormat.format(new Date());  //파일명
