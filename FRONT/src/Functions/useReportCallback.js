@@ -1,5 +1,5 @@
 import { useRecoilState } from 'recoil'
-import { logInTokenState, dailyEmotionListState, weeklyEmotionListState, dailyEmotionObjectState, weeklyEmotionObjectState, monthlyEmotionObjectState, wordCloudTagListState } from '../store/atoms'
+import { logInTokenState, dailyEmotionListState, weeklyEmotionListState, dailyEmotionObjectState, weeklyEmotionObjectState, monthlyEmotionObjectState, wordCloudTagListState, calendarEmotionObjectState } from '../store/atoms'
 import axios from 'axios'
 
 
@@ -11,6 +11,7 @@ export function useReportCallback() {
   const [weeklyEmotionObject, setWeeklyEmotionObject] = useRecoilState(weeklyEmotionObjectState)
   const [monthlyEmotionObject, setMonthlyEmotionObject] = useRecoilState(monthlyEmotionObjectState)
   const [wordCloudTagList, setWordCloudTagList] = useRecoilState(wordCloudTagListState)
+  const [calendarEmotionObject, setCalendarEmotionObject] = useRecoilState(calendarEmotionObjectState)
 
   const getDailyEmotionCallback = async (name, date) => {
     axios({
@@ -167,6 +168,34 @@ export function useReportCallback() {
       console.log(error)
     })
   }
+
+  const getMonthlyEmotionListCallback = async (date, name) => {
+    axios({
+      method: 'post',
+      url: '/api/parents/monthlyEmotionList2',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': logInToken,
+      },
+      data: {
+        date,
+        name,
+      }
+    })
+    .then(response => {
+      if (response.data) {
+        let obj = {}
+        response.data.emotions.forEach(({date, emotion}) => {
+          const temp = date.split(' ')[0].split('-')[2]
+          obj[Number(temp)] = emotion
+        })
+        setCalendarEmotionObject(obj)
+      }
+    })
+    .catch(error => {
+      console.log(error)
+    })
+  }
   
-  return { getDailyEmotionCallback, getWeeklyEmotionCallback, getMonthlyEmotionCallback, getWordCloudCallback }
+  return { getDailyEmotionCallback, getWeeklyEmotionCallback, getMonthlyEmotionCallback, getWordCloudCallback, getMonthlyEmotionListCallback }
 }
