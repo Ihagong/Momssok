@@ -157,7 +157,7 @@ export function ReportWeeklyComponent({ emotionColor, emotionName }) {
         </div>
       </div>
       <div>
-        <div style={{ display: 'flex', justifyContent: 'end', margin: '30px 30px 30px 0', fontSize: '26px' }}>2022.10 첫째 주</div>
+        <div style={{ display: 'flex', justifyContent: 'end', margin: '30px 30px 30px 0', fontSize: '26px' }}></div>
         <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', margin: '0 80px 0 0px' }}>
         <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', backgroundColor: mostFrequentEmotion(weeklyEmotionObject.thisWeek) ? emotionColor(mostFrequentEmotion(weeklyEmotionObject.thisWeek)) : '#F5F5F5', width: '120px', height: '120px', borderRadius: '40px', margin: '0 0 30px 0' }}>
             { mostFrequentEmotion(weeklyEmotionObject.thisWeek) ? <img style={{ width: '80px' }} src={`/icons/emotion_${emotionName(mostFrequentEmotion(weeklyEmotionObject.thisWeek))}.svg`}/> : null }
