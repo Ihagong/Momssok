@@ -43,11 +43,12 @@ public class ReportController {
             }
 
         }
-        int sum=0;
+        float sum=0;
         for(String emotion: emotion_avg_percent.keySet()){
             sum+=emotion_avg_percent.get(emotion);
         }
         for(String emotion: emotion_avg_percent.keySet()){
+            System.out.println(emotion_avg_percent.get(emotion));
             emotion_avg_percent.put(emotion, (float) Math.round(((emotion_avg_percent.get(emotion)/sum*10000)))/100);
         }
         return emotion_avg_percent;

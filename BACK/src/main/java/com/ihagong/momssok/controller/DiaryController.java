@@ -116,20 +116,25 @@ public class DiaryController {
             String name = diary.getName();
             String email_name = email + "_" + name;
             diary.setEmail_name(email_name);
-            int res = diaryService.saveDiary(diary);
-            if(res == 1) {
-                result.put("status", success);
-                int diary_id = diaryService.getId(email_name);
-                EmotionSaveDto saveDto = new EmotionSaveDto();
-                saveDto.setId(diary_id);
-                saveDto.setContent(diary.getContent());
-                testService.ApiTestEmotion(saveDto);
+            if(diaryService.searchDiaryExist(diary)==0){
+                int res = diaryService.saveDiary(diary);
+                if(res == 1) {
+                    result.put("status", success);
+                    int diary_id = diaryService.getId(email_name);
+                    EmotionSaveDto saveDto = new EmotionSaveDto();
+                    saveDto.setId(diary_id);
+                    saveDto.setContent(diary.getContent());
+                    testService.ApiTestEmotion(saveDto);
 
-                diary.setId(diary_id);
+                    diary.setId(diary_id);
 //                diary.setEmotion(); //일기 아이디에서 뽑아오자
-                result.put("data", diary);
+                    result.put("data", diary);
+            }else{
+                    result.put("status", fail);
+                }
             }else{
                 result.put("status", fail);
+                result.put("message", "이미 해당 날짜의 일기가 존재합니다.");
             }
         } catch (Exception e) {
             result.put("status", error);
