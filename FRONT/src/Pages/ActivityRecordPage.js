@@ -1,6 +1,6 @@
 import React, { useEffect, useState, PureComponent } from 'react'
 import { useNavigate, useLocation } from  'react-router-dom'
-import { ParentInfo, ParentTitle, PaintingCardTag, JuaBrown, JuaBrownLight, OrangeButton250, LightButton250, EditProfileButtonTag, ActiveRecordSelectedTabTag, ActiveRecordTabTag, EmotionReportTag } from '../Style/Components'
+import { ParentInfo, ParentTitle, JuaBrown, JuaBrownLight, OrangeButton250, LightButton250, EditProfileButtonTag } from '../Style/Components'
 import { PaintingCardComponent } from '../Components/PaintingCardComponent'
 import { ActivityDiaryComponent } from '../Components/ActivityDiaryComponent'
 import { ActivityPaintingComponent } from '../Components/ActivityPaintingComponent'
@@ -92,10 +92,10 @@ function ActivityRecordPage() {
       
       <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
         <div style={{display: 'flex' }}>
-          { selectedTab === 0 ? <ActiveRecordSelectedTabTag onClick={() => handleClickChangeTab(0)}>그림</ActiveRecordSelectedTabTag>
-            : <ActiveRecordTabTag onClick={() => handleClickChangeTab(0)}>그림</ActiveRecordTabTag> }
-          { selectedTab === 1 ? <ActiveRecordSelectedTabTag style={{ margin: '0 0 0 10px' }} onClick={() => handleClickChangeTab(1)}>그림일기</ActiveRecordSelectedTabTag>
-            : <ActiveRecordTabTag style={{ margin: '0 0 0 10px' }} onClick={() => handleClickChangeTab(1)}>그림일기</ActiveRecordTabTag> }
+          { selectedTab === 0 ? <OrangeButton250 onClick={() => handleClickChangeTab(0)}>그림</OrangeButton250>
+            : <LightButton250 onClick={() => handleClickChangeTab(0)}>그림</LightButton250> }
+          { selectedTab === 1 ? <OrangeButton250 style={{ margin: '0 0 0 10px' }} onClick={() => handleClickChangeTab(1)}>그림일기</OrangeButton250>
+            : <LightButton250 style={{ margin: '0 0 0 10px' }} onClick={() => handleClickChangeTab(1)}>그림일기</LightButton250> }
         </div>
         { selectedTab === 0 ? <ActivityPaintingComponent /> : null }
         { selectedTab === 1 ? <ActivityDiaryComponent /> : null }

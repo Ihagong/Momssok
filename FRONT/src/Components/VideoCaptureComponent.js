@@ -1,11 +1,11 @@
 import React, { useRef, useState, useCallback, useEffect } from 'react'
 import Webcam from 'react-webcam'
 
-import { LetterButtonDel } from '../Style/Components'
+import { LetterButtonGo, LetterButtonDel } from '../Style/Components'
 
 
 
-export function VideoCaptureComponent({ setVideoFile, videoRecord }) {
+export function VideoCaptureComponent({ setVideoFile }) {
   const webcamRef = useRef(null)
   const mediaRecorderRef = useRef(null)
   const [capturing, setCapturing] = useState(false)
@@ -17,10 +17,6 @@ export function VideoCaptureComponent({ setVideoFile, videoRecord }) {
     handlePreviewVideoOpen()
   }, [recordedChunks])
 
-  useEffect(() => {
-    console.log(videoRecord)
-
-  }, [videoRecord])
 
   const handleStartCaptureClick = useCallback(() => {
     setCapturing(true)
@@ -57,14 +53,14 @@ export function VideoCaptureComponent({ setVideoFile, videoRecord }) {
 
   return (
     <>
-      {/* { capturing ?
-        <button onClick={handleStopCaptureClick}>중지</button>
-        : 
-        <LetterButtonDel style={{margin: "0"}} onClick={handleStartCaptureClick}>녹화</LetterButtonDel> 
-      } */}
       { recordedChunks.length > 0 ? 
         <video style={{ width: 450 }} src={videoURL} type='video/webm' controls={true} /> 
       : <Webcam audio={true} ref={webcamRef} style={{ width: 450, transform: 'scaleX(-1)' }} /> 
+      }
+      { capturing ?
+        <LetterButtonGo style={{margin: "0"}} onClick={handleStopCaptureClick}>중지</LetterButtonGo>
+        : 
+        <LetterButtonDel style={{margin: "0"}} onClick={handleStartCaptureClick}>녹화</LetterButtonDel> 
       }
     </>
   )
