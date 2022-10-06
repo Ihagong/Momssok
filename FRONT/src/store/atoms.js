@@ -201,3 +201,9 @@ export const wordCloudTagListState = atom({
   default: [],
   effects_UNSTABLE: [persistAtom]
 })
+
+export const calendarEmotionObjectState = atom({
+  key: 'calendarEmotionObjectState',
+  default: [],
+  effects_UNSTABLE: [persistAtom]
+})
