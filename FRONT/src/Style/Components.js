@@ -1281,7 +1281,7 @@ export const LetterContentDiv = styled.div`
   font-weight: bold;
   color: var(--Brown-LightText);
   white-space: normal;
-  overflow:auto; 
+  overflow:auto;
 `
 
 export const LetterContentTextArea = styled.textarea`
