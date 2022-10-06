@@ -4,7 +4,7 @@ import WordCloud from "react-d3-cloud";
 import { EmotionReportTag } from '../Style/Components'
 
 import { useRecoilState } from 'recoil'
-import { profileState, totalLetterListState, totalDiaryListState, userInfoState } from '../store/atoms'
+import { profileState, totalLetterListState, totalDiaryListState, userInfoState, wordCloudTagListState } from '../store/atoms'
 import { useReportCallback } from '../Functions/useReportCallback'
 import { useDiaryCallback } from '../Functions/useDiaryCallback'
 import { useLetterCallback } from '../Functions/useLetterCallback'
@@ -21,6 +21,7 @@ export function ReportWordCloudComponent() {
   const [userInfo, setUserInfo] = useRecoilState(userInfoState)
   const [letterList, setLetterList] = useRecoilState(totalLetterListState)
   const [loadedDiaryList, setLoadedDiaryList] = useRecoilState(totalDiaryListState)
+  const [wordCloudTagList, setWordCloudTagList] = useRecoilState(wordCloudTagListState)
   const { getWordCloudCallback } = useReportCallback()
   const { getAllDiaryCallback } = useDiaryCallback()
   const { letterInfoCallback } = useLetterCallback()
@@ -29,10 +30,6 @@ export function ReportWordCloudComponent() {
   useEffect(() => {
     getWordCloudCallback(profileInfo.name)
     letterInfoCallback(userInfo.username)
-    console.log(userInfo.username)
-    console.log('편지 :', letterList)
-    console.log('일기 :', loadedDiaryList)
-    // data()
   }, [])
 
   const data = () => {
@@ -59,8 +56,10 @@ export function ReportWordCloudComponent() {
         })
       })
     })
-    
-    console.log(result)
+
+    wordCloudTagList.forEach((tag) => {
+      result.push(tag)
+    })
     return result
   }
 
