@@ -177,3 +177,27 @@ export const weeklyEmotionListState = atom({
   default: {},
   effects_UNSTABLE: [persistAtom]
 })
+
+export const dailyEmotionObjectState = atom({
+  key: 'dailyEmotionObjectState',
+  default: {},
+  effects_UNSTABLE: [persistAtom]
+})
+
+export const weeklyEmotionObjectState = atom({
+  key: 'weeklyEmotionObjectState',
+  default: {},
+  effects_UNSTABLE: [persistAtom]
+})
+
+export const monthlyEmotionObjectState = atom({
+  key: 'monthlyEmotionObjectState',
+  default: {},
+  effects_UNSTABLE: [persistAtom]
+})
+
+export const wordCloudTagListState = atom({
+  key: 'wordCloudTagListState',
+  default: [],
+  effects_UNSTABLE: [persistAtom]
+})
