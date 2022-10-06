@@ -112,7 +112,7 @@ const LetterEditorComponent = ({ isDetail, letterItem }) => {
   
   return (
     <LetterEditorComponentBody>
-      <div style={{marginRight: '20px', marginTop: '20px'}}>
+      <div onClick={() => navigate('/child')} style={{marginRight: '20px', marginTop: '20px'}}>
         <LogoTag src='/icons/logo.svg' />
       </div>
 
