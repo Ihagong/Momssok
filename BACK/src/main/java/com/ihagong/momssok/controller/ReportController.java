@@ -9,7 +9,12 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
+import java.text.DateFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.DayOfWeek;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.*;
 
 @RestController
@@ -147,6 +152,52 @@ public class ReportController {
     }
 
 
+    @PostMapping("/monthlyEmotionList")
+    public Map<String, Object> monthlyEmotionList(@RequestBody ReportInputDto reportInput) throws Exception {
+
+        Map<String, Object> result = new HashMap<>();
+        List<ReportDto> reportList = new ArrayList<>();
+        try {
+        String[] date2=reportInput.getDate().split("-");
+        String email= SecurityContextHolder.getContext().getAuthentication().getName();
+        String name = reportInput.getName();
+        String email_name = email + "_" + name;
+        reportInput.setEmail_name(email_name);
+
+        LocalDate date = LocalDate.of(Integer.parseInt(date2[0]), Integer.parseInt(date2[1]), 1);
+        System.out.println(date);
+        DayOfWeek dayOfWeek = date.getDayOfWeek();
+        int dayOfWeekNumber = dayOfWeek.getValue();
+        DateFormat df = new SimpleDateFormat("yyyy/MM/dd");
+        Date startdate = df.parse(date2[0]+"/"+date2[1]+"/"+(1-dayOfWeekNumber%7));
+        Date enddate = df.parse(date2[0]+"/"+date2[1]+"/" +((1-dayOfWeekNumber%7)+41));
+        System.out.println(startdate);
+        System.out.println(enddate);
+        SimpleDateFormat transFormat = new SimpleDateFormat("yyyy-MM-dd");
+        String startdateString = transFormat.format(startdate);
+        String enddateString = transFormat.format(enddate);
+        reportInput.setStartDate(startdateString);
+        reportInput.setFinishDate(enddateString);
+        reportList =reportService.lookupWeekly(reportInput);
+        List<String> emotions=new ArrayList<>();
+        for(ReportDto dto:reportList){
+            emotions.add(dto.getEmotion());
+        }
+
+            result.put("start", startdateString);
+            result.put("end", enddateString);
+            result.put("emotions", emotions);
+
+                result.put("status", success);
+
+        } catch (Exception e) {
+            result.put("status", error);
+            result.put("message", e.toString());
+        }
+
+        return result;
+    }
+
     @PostMapping("/monthly")
     public Map<String, Object> monthlyEmotion(@RequestBody ReportInputDto reportInput){
 
@@ -189,7 +240,7 @@ public class ReportController {
             System.out.println(reportList);
             Map<String,Float> emotion_avg_percent2=emotionPercent(reportList);
 
-            if (reportList != null&&emotion_avg_percent2.keySet().contains(max_emotion)) {
+            if (reportList != null) {
                 result.put("statue", success);
                 result.put("this_month", emotion_avg_percent);
                 result.put("main_emotion", max_emotion);
