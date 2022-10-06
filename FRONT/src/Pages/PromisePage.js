@@ -20,7 +20,6 @@ function PromisePage() {
   const navigate = useNavigate()
 
   useEffect(() => {
-    console.log(profileInfo)
     getAllPromiseCallback(profileInfo.name)
   }, [])
 
@@ -41,7 +40,11 @@ function PromisePage() {
   }
 
   const handleClickChildProfile = () => {
-    navigate('/profile')
+    if (parentActive) {
+      navigate('/parent')
+    } else {
+      navigate('/profile')
+    }
   }
 
   const length = (promiseItems.length < 15 ? promiseItems.length+1 : 15)

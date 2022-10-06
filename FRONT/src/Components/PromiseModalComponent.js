@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { ChildButtonTag2, PromiseModalComponentTag, ModalBackgroundTag } from '../Style/Components'
+import { LetterButtonBack, LetterButtonGo, OrangeButton250, DiaryInputTag, DongleBrown, DongleLightBrown, ChildButtonTag2, PromiseModalComponentTag, ModalBackgroundTag } from '../Style/Components'
 import { PromiseTodoItemComponent } from './PromiseTodoItemComponent'
 import { useRecoilState } from 'recoil'
 import { profileState, promiseItemsState, parentActiveState } from '../store/atoms'
@@ -51,35 +51,35 @@ export function PromiseModalComponent({ promiseItemId, promiseItem, setModalOpen
   return (
     <ModalBackgroundTag style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }} onClick={onCloseModal}>
       <PromiseModalComponentTag>
-        <>선물: {promiseGift ? promiseGift : '없음'}</>
-        <br/>
+        <DongleBrown style={{ fontSize: "54px", fontWeight: "bold" }} >선물</DongleBrown>
+        <DongleLightBrown style={{ fontSize: "36px", marginBottom: "10px" }}>{promiseGift ? promiseGift : '선물이 없습니다.'}</ DongleLightBrown>
+        {parentActive ?
+          <div style={{ display: 'flex' }}>
+            <DiaryInputTag style={{ width: "250px", height: "55px"}} value={promiseGift} onChange={(e) => setPromiseGift(e.target.value)} />
+            <OrangeButton250 style={{ width: "100px", height: "60px"}} onClick={handleClickAddGiftButton}>추가</OrangeButton250>
+          </div> 
+        : null 
+        }
+        <DongleBrown style={{ fontSize: "54px", fontWeight: "bold" }} >약속</DongleBrown>
         {promiseItems[promiseItemId-1]?.todoList ?
           (promiseItems[promiseItemId-1]?.todoList.map((todoItem, index) => (
             <PromiseTodoItemComponent key={index} name={profileInfo.name} promiseItemId={promiseItemId} todoItem={todoItem}>
             </PromiseTodoItemComponent>
           )))
         :
-          <>약속이 없습니다.</> }
-        {/* { profileInfo.is_parent ? */}
-          <div style={{ display: 'flex', flexDirection: 'column' }}>
-            
-            {(parentActive && (!promiseItems[promiseItemId-1] || promiseItems[promiseItemId-1]?.todoList.length < 3)) ?
-              <div style={{ display: 'flex' }}>
-                <input value={newTodo} onChange={(e) => setNewTodo(e.target.value)} />
-                <button onClick={handleClickAddTodoButton}>약속 추가</button>
-              </div> : null }
-            
-            {parentActive ?
-              
-              <div style={{ display: 'flex' }}>
-                <input value={promiseGift} onChange={(e) => setPromiseGift(e.target.value)} />
-                <button onClick={handleClickAddGiftButton}>선물 추가 및 삭제</button>
-              </div> : null }
-            { parentActive ? <button onClick={handleClickDonePromiseButton}>완료</button> : null }
+          <DongleLightBrown style={{ fontSize: "36px" }}>약속이 없습니다.</ DongleLightBrown> }
+          {(parentActive && (!promiseItems[promiseItemId-1] || promiseItems[promiseItemId-1]?.todoList.length < 3)) ?
+            <div style={{ display: 'flex' }}>
+              <DiaryInputTag style={{ width: "250px", height: "55px"}} value={newTodo} onChange={(e) => setNewTodo(e.target.value)} />
+              <OrangeButton250 style={{ width: "100px", height: "60px"}} onClick={handleClickAddTodoButton}>추가</OrangeButton250>
+            </div> 
+          : null 
+          }
+          <div style={{ display: "flex", marginTop: '20px' }}>
+            <LetterButtonBack style={{ backgroundColor: 'var(--Beige-Stroke)', marginLeft: '5px', marginRight: '5px', marginTop: '0', marginBottom: '0'}} onClick={() => setModalOpen(false)}>닫기</LetterButtonBack>
+            { parentActive ? <LetterButtonGo style={{marginLeft: '5px', marginRight: '5px', marginTop: '0', marginBottom: '0'}} onClick={handleClickDonePromiseButton}>완료</LetterButtonGo> : null }
           </div>
-          {/* : null } */}
 
-        <ChildButtonTag2 onClick={() => setModalOpen(false)}>닫기</ChildButtonTag2>
       </PromiseModalComponentTag>
     </ModalBackgroundTag>
   )
