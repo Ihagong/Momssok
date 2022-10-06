@@ -37,7 +37,7 @@ function ReportPage() {
   }
 
   const emotionColor = (emotion) => {
-    let result = ''
+    let result = '#FDFDFD'
     if (emotion === '행복') {
       result = '#FFE27D'
     } else if (emotion === '슬픔') {
