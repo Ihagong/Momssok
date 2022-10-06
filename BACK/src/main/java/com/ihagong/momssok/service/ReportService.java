@@ -9,4 +9,6 @@ public interface ReportService {
     ReportDto lookupDaily(ReportInputDto reportInput) throws Exception;
     List<ReportDto> lookupWeekly(ReportInputDto reportInput) throws Exception;
     List<ReportDto> lookupMonthly(ReportInputDto reportInput) throws Exception;
+
+    List<ReportDto> lookupAll(ReportInputDto reportInput) throws Exception;
 }
