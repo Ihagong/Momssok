@@ -2,6 +2,7 @@ import React, { useEffect, useState, PureComponent } from 'react'
 import { useNavigate, useLocation } from  'react-router-dom'
 import { ParentInfo, ParentTitle, PaintingCardTag, JuaBrown, JuaBrownLight, OrangeButton250, LightButton250, EditProfileButtonTag, ReportSelectedTabTag, ReportTabTag, EmotionReportTag } from '../Style/Components'
 import { PaintingCardComponent } from '../Components/PaintingCardComponent'
+import { ActivityDiaryComponent } from '../Components/ActivityDiaryComponent'
 
 import { useRecoilState } from 'recoil'
 import { profileState, parentActiveState, loadedPaintingListState, loadedPaintingInfoState, diaryEditState, drawingDetailState } from '../store/atoms'
@@ -98,25 +99,9 @@ function ActivityRecordPage() {
           { selectedTab === 3 ? <ReportSelectedTabTag onClick={() => handleClickChangeTab(3)}>전체</ReportSelectedTabTag>
             : <ReportTabTag onClick={() => handleClickChangeTab(3)}>전체</ReportTabTag> }
         </div>
-      <div style={{ display: 'flex', marginTop: "-40px" }}>
-        { sortType === "latest" ?
-          <OrangeButton250 style={{marginLeft: "70px"}}>최신순</OrangeButton250>
-        :
-          <LightButton250 style={{marginLeft: "70px"}} onClick={latestType}>최신순</LightButton250>
-        }
-        { sortType === "oldest" ?
-          <OrangeButton250>오래된순</OrangeButton250>
-        :
-          <LightButton250 onClick={oldestType}>오래된순</LightButton250>
-        }
-      </div>
+      
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 3fr)', marginLeft: "50px" }}>
-        <PaintingCardTag style={{justifyContent: "center"}} onClick={handleClickCreatePaintingButton}><img src='/icons/plus_brown.svg' /></PaintingCardTag>
-        {getProcessedPaintingList().map((info) => (
-          <div key={info.drawing_id} onClick={() => handleClickLoadPaintingButton(info)}>
-            {/* <PaintingCardComponent info={info} /> */}
-          </div>
-        ))}
+        <ActivityDiaryComponent />
       </div>
       </div>
     </>
