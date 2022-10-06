@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom'
 import { useDiaryCallback } from '../Functions/useDiaryCallback'
 
 import { useRecoilState } from 'recoil'
-import { loadedPaintingInfoState, diaryDetailState, diaryTempState, profileState, totalDiaryListState, diaryItemState, diaryEditState, loadedPaintingListState } from '../store/atoms'
+import { drawingDetailState, loadedPaintingInfoState, diaryDetailState, diaryTempState, profileState, totalDiaryListState, diaryItemState, diaryEditState, loadedPaintingListState } from '../store/atoms'
 
 import { PaintingCardTag, LightButton250, DiaryBlock, DiaryContent, ChildProfileTag, LetterPageHeader, BrownText100, LightButton120 } from '../Style/Components'
 import { PaintingCardComponent } from '../Components/PaintingCardComponent'
@@ -23,6 +23,8 @@ export function ActivityPaintingComponent({ info }) {
   const [diaryIsDetail, setDiaryIsDetail ] = useRecoilState(diaryDetailState)
   const [diaryTemp, setDiaryTemp ] = useRecoilState(diaryTempState)
   const [loadedPaintingInfo, setLoadedPaintingInfo] = useRecoilState(loadedPaintingInfoState)
+  const [drawingIsDetail, setDrawingIsDetail] = useRecoilState(drawingDetailState)
+
 
 
   const latestType = () => {
@@ -54,7 +56,11 @@ export function ActivityPaintingComponent({ info }) {
     navigate('/diary/create')
   }
 
-  const handleClickLoadPaintingButton = () => {
+  const handleClickLoadPaintingButton = (info) => {
+    console.log(info)
+    setLoadedPaintingInfo({ drawing_id: info.drawing_id, drawing_base64: info.drawing_base64 })
+    setDrawingIsDetail(true)
+    navigate('/painting/create')
   }
 
   const getProcessedPaintingList = () => {
@@ -75,7 +81,9 @@ export function ActivityPaintingComponent({ info }) {
     <div className='LetterPageHome'>
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 3fr)', marginLeft: "50px" }}>
         {getProcessedPaintingList().map((info, key) => (
-          <PaintingCardComponent isPointer={false} key={key} info={info} />
+          <div key={info.drawing_id} onClick={() => handleClickLoadPaintingButton(info)}> 
+            <PaintingCardComponent isPointer={false} key={key} info={info} />
+          </div>
         ))}
       </div>
     </div>

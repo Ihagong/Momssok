@@ -46,6 +46,7 @@ export function PromiseModalComponent({ promiseItemId, promiseItem, setModalOpen
   
   const handleClickDonePromiseButton = () => {
     donePromiseCallback(profileInfo.name, promiseItemId)
+    setModalOpen(false)
   }
   
   return (
