@@ -59,11 +59,7 @@ const AnimalDictionaryPage = () => {
             </div>
             { openDescription ? 
               <div style={{ display: 'flex', alignItems: 'center', fontSize: '48px' }}>
-                오랫동안 사람과 함께 살아 온 동물!<br/>
-                어린 개를 ‘강아지’라고도 해요.<br/>
-                냄새를 잘 맡고 충성심이 강해서 우리에게<br/>
-                도움을 많이 준답니다. 하지만 조심하세요!<br/>
-                늑대와 조상이 같아서 이빨이 뾰족해요.
+                { animalList[detailIndex].description }
               </div> : null }
           </DictionaryDetailComponentTag>
           { openDescription ? 
