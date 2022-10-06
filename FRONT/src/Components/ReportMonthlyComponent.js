@@ -151,10 +151,10 @@ export function ReportMonthlyComponent({ emotionColor, emotionName }) {
         </PieChart>
       </div>
       <div>
-        <div style={{ display: 'flex', justifyContent: 'end', margin: '30px 30px 30px 0', fontSize: '26px' }}>2022.10</div>
+        <div style={{ display: 'flex', justifyContent: 'end', margin: '30px 30px 30px 0', fontSize: '26px' }}></div>
         <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', margin: '0 80px 0 0px' }}>
           <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', backgroundColor: emotionColor(monthlyEmotionObject.emotion), width: '120px', height: '120px', borderRadius: '40px', margin: '0 0 30px 0' }}>
-            <img style={{ width: '80px' }} src={`icons/emotion_${emotionName(monthlyEmotionObject.emotion)}.svg`}/>
+          { emotionName(monthlyEmotionObject.emotion) !== '' ? <img style={{ width: '80px' }} src={`icons/emotion_${emotionName(monthlyEmotionObject.emotion)}.svg`}/> : null }
           </div>
           <div>이번 달 아이의 감정 비중은</div><br/>
           <div style={{ fontSize: '40px' }}>"{monthlyEmotionObject.emotion}"이 높아요.</div><br/>
