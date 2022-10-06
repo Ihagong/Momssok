@@ -200,7 +200,7 @@ public class ReportController {
 
             result.put("start", startdateString);
             result.put("end", enddateString);
-            result.put("emotions", emotions);
+            result.put("emotions", reportList);
 
                 result.put("status", success);
 
