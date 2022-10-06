@@ -12,4 +12,6 @@ public interface ReportMapper {
     ReportDto lookupDaily(ReportInputDto reportInput) throws SQLException;
     List<ReportDto> lookupWeekly(ReportInputDto reportInput) throws SQLException;
     List<ReportDto> lookupMonthly(ReportInputDto reportInput) throws SQLException;
+
+    List<ReportDto> lookupAll(ReportInputDto reportInput) throws SQLException;
 }
