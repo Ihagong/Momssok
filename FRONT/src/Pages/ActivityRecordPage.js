@@ -48,6 +48,7 @@ function ActivityRecordPage() {
   }
 
   const handleClickParentButton = () => {
+    navigate('/profile/manage')
   }
 
   const handleClickChangeTab = (index) => {
@@ -79,14 +80,14 @@ function ActivityRecordPage() {
   return (
     <>
       <ParentTitle style={{ justifyContent: 'space-between', marginBottom: '20px' }}>
-        <div style={{ display: 'flex' }}>
-          <img onClick={() => navigate('/profile/manage')} style={{ width: "130px", height: "130px", cursor: 'pointer' }} src={`/images/profileImage_${profileInfo.image_num}.svg`} />
+        <div style={{ display: 'flex', marginLeft: '50px' }}>
+          <img onClick={() => navigate('/parent')} style={{ width: "130px", height: "130px", cursor: 'pointer' }} src={`/images/profileImage_${profileInfo.image_num}.svg`} />
           <ParentInfo>
             <JuaBrownLight style={{ fontSize: '32px' }}>{profileInfo.name}<span style={{ fontSize: '32px', color: 'gray'}}> | </span>{age}세</JuaBrownLight>
             <JuaBrown style={{ fontSize: '50px' }}>활동 내역</JuaBrown>
           </ParentInfo>
         </div>
-        <EditProfileButtonTag onClick={handleClickParentButton}>프로필 등록</EditProfileButtonTag>
+        <EditProfileButtonTag style={{ marginRight: "50px"}} onClick={handleClickParentButton}>프로필 변경</EditProfileButtonTag>
       </ParentTitle>
       
       <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
