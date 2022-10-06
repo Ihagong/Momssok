@@ -10,11 +10,11 @@ def read_item(item_id: str):
     print(type(A))
     print(type(B))
     return {
-        "angry": round(A[0],2),
-        "Surprised": round(A[1],2),
-        "anxious": round(A[2],2),
-        "happy": round(A[3],2),
-        "sad": round(A[4],2),
+        "분노": round(A[0],2),
+        "놀람": round(A[1],2),
+        "불안": round(A[2],2),
+        "행복": round(A[3],2),
+        "슬픔": round(A[4],2),
         "emotion": B,
     }
 #
