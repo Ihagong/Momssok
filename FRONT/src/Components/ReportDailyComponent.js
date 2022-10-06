@@ -38,32 +38,35 @@ export function ReportDailyComponent({ emotionColor, emotionName }) {
   const [dailyEmotionList, setDailyEmotionList] = useRecoilState(dailyEmotionListState)
   
   const dailyEmotionData = () => {
+    if (dailyEmotionList) {
+
+    }
     return (
       [
         {
           subject: '행복',
           average: 42,
-          date: dailyEmotionList[2][1] ? dailyEmotionList[2][1] : 0,
+          date: dailyEmotionList.length ? dailyEmotionList[2][1] : 0,
         },
         {
           subject: '슬픔',
           average: 23,
-          date: dailyEmotionList[3][1] ? dailyEmotionList[3][1] : 0,
+          date: dailyEmotionList.length ? dailyEmotionList[3][1] : 0,
         },
         {
           subject: '놀람',
           average: 30,
-          date: dailyEmotionList[5][1] ? dailyEmotionList[5][1] : 0,
+          date: dailyEmotionList.length ? dailyEmotionList[5][1] : 0,
         },
         {
           subject: '불안',
           average: 24,
-          date: dailyEmotionList[1][1] ? dailyEmotionList[1][1] : 0,
+          date: dailyEmotionList.length ? dailyEmotionList[1][1] : 0,
         },
         {
           subject: '분노',
           average: 21,
-          date: dailyEmotionList[4][1] ? dailyEmotionList[4][1] : 0,
+          date: dailyEmotionList.length ? dailyEmotionList[4][1] : 0,
         },
       ]
     )
@@ -89,8 +92,8 @@ export function ReportDailyComponent({ emotionColor, emotionName }) {
       <div>
         <div style={{ display: 'flex', justifyContent: 'end', margin: '30px 30px 30px 0', fontSize: '26px' }}>2022.10.05</div>
         <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', margin: '0 80px 0 0px' }}>
-          <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', backgroundColor: emotionColor(dailyEmotionList[0]), width: '120px', height: '120px', borderRadius: '40px', margin: '0 0 30px 0' }}>
-            <img style={{ width: '80px' }} src={`/icons/emotion_${emotionName(dailyEmotionList[0])}.svg`}/>
+          <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', backgroundColor: dailyEmotionList.length ? emotionColor(dailyEmotionList[0]) : '#F5F5F5', width: '120px', height: '120px', borderRadius: '40px', margin: '0 0 30px 0' }}>
+            { dailyEmotionList.length ? <img style={{ width: '80px' }} src={`/icons/emotion_${emotionName(dailyEmotionList[0])}.svg`}/> : null }
           </div>
           <div>오늘 아이의 가장 높은 감정은</div><br/>
           <div style={{ fontSize: '40px' }}>"{dailyEmotionList[0]}"입니다.</div><br/>
