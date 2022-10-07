@@ -18,7 +18,7 @@
 
 #### 아이 사용자 입장 페이지
 
-![Child_main](.\images\Child_main.gif)
+![Child_main](./images/Child_main.gif)
 
 
 
@@ -39,19 +39,19 @@
 
 ✅ 기본 그리기
 
-![drawing](.\images\drawing.gif)
+![drawing](./images/drawing.gif)
 
 ✅ 모션 인식 그리기
 
 + 아이 사용자의 손동작을 인식하여 그림 도구 선택, 색상 선택, 그림 그리기 모두 가능
 
-![drawing_hand](.\images\drawing_hand.gif)
+![drawing_hand](./images/drawing_hand.gif)
 
 ✅ 그림 태그 기능
 
 + 아이 사용자의 그림을 분석하여 자동으로 해시태그를 만들어 주는 기능
 
-![drawing](.\images\image_tag.png)
+![drawing](./images/image_tag.png)
 
 
 
@@ -61,7 +61,7 @@
 
 + 이미 그렸던 그림 불러오기, 새로 그리기 모두 가능
 
-![create_diary](.\images\create_diary.gif)
+![create_diary](./images/create_diary.gif)
 
 
 
@@ -71,7 +71,7 @@
 
 + 아이가 쓴 일기의 감정 분석에 맞는 표정 이모티콘을 날짜에 맞게 달력에서 보여주는 기능
 
-![Expression_emotion](.\images\Expression_emotion.png)
+![Expression_emotion](./images/Expression_emotion.png)
 
 
 
@@ -82,7 +82,7 @@
 + 부모 사용자가 아이 사용자에 대해 할 일 목록을 지정해주고 이를 달성하면 도장을 찍어줌
 + Done 처리는 부모 사용자와 아이 사용자 모두 가능하지만 도장 찍는 기능은 부모 사용자만 가능
 
-![stamp](.\images\stamp.png)
+![stamp](./images/stamp.png)
 
 
 
@@ -94,7 +94,7 @@
 + 영상 녹화 기능을 통한 영상 편지 기능 탑재
 + 형제, 자매도 편지를 주고 받을 수 있음
 
-![letter](.\images\letter.png)
+![letter](./images/letter.png)
 
 
 
@@ -105,7 +105,7 @@
 + 선택한 동물의 간단한 설명과 따라 그릴 수 있도록 reference 제공
 + 동물의 소리와 부위 별 움직임 구현
 
-![drawing_animal](.\images\drawing_animal.gif)
+![drawing_animal](./images/drawing_animal.gif)
 
 
 
@@ -115,13 +115,13 @@
 
 + 미취학 아동들이 좋아하는 동요 6 가지를 제공하는 서비스
 
-![kid_song](.\images\kid_song.gif)
+![kid_song](./images/kid_song.gif)
 
 
 
 #### 아이 사용자 관리 페이지
 
-![child_care](.\images\child_care.gif)
+![child_care](./images/child_care.gif)
 
 
 
@@ -132,11 +132,11 @@
 + 일기 내용을 기반으로 한 감정 분석 결과를 오늘, 이번 주, 이번 달로 나누어 제공
 + 감정 분석 결과는 Sigmoid를 역으로 계산 하여 5 가지의 감정을 % 로 나타냄
 
-![day](.\images\day.jpg)
+![day](./images/day.jpg)
 
-![week](.\images\week.png)
+![week](./images/week.png)
 
-![month](.\images\month.png)
+![month](./images/month.png)
 
 
 
@@ -146,9 +146,9 @@
 
 + 아이 사용자가 그린 그림과 작성한 그림 일기를 볼 수 있음
 
-![activate1](.\images\activate1.png)
+![activate1](./images/activate1.png)
 
-![activate2](.\images\activate2.png)
+![activate2](./images/activate2.png)
 
 
 
@@ -159,13 +159,13 @@
 + 부모 사용자는 아이 사용자가 해야 할 일을 지정할 수 있음
 + 아이 사용자가 그 일을 했을 때 도장을 찍어줌
 
-![promise](.\images\promise.png)
+![promise](./images/promise.png)
 
 
 
 # 🤖주요 기술 스택
 
-![Architecture](.\images\Architecture.png)
+![Architecture](./images/Architecture.png)
 
 #### Frontend
 
@@ -277,20 +277,20 @@
 
 👉[우리 아이 마음 일기장, 맘쏙](https://www.notion.so/db4354aafdfc4396a8e960802a163659)
 
-![notion](.\images\notion.png)
+![notion](./images/notion.png)
 
 ## Mockup
 
 
 
-![figma1](.\images\figma1.png)
+![figma1](./images/figma1.png)
 
-![figma2](.\images\figma2.png)
+![figma2](./images/figma2.png)
 
-![figma3](.\images\figma3.png)
+![figma3](./images/figma3.png)
 
-![figma4](.\images\figma4.png)
+![figma4](./images/figma4.png)
 
 ## ERD
 
-![ERD](.\images\ERD.png)
+![ERD](./images/ERD.png)
