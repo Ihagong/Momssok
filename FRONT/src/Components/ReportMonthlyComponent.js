@@ -160,7 +160,7 @@ export function ReportMonthlyComponent({ emotionColor, emotionName }) {
           <div style={{ fontSize: '40px' }}>"{monthlyEmotionObject.emotion}"이 높아요.</div><br/>
           <div style={{ fontSize: '26px', color: 'var(--Brown-LightText', margin: '0 0 50px 0' }}>
             지난달보다 "{monthlyEmotionObject.emotion}"이 <span style={{ color: '#EA5550' }}>
-              { monthlyEmotionObject.emotionDiff !== '지난달 해당 감정 없음' ? monthlyEmotionObject.emotionDiff : `${monthlyEmotionObject.mainPercent}%p`}
+              { monthlyEmotionObject.emotionDiff !== '지난달 해당 감정 없음' ? monthlyEmotionObject.emotionDiff : `${monthlyEmotionObject.mainPercent.toFixed(1)}%p`}
             </span> 올랐어요.
           </div>
         </div>
