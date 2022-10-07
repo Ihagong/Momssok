@@ -222,13 +222,13 @@
 <table>
     <tr>
         <td height="140px" align="center">
-            <img src=".\images\Bokyung.jpg" width="140px" /> <br>강보경</a> <br>
+            <img src="./images/Bokyung.jpg" width="140px" /> <br>강보경</a> <br>
         </td>
         <td height="140px" align="center">
-            <img src=".\images\gwang.jpg" width="140px" /> <br>고광</a> <br>
+            <img src="./images/gwang.jpg" width="140px" /> <br>고광</a> <br>
         </td>
         <td height="140px" align="center">
-            <img src=".\images\daeun2.jpg" width="140px" /> <br>김다은</a> <br>
+            <img src="./images/daeun2.jpg" width="140px" /> <br>김다은</a> <br>
         </td>
     </tr>
     <tr>
@@ -246,13 +246,13 @@
 <table>
     <tr>
         <td height="140px" align="center">
-            <img src=".\images\SeongRyung2.jpg" width="140px" /> <br>김성령</a> <br>
+            <img src="./images/SeongRyung2.jpg" width="140px" /> <br>김성령</a> <br>
         </td>
         <td height="140px" align="center">
-            <img src=".\images\Piljae.jpg" width="140px" /> <br>김필재</a> <br>
+            <img src="./images/Piljae.jpg" width="140px" /> <br>김필재</a> <br>
         </td>
         <td height="140px" align="center">
-            <img src=".\images\ChanSeok1.jpg" width="140px" /> <br>박찬석</a> <br>
+            <img src="./images/ChanSeok1.jpg" width="140px" /> <br>박찬석</a> <br>
         </td>
     </tr>
     <tr>
@@ -267,6 +267,7 @@
         </td>
     </tr>
 </table>
+
 
 
 
