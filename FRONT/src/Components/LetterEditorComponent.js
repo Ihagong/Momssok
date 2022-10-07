@@ -32,7 +32,6 @@ const LetterEditorComponent = ({ isDetail, letterItem }) => {
 
   const [videoFile, setVideoFile] = useState(null)
   const [videoButton, setVideoButton] = useState(0)
-  const [videoRecord, setVideoRecord] = useState(0)
 
   useEffect(() => {
   }, [videoFile])
@@ -45,7 +44,6 @@ const LetterEditorComponent = ({ isDetail, letterItem }) => {
   const onRemove = (targetId) => {
     letterRemoveCallback(targetId)
   }
-
 
   const handleSubmit = () => {
     if (title.length < 1) {
@@ -80,14 +78,6 @@ const LetterEditorComponent = ({ isDetail, letterItem }) => {
   const videoButtonClick = () => {
     if (videoButton === 0) {
       setVideoButton(1)
-    } else {
-      setVideoButton(0)
-    }
-  }
-
-  const videoRecordButton = () => {
-    if (videoRecord === 0) {
-      setVideoRecord(1)
     } else {
       setVideoButton(0)
     }
@@ -165,7 +155,7 @@ const LetterEditorComponent = ({ isDetail, letterItem }) => {
             <LetterContentDiv>
               { isDetail ? <video style={{ width: '450' }} src={letterVideoURL} type='video/webm' controls={true} />
               : <div style={{ display: 'flex', alignItems: 'center', marginTop: '15px', justifyContent: 'center' }}>
-              <VideoCaptureComponent videoRecord={videoRecord} setVideoFile={setVideoFile} />
+              <VideoCaptureComponent setVideoFile={setVideoFile} />
               </div> }
             </LetterContentDiv>
           </LetterContentBody>
@@ -178,10 +168,6 @@ const LetterEditorComponent = ({ isDetail, letterItem }) => {
           <LetterButtonBack onClick={() => navigate(-1)}>닫기</LetterButtonBack>
           <LetterButtonGo onClick={handleSubmit}>{isDetail ? '답장하기' : '보내기'}</LetterButtonGo>
           {isDetail && <LetterButtonDel onClick={handleRemove}>삭제하기</LetterButtonDel>}
-          { videoButton === 1 ? 
-            <LetterButtonDel onClick={videoRecordButton}>녹화</LetterButtonDel>
-            : null
-          }
           <div onClick={videoButtonClick}>
             { videoButton === 1 ? 
               <img style={{ width: '180px', marginLeft: '50px', marginTop: '20px'}} src="/icons/iconletter.svg" />

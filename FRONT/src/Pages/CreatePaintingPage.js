@@ -136,10 +136,10 @@ function CreatePaintingPage() {
   const handleClickCloseButton = () => {
     setDrawingIsDetail(false)
     if (diaryIsEdit === false) {
-      navigate('/painting/load')
+      navigate(-1)
     } else {
       setDiaryIsEdit(false)
-      navigate('/diary/create') 
+      navigate(-1) 
     }
   }
 

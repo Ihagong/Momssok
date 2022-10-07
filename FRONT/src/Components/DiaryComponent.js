@@ -94,7 +94,7 @@ export function DiaryComponent() {
       'title': "",
       'content': ""
     })
-    navigate('/diary')
+    navigate(-1)
   }
 
   const handleClickCreateButton = () => {
