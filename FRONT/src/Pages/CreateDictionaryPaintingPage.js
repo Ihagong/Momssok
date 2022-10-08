@@ -146,10 +146,10 @@ function CreatePaintingPage(props) {
 
       if (partIndex == animal.parts.length-1) {
         soundPlay(animal.name)
+        setIsDone(true)
       }
     }
     if (partIndex >= animal.parts.length) {
-      setIsDone(true)
       navigate('/dictionary')
     }
   }
